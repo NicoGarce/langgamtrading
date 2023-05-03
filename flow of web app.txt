@@ -1,0 +1,68 @@
+March 15,2023 start of development
+Login Page
+    -login/logout 
+    -Register Page
+- Determine Admin/User
+    Admin
+        Dashboard
+            - Data Analytics
+            - Top Selling Products
+            - Sales per Month
+            - Product Count
+            - Low Stock Products Count
+            - Employee Count
+        CRUD:
+            Accounts/Employee Page
+                - Position/Role In Company
+                - Can access/manage accounts
+            Inventory Page
+                - Picture of Product
+                - Name of Product
+                - Quantity
+                - Categories
+                - Date Ordered
+                - Date of Arrival
+                - Supplier
+                - Add Edit Delete Product
+                - Added By
+            Orders Page
+                - Incoming Stocks
+                - Outgoing Orders
+                - Transactions Records
+                - Invoice
+            Supplier Page
+                - Add Edit Delete Supplier
+                - Supplier Details
+            Sales Report Page
+                - Computes Profit Earned
+                - By Date Sales
+                - Weekly Sales
+                - Monthly Sales
+                - Yearly Sales
+
+    Employee
+        Home Page
+        Profile Page(editable)
+            - User can add profile pic
+            - can edit password
+            - can edit username
+            - add address
+            - email
+        CRUD
+            Orders Page
+                - Incoming Stocks
+                - Outgoing Orders
+            Inventory Page
+                - Picture of Product
+                - Name of Product
+                - Quantity
+                - Categories
+                - Date Ordered
+                - Date of Arrival
+                - Supplier
+                - Add Edit Delete Product
+                - Added By
+            Supplier Page
+                    - Add Edit Delete Supplier
+                    - Supplier Details
+
