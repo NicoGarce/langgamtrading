@@ -40,6 +40,10 @@ include('header.php');
           <input type="password" class="form-control" id="password" name="password" required>
         </div>
         <div class="form-group">
+          <label for="confirm">Confirm Password:</label>
+          <input type="password" class="form-control" id="confirm" name="confirm" required>
+        </div>
+        <div class="form-group">
           <label for="mobile">Mobile No.:</label>
           <input type="tel" class="form-control" id="mobile" name="mobile" required>
         </div>
