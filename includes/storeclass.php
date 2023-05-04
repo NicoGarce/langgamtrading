@@ -82,17 +82,7 @@ Class Langgam{
             $stmt = $pdo->prepare($sql);
             $stmt->execute(['username' => $username]);
 
-            if ($stmt->rowCount() > 0) {
-                $message = "Username already in use.";
-                echo "<script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: '$message',
-                            })
-                    </script>";
-                
-            } else {
+            
                 $sql = "INSERT INTO users (firstName, lastName, username, password, mobile, email, address, role) VALUES (:firstName, :lastName, :username, :password, :mobile, :email, :address, :role)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([
@@ -125,7 +115,6 @@ Class Langgam{
                             })
                         </script>";
                 }
-            }
 
             $pdo = null;
         }
