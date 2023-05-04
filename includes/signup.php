@@ -14,6 +14,64 @@ include('header.php');
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <title>Sign Up | Langgam Trading</title>
+  
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get the input fields and message span elements
+        const usernameInput = document.getElementById('username');
+        const usernameMessage = document.getElementById('username-message');
+
+        const emailInput = document.getElementById('email');
+        const emailMessage = document.getElementById('email-message');
+
+        const mobileInput = document.getElementById('mobile');
+        const mobileMessage = document.getElementById('mobile-message');
+
+        // Define a function to send the AJAX request to check availability
+        function checkAvailability(endpoint, data, messageElement) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', endpoint, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    // Get the response from the server
+                    const response = xhr.responseText;
+
+                    // Show the message of input value availability
+                    messageElement.innerHTML = response;
+                } else {
+                    console.error(xhr.statusText);
+                }
+            };
+            xhr.onerror = () => console.error(xhr.statusText);
+            xhr.send(data);
+        }
+
+        // Add event listeners to the input fields to listen for changes
+        usernameInput.addEventListener('input', () => {
+            // Get the value of the input field
+            const username = usernameInput.value.trim();
+            // Send an AJAX request to check the availability of the username
+            checkAvailability('/langgamtrading/includes/check_username.php', `username=${username}`, usernameMessage);
+        });
+
+        emailInput.addEventListener('input', () => {
+            // Get the value of the input field
+            const email = emailInput.value.trim();
+            // Send an AJAX request to check the availability of the email
+            checkAvailability('/langgamtrading/includes/check_email.php', `email=${email}`, emailMessage);
+        });
+
+        mobileInput.addEventListener('input', () => {
+            // Get the value of the input field
+            const mobile = mobileInput.value.trim();
+            // Send an AJAX request to check the availability of the mobile number
+            checkAvailability('/langgamtrading/includes/check_mobile.php', `mobile=${mobile}`, mobileMessage);
+        });
+    });
+</script>
+
+
 </head>
 <body style="background-color: lightgray;">
 <div class="container">
@@ -34,6 +92,7 @@ include('header.php');
         <div class="form-group">
           <label for="username">Username:</label>
           <input type="text" class="form-control" id="username" name="username" required>
+          <span id="username-message"></span>
         </div>
         <div class="form-group">
           <label for="password">Password:</label>
@@ -46,10 +105,12 @@ include('header.php');
         <div class="form-group">
           <label for="mobile">Mobile No.:</label>
           <input type="tel" class="form-control" id="mobile" name="mobile" required>
+          <span id="mobile-message"></span>
         </div>
         <div class="form-group">
           <label for="email">Email Address:</label>
           <input type="email" class="form-control" id="email" name="email" required>
+          <span id="email-message"></span>
         </div>
         <div class="form-group">
           <label for="address">Address:</label>

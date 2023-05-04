@@ -83,7 +83,7 @@ Class Langgam{
             $stmt->execute(['username' => $username]);
 
             if ($stmt->rowCount() > 0) {
-                $message = "Username already exists.";
+                $message = "Username already in use.";
                 echo "<script>
                         Swal.fire({
                             icon: 'error',
@@ -130,6 +130,7 @@ Class Langgam{
             $pdo = null;
         }
     }
+    
 
 }
 $store= new Langgam();
