@@ -33,6 +33,7 @@ class Langgam
 
     public function login()
     {
+
         if (isset($_POST['submit'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
@@ -43,7 +44,6 @@ class Langgam
             $stmt->execute();
 
             if ($stmt->rowCount() == 1) {
-
                 // Get the user's role from the query result and store it in a session variable
                 $user = $stmt->fetch();
                 if (password_verify($password, $user['password'])) {
@@ -52,8 +52,10 @@ class Langgam
                     // Redirect the user to the appropriate dashboard based on their role
                     if ($_SESSION['role'] == "Administrator") {
                         header("Location: pages/admin/admin_dashboard.php");
+                        exit;
                     } else if ($_SESSION['role'] == "Employee") {
                         header("Location: pages/employee/emp_dashboard.php");
+                        exit;
                     }
                 } else {
                     // Display an error message if the password is incorrect
@@ -61,23 +63,26 @@ class Langgam
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Password is Incorrect',
+                        text: 'Password is incorrect.',
                     })
                 </script>";
                 }
-
             } else {
                 // Display an error message if the username is incorrect
                 echo "<script>
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Username is Incorrect',
+                    text: 'Username is incorrect.',
                 })
             </script>";
             }
+            $conn = null;
         }
     }
+
+
+
 
 
 
@@ -93,44 +98,59 @@ class Langgam
             $address = $_POST["address"];
             $role = $_POST["role"];
 
+            // Generate a hashed password using bcrypt
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
             $pdo = $this->openConnection();
 
             $sql = "SELECT * FROM users WHERE username=:username";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(['username' => $username]);
 
-
-            $sql = "INSERT INTO users (firstName, lastName, username, password, mobile, email, address, role) VALUES (:firstName, :lastName, :username, :password, :mobile, :email, :address, :role)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([
-                'firstName' => $firstName,
-                'lastName' => $lastName,
-                'username' => $username,
-                'password' => $password,
-                'mobile' => $mobile,
-                'email' => $email,
-                'address' => $address,
-                'role' => $role
-            ]);
-
+            // Check if the username already exists
             if ($stmt->rowCount() > 0) {
-                $message = "User added successfully.";
+                $message = "Username already exists. Please choose a different username.";
                 echo "<script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: '$message',
+                        })
+                    </script>";
+            } else {
+                $sql = "INSERT INTO users (firstName, lastName, username, password, mobile, email, address, role) VALUES (:firstName, :lastName, :username, :password, :mobile, :email, :address, :role)";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([
+                    'firstName' => $firstName,
+                    'lastName' => $lastName,
+                    'username' => $username,
+                    'password' => $hashedPassword,
+                    // Store the hashed password
+                    'mobile' => $mobile,
+                    'email' => $email,
+                    'address' => $address,
+                    'role' => $role
+                ]);
+
+                if ($stmt->rowCount() > 0) {
+                    $message = "User added successfully.";
+                    echo "<script>
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Success',
                                 text: '$message',
                             })
                         </script>";
-            } else {
-                $message = "Error: Unable to add user.";
-                echo "<script>
+                } else {
+                    $message = "Error: Unable to add user.";
+                    echo "<script>
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Oops...',
                                 text: '$message',
                             })
                         </script>";
+                }
             }
 
             $pdo = null;

@@ -45,6 +45,7 @@ include('header.php');
           <div class="form-group">
             <label for="confirm">Confirm Password:</label>
             <input type="password" class="form-control" id="confirm" name="confirm" required>
+            <span id="confirm-message"></span>
           </div>
           <div class="form-group">
             <label for="mobile">Mobile No.:</label>
@@ -68,16 +69,15 @@ include('header.php');
               <option value="Administrator">Administrator</option>
             </select>
           </div>
-          <button name="add" type="submit" class="btn btn-primary">Register</button>
+          <button name="add" type="submit" class="btn btn-primary">Sign Up</button>
         </form>
       </div>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
+
   <script>
-    //validation for username, email and mobile
     document.addEventListener('DOMContentLoaded', () => {
       // Get the input fields and message span elements
       const usernameInput = document.getElementById('username');
@@ -91,6 +91,27 @@ include('header.php');
 
       const registrationForm = document.getElementById('registration-form');
 
+      const passwordInput = document.getElementById('password');
+      const confirmInput = document.getElementById('confirm');
+      const confirmMessage = document.getElementById('confirm-message');
+
+      async function checkConfirmation(endpoint, data) {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', endpoint, true);
+          xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+          xhr.onload = () => {
+            if (xhr.status === 200) {
+              const response = xhr.responseText;
+              resolve(response);
+            } else {
+              reject(xhr.statusText);
+            }
+          };
+          xhr.onerror = () => reject(xhr.statusText);
+          xhr.send(data);
+        });
+      }
       // Define a function to send the AJAX request to check availability
       async function checkAvailability(endpoint, data, messageElement) {
         return new Promise((resolve, reject) => {
@@ -118,7 +139,7 @@ include('header.php');
       }
 
       // Add event listener to the registration form submit button
-      registrationForm.addEventListener('submit', async (event) => {
+      registrationForm.addEventListener('add', async (event) => {
         event.preventDefault();
 
         // Get the values of the input fields
@@ -171,6 +192,19 @@ include('header.php');
           mobileMessage.innerHTML = '';
         }
       });
+
+      confirmInput.addEventListener('input', async () => {
+        const password = passwordInput.value.trim();
+        const confirm = confirmInput.value.trim();
+
+        if (confirm !== '') {
+          const response = await checkConfirmation('/langgamtrading/includes/check_confirmation.php', `password=${password}&confirm=${confirm}`);
+          confirmMessage.innerHTML = response;
+        } else {
+          confirmMessage.innerHTML = '';
+        }
+      });
+
     });
   </script>
 
