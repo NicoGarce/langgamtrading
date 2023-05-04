@@ -1,7 +1,6 @@
 <?php
 
 require_once('storeclass.php');
-$store->login();
 
 ?>
 <!DOCTYPE html>
@@ -69,5 +68,7 @@ $store->login();
             </div>
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php $store->login(); ?>
 </body>
 </html>
