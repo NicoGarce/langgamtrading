@@ -73,8 +73,11 @@ include('header.php');
       </div>
     </div>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
   <script>
+    //validation for username, email and mobile
     document.addEventListener('DOMContentLoaded', () => {
       // Get the input fields and message span elements
       const usernameInput = document.getElementById('username');
