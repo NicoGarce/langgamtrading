@@ -23,45 +23,45 @@ include('header.php');
       <div class="col-md-6">
         <h2 class="pt-4">Sign Up</h2>
         <form method="post" id="registration-form">
-          <div class="form-row">
-            <div class="form-group col-md-6">
+          <div class="form-group row justify-content-center">
+            <div class="form-group col-md-6 pt-3">
               <label for="firstName">First Name:</label>
               <input type="text" class="form-control" id="firstName" name="firstName" required>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 pt-3">
               <label for="lastName">Last Name:</label>
               <input type="text" class="form-control" id="lastName" name="lastName" required>
             </div>
           </div>
-          <div class="form-group">
-            <label for="username">Username:</label>
+          <div class="form-group pt-2">
+            <label for="username">Create a Username:</label>
             <input type="text" class="form-control" id="username" name="username" required>
             <span id="username-message"></span>
           </div>
-          <div class="form-group">
+          <div class="form-group pt-2">
             <label for="password">Password:</label>
             <input type="password" class="form-control" id="password" name="password" required>
           </div>
-          <div class="form-group">
+          <div class="form-group pt-2">
             <label for="confirm">Confirm Password:</label>
             <input type="password" class="form-control" id="confirm" name="confirm" required>
             <span id="confirm-message"></span>
           </div>
-          <div class="form-group">
+          <div class="form-group pt-2">
             <label for="mobile">Mobile No.:</label>
             <input type="tel" class="form-control" id="mobile" name="mobile" required>
             <span id="mobile-message"></span>
           </div>
-          <div class="form-group">
+          <div class="form-group pt-2">
             <label for="email">Email Address:</label>
             <input type="email" class="form-control" id="email" name="email" required>
             <span id="email-message"></span>
           </div>
-          <div class="form-group">
+          <div class="form-group pt-2">
             <label for="address">Address:</label>
             <textarea class="form-control" id="address" name="address" required></textarea>
           </div>
-          <div class="form-group">
+          <div class="form-group pt-2">
             <label for="role">Role:</label>
             <select class="form-control" id="role" name="role" required>
               <option value="">--Select Role--</option>
@@ -69,7 +69,9 @@ include('header.php');
               <option value="Administrator">Administrator</option>
             </select>
           </div>
-          <button name="add" type="submit" class="btn btn-primary">Sign Up</button>
+          <div class="text-center pt-3">
+            <button name="add" type="submit" class="btn btn-primary" style="width: 200px;">Sign Up</button>
+          </div>
         </form>
       </div>
     </div>
