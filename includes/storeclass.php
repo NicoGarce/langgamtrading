@@ -82,10 +82,6 @@ class Langgam
     }
 
 
-
-
-
-
     public function add_user()
     {
         if (isset($_POST['add'])) {

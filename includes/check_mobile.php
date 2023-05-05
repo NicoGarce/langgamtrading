@@ -16,4 +16,3 @@ if ($stmt->rowCount() > 0) {
    
     echo "<span style='color:green'>Mobile Number Available.</span>";
 }
-?>

@@ -1,7 +1,6 @@
 <?php
 
 require_once('storeclass.php');
-
 $store->login();
 
 ?>
@@ -18,7 +17,7 @@ $store->login();
     <title>Login | Langgam Trading</title>
 </head>
 
-<body class="bg-primary">
+<body class="bg-primary" style="background-color: #306c76;">
     <section class="h-75">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100 ">
@@ -77,6 +76,7 @@ $store->login();
             </div>
         </div>
     </section>
+    
 </body>
 
 </html>
