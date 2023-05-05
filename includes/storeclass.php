@@ -99,55 +99,41 @@ class Langgam
 
             $pdo = $this->openConnection();
 
-            $sql = "SELECT * FROM users WHERE username=:username";
+
+            $sql = "INSERT INTO users (firstName, lastName, username, password, mobile, email, address, role) VALUES (:firstName, :lastName, :username, :password, :mobile, :email, :address, :role)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(['username' => $username]);
+            $stmt->execute([
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+                'username' => $username,
+                'password' => $hashedPassword,
+                // Store the hashed password
+                'mobile' => $mobile,
+                'email' => $email,
+                'address' => $address,
+                'role' => $role
+            ]);
 
-            // Check if the username already exists
             if ($stmt->rowCount() > 0) {
-                $message = "Username already exists. Please choose a different username.";
+                $message = "User added successfully.";
                 echo "<script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: '$message',
-                        })
-                    </script>";
-            } else {
-                $sql = "INSERT INTO users (firstName, lastName, username, password, mobile, email, address, role) VALUES (:firstName, :lastName, :username, :password, :mobile, :email, :address, :role)";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute([
-                    'firstName' => $firstName,
-                    'lastName' => $lastName,
-                    'username' => $username,
-                    'password' => $hashedPassword,
-                    // Store the hashed password
-                    'mobile' => $mobile,
-                    'email' => $email,
-                    'address' => $address,
-                    'role' => $role
-                ]);
-
-                if ($stmt->rowCount() > 0) {
-                    $message = "User added successfully.";
-                    echo "<script>
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Success',
                                 text: '$message',
                             })
                         </script>";
-                } else {
-                    $message = "Error: Unable to add user.";
-                    echo "<script>
+            } else {
+                $message = "Error: Unable to add user.";
+                echo "<script>
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Oops...',
                                 text: '$message',
                             })
                         </script>";
-                }
             }
+
 
             $pdo = null;
         }

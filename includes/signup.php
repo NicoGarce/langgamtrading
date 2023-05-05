@@ -139,31 +139,45 @@ include('header.php');
       }
 
       // Add event listener to the registration form submit button
-      registrationForm.addEventListener('add', async (event) => {
+      // Add event listener to the registration form submit button
+      registrationForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         // Get the values of the input fields
         const username = usernameInput.value.trim();
         const email = emailInput.value.trim();
         const mobile = mobileInput.value.trim();
+        const password = passwordInput.value.trim();
+        const confirm = confirmInput.value.trim();
 
-        // Send AJAX requests to check the availability of each attribute
-        const isUsernameAvailable = await checkAvailability('/langgamtrading/includes/check_username.php', `username=${username}`, usernameMessage);
-        const isEmailAvailable = await checkAvailability('/langgamtrading/includes/check_email.php', `email=${email}`, emailMessage);
-        const isMobileAvailable = await checkAvailability('/langgamtrading/includes/check_mobile.php', `mobile=${mobile}`, mobileMessage);
-
-        // If any of the attributes is not available, display a SweetAlert message
-        if (!isUsernameAvailable || !isEmailAvailable || !isMobileAvailable) {
+        // Check if the password and confirm password fields match
+        if (password !== confirm) {
+          // Display SweetAlert message if passwords do not match
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Some attributes are already in use.',
+            text: 'Passwords do not match.',
           });
         } else {
-          // If all attributes are available, submit the form
-          registrationForm.submit();
+          // Send AJAX requests to check the availability of each attribute
+          const isUsernameAvailable = await checkAvailability('/langgamtrading/includes/check_username.php', `username=${username}`, usernameMessage);
+          const isEmailAvailable = await checkAvailability('/langgamtrading/includes/check_email.php', `email=${email}`, emailMessage);
+          const isMobileAvailable = await checkAvailability('/langgamtrading/includes/check_mobile.php', `mobile=${mobile}`, mobileMessage);
+
+          // If any of the attributes is not available, display a SweetAlert message
+          if (!isUsernameAvailable || !isEmailAvailable || !isMobileAvailable) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Some attributes are already in use.',
+            });
+          } else {
+            // If all attributes are available and passwords match, submit the form
+            registrationForm.submit();
+          }
         }
       });
+
 
       // Add event listener to the input fields for live checking
       usernameInput.addEventListener('input', async () => {
