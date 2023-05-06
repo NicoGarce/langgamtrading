@@ -82,6 +82,11 @@ include('header.php');
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Get the input fields and message span elements
+      const firstNameInput = document.getElementById('firstName');
+      const lastNameInput = document.getElementById('lastName');
+      const addressInput = document.getElementById('address');
+      const roleInput = document.getElementById('role');
+
       const usernameInput = document.getElementById('username');
       const usernameMessage = document.getElementById('username-message');
 
@@ -122,35 +127,40 @@ include('header.php');
           xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
           xhr.onload = () => {
             if (xhr.status === 200) {
-              // Get the response from the server
               const response = xhr.responseText;
-
-              // Show the message of input value availability
               messageElement.innerHTML = response;
-
-              // Resolve the Promise with the availability status
-              resolve(response === 'Available');
+              resolve(response.includes('Available'));
             } else {
-              // Reject the Promise with the error message
               reject(xhr.statusText);
             }
           };
           xhr.onerror = () => reject(xhr.statusText);
           xhr.send(data);
-        });
+        })
+          .then(result => {
+            return result;
+          })
+          .catch(error => {
+            console.error(error);
+            return false;
+          });
       }
 
-      // Add event listener to the registration form submit button
+
       // Add event listener to the registration form submit button
       registrationForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         // Get the values of the input fields
+        const firstName = firstNameInput.value.trim();
+        const lastName = lastNameInput.value.trim();
         const username = usernameInput.value.trim();
         const email = emailInput.value.trim();
         const mobile = mobileInput.value.trim();
         const password = passwordInput.value.trim();
         const confirm = confirmInput.value.trim();
+        const address = addressInput.value.trim();
+        const role = roleInput.value.trim();
 
         // Check if the password and confirm password fields match
         if (password !== confirm) {
@@ -175,10 +185,44 @@ include('header.php');
             });
           } else {
             // If all attributes are available and passwords match, submit the form
-            registrationForm.submit();
+            // Send AJAX request to add the user to the database
+            const formData = new FormData();
+            formData.append('add', 'true');
+            formData.append('firstName', firstName);
+            formData.append('lastName', lastName);
+            formData.append('username', username);
+            formData.append('password', password);
+            formData.append('mobile', mobile);
+            formData.append('email', email);
+            formData.append('address', address);
+            formData.append('role', role);
+
+            const response = await fetch('/langgamtrading/includes/addToDb.php', {
+              method: 'POST',
+              body: formData
+
+            });
+
+            if (response.ok) {
+              const data = await response.json();
+              // Display success message if user was added successfully
+              Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'User added successfully.',
+              });
+            } else {
+              // Display error message if user was not added
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Error: Unable to add user.',
+              });
+            }
           }
         }
       });
+
 
 
       // Add event listener to the input fields for live checking

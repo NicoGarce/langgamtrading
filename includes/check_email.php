@@ -16,5 +16,5 @@ if ($stmt->rowCount() > 0) {
     echo "<span style='color:red'>Email already in use.</span>";
 } else {
     
-    echo "<span style='color:green'>Email available.</span>";
+    echo "<span style='color:green'>Email Available.</span>";
 }

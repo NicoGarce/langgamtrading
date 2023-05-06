@@ -99,7 +99,6 @@ class Langgam
 
             $pdo = $this->openConnection();
 
-
             $sql = "INSERT INTO users (firstName, lastName, username, password, mobile, email, address, role) VALUES (:firstName, :lastName, :username, :password, :mobile, :email, :address, :role)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
@@ -114,30 +113,30 @@ class Langgam
                 'role' => $role
             ]);
 
+            if ($_POST['password'] != $_POST['confirm']) {
+                // Passwords don't match
+                echo json_encode(["message" => "Passwords do not match"]);
+                exit;
+            }
+            
             if ($stmt->rowCount() > 0) {
                 $message = "User added successfully.";
-                echo "<script>
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success',
-                                text: '$message',
-                            })
-                        </script>";
+                echo json_encode(["message" => $message]);
             } else {
                 $message = "Error: Unable to add user.";
-                echo "<script>
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: '$message',
-                            })
-                        </script>";
+                echo json_encode(["message" => $message]);
             }
-
+            
+            
+            // Return the response as a JSON object
+            header('Content-Type: application/json');
+            echo json_encode($message);
 
             $pdo = null;
         }
     }
+
+
 
 
 }

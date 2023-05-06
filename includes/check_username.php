@@ -16,5 +16,5 @@ if ($stmt->rowCount() > 0) {
     echo "<span style='color:red'>Username already in use.</span>";
 } else {
     
-    echo "<span style='color:green'>Username available.</span>";
+    echo "<span style='color:green'>Username Available.</span>";
 }
