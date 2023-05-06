@@ -210,7 +210,15 @@ include('header.php');
                 icon: 'success',
                 title: 'Success',
                 text: 'User added successfully.',
+              }).then(() => {
+                // Reset form after success message is closed
+                document.getElementById('registration-form').reset();
+                usernameMessage.textContent = '';
+                emailMessage.textContent = '';
+                mobileMessage.textContent = '';
+                confirmMessage.textContent = '';
               });
+
             } else {
               // Display error message if user was not added
               Swal.fire({
