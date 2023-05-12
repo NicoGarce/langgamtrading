@@ -1,7 +1,6 @@
 <?php
 
 require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
-include('header.php');
 
 
 ?>
@@ -18,6 +17,9 @@ include('header.php');
 </head>
 
 <body style="background-color: lightgray;">
+<div class="pt-2 m-3">
+        <?php include('header.php'); ?>
+    </div>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
@@ -35,12 +37,12 @@ include('header.php');
           </div>
           <div class="form-group pt-2">
             <label for="username">Create a Username:</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+            <input type="text" class="form-control" id="username" name="username" minlength="6" required>
             <span id="username-message"></span>
           </div>
           <div class="form-group pt-2">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input type="password" class="form-control" id="password" name="password" minlength="8" required>
           </div>
           <div class="form-group pt-2">
             <label for="confirm">Confirm Password:</label>
@@ -49,7 +51,7 @@ include('header.php');
           </div>
           <div class="form-group pt-2">
             <label for="mobile">Mobile No.:</label>
-            <input type="tel" class="form-control" id="mobile" name="mobile" required>
+            <input type="tel" class="form-control" id="mobile" name="mobile" pattern="0\d{10}" required>
             <span id="mobile-message"></span>
           </div>
           <div class="form-group pt-2">
@@ -217,6 +219,8 @@ include('header.php');
                 emailMessage.textContent = '';
                 mobileMessage.textContent = '';
                 confirmMessage.textContent = '';
+
+                //window.location.href = 'index.php';
               });
 
             } else {

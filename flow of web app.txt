@@ -1,7 +1,7 @@
 March 15,2023 start of development
 Login Page
-    -login/logout 
-    -Register Page
+    -login/logout *
+    -Register Page *
 - Determine Admin/User
     Admin
         Dashboard

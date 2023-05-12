@@ -1,0 +1,43 @@
+#body{
+  background: #eee;
+}
+
+.navbar{
+  transition: 0.3s;
+}
+
+#side_nav{
+  background: #212529;
+  min-width: 250px;
+  max-width: 250px;
+  height: 100%;
+  transition: all 0.3s;
+  margin-left: 5px;
+}
+.content{
+  min-height: 100vh;
+  width: 100%;
+}
+.sidebar li.active{
+  background: #306c76;
+  border-radius: 8px;
+}
+.sidebar li:hover{
+  background: #306c76;
+  border-radius: 8px;
+}
+.sidebar li a{
+  color: #fff;
+}
+
+@media(max-width:767px){
+  #side_nav{
+    margin-left: -250px;
+    position: fixed;
+    min-height: 100vh;
+    z-index: 1;
+  }
+  #side_nav.active{
+    margin-left: 5px;
+  }
+}

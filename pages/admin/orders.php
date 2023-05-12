@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Langgam Trading</title>
+    <title>Orders | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/includes/sidebar.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
@@ -22,8 +22,8 @@
             <nav class="navbar navbar-expand-md navbar-light bg-light rounded-4 m-3 shadow-lg">
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between d-md-none d-block">
-                        <button class="btn px-1 py-0 open-btn me-2"><i class='bx bxs-chevrons-right'></i></button>
-                        <a class="navbar-brand fs-4" href="#">LANGGAM TRADING</a>
+                    <button class="btn px-1 py-0 open-btn me-2"><i class='bx bxs-chevrons-right'></i></button>
+                    <a class="navbar-brand fs-4" href="#">LANGGAM TRADING</a>
                     </div>
                     <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -32,7 +32,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <div class="container-fluid">
-                            <a class="navbar-brand text-uppercase" href="#">Dashboard</a>
+                            <a class="navbar-brand text-uppercase" href="#">Orders</a>
                         </div>
                         <ul class="navbar-nav mb-2 mb-lg-0 text-center">
                             <li class="nav-item">
@@ -47,19 +47,19 @@
                 </div>
             </nav>
             <div class="dashboard-content px-3 pt-4">
-                <h2>Dashboard</h2>
-                <p>This is the Dashboard</p>
+                <h2>Orders</h2>
+                <p>This is the Orders Page</p>
             </div>
         </div>
     </div>
 </body>
 <script>
     $('.open-btn').on('click', function () {
-        $('.sidebar').addClass('active');
+      $('.sidebar').addClass('active');
     });
     $('.close-btn').on('click', function () {
-        $('.sidebar').removeClass('active');
+      $('.sidebar').removeClass('active');
     });
+    
 </script>
-
 </html>

@@ -64,6 +64,7 @@ class Langgam
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Password is incorrect.',
+                        confirmButtonColor: 'btn btn-primary'
                     })
                 </script>";
                 }
@@ -74,6 +75,10 @@ class Langgam
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Username is incorrect.',
+                    confirmButtonColor: '#3085d6',
+                    customClass: {
+                        confirmButton: '#3085d6',
+                    }
                 })
             </script>";
             }
