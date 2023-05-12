@@ -15,7 +15,7 @@
 
 <body id="body">
     <div class="main-container d-flex">
-        <div class="sidebar">
+        <div class="sidebar pt-3 pb-3">
             <?php include("C:/xampp/htdocs/langgamtrading/includes/sidebar.php") ?>
         </div>
         <div class="content pt-1">
