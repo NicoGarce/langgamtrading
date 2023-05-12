@@ -23,7 +23,7 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
   <div class="container p-3 pt-4">
     <div class="row d-flex justify-content-center">
       <div class="col-md-5">
-        <div class="card p-3">
+        <div class="card p-3" style="border-radius: 1rem;">
           <div class="card-body">
             <h2 class="card-title text-center">Sign Up</h2>
             <form method="post" id="registration-form">
