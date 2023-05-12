@@ -17,64 +17,65 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
 </head>
 
 <body style="background-color: lightgray;">
-<div class="pt-2 m-3">
-        <?php include('header.php'); ?>
-    </div>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <h2 class="pt-4">Sign Up</h2>
-        <form method="post" id="registration-form">
-          <div class="form-group row justify-content-center">
-            <div class="form-group col-md-6 pt-3">
-              <label for="firstName">First Name:</label>
-              <input type="text" class="form-control" id="firstName" name="firstName" required>
-            </div>
-            <div class="form-group col-md-6 pt-3">
-              <label for="lastName">Last Name:</label>
-              <input type="text" class="form-control" id="lastName" name="lastName" required>
-            </div>
+  <div class="pt-2 m-3">
+    <?php include('header.php'); ?>
+  </div>
+  <div class="container p-3 pt-4">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-5">
+        <div class="card p-3">
+          <div class="card-body">
+            <h2 class="card-title text-center">Sign Up</h2>
+            <form method="post" id="registration-form">
+              <div class="form-group row justify-content-center">
+                <div class="form-group col-md-6 pt-3">
+                  <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name"
+                    required>
+                </div>
+                <div class="form-group col-md-6 pt-3">
+                  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name"
+                    required>
+                </div>
+              </div>
+              <div class="form-group pt-2">
+                <input type="text" class="form-control" id="username" name="username" minlength="6"
+                  placeholder="Username (minimum 6 characters)" required>
+                <span id="username-message"></span>
+              </div>
+              <div class="form-group pt-2">
+                <input type="password" class="form-control" id="password" name="password" minlength="8"
+                  placeholder="Password (minimum 8 characters)" required>
+              </div>
+              <div class="form-group pt-2">
+                <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm Password"
+                  required>
+                <span id="confirm-message"></span>
+              </div>
+              <div class="form-group pt-2">
+                <input type="tel" class="form-control" id="mobile" name="mobile" pattern="0\d{10}"
+                  placeholder="Mobile Number" required>
+                <span id="mobile-message"></span>
+              </div>
+              <div class="form-group pt-2">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+                <span id="email-message"></span>
+              </div>
+              <div class="form-group pt-2">
+                <textarea class="form-control" id="address" name="address" placeholder="Address" required></textarea>
+              </div>
+              <div class="form-group pt-2">
+                <select class="form-control" id="role" name="role" required>
+                  <option value="">--Select Role--</option>
+                  <option value="Employee">Employee</option>
+                  <option value="Administrator">Administrator</option>
+                </select>
+              </div>
+              <div class="text-center pt-3">
+                <button name="add" type="submit" class="btn btn-primary" style="width: 200px;">Sign Up</button>
+              </div>
+            </form>
           </div>
-          <div class="form-group pt-2">
-            <label for="username">Create a Username:</label>
-            <input type="text" class="form-control" id="username" name="username" minlength="6" required>
-            <span id="username-message"></span>
-          </div>
-          <div class="form-group pt-2">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" minlength="8" required>
-          </div>
-          <div class="form-group pt-2">
-            <label for="confirm">Confirm Password:</label>
-            <input type="password" class="form-control" id="confirm" name="confirm" required>
-            <span id="confirm-message"></span>
-          </div>
-          <div class="form-group pt-2">
-            <label for="mobile">Mobile No.:</label>
-            <input type="tel" class="form-control" id="mobile" name="mobile" pattern="0\d{10}" required>
-            <span id="mobile-message"></span>
-          </div>
-          <div class="form-group pt-2">
-            <label for="email">Email Address:</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-            <span id="email-message"></span>
-          </div>
-          <div class="form-group pt-2">
-            <label for="address">Address:</label>
-            <textarea class="form-control" id="address" name="address" required></textarea>
-          </div>
-          <div class="form-group pt-2">
-            <label for="role">Role:</label>
-            <select class="form-control" id="role" name="role" required>
-              <option value="">--Select Role--</option>
-              <option value="Employee">Employee</option>
-              <option value="Administrator">Administrator</option>
-            </select>
-          </div>
-          <div class="text-center pt-3">
-            <button name="add" type="submit" class="btn btn-primary" style="width: 200px;">Sign Up</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
