@@ -35,22 +35,22 @@ $store->login();
 
                                     <form method="post">
 
-                                        <div class="d-flex align-items-center mb-3 pb-1 ">
-                                            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                        <div class="d-flex align-items-center mb-3 pb-1 justify-content-center">
                                             <span class="h1 fw-bold mb-0">LANGGAM TRADING</span>
                                         </div>
 
-                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your
+                                        <h5 class="fw-normal mb-3 pb-3 text-center" style="letter-spacing: 1px;">Sign
+                                            into your
                                             account</h5>
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" name="username" id="username" placeholder="Enter Username"
-                                                class="form-control form-control-lg" />
+                                            <input type="text" name="username" id="username"
+                                                placeholder="Enter Username" class="form-control form-control-lg" />
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" name="password" id="password" placeholder="Enter Password"
-                                                class="form-control form-control-lg" />
+                                            <input type="password" name="password" id="password"
+                                                placeholder="Enter Password" class="form-control form-control-lg" />
                                         </div>
 
                                         <div class="pt-1 mb-4">
@@ -61,9 +61,10 @@ $store->login();
                                         <a class="small text-muted" href="#!">Forgot password?</a>
                                         <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a
                                                 href="includes/signup.php" style="color: #393f81;">Register here</a></p>
-                                        <a href="#!" class="small text-muted">Terms of use.</a>
-                                        <a href="#!" class="small text-muted">Privacy policy</a>
-
+                                        <div class="d-flex justify-content-center">
+                                            <a href="#!" class="small text-muted">Terms of use.</a>
+                                            <a href="#!" class="small text-muted">Privacy policy</a>
+                                        </div>
                                     </form>
 
                                 </div>

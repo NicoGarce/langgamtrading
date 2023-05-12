@@ -64,7 +64,10 @@ class Langgam
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Password is incorrect.',
-                        confirmButtonColor: 'btn btn-primary'
+                        confirmButtonColor: '#3085d6',
+                        customClass: {
+                            confirmButton: '#3085d6',
+                        }
                     })
                 </script>";
                 }
@@ -123,7 +126,7 @@ class Langgam
                 echo json_encode(["message" => "Passwords do not match"]);
                 exit;
             }
-            
+
             if ($stmt->rowCount() > 0) {
                 $message = "User added successfully.";
                 echo json_encode(["message" => $message]);
@@ -131,8 +134,8 @@ class Langgam
                 $message = "Error: Unable to add user.";
                 echo json_encode(["message" => $message]);
             }
-            
-            
+
+
             // Return the response as a JSON object
             header('Content-Type: application/json');
             echo json_encode($message);

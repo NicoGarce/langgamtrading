@@ -172,6 +172,10 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
             icon: 'error',
             title: 'Oops...',
             text: 'Passwords do not match.',
+            confirmButtonColor: '#3085d6',
+            customClass: {
+              confirmButton: '#3085d6',
+            }
           });
         } else {
           // Send AJAX requests to check the availability of each attribute
@@ -185,6 +189,10 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
               icon: 'error',
               title: 'Oops...',
               text: 'Some attributes are already in use.',
+              confirmButtonColor: '#3085d6',
+              customClass: {
+                confirmButton: '#3085d6',
+              }
             });
           } else {
             // If all attributes are available and passwords match, submit the form
@@ -213,6 +221,10 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
                 icon: 'success',
                 title: 'Success',
                 text: 'User added successfully.',
+                confirmButtonColor: '#3085d6',
+                customClass: {
+                  confirmButton: '#3085d6',
+                }
               }).then(() => {
                 // Reset form after success message is closed
                 document.getElementById('registration-form').reset();
@@ -230,6 +242,10 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Error: Unable to add user.',
+                confirmButtonColor: '#3085d6',
+                customClass: {
+                  confirmButton: '#3085d6',
+                }
               });
             }
           }
