@@ -17,10 +17,10 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
 </head>
 
 <body style="background-color: lightgray;">
-  <div class="pt-2 m-3">
+  <div class="pt-1 m-2">
     <?php include('header.php'); ?>
   </div>
-  <div class="container p-3 pt-4">
+  <div class="container p-lg-5">
     <div class="row d-flex justify-content-center">
       <div class="col-md-5">
         <div class="card p-3" style="border-radius: 1rem;">
