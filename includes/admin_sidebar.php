@@ -28,15 +28,15 @@
           <i class='bx bxs-user-account p-2'></i>Accounts</a>
       </li>
       <li class="">
-        <a href="/langgamtrading/pages/admin/inventory.php" class="text-decoration-none px-3 py-2 d-block">
+        <a href="/langgamtrading/pages/inventory.php" class="text-decoration-none px-3 py-2 d-block">
           <i class='bx bx-clipboard p-2'></i>Inventory</a>
       </li>
       <li class="">
-        <a href="/langgamtrading/pages/admin/orders.php" class="text-decoration-none px-3 py-2 d-block">
+        <a href="/langgamtrading/pages/orders.php" class="text-decoration-none px-3 py-2 d-block">
           <i class='bx bx-list-ul p-2'></i>Orders</a>
       </li>
       <li class="">
-        <a href="/langgamtrading/pages/admin/suppliers.php" class="text-decoration-none px-3 py-2 d-block">
+        <a href="/langgamtrading/pages/suppliers.php" class="text-decoration-none px-3 py-2 d-block">
           <i class='bx bx-package p-2'></i>Suppliers</a>
       </li>
       <li class="">

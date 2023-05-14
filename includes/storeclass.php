@@ -37,7 +37,7 @@ class Langgam
         if (isset($_POST['submit'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
-
+            $role = 
             $conn = $this->openConnection();
             $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
             $stmt->bindParam(':username', $username);
@@ -46,14 +46,21 @@ class Langgam
             if ($stmt->rowCount() == 1) {
                 // Get the user's role from the query result and store it in a session variable
                 $user = $stmt->fetch();
+                $role = $user['role'];
                 if (password_verify($password, $user['password'])) {
                     $_SESSION['role'] = $user['role'];
 
                     // Redirect the user to the appropriate dashboard based on their role
                     if ($_SESSION['role'] == "Administrator") {
+                        session_start();
+                        $_SESSION['m_un'] = $username;
+                        $_SESSION['access']= $role;
                         header("Location: pages/admin/admin_dashboard.php");
                         exit;
                     } else if ($_SESSION['role'] == "Employee") {
+                        session_start();
+                        $_SESSION['m_un'] = $username;
+                        $_SESSION['access']= $role;
                         header("Location: pages/employee/emp_dashboard.php");
                         exit;
                     }
