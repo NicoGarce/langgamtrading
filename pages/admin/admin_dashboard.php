@@ -1,14 +1,14 @@
 <?php
 require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
 session_start();
-$store -> login();
+$store->login();
 
-if(!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])){
+if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     header('Location: /langgamtrading/index.php');
     exit();
 }
 
-if(isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
+if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
     header('Location: /langgamtrading/pages/employee/emp_dashboard.php');
     exit();
 }
@@ -62,10 +62,33 @@ if(isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
                     </div>
                 </div>
             </nav>
-            <div class="dashboard-content px-3 pt-4">
+            <div class="dashboard-content ps-4 pt-3">
                 <h2>Dashboard</h2>
                 <p>This is the Dashboard</p>
+
+                <div class="container">
+                    <div class="row pe-4">
+                        <div class="card col-6 ">
+                            <div class="card-body">
+                                <h5 class="card-title">Something Here</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                            </div>
+                        </div>
+
+
+    
+                        <div class="card col-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Something Here</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </body>
