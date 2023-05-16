@@ -16,7 +16,7 @@
         <?php include('.\includes\header.php'); ?>
     </div>
     <div class="">
-        <?php include('.\includes\login.php'); require_once('.\includes\storeclass.php'); ?>
+        <?php include('.\includes\login.php');  ?>
     </div>
     
 </body>

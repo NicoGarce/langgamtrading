@@ -1,9 +1,3 @@
-<?php
-
-require_once('storeclass.php');
-$store->login();
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,23 +28,25 @@ $store->login();
                                 <div class="card-body p-4 p-lg-5 text-black">
 
                                     <form method="post">
-
                                         <div class="d-flex align-items-center mb-3 pb-1 justify-content-center">
                                             <span class="h1 fw-bold mb-0">LANGGAM TRADING</span>
                                         </div>
 
-                                        <h5 class="fw-normal mb-3 pb-3 text-center" style="letter-spacing: 1px;">Sign
-                                            into your
-                                            account</h5>
+                                        <h5 class="fw-normal mb-3 pb-3 text-center" style="letter-spacing: 1px;">Sign into your account</h5>
+                                        <?php
 
+                                        require_once('storeclass.php');
+                                        $store->login();
+
+                                        ?>
                                         <div class="form-outline mb-4">
                                             <input type="text" name="username" id="username"
-                                                placeholder="Enter Username" class="form-control form-control-lg" />
+                                                placeholder="Enter Username" class="form-control form-control-lg" required/>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <input type="password" name="password" id="password"
-                                                placeholder="Enter Password" class="form-control form-control-lg" />
+                                                placeholder="Enter Password" class="form-control form-control-lg" required/>
                                         </div>
 
                                         <div class="pt-1 mb-4">

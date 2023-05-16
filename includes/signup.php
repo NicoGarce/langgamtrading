@@ -27,12 +27,13 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
           <div class="card-body">
             <h2 class="card-title text-center">Sign Up</h2>
             <form method="post" id="registration-form">
+              <div class="pt-3" id="alerts"></div>
               <div class="form-group row justify-content-center">
-                <div class="form-group col-md-6 pt-3">
+                <div class="form-group col-md-6">
                   <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name"
                     required>
                 </div>
-                <div class="form-group col-md-6 pt-3">
+                <div class="form-group col-md-6">
                   <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name"
                     required>
                 </div>
@@ -105,6 +106,21 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
       const confirmInput = document.getElementById('confirm');
       const confirmMessage = document.getElementById('confirm-message');
 
+      const alertsContainer = document.getElementById('alerts');
+
+      // Function to create and display a Bootstrap alert
+      function showAlert(type, message) {
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+        alertDiv.role = 'alert';
+        alertDiv.style = 'padding: 0.5rem 1rem; font-size: 0.875rem;';
+        alertDiv.innerHTML = `
+          ${message}
+          <button type="button" class="btn-close" style="padding: 0.7rem 1rem;" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+        alertsContainer.appendChild(alertDiv);
+      }
+
       async function checkConfirmation(endpoint, data) {
         return new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest();
@@ -168,15 +184,7 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
         // Check if the password and confirm password fields match
         if (password !== confirm) {
           // Display SweetAlert message if passwords do not match
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Passwords do not match.',
-            confirmButtonColor: '#3085d6',
-            customClass: {
-              confirmButton: '#3085d6',
-            }
-          });
+          showAlert('danger', 'Passwords do not match.');
         } else {
           // Send AJAX requests to check the availability of each attribute
           const isUsernameAvailable = await checkAvailability('/langgamtrading/includes/check_username.php', `username=${username}`, usernameMessage);
@@ -185,15 +193,7 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
 
           // If any of the attributes is not available, display a SweetAlert message
           if (!isUsernameAvailable || !isEmailAvailable || !isMobileAvailable) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Some attributes are already in use.',
-              confirmButtonColor: '#3085d6',
-              customClass: {
-                confirmButton: '#3085d6',
-              }
-            });
+            showAlert('danger', 'Some attributes are already in use.');
           } else {
             // If all attributes are available and passwords match, submit the form
             // Send AJAX request to add the user to the database
