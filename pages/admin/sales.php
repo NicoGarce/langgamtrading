@@ -21,7 +21,7 @@ if(isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales | Langgam Trading</title>
-    <link rel="stylesheet" href="/langgamtrading/includes/sidebar.css">
+    <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
