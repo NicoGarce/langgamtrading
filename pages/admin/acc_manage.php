@@ -1,14 +1,14 @@
 <?php
 require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
 session_start();
-$store -> login();
+$store->login();
 
-if(!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])){
+if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     header('Location: /langgamtrading/index.php');
     exit();
 }
 
-if(isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
+if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
     header('Location: /langgamtrading/pages/employee/emp_dashboard.php');
     exit();
 }
@@ -38,8 +38,8 @@ if(isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
             <nav class="navbar navbar-expand-md navbar-light bg-light rounded-4 m-3 shadow-lg">
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between d-md-none d-block">
-                    <button class="btn px-1 py-0 open-btn me-2"><i class='bx bxs-chevrons-right'></i></button>
-                    <a class="navbar-brand fs-4" href="#">LANGGAM TRADING</a>
+                        <button class="btn px-1 py-0 open-btn me-2"><i class='bx bxs-chevrons-right'></i></button>
+                        <a class="navbar-brand fs-4" href="#">LANGGAM TRADING</a>
                     </div>
                     <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -65,17 +65,21 @@ if(isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
             <div class="dashboard-content px-3 pt-4">
                 <h2>Manage Accounts</h2>
                 <p>This is the Account Management Page</p>
+                <div>
+                    <?php include("addAccModal.php") ?>
+                </div>
             </div>
         </div>
     </div>
 </body>
 <script>
     $('.open-btn').on('click', function () {
-      $('.sidebar').addClass('active');
+        $('.sidebar').addClass('active');
     });
     $('.close-btn').on('click', function () {
-      $('.sidebar').removeClass('active');
+        $('.sidebar').removeClass('active');
     });
-    
+
 </script>
+
 </html>

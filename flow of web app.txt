@@ -1,8 +1,8 @@
 March 15,2023 start of development
-Login Page
+Login Page *
     -login/logout *
     -Register Page *
-- Determine Admin/User
+- Determine Admin/User *
     Admin
         Dashboard
             - Data Analytics
@@ -12,7 +12,7 @@ Login Page
             - Low Stock Products Count
             - Employee Count
         CRUD:
-            Accounts/Employee Page
+            Account Manager Page
                 - Position/Role In Company
                 - Can access/manage accounts
             Inventory Page
