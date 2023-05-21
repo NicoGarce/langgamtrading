@@ -25,8 +25,9 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
-    <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
 </head>
 
 <body id="body">
@@ -67,6 +68,80 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
                 <p>This is the Account Management Page</p>
                 <div>
                     <?php include("addAccModal.php") ?>
+
+                    <div class="table-responsive pt-2">
+                        <table id="accounts" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Mobile</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Role</th>
+                                    <th>Date Added</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $results = $store->get_users();
+
+                                $cnt = 1;
+                                if (count($results) > 0) {
+                                    foreach ($results as $result) {
+
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo htmlentities($cnt); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlentities($result->firstName); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlentities($result->lastName); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlentities($result->username); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlentities($result->mobile); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlentities($result->email); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlentities($result->address); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlentities($result->role); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlentities($result->date_added); ?>
+                                            </td>
+                                            <td>
+                                                
+                                                <?php $store ->getID(); $store->update_user(); include('update_account.php') ?>
+
+                                            </td>
+
+                                        </tr>
+                                        <?php
+                                        $cnt++;
+                                    }
+                                } else {
+                                    echo '<tr><td colspan="9">No users found</td></tr>';
+                                }
+                                ?>
+                                
+
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -1,13 +1,14 @@
 <div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAccount"
-        data-bs-whatever="@mdo">Add an account</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAccount">
+        <i class="bx bx-plus"></i>Add an account</button>
 
 
-    <div class="modal fade" id="addAccount" tabindex="-1" aria-labelledby="label" aria-hidden="true">
+    <div class="modal fade" id="addAccount" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static"
+        data-bs-keyboard="false" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="label">New Account</h5>
+                    <h5 class="modal-title" id="labelNew">New Account</h5>
                     <button type="button" id="headClose" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -16,7 +17,7 @@
                         <div class="pt-3" id="alerts"></div>
                         <div class="form-group row justify-content-center">
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" id="firstName" name="firstName"
+                                <input type="text" class="form-control" id="firstName" 
                                     placeholder="First Name" required>
                             </div>
                             <div class="form-group col-md-6">
@@ -180,7 +181,7 @@
                 const isUsernameAvailable = await checkAvailability('/langgamtrading/includes/check_username.php', `username=${username}`, usernameMessage);
                 const isEmailAvailable = await checkAvailability('/langgamtrading/includes/check_email.php', `email=${email}`, emailMessage);
                 const isMobileAvailable = await checkAvailability('/langgamtrading/includes/check_mobile.php', `mobile=${mobile}`, mobileMessage);
-
+                console.log(isUsernameAvailable,isEmailAvailable,isMobileAvailable);
                 // If any of the attributes is not available, display a SweetAlert message
                 if (!isUsernameAvailable || !isEmailAvailable || !isMobileAvailable) {
                     showAlert('danger', 'Some attributes are already in use.');
@@ -222,7 +223,7 @@
                             emailMessage.textContent = '';
                             mobileMessage.textContent = '';
                             confirmMessage.textContent = '';
-
+                            location.reload();
                             //window.location.href = 'index.php';
                         });
 
@@ -297,10 +298,9 @@
             emailMessage.textContent = '';
             mobileMessage.textContent = '';
             confirmMessage.textContent = '';
+            alertsContainer.textContent = '';
         }
 
     });
 </script>
 
-
-<?php $store->add_user() ?>
