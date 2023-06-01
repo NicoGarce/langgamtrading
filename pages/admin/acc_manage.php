@@ -154,8 +154,6 @@ $store->delete_user();
                         icon: 'success',
                         title: 'Success',
                         text: 'User deleted successfully',
-                        toast: true,
-                        position: 'top-end',
                         showConfirmButton: false,
                         timer: 2000,
                         showClass: {

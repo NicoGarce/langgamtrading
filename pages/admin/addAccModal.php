@@ -3,9 +3,9 @@
         <i class="bx bx-plus"></i>Add an account</button>
 
 
-    <div class="modal fade" id="addAccount" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static"
+    <div class="modal fade pt-5" id="addAccount" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static"
         data-bs-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog pt-5">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="labelNew">New Account</h5>
@@ -212,8 +212,6 @@
                             icon: 'success',
                             title: 'Success',
                             text: 'User added successfully',
-                            toast: true,
-                            position: 'top-end',
                             showConfirmButton: false,
                             timer: 2000,
                             showClass: {
@@ -236,8 +234,6 @@
                             icon: 'error',
                             title: 'Oops...',
                             text: 'Error: Unable to add user.',
-                            toast: true,
-                            position: 'top-end',
                             showConfirmButton: false,
                             timer: 2000,
                             showClass: {

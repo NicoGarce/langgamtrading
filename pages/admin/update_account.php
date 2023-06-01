@@ -2,9 +2,9 @@
     <i class='bx bx-edit'></i></button>
 
 
-<div class="modal fade" id="editAccount<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
+<div class="modal fade pt-5" id="editAccount<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
     data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog pt-5">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="labelEdit">Edit Account

@@ -189,8 +189,6 @@ class Langgam
                 icon: 'success',
                 title: 'Success',
                 text: 'User edited successfully',
-                toast: true,
-                position: 'top-end',
                 showConfirmButton: false,
                 timer: 2000,
                 showClass: {
@@ -206,8 +204,6 @@ class Langgam
                     icon: 'error',
                     title: 'Error',
                     text: 'Unable to edit user',
-                    toast: true,
-                    position: 'top-end',
                     showConfirmButton: false,
                     timer: 2000,
                     showClass: {
