@@ -37,19 +37,19 @@ class Langgam
         if (isset($_POST['submit'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            
+
             $conn = $this->openConnection();
             $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
             $stmt->bindParam(':username', $username);
             $stmt->execute();
-            
+
             if ($stmt->rowCount() == 1) {
                 // Get the user's role from the query result and store it in a session variable
                 $user = $stmt->fetch();
                 $role = $user['role'];
                 if (password_verify($password, $user['password'])) {
                     $_SESSION['role'] = $user['role'];
-
+                    
                     // Redirect the user to the appropriate dashboard based on their role
                     if ($_SESSION['role'] == "Administrator") {
                         session_start();
@@ -152,39 +152,39 @@ class Langgam
         $stmt = $conn->prepare("SELECT * FROM users WHERE ID =:uid");
         $stmt->bindParam('uid', $userid, PDO::PARAM_INT);
         $stmt->execute();
-        
+
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function update_user()
-{
-    if(isset($_POST['update'])){
-        $userid = $_POST['ID'] ?? '';
-        $firstName = $_POST["firstName"];
-        $lastName = $_POST["lastName"];
-        $username = $_POST["username"];
-        $mobile = $_POST["mobile"];
-        $email = $_POST["email"];
-        $address = $_POST["address"];
-        $role = $_POST["role"];
+    {
+        if (isset($_POST['update'])) {
+            $userid = $_POST['ID'] ?? '';
+            $firstName = $_POST["firstName"];
+            $lastName = $_POST["lastName"];
+            $username = $_POST["username"];
+            $mobile = $_POST["mobile"];
+            $email = $_POST["email"];
+            $address = $_POST["address"];
+            $role = $_POST["role"];
 
-        $pdo = $this->openConnection();
+            $pdo = $this->openConnection();
 
-        $sql = "UPDATE users SET firstName = :firstName, lastName = :lastName, username = :username, mobile = :mobile, email = :email, address = :address, role = :role WHERE id = :uid";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-            'username' => $username,
-            'mobile' => $mobile,
-            'email' => $email,
-            'address' => $address,
-            'role' => $role,
-            'uid' => $userid
-        ]);
+            $sql = "UPDATE users SET firstName = :firstName, lastName = :lastName, username = :username, mobile = :mobile, email = :email, address = :address, role = :role WHERE id = :uid";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+                'username' => $username,
+                'mobile' => $mobile,
+                'email' => $email,
+                'address' => $address,
+                'role' => $role,
+                'uid' => $userid
+            ]);
 
-        if ($stmt->rowCount() !== false) {
-            echo "<script>
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
@@ -197,8 +197,8 @@ class Langgam
                 window.location.href = window.location.href;
             });
         </script>";
-        } else {
-            echo "<script>
+            } else {
+                echo "<script>
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
@@ -209,9 +209,49 @@ class Langgam
                     }
                 });
             </script>";
+            }
         }
     }
-}
 
+    public function delete_user()
+    {
+        if(isset($_REQUEST['delete'])){
+            $uid = $_GET['ID'] ?? '';
+
+            $pdo = $this->openConnection();
+            $sql = "DELETE FROM users where id=:uid";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(['uid' => $uid ]);
+
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'User removed successfully',
+                confirmButtonColor: '#3085d6',
+                customClass: {
+                    confirmButton: '#3085d6',
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to remove user',
+                    confirmButtonColor: '#3085d6',
+                    customClass: {
+                        confirmButton: '#3085d6',
+                    }
+                });
+            </script>";
+            }
+        
+        }
+    }
 }
 $store = new Langgam();

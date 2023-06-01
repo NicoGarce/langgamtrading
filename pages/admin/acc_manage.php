@@ -3,7 +3,7 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
 session_start();
 $store->login();
 
-if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
+if (!isset($_SESSION['m_un']) || empty($_SESSION['m_un'])) { // Use "||" instead of "&&"
     header('Location: /langgamtrading/index.php');
     exit();
 }
@@ -13,7 +13,10 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
     exit();
 }
 
+$store->delete_user();
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +30,6 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    
 </head>
 
 <body id="body">
@@ -92,42 +94,22 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
                                 $cnt = 1;
                                 if (count($results) > 0) {
                                     foreach ($results as $result) {
-
                                         ?>
                                         <tr>
+                                            
+                                            <td><?php echo htmlentities($cnt); ?></td>
+                                            <td><?php echo htmlentities($result->firstName); ?></td>
+                                            <td><?php echo htmlentities($result->lastName); ?></td>
+                                            <td><?php echo htmlentities($result->username); ?></td>
+                                            <td><?php echo htmlentities($result->mobile); ?></td>
+                                            <td><?php echo htmlentities($result->email); ?></td>
+                                            <td><?php echo htmlentities($result->address); ?></td>
+                                            <td><?php echo htmlentities($result->role); ?></td>
+                                            <td><?php echo htmlentities($result->date_added); ?></td>
                                             <td>
-                                                <?php echo htmlentities($cnt); ?>
+                                                <?php $store->getID(); $store->update_user(); include('update_account.php') ?>
+                                                <button data-id="<?php echo $result->ID ?>" type="button" name="delete" class="btn btn-danger btn-sm delete-btn"><i class='bx bx-trash'></i></button>
                                             </td>
-                                            <td>
-                                                <?php echo htmlentities($result->firstName); ?>
-                                            </td>
-                                            <td>
-                                                <?php echo htmlentities($result->lastName); ?>
-                                            </td>
-                                            <td>
-                                                <?php echo htmlentities($result->username); ?>
-                                            </td>
-                                            <td>
-                                                <?php echo htmlentities($result->mobile); ?>
-                                            </td>
-                                            <td>
-                                                <?php echo htmlentities($result->email); ?>
-                                            </td>
-                                            <td>
-                                                <?php echo htmlentities($result->address); ?>
-                                            </td>
-                                            <td>
-                                                <?php echo htmlentities($result->role); ?>
-                                            </td>
-                                            <td>
-                                                <?php echo htmlentities($result->date_added); ?>
-                                            </td>
-                                            <td>
-                                                
-                                                <?php $store ->getID(); $store->update_user(); include('update_account.php') ?>
-
-                                            </td>
-
                                         </tr>
                                         <?php
                                         $cnt++;
@@ -136,25 +118,60 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
                                     echo '<tr><td colspan="9">No users found</td></tr>';
                                 }
                                 ?>
-                                
-
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-</body>
-<script>
-    $('.open-btn').on('click', function () {
-        $('.sidebar').addClass('active');
-    });
-    $('.close-btn').on('click', function () {
-        $('.sidebar').removeClass('active');
-    });
 
-</script>
+    <script>
+        $('.open-btn').on('click', function () {
+            $('.sidebar').addClass('active');
+        });
+
+        $('.close-btn').on('click', function () {
+            $('.sidebar').removeClass('active');
+        });
+
+        $('.delete-btn').on('click', function () {
+            var id = $(this).data('id');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Are you sure?',
+                text: 'You are about to delete this user',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform the deletion
+
+                    // Display success message after deletion
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'User deleted successfully',
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        showClass: {
+                            popup: 'swal2-show'
+                        }
+                    }).then(() => {
+                        // Redirect to acc_manage.php
+                        window.location.href = 'acc_manage.php?delete=true&ID=' + id;
+                        window.location.href = 'acc_manage.php';
+                    });
+                }
+            });
+        });
+
+
+    </script>
+</body>
 
 </html>
