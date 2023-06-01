@@ -189,9 +189,12 @@ class Langgam
                 icon: 'success',
                 title: 'Success',
                 text: 'User edited successfully',
-                confirmButtonColor: '#3085d6',
-                customClass: {
-                    confirmButton: '#3085d6',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                showClass: {
+                    popup: 'swal2-show'
                 }
             }).then(function() {
                 window.location.href = window.location.href;
@@ -203,9 +206,12 @@ class Langgam
                     icon: 'error',
                     title: 'Error',
                     text: 'Unable to edit user',
-                    confirmButtonColor: '#3085d6',
-                    customClass: {
-                        confirmButton: '#3085d6',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    showClass: {
+                        popup: 'swal2-show'
                     }
                 });
             </script>";
