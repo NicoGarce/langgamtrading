@@ -241,6 +241,9 @@
                             }
                         });
                     }
+                    const modal = document.getElementById('addAccount');
+                    const modalInstance = bootstrap.Modal.getInstance(modal);
+                    modalInstance.hide();
                 }
             }
         });
