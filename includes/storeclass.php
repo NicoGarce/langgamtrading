@@ -86,7 +86,15 @@ class Langgam
     public function get_users()
     {
         $conn = $this->openConnection();
-        $stmt = $conn->prepare("SELECT * FROM users");
+        $stmt = $conn->prepare("SELECT * FROM users ORDER BY lastName ASC");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function get_suppliers()
+    {
+        $conn = $this->openConnection();
+        $stmt = $conn->prepare("SELECT * FROM suppliers");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
@@ -100,6 +108,57 @@ class Langgam
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function add_supplier(){
+
+        if(isset($_POST['add_supplier'])){
+            $supplier_name = $_POST["supplier_name"];
+            $description = $_POST["description"];
+            $address = $_POST["address"];
+            $contact = $_POST["contact"];
+
+            $pdo = $this->openConnection();
+
+            $sql = "INSERT INTO suppliers SET supplier_name = :supplier_name, description = :description, address = :address, contact = :contact";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                'supplier_name' => $supplier_name,
+                'description' => $description,
+                'address' => $address,
+                'contact' => $contact
+            ]);
+
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Supplier added successfully',
+                showConfirmButton: false,
+                timer: 2000,
+                showClass: {
+                    popup: 'swal2-show'
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to add supplier',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    showClass: {
+                        popup: 'swal2-show'
+                    }
+                });
+            </script>";
+            }
+        }
     }
 
     public function update_user()

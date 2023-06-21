@@ -298,7 +298,7 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
   </script>
 
 
-  <?php $store->add_user() ?>
+
 </body>
 
 </html>

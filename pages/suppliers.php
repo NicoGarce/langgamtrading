@@ -21,6 +21,7 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -65,6 +66,51 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
             <div class="dashboard-content px-3 pt-4">
                 <h2>Suppliers</h2>
                 <p>This is the Suppliers Page</p>
+
+                <?php include("modals/addsupplier.php") ?>
+                <div class="container">
+                    <div class="table-responsive pt-2 col">
+                        <table id="accounts" class="table table-bordered table-striped">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Address</th>
+                                    <th>Contact</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tbody>
+                                <?php
+                                $results = $store->get_suppliers();
+
+                                $cnt = 1;
+                                if (count($results) > 0) {
+                                    foreach ($results as $result) {
+                                        ?>
+                                        <tr>
+                                            
+                                            <td><?php echo htmlentities($cnt); ?></td>
+                                            <td><?php echo htmlentities($result->supplier_name); ?></td>
+                                            <td><?php echo htmlentities($result->description); ?></td>
+                                            <td><?php echo htmlentities($result->address); ?></td>
+                                            <td><?php echo htmlentities($result->contact); ?></td>
+                                            
+                                        </tr>
+                                        <?php
+                                        $cnt++;
+                                    }
+                                } else {
+                                    echo '<tr><td colspan="9">No users found</td></tr>';
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>

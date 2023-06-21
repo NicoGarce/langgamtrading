@@ -26,14 +26,14 @@ Login Page *
                 - Add Edit Delete Product
                 - Added By
             Orders Page
-                - Incoming Stocks
+                - Creating Orders
                 - Outgoing Orders
-                - Transactions Records
-                - Invoice
             Supplier Page
                 - Add Edit Delete Supplier
                 - Supplier Details
             Sales Report Page
+                - Transactions Records
+                - Invoice
                 - Computes Profit Earned
                 - By Date Sales
                 - Weekly Sales
@@ -50,7 +50,7 @@ Login Page *
             - email
         CRUD
             Orders Page
-                - Incoming Stocks
+                - Creating Orders
                 - Outgoing Orders
             Inventory Page
                 - Picture of Product

@@ -73,7 +73,7 @@ $store->delete_user();
 
                     <div class="table-responsive pt-2">
                         <table id="accounts" class="table table-bordered table-striped">
-                            <thead>
+                            <thead class="text-center">
                                 <tr>
                                     <th>ID</th>
                                     <th>First Name</th>
