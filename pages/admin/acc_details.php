@@ -16,6 +16,9 @@
                     <input name="ID" value="<?php echo $result->ID ?>" type="hidden">
 
                     <div class="form-group">
+                        <span>Account ID: <?php echo $result->ID; ?></span>
+                    </div>
+                    <div class="form-group pt-2">
                         <span>Name: <?php echo $result->firstName ?> <?php echo $result->lastName ?></span>
                     </div>
 

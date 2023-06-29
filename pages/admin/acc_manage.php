@@ -28,8 +28,19 @@ $store->delete_user();
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>    
+
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .dataTables_wrapper .dataTables_filter input[type="search"] {
+            width: 300px; /* Adjust the desired width */
+        }
+
+    </style>
 </head>
 
 <body id="body">
@@ -66,20 +77,19 @@ $store->delete_user();
                 </div>
             </nav>
             <div class="dashboard-content px-3 pt-4">
-                <h2>Manage Accounts</h2>
-                <p>This is the Account Management Page</p>
+                
                 <div class="m-5">
                     
                     <div class="row">
-                        <div class="col-lg-8 pt-2">
+                        <div class="col-lg-8">
+                            <h2>Manage Accounts</h2>
+                            <p>This is the Account Management Page</p>
+                        </div>
+                        
+                        <div class="col-lg-4 p-2 d-flex justify-content-end" style="margin-top: 30px;">
                             <?php include("addAccModal.php") ?>
                         </div>
-                        <div class="col-lg-4 pt-2 d-flex align-items-center justify-content-end">
-                            <div class="input-group">
-                                <input type="search" class="form-control" id="searchbar" placeholder="Search">
-                                <button class="btn btn-dark" type="button"><i class='bx bx-search'></i></button>
-                            </div>
-                        </div>
+                        
                     </div>
 
                     <div class="table-responsive pt-2">
@@ -104,7 +114,7 @@ $store->delete_user();
                                         ?>
                                         <tr>
                                             
-                                            <td class="text-center"><?php echo htmlentities($cnt); ?></td>
+                                            <td class="text-center"><?php echo htmlentities($result->ID); ?></td>
                                             <td><?php echo htmlentities($result->firstName); ?></td>
                                             <td><?php echo htmlentities($result->lastName); ?></td>
                                             <td><?php echo htmlentities($result->role); ?></td>
@@ -128,7 +138,16 @@ $store->delete_user();
             </div>
         </div>
     </div>
-
+    <script>
+        $(document).ready(function(){
+            $('#accounts').DataTable({
+                "language": {
+                    "searchPlaceholder": "Search",
+                    "search": ""
+                }
+            });
+        })
+    </script>
     <script>
         $('.open-btn').on('click', function () {
             $('.sidebar').addClass('active');
