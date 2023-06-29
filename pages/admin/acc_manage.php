@@ -68,8 +68,19 @@ $store->delete_user();
             <div class="dashboard-content px-3 pt-4">
                 <h2>Manage Accounts</h2>
                 <p>This is the Account Management Page</p>
-                <div>
-                    <?php include("addAccModal.php") ?>
+                <div class="m-5">
+                    
+                    <div class="row">
+                        <div class="col-lg-8 pt-2">
+                            <?php include("addAccModal.php") ?>
+                        </div>
+                        <div class="col-lg-4 pt-2 d-flex align-items-center justify-content-end">
+                            <div class="input-group">
+                                <input type="search" class="form-control" id="searchbar" placeholder="Search">
+                                <button class="btn btn-dark" type="button"><i class='bx bx-search'></i></button>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="table-responsive pt-2">
                         <table id="accounts" class="table table-bordered table-striped">
@@ -78,13 +89,9 @@ $store->delete_user();
                                     <th>ID</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
-                                    <th>Username</th>
-                                    <th>Mobile</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
                                     <th>Role</th>
                                     <th>Date Added</th>
-                                    <th>Edit</th>
+                                    <th>Options</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,17 +104,13 @@ $store->delete_user();
                                         ?>
                                         <tr>
                                             
-                                            <td><?php echo htmlentities($cnt); ?></td>
+                                            <td class="text-center"><?php echo htmlentities($cnt); ?></td>
                                             <td><?php echo htmlentities($result->firstName); ?></td>
                                             <td><?php echo htmlentities($result->lastName); ?></td>
-                                            <td><?php echo htmlentities($result->username); ?></td>
-                                            <td><?php echo htmlentities($result->mobile); ?></td>
-                                            <td><?php echo htmlentities($result->email); ?></td>
-                                            <td><?php echo htmlentities($result->address); ?></td>
                                             <td><?php echo htmlentities($result->role); ?></td>
                                             <td><?php echo htmlentities($result->date_added); ?></td>
                                             <td>
-                                                <?php $store->getID(); $store->update_user(); include('update_account.php') ?>
+                                                <?php $store->getID(); $store->update_user(); include('acc_details.php') ?>
                                                 <button data-id="<?php echo $result->ID ?>" type="button" name="delete" class="btn btn-danger btn-sm delete-btn"><i class='bx bx-trash'></i></button>
                                             </td>
                                         </tr>

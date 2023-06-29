@@ -66,31 +66,38 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
             <div class="dashboard-content px-3 pt-4">
                 <h2>Inventory</h2>
                 <p>This is the Inventory Page</p>
-
+                
                 <div class="row px-5">
-                    <div class ="row col-sm-8">
-                        <div class="">
-                            <input type="text" class="form-control" id="pname" name="pname" placeholder="Product Name" required>
+                    <div class = "card p-2 col-sm-8">
+                        <div class="d-flex align-items-center p-1 justify-content-center">
+                            <span class="h3 mb-0">Add Product</span>
                         </div>
-                        <div class="form-group col-md-6 pt-3">
-                            <input type="text" class="form-control" id="qty" name="qty" placeholder="Quantity" required>
-                            
-                        </div>
-                        <div class="form-group col-md-6 pt-3">
-                            <input type="text" class="form-control" id="price" name="price" placeholder="Price" required>
-                            
-                        </div>
-                        <div class="form-group col-md-6 pt-3">
-                            <input type="text" class="form-control" id="category" name="category" placeholder="Category" required>
-                            
-                        </div>
-                        <div class="form-group col-md-6 pt-3">
-                            <select class="form-control" id="supplier" name="supplier" required>
-                                <option value="">Select Supplier</option>
+                        <div class ="card-body row">
+                            <div class="">
+                                <input type="text" class="form-control" id="pname" name="pname" placeholder="Product Name" required>
+                            </div>
+                            <div class="form-group col-md-6 pt-3">
+                                <input type="text" class="form-control" id="qty" name="qty" placeholder="Quantity" required>
                                 
-                            </select>
+                            </div>
+                            <div class="form-group col-md-6 pt-3">
+                                <input type="text" class="form-control" id="price" name="price" placeholder="Price" required>
+                                
+                            </div>
+                            <div class="form-group col-md-6 pt-3">
+                                <input type="text" class="form-control" id="category" name="category" placeholder="Category" required>
+                                
+                            </div>
+                            <div class="form-group col-md-6 pt-3">
+                                <select class="form-control" id="supplier" name="supplier" required>
+                                    <option value="">Select Supplier</option>
+                                    
+                                </select>
+                            </div>
+                            <div class="form-group pt-3">
+                                <button class="btn btn-dark w-100 ">Add Item</button>
+                            </div>
                         </div>
-                        
                     </div>
                     <div class ="col-sm-4">
                         <input type="text" class="form-control" id="description" name="description"
