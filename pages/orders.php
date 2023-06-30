@@ -24,7 +24,7 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body id="body">
+<body id="body" class="bg-light">
     <div class="main-container d-flex">
         <div class="sidebar pt-3 pb-3">
             <?php if (isset($_SESSION['access']) && $_SESSION['access'] == 'Administrator') {

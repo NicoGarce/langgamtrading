@@ -29,21 +29,22 @@ $store->delete_user();
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-    
+
     <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>    
+    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         .dataTables_wrapper .dataTables_filter input[type="search"] {
-            width: 300px; /* Adjust the desired width */
+            width: 300px;
+            /* Adjust the desired width */
+            margin-right: 5px;
         }
-
     </style>
 </head>
 
-<body id="body">
+<body id="body" class="bg-light">
     <div class="main-container d-flex">
         <div class="sidebar pt-3 pb-3">
             <?php include("C:/xampp/htdocs/langgamtrading/includes/admin_sidebar.php") ?>
@@ -77,69 +78,84 @@ $store->delete_user();
                 </div>
             </nav>
             <div class="dashboard-content px-3 pt-4">
-                
+
                 <div class="m-5">
-                    
+
                     <div class="row">
                         <div class="col-lg-8">
                             <h2>Manage Accounts</h2>
                             <p>This is the Account Management Page</p>
                         </div>
-                        
-                        <div class="col-lg-4 p-2 d-flex justify-content-end" style="margin-top: 30px;">
-                            <?php include("addAccModal.php") ?>
+
+                        <div class="col-lg-4 p-3 d-flex justify-content-end" style="margin-top: 20px;">
+                            <?php include("../modals/addAccModal.php") ?>
                         </div>
-                        
+
                     </div>
+                    <div class="card p-3">
+                        <div class="table-responsive pt-2">
+                            <table id="accounts" class="table table-bordered table-striped">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Role</th>
+                                        <th>Date Added</th>
+                                        <th style="width: 50px;">Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $results = $store->get_users();
 
-                    <div class="table-responsive pt-2">
-                        <table id="accounts" class="table table-bordered table-striped">
-                            <thead class="text-center">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Role</th>
-                                    <th>Date Added</th>
-                                    <th>Options</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $results = $store->get_users();
+                                    $cnt = 1;
+                                    if (count($results) > 0) {
+                                        foreach ($results as $result) {
+                                            ?>
+                                            <tr>
 
-                                $cnt = 1;
-                                if (count($results) > 0) {
-                                    foreach ($results as $result) {
-                                        ?>
-                                        <tr>
-                                            
-                                            <td class="text-center"><?php echo htmlentities($result->ID); ?></td>
-                                            <td><?php echo htmlentities($result->firstName); ?></td>
-                                            <td><?php echo htmlentities($result->lastName); ?></td>
-                                            <td><?php echo htmlentities($result->role); ?></td>
-                                            <td><?php echo htmlentities($result->date_added); ?></td>
-                                            <td>
-                                                <?php $store->getID(); $store->update_user(); include('acc_details.php') ?>
-                                                <button data-id="<?php echo $result->ID ?>" type="button" name="delete" class="btn btn-danger btn-sm delete-btn"><i class='bx bx-trash'></i></button>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                        $cnt++;
+                                                <td class="text-center">
+                                                    <?php echo htmlentities($result->ID); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo htmlentities($result->firstName); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo htmlentities($result->lastName); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo htmlentities($result->role); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo htmlentities($result->date_added); ?>
+                                                </td>
+                                                <td>
+                                                    <?php $store->getID();
+                                                    $store->update_user();
+                                                    include('../modals/acc_details.php') ?>
+                                                    <button data-id="<?php echo $result->ID ?>" type="button" name="delete"
+                                                        class="btn btn-danger btn-sm delete-btn"><i
+                                                            class='bx bx-trash'></i></button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                            $cnt++;
+                                        }
+                                    } else {
+                                        echo '<tr><td colspan="9">No users found</td></tr>';
                                     }
-                                } else {
-                                    echo '<tr><td colspan="9">No users found</td></tr>';
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('#accounts').DataTable({
                 "language": {
                     "searchPlaceholder": "Search",

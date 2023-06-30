@@ -25,6 +25,7 @@
 .sidebar li:hover{
   background: #306c76;
   border-radius: 8px;
+  opacity: 80%;
 }
 .sidebar li a{
   color: #fff;

@@ -53,7 +53,7 @@
                             <textarea class="form-control" id="address" name="address" placeholder="Address"
                                 required></textarea>
                         </div>
-                        <div class="form-group pt-2">
+                        <div class="form-group pt-2 pb-4">
                             <select class="form-control" id="role" name="role" required>
                                 <option value="">--Select Role--</option>
                                 <option value="Employee">Employee</option>

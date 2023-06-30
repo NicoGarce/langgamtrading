@@ -29,7 +29,7 @@ if(isset($_SESSION['access']) && $_SESSION['access'] == 'Administrator') {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body id="body">
+<body id="body" class="bg-light">
     <div class="main-container d-flex">
         <div class="sidebar pt-3 pb-3">
             <?php include("C:/xampp/htdocs/langgamtrading/includes/emp_sidebar.php") ?>
