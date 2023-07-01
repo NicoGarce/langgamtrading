@@ -112,13 +112,16 @@ $current_page = $_SERVER['PHP_SELF'];
                                         </div>
                                         <div class="form-group pt-2">
                                             <select class="form-control" id="role" name="role" required>
-                                                <option value=""><?php echo $result[0]-> role ?></option>
+                                                <option value="<?php echo $result[0]-> role ?>"><?php echo $result[0]-> role ?></option>
                                                 <option value="Employee">Employee</option>
                                                 <option value="Administrator">Administrator</option>
                                             </select>
                                         </div>
-                                        <div class="text-center pt-3">
-                                            <button name="add" type="submit" class="btn btn-primary"
+                                        <div class=" text-center pt-3">
+                                                <button name="add" type="submit" class="btn btn-primary"
+                                                style="width: 200px;">Change Password</button>
+
+                                                <button name="add" type="submit" class="btn btn-primary"
                                                 style="width: 200px;">Update My Account</button>
                                         </div>
                                     </form>

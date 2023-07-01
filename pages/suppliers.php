@@ -102,42 +102,9 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
                                         <th>Edit</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php
-                                    $results = $store->get_suppliers();
-
-                                    $cnt = 1;
-                                    if (count($results) > 0) {
-                                        foreach ($results as $result) {
-                                            ?>
-                                            <tr>
-
-                                                <td>
-                                                    <?php echo htmlentities($cnt); ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo htmlentities($result->supplier_name); ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo htmlentities($result->description); ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo htmlentities($result->address); ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo htmlentities($result->contact); ?>
-                                                </td>
-                                                <td>SAKA NA TO</td>
-
-                                            </tr>
-                                            <?php
-                                            $cnt++;
-                                        }
-                                    } else {
-                                        echo '<tr><td colspan="9">No suppliers found</td></tr>';
-                                    }
-                                    ?>
-                                </tbody>
+                                
+                                <?php include('modals/edit_supplier.php') ?>
+                 
                             </table>
                         </div>
                     </div>

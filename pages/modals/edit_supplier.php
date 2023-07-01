@@ -1,0 +1,98 @@
+<tbody>
+    <?php
+    $results = $store->get_suppliers();
+
+    $cnt = 1;
+    if (count($results) > 0) {
+        foreach ($results as $result) {
+            ?>
+            <tr>
+
+                <td>
+                    <?php echo htmlentities($cnt); ?>
+                </td>
+                <td>
+                    <?php echo htmlentities($result->supplier_name); ?>
+                </td>
+                <td>
+                    <?php echo htmlentities($result->description); ?>
+                </td>
+                <td>
+                    <?php echo htmlentities($result->address); ?>
+                </td>
+                <td>
+                    <?php echo htmlentities($result->contact); ?>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#editAccount<?php echo $cnt ?>">
+                        <i class='bx bx-edit'></i></button>
+
+
+                    <div class="modal fade pt-5" id="editAccount<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
+                        data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+                        <div class="modal-dialog pt-5">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="labelEdit">Edit Supplier</h5>
+                                    <button type="button" id="headClose<?php echo $cnt ?>" class="btn-close"
+                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" id="registration-form<?php echo $cnt ?>">
+                                        <input name="ID" value="<?php echo $result->supplier_id ?>" type="hidden">
+                                        <div class="form-group row justify-content-center">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="supplier_id<?php echo $cnt ?>"
+                                                    name="supplier_id" value="<?php echo $result->supplier_id ?>"
+                                                    placeholder="Supplier ID" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group pt-2">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="supplier_name<?php echo $cnt ?>"
+                                                    name="supplier_name" value="<?php echo $result->supplier_name ?>"
+                                                    placeholder="First Name" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group pt-2">
+                                            <textarea class="form-control" id="description<?php echo $cnt ?>" name="description"
+                                                placeholder="Description" required><?php echo $result->description ?></textarea>
+                                        </div>
+                                        <div class="form-group pt-2 ">
+                                            <textarea class="form-control" id="address<?php echo $cnt ?>" name="address"
+                                                placeholder="Address" required><?php echo $result->address ?></textarea>
+                                        </div>
+                                        <div class="form-group pt-2 pb-4">
+                                            <input type="text" class="form-control" id="contact<?php echo $cnt ?>"
+                                                name="contact" value="<?php echo $result->contact ?>" placeholder="Contact"
+                                                required>
+                                            <span id="mobile-message<?php echo $cnt ?>"></span>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" id="footClose<?php echo $cnt ?>" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" name="update" class="btn btn-primary">Edit Account</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button data-id="<?php echo $result->ID ?>" type="button" name="delete"
+                        class="btn btn-danger btn-sm delete-btn"><i class='bx bx-trash'></i></button>
+                </td>
+
+            </tr>
+            <?php
+            $cnt++;
+        }
+    } else {
+        echo '<tr><td colspan="9">No suppliers found</td></tr>';
+    }
+    ?>
+</tbody>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

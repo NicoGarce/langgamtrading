@@ -19,14 +19,15 @@
                                 <input type="text" class="form-control" id="supplier_name" name="supplier_name" placeholder="Supplier Name" required>
                             </div>
                             <div class="form-group pt-2">
-                                <input type="text" class="form-control" id="description" name="description"
-                                    placeholder="Description" required>
+                                <textarea class="form-control" id="description" name="description"
+                                placeholder="Description" required></textarea>
                             </div>
                         </div>
                         <div class="form-group pt-2">
-                            <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+                                <textarea class="form-control" id="address" name="address"
+                                placeholder="Address" required></textarea>
                         </div>
-                        <div class="form-group pt-2">
+                        <div class="form-group pt-2 pb-4">
                             <input type="tel" class="form-control" id="Contact" name="contact" placeholder="Contact Info" required>
                             <span id="mobile-message"></span>
                         </div>

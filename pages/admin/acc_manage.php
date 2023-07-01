@@ -105,51 +105,14 @@ $store->delete_user();
                                         <th style="width: 50px;">Options</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php
-                                    $results = $store->get_users();
-
-                                    $cnt = 1;
-                                    if (count($results) > 0) {
-                                        foreach ($results as $result) {
-                                            ?>
-                                            <tr>
-
-                                                <td class="text-center">
-                                                    <?php echo htmlentities($result->ID); ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo htmlentities($result->firstName); ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo htmlentities($result->lastName); ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo htmlentities($result->role); ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo htmlentities($result->date_added); ?>
-                                                </td>
-                                                <td>
-                                                    <?php 
-                                                        $store->getID();
-                                                        $store->update_user();
-                                                        include('../modals/acc_details.php') 
-                                                    ?>
+                                
+                                <?php 
+                                    $store->getID();
+                                    $store->update_user();
+                                    include('../modals/acc_details.php') 
+                                ?>
                                                     
-                                                    <button data-id="<?php echo $result->ID ?>" type="button" name="delete"
-                                                        class="btn btn-danger btn-sm delete-btn"><i
-                                                            class='bx bx-trash'></i></button>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                            $cnt++;
-                                        }
-                                    } else {
-                                        echo '<tr><td colspan="9">No users found</td></tr>';
-                                    }
-                                    ?>
-                                </tbody>
+                                                    
                             </table>
                         </div>
                     </div>

@@ -165,6 +165,61 @@ class Langgam
         }
     }
 
+    public function edit_supplier()
+    {
+        if (isset($_POST['update'])) {
+            $supplier_id = $_POST['supplier_id'] ?? '';
+            $supplier_name = $_POST["supplier_name"];
+            $description = $_POST["description"];
+            $address = $_POST["address"];
+            $contact = $_POST["contact"];
+            
+
+            $pdo = $this->openConnection();
+
+            $sql = "UPDATE suppliers SET supplier_id = :supplier_id , supplier_name = :supplier_name, description = :description, address = :address, contact = :contact WHERE supplier_id = :supplier_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                'supplier_id' => $supplier_id,
+                'supplier_name' => $supplier_name,
+                'description' => $description,
+                'address' => $address,
+                'contact' => $contact,
+                
+            ]);
+
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Supplier edited successfully',
+                showConfirmButton: false,
+                timer: 2000,
+                showClass: {
+                    popup: 'swal2-show'
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to edit supplier',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    showClass: {
+                        popup: 'swal2-show'
+                    }
+                });
+            </script>";
+            }
+        }
+    }
+
     public function update_user()
     {
         if (isset($_POST['update'])) {
@@ -223,6 +278,7 @@ class Langgam
             }
         }
     }
+
 
     public function delete_user()
     {
