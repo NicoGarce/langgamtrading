@@ -32,55 +32,59 @@ class Langgam
 
 
     public function login()
-    {
+{
+    session_start();
 
-        if (isset($_POST['submit'])) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+    if (isset($_POST['submit'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-            $conn = $this->openConnection();
-            $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
-            $stmt->bindParam(':username', $username);
-            $stmt->execute();
+        $conn = $this->openConnection();
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
 
-            if ($stmt->rowCount() == 1) {
-                // Get the user's role from the query result and store it in a session variable
-                $user = $stmt->fetch();
-                $role = $user['role'];
-                if (password_verify($password, $user['password'])) {
-                    $_SESSION['role'] = $user['role'];
-                    
-                    // Redirect the user to the appropriate dashboard based on their role
-                    if ($_SESSION['role'] == "Administrator") {
-                        session_start();
-                        $_SESSION['m_un'] = $username;
-                        $_SESSION['access'] = $role;
-                        header("Location: pages/admin/admin_dashboard.php");
-                        exit;
-                    } else if ($_SESSION['role'] == "Employee") {
-                        session_start();
-                        $_SESSION['m_un'] = $username;
-                        $_SESSION['access'] = $role;
-                        header("Location: pages/employee/emp_dashboard.php");
-                        exit;
-                    }
-                } else {
-                    // Display an error message if the password is incorrect
-                    echo '<div class="alert alert-danger fade show text-center p-2 px-2">
-                            <strong>Incorrect Password</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            </div>';
+        if ($stmt->rowCount() == 1) {
+            
+            $user = $stmt->fetch();
+            $userid = $user['ID'];
+            $role = $user['role'];
+
+            if (password_verify($password, $user['password'])) {
+                $_SESSION['role'] = $user['role'];
+
+                // Redirect the user to the appropriate dashboard based on their role
+                if ($_SESSION['role'] == "Administrator") {
+                    $_SESSION['m_un'] = $username;
+                    $_SESSION['access'] = $role;
+                    $_SESSION['ID'] = $user['ID'];
+                    header("Location: pages/admin/admin_dashboard.php");
+                    exit;
+                } else if ($_SESSION['role'] == "Employee") {
+                    $_SESSION['m_un'] = $username;
+                    $_SESSION['access'] = $role;
+                    $_SESSION['ID'] = $user['ID'];
+                    header("Location: pages/employee/emp_dashboard.php");
+                    exit;
                 }
             } else {
-                // Display an error message if the username is incorrect
-                echo '<div class="alert alert-danger text-center p-2 px-2">
-                        <strong>Username is Incorrect</strong>
+                // Display an error message if the password is incorrect
+                echo '<div class="alert alert-danger fade show text-center p-2 px-2">
+                        <strong>Incorrect Password</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>';
+                      </div>';
             }
-            $conn = null;
+        } else {
+            // Display an error message if the username is incorrect
+            echo '<div class="alert alert-danger text-center p-2 px-2">
+                    <strong>Username is Incorrect</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  </div>';
         }
+        $conn = null;
     }
+}
+
 
 
     public function get_users()
@@ -102,7 +106,7 @@ class Langgam
     public function getID()
     {
         $conn = $this->openConnection();
-        $userid = $_GET['ID'] ?? '';
+        $userid = $_SESSION['ID'] ?? '';
         $stmt = $conn->prepare("SELECT * FROM users WHERE ID =:uid");
         $stmt->bindParam('uid', $userid, PDO::PARAM_INT);
         $stmt->execute();

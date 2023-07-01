@@ -1,0 +1,11 @@
+.navbar li.active{
+    background: #cfcfcf;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+.navbar li:hover{
+    background: #cfcfcf;
+    border-radius: 8px;
+}
+

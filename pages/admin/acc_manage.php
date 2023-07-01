@@ -1,6 +1,6 @@
 <?php
 require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
-session_start();
+
 $store->login();
 
 if (!isset($_SESSION['m_un']) || empty($_SESSION['m_un'])) { // Use "||" instead of "&&"
@@ -67,7 +67,7 @@ $store->delete_user();
                         </div>
                         <ul class="navbar-nav mb-2 mb-lg-0 text-center">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Profile</a>
+                                <a class="nav-link active" aria-current="page" href="/langgamtrading/pages/profile.php">Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page"
@@ -131,9 +131,12 @@ $store->delete_user();
                                                     <?php echo htmlentities($result->date_added); ?>
                                                 </td>
                                                 <td>
-                                                    <?php $store->getID();
-                                                    $store->update_user();
-                                                    include('../modals/acc_details.php') ?>
+                                                    <?php 
+                                                        $store->getID();
+                                                        $store->update_user();
+                                                        include('../modals/acc_details.php') 
+                                                    ?>
+                                                    
                                                     <button data-id="<?php echo $result->ID ?>" type="button" name="delete"
                                                         class="btn btn-danger btn-sm delete-btn"><i
                                                             class='bx bx-trash'></i></button>
