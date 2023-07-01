@@ -103,7 +103,10 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
                                     </tr>
                                 </thead>
                                 
-                                <?php include('modals/edit_supplier.php') ?>
+                                <?php 
+                                    $store ->edit_supplier();
+                                    include('modals/edit_supplier.php') 
+                                ?>
                  
                             </table>
                         </div>
