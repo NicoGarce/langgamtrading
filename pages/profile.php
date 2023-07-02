@@ -21,6 +21,7 @@ $current_page = $_SERVER['PHP_SELF'];
     <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
     <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -71,6 +72,14 @@ $current_page = $_SERVER['PHP_SELF'];
                 <?php 
                     $result = $store -> getID();
                 ?>
+                <div class="container">
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#upload"><i class='bx bx-upload'></i></button>
+
+                        <?php 
+                            include('modals/upload_image.php');
+                        ?>
+                </div>
                 <div class="container pt-4">
                     <div class="row d-flex pt-4 justify-content-end">
                         <div class="col-lg-7 pt-4">
@@ -132,7 +141,9 @@ $current_page = $_SERVER['PHP_SELF'];
                 </div>
             </div>
 </body>
+
 <script>
+    
     $('.open-btn').on('click', function () {
         $('.sidebar').addClass('active');
     });

@@ -32,58 +32,109 @@ class Langgam
 
 
     public function login()
-{
-    session_start();
+    {
+        session_start();
 
-    if (isset($_POST['submit'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        if (isset($_POST['submit'])) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
 
-        $conn = $this->openConnection();
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
+            $conn = $this->openConnection();
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
+            $stmt->bindParam(':username', $username);
+            $stmt->execute();
 
-        if ($stmt->rowCount() == 1) {
-            
-            $user = $stmt->fetch();
-            $userid = $user['ID'];
-            $role = $user['role'];
+            if ($stmt->rowCount() == 1) {
 
-            if (password_verify($password, $user['password'])) {
-                $_SESSION['role'] = $user['role'];
+                $user = $stmt->fetch();
+                $userid = $user['ID'];
+                $role = $user['role'];
 
-                // Redirect the user to the appropriate dashboard based on their role
-                if ($_SESSION['role'] == "Administrator") {
-                    $_SESSION['m_un'] = $username;
-                    $_SESSION['access'] = $role;
-                    $_SESSION['ID'] = $user['ID'];
-                    header("Location: pages/admin/admin_dashboard.php");
-                    exit;
-                } else if ($_SESSION['role'] == "Employee") {
-                    $_SESSION['m_un'] = $username;
-                    $_SESSION['access'] = $role;
-                    $_SESSION['ID'] = $user['ID'];
-                    header("Location: pages/employee/emp_dashboard.php");
-                    exit;
-                }
-            } else {
-                // Display an error message if the password is incorrect
-                echo '<div class="alert alert-danger fade show text-center p-2 px-2">
+                if (password_verify($password, $user['password'])) {
+                    $_SESSION['role'] = $user['role'];
+
+                    // Redirect the user to the appropriate dashboard based on their role
+                    if ($_SESSION['role'] == "Administrator") {
+                        $_SESSION['m_un'] = $username;
+                        $_SESSION['access'] = $role;
+                        $_SESSION['ID'] = $user['ID'];
+                        header("Location: pages/admin/admin_dashboard.php");
+                        exit;
+                    } else if ($_SESSION['role'] == "Employee") {
+                        $_SESSION['m_un'] = $username;
+                        $_SESSION['access'] = $role;
+                        $_SESSION['ID'] = $user['ID'];
+                        header("Location: pages/employee/emp_dashboard.php");
+                        exit;
+                    }
+                } else {
+                    // Display an error message if the password is incorrect
+                    echo '<div class="alert alert-danger fade show text-center p-2 px-2">
                         <strong>Incorrect Password</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                       </div>';
-            }
-        } else {
-            // Display an error message if the username is incorrect
-            echo '<div class="alert alert-danger text-center p-2 px-2">
+                }
+            } else {
+                // Display an error message if the username is incorrect
+                echo '<div class="alert alert-danger text-center p-2 px-2">
                     <strong>Username is Incorrect</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                   </div>';
+            }
+            $conn = null;
         }
-        $conn = null;
+    }
+
+    public function upload_pic($userID)
+{
+    if (isset($_POST['upload'])) {
+        $userid = intval($userID);
+
+        $file_name = $_FILES['file']['name'];
+        $file_temp = $_FILES['file']['tmp_name'];
+        $file_size = $_FILES['file']['size'];
+        $file_type = $_FILES['file']['type'];
+
+        $location = "C:/xampp/htdocs/langgamtrading/assets/user_upload/" . $file_name;
+
+        if ($file_size < 524880) {
+            if (move_uploaded_file($file_temp, $location)) {
+                try {
+                    $conn = $this->openConnection();
+                    $stmt = $conn->prepare("UPDATE users SET photo = :location WHERE ID = :userid");
+                    $stmt->bindParam(':location', $location);
+                    $stmt->bindParam(':userid', $userid);
+                    $stmt->execute();
+
+                    echo "<script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: 'Image Uploaded',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                showClass: {
+                                    popup: 'swal2-show'
+                                }
+                            }).then(function() {
+                                window.location.href = window.location.href;
+                            });
+                        </script>";
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
+                } finally {
+                    $conn = null;
+                }
+            } else {
+                echo "<script>Swal.fire('Error', 'Failed to move the uploaded file', 'error');</script>";
+            }
+        } else {
+            echo "<script>Swal.fire('Error', 'File size is too large to upload', 'error');</script>";
+        }
     }
 }
+
+
 
 
 
@@ -114,9 +165,21 @@ class Langgam
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function add_supplier(){
+    public function uploadID()
+    {
+        $conn = $this->openConnection();
+        $userid = $_SESSION['ID'] ?? '';
+        $stmt = $conn->prepare("SELECT ID FROM users WHERE ID =:uid");
+        $stmt->bindParam('uid', $userid, PDO::PARAM_INT);
+        $stmt->execute();
 
-        if(isset($_POST['add_supplier'])){
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function add_supplier()
+    {
+
+        if (isset($_POST['add_supplier'])) {
             $supplier_name = $_POST["supplier_name"];
             $description = $_POST["description"];
             $address = $_POST["address"];
@@ -173,7 +236,7 @@ class Langgam
             $description = $_POST["description"];
             $address = $_POST["address"];
             $contact = $_POST["contact"];
-            
+
 
             $pdo = $this->openConnection();
 
@@ -185,7 +248,7 @@ class Langgam
                 'description' => $description,
                 'address' => $address,
                 'contact' => $contact,
-                
+
             ]);
 
             if ($stmt->rowCount() !== false) {
@@ -281,13 +344,13 @@ class Langgam
 
     public function delete_user()
     {
-        if(isset($_REQUEST['delete'])){
+        if (isset($_REQUEST['delete'])) {
             $uid = $_GET['ID'] ?? '';
 
             $pdo = $this->openConnection();
             $sql = "DELETE FROM users where id=:uid";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(['uid' => $uid ]);
+            $stmt->execute(['uid' => $uid]);
 
             if ($stmt->rowCount() !== false) {
                 echo "<script>
@@ -316,19 +379,19 @@ class Langgam
                 });
             </script>";
             }
-        
+
         }
     }
 
     public function delete_supp()
     {
-        if(isset($_REQUEST['delete'])){
+        if (isset($_REQUEST['delete'])) {
             $supplier_id = $_GET['supplier_id'] ?? '';
 
             $pdo = $this->openConnection();
             $sql = "DELETE FROM suppliers where supplier_id =:supplier_id";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([':supplier_id' => $supplier_id ]);
+            $stmt->execute([':supplier_id' => $supplier_id]);
 
             if ($stmt->rowCount() !== false) {
                 echo "<script>
@@ -357,7 +420,7 @@ class Langgam
                 });
             </script>";
             }
-        
+
         }
     }
 }
