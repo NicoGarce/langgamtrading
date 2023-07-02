@@ -28,7 +28,6 @@
                         data-bs-target="#editAccount<?php echo $cnt ?>">
                         <i class='bx bx-edit'></i></button>
 
-
                     <div class="modal fade pt-5" id="editAccount<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
                         data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
                         <div class="modal-dialog pt-5">
@@ -81,18 +80,22 @@
                             </div>
                         </div>
                     </div>
-                    <button data-id="<?php echo $result->ID ?>" type="button" name="delete"
+                    <button data-id="<?php echo $result->supplier_id ?>" type="button" name="delete"
                         class="btn btn-danger btn-sm delete-btn"><i class='bx bx-trash'></i></button>
+                    
                 </td>
 
             </tr>
             <?php
-            $cnt++;
+                
+                $cnt++;
+                
         }
     } else {
         echo '<tr><td colspan="9">No suppliers found</td></tr>';
     }
     ?>
+
 </tbody>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

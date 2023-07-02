@@ -8,6 +8,7 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     exit();
 }
 
+$store->delete_supp();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,7 +136,42 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     $('.close-btn').on('click', function () {
         $('.sidebar').removeClass('active');
     });
+    
+     $('.delete-btn').on('click', function () {
+            var supplier_id = $(this).data('id');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Are you sure?',
+                text: 'You are about to delete this supplier',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform the deletion
 
+                    // Display success message after deletion
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Supplier deleted successfully',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        showClass: {
+                            popup: 'swal2-show'
+                        }
+                    }).then(() => {
+                        // Redirect to acc_manage.php
+                        window.location.href = 'suppliers.php?delete=true&supplier_id=' + supplier_id;
+
+                        window.location.href = 'suppliers.php';
+                    });
+                }
+            });
+        });
+
+        
 </script>
 
 </html>

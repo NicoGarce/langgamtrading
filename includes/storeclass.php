@@ -279,7 +279,6 @@ class Langgam
         }
     }
 
-
     public function delete_user()
     {
         if(isset($_REQUEST['delete'])){
@@ -310,6 +309,47 @@ class Langgam
                     icon: 'error',
                     title: 'Error',
                     text: 'Unable to remove user',
+                    confirmButtonColor: '#3085d6',
+                    customClass: {
+                        confirmButton: '#3085d6',
+                    }
+                });
+            </script>";
+            }
+        
+        }
+    }
+
+    public function delete_supp()
+    {
+        if(isset($_REQUEST['delete'])){
+            $supplier_id = $_GET['supplier_id'] ?? '';
+
+            $pdo = $this->openConnection();
+            $sql = "DELETE FROM suppliers where supplier_id =:supplier_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([':supplier_id' => $supplier_id ]);
+
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Supplier removed successfully',
+                confirmButtonColor: '#3085d6',
+                customClass: {
+                    confirmButton: '#3085d6',
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to remove supplier',
                     confirmButtonColor: '#3085d6',
                     customClass: {
                         confirmButton: '#3085d6',
