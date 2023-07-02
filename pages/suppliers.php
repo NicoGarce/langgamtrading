@@ -100,7 +100,7 @@ $store->delete_supp();
                                         <th>Description</th>
                                         <th>Address</th>
                                         <th>Contact</th>
-                                        <th>Edit</th>
+                                        <th style="width: 50px;">Options</th>
                                     </tr>
                                 </thead>
                                 
