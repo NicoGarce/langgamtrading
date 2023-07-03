@@ -85,17 +85,17 @@ class Langgam
         }
     }
 
-    public function upload_pic($userID)
+    public function upload_pic($id)
 {
-    if (isset($_POST['upload'])) {
-        $userid = intval($userID);
+    if (isset($_POST['upload'])) {  
+        $userid = intval($id);
 
         $file_name = $_FILES['file']['name'];
         $file_temp = $_FILES['file']['tmp_name'];
         $file_size = $_FILES['file']['size'];
         $file_type = $_FILES['file']['type'];
 
-        $location = "C:/xampp/htdocs/langgamtrading/assets/user_upload/" . $file_name;
+        $location = "..\\assets\\user_upload\\" . $file_name;
 
         if ($file_size < 524880) {
             if (move_uploaded_file($file_temp, $location)) {

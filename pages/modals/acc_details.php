@@ -7,7 +7,7 @@
         foreach ($results as $result) {
             ?>
             <tr>
-
+                
                 <td class="text-center">
                     <?php echo htmlentities($result->ID); ?>
                 </td>
@@ -24,11 +24,12 @@
                     <?php echo htmlentities($result->date_added); ?>
                 </td>
                 <td>
+                    
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                         data-bs-target="#editAccount<?php echo $cnt ?>">
                         <i class='bx bx-info-circle'></i></button>
 
-
+                    
                     <div class="modal fade pt-5" id="editAccount<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
                         data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
                         <div class="modal-dialog pt-5">
@@ -41,7 +42,11 @@
                                 <div class="modal-body">
                                     <form method="post" id="registration-form<?php echo $cnt ?>">
                                         <input name="ID" value="<?php echo $result->ID ?>" type="hidden">
-
+                                        <div class="form-group">
+                                            
+                                                <img src="<?php echo $result->photo?>" class="img-fluid">
+                                            
+                                        </div>
                                         <div class="form-group">
                                             <span>Account ID:
                                                 <?php echo $result->ID; ?>
