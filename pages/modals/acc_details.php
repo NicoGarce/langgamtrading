@@ -42,11 +42,12 @@
                                 <div class="modal-body">
                                     <form method="post" id="registration-form<?php echo $cnt ?>">
                                         <input name="ID" value="<?php echo $result->ID ?>" type="hidden">
-                                        <div class="form-group">
-                                            
-                                                <img src="<?php echo $result->photo?>" class="img-fluid">
-                                            
+                                        <div class="form-group d-flex justify-content-center">
+                                            <img src="<?php echo (!empty($result->photo)) ? '../' . $result->photo : '../../assets/user_upload/default.png' ?>" class="img-fluid rounded-circle" width="250px">
                                         </div>
+
+
+
                                         <div class="form-group">
                                             <span>Account ID:
                                                 <?php echo $result->ID; ?>

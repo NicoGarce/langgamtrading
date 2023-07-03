@@ -95,7 +95,7 @@ class Langgam
         $file_size = $_FILES['file']['size'];
         $file_type = $_FILES['file']['type'];
 
-        $location = "..\\assets\\user_upload\\" . $file_name;
+        $location = "../assets/user_upload/" . $file_name;
 
         if ($file_size < 524880) {
             if (move_uploaded_file($file_temp, $location)) {

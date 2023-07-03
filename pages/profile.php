@@ -20,6 +20,7 @@ $current_page = $_SERVER['PHP_SELF'];
     <title>Profile | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
     <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
+    <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Bootstrap CSS -->
@@ -100,11 +101,11 @@ $current_page = $_SERVER['PHP_SELF'];
                         <div class="col-lg-3 pb-3">
                             <div class="card">
                                 <div class="card-body">
-                                    
+                                    <h5 class="card-title">Profile Photo</h5>
                                     <div class="container pt-3">
                                         <div class="d-flex justify-content-center position-relative">
                                             <div class="photo-container" data-bs-toggle="modal" data-bs-target=#upload>
-                                                <img src="<?php echo $result[0]->photo ?>" alt="photo" class="img-fluid rounded-circle" width="100px">
+                                                <img src="<?php echo (!empty($result[0]->photo)) ? '' . $result[0]->photo : '../assets/user_upload/default.png' ?>" alt="photo" class="img-fluid rounded-circle" width="100px">
                                                 <span class="overlay">
                                                     <i class="bx bx-upload text-light"></i>
                                                 </span>

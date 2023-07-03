@@ -18,6 +18,7 @@ $store->delete_supp();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suppliers | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
+    <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
