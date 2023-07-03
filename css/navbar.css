@@ -4,8 +4,14 @@
     color: #ffffff;
 }
 
-.navbar li:hover{
+.profile:hover{
     background: #cfcfcf;
     border-radius: 8px;
 }
+
+.logout:hover{
+    background: #f09e9e;
+    border-radius: 8px;
+}
+
 

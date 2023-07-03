@@ -52,10 +52,10 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
                             <a class="navbar-brand text-uppercase" href="#">Orders</a>
                         </div>
                         <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-                            <li class="nav-item">
+                            <li class="nav-item profile">
                                 <a class="nav-link active" aria-current="page" href="/langgamtrading/pages/profile.php">Profile</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item logout">
                                 <a class="nav-link active" aria-current="page"
                                     href="/langgamtrading/includes/logout.php">Logout</a>
                             </li>

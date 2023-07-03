@@ -20,7 +20,6 @@ $current_page = $_SERVER['PHP_SELF'];
     <title>Profile | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
     <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
-    <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Bootstrap CSS -->
@@ -79,11 +78,11 @@ $current_page = $_SERVER['PHP_SELF'];
                             <span class="navbar-brand text-uppercase" href="#">Profile</span>
                         </div>
                         <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-                            <li class="nav-item">
+                            <li class="nav-item profile">
                                 <a class="nav-link active" aria-current="page"
                                     href="/langgamtrading/pages/profile.php">Profile</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item logout">
                                 <a class="nav-link active" aria-current="page" id="logout"
                                     href="/langgamtrading/includes/logout.php">Logout</a>
                             </li>
