@@ -50,7 +50,7 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <div class="container-fluid">
-                            <a class="navbar-brand text-uppercase" href="#">Inventory</a>
+                            <span class="navbar-brand text-uppercase" href="#">Inventory</span>
                         </div>
                         <ul class="navbar-nav mb-2 mb-lg-0 text-center">
                             <li class="nav-item profile">

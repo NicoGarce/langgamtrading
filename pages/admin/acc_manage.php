@@ -64,7 +64,7 @@ $store->delete_user();
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <div class="container-fluid">
-                            <a class="navbar-brand text-uppercase" href="#">Accounts</a>
+                            <span class="navbar-brand text-uppercase" href="#">Accounts</span>
                         </div>
                         <ul class="navbar-nav mb-2 mb-lg-0 text-center">
                             <li class="nav-item profile">

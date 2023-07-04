@@ -104,9 +104,9 @@ $current_page = $_SERVER['PHP_SELF'];
                                     <div class="container pt-3">
                                         <div class="d-flex justify-content-center position-relative">
                                             <div class="photo-container" data-bs-toggle="modal" data-bs-target=#upload>
-                                                <img src="<?php echo (!empty($result[0]->photo)) ? '' . $result[0]->photo : '../assets/user_upload/default.png' ?>" alt="photo" class="img-fluid rounded-circle" width="100px">
+                                                <img src="<?php echo (!empty($result[0]->photo)) ? '' . $result[0]->photo : '../assets/user_upload/default.png' ?>" alt="photo" class="img-fluid rounded-circle" width="200px" height="200px">
                                                 <span class="overlay">
-                                                    <i class="bx bx-upload text-light"></i>
+                                                    <i class='bx bx-image-add text-light'></i>
                                                 </span>
                                             </div>
                                         </div>
