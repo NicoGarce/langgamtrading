@@ -14,7 +14,7 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
 }
 
 $store->delete_user();
-
+$store->generate_pdf();
 ?>
 
 <!DOCTYPE html>
@@ -86,6 +86,11 @@ $store->delete_user();
                         <div class="col-lg-8">
                             <h2>Manage Accounts</h2>
                             <p>This is the Account Management Page</p>
+                            
+                            <form method="post" action="">
+                                <button type="submit" class="btn btn-danger btn-sm" name="btn_pdf"><i class='bx bxs-file-pdf'></i>PDF</button>
+                            </form>
+
                         </div>
 
                         <div class="col-lg-4 p-3 d-flex justify-content-end" style="margin-top: 20px;">

@@ -423,5 +423,60 @@ class Langgam
 
         }
     }
+
+    public function generate_pdf()
+    {
+        if (isset($_POST['btn_pdf'])) {
+            ob_start();
+            require_once '../../assets/fpdf/fpdf.php';
+
+            $conn = $this->openConnection();
+            $stmt = "SELECT * FROM users ORDER by ID";
+            $sql = $conn->query($stmt);
+
+            $pdf = new FPDF();
+            $pdf->AddPage();
+            $pdf->SetFont('Arial', 'B', 8);
+            
+            // Column Headers
+            $pdf->Cell(5, 10, 'ID', 1);
+            $pdf->Cell(20, 10, 'First Name', 1);
+            $pdf->Cell(20, 10, 'Last Name', 1);
+            $pdf->Cell(25, 10, 'Username', 1);
+            $pdf->Cell(20, 10, 'Mobile', 1);
+            $pdf->Cell(50, 10, 'Email', 1);
+            $pdf->Cell(20, 10, 'Role', 1);
+            $pdf->Cell(30, 10, 'Date Added', 1);
+            $pdf->Ln(); // Move to the next line
+            
+            while ($row = $sql->fetchObject()) {
+                $ID = $row->ID;
+                $firstName = $row->firstName;
+                $lastName = $row->lastName;
+                $username = $row->username;
+                $mobile = $row->mobile;
+                $email = $row->email;
+                $role = $row->role;
+                $date_added = $row->date_added;
+
+                $pdf->Cell(5, 10, $ID, 1);
+                $pdf->Cell(20, 10, $firstName, 1);
+                $pdf->Cell(20, 10, $lastName, 1);
+                $pdf->Cell(25, 10, $username, 1);
+                $pdf->Cell(20, 10, $mobile, 1);
+                $pdf->Cell(50, 10, $email, 1);
+                $pdf->Cell(20, 10, $role, 1);
+                $pdf->Cell(30, 10, $date_added, 1);
+
+                $pdf->Ln(); // Move to the next line for the next record
+            }
+            ob_end_clean();
+            $filename = 'users_report.pdf';
+            $pdf->Output($filename,'D');
+        }
+    }
+
+
+    
 }
 $store = new Langgam();
