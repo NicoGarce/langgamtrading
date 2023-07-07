@@ -17,16 +17,16 @@
                 <td>
                     <?php echo htmlentities($result->lastName); ?>
                 </td>
-                <td class="hidden">
+                <td class="d-none d-md-table-cell">
                     <?php echo htmlentities($result->username); ?>
                 </td>
-                <td class="hidden">
+                <td class="d-none d-md-table-cell">
                     <?php echo htmlentities($result->mobile); ?>
                 </td>
-                <td class="hidden">
+                <td class="d-none d-md-table-cell">
                     <?php echo htmlentities($result->email); ?>
                 </td>
-                <td class="hidden">
+                <td class="d-none d-md-table-cell">
                     <?php echo htmlentities($result->address); ?>
                 </td>
                 <td>

@@ -104,10 +104,10 @@ $store->generate_pdf();
                                         <th>ID</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th class="hidden">Username</th>
-                                        <th class="hidden">Mobile</th>
-                                        <th class="hidden">Email</th>
-                                        <th class="hidden">Address</th>
+                                        <th class="d-none d-md-table-cell">Username</th>
+                                        <th class="d-none d-md-table-cell">Mobile</th>
+                                        <th class="d-none d-md-table-cell">Email</th>
+                                        <th class="d-none d-md-table-cell">Username</th>
                                         <th>Role</th>
                                         <th>Date Added</th>
                                         <th style="width: 50px;">Options</th>
