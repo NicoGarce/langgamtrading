@@ -25,10 +25,10 @@
                 </td>
                 <td>
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#editAccount<?php echo $cnt ?>">
+                        data-bs-target="#editSupplier<?php echo $cnt ?>">
                         <i class='bx bx-edit'></i></button>
 
-                    <div class="modal fade pt-5" id="editAccount<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
+                    <div class="modal fade pt-5" id="editSupplier<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
                         data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
                         <div class="modal-dialog pt-5">
                             <div class="modal-content">

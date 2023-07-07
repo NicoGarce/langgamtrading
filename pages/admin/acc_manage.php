@@ -26,11 +26,11 @@ $store->generate_pdf();
     <title>Accounts | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
     <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
-    <link rel="stylesheet" href="/langgamtrading/css/tbl_btn.css">
+    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    
     <link rel="stylesheet" href="../../assets/js/datatables.1.13.5.min.css">
     <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -96,7 +96,8 @@ $store->generate_pdf();
                         </div>
 
                     </div>
-                    <div class="card p-3">
+                    
+                    <div class="card col-lg-12 p-3">
                         <div class="table-responsive pt-2 data_table">
                             <table id="table" class="table table-bordered table-striped">
                                 <thead>
@@ -106,7 +107,7 @@ $store->generate_pdf();
                                         <th class="d-none">Username</th>
                                         <th class="d-none">Mobile</th>
                                         <th class="d-none">Email</th>
-                                        <th class="d-none">Username</th>
+                                        <th class="d-none">Address</th>
                                         <th>Role</th>
                                         <th>Date Added</th>
                                         <th style="width: 50px;">Options</th>

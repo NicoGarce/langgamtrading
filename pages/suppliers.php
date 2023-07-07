@@ -19,16 +19,18 @@ $store->delete_supp();
     <title>Suppliers | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
     <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
+    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
-    <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <link rel="stylesheet" href="../assets/js/datatables.1.13.5.min.css">
     <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script> 
+    <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="../assets/js/custom.js"></script>
+    <script defer src="../assets/js/datatables.min.js"></script>
+    <script defer src="../assets/js/pdfmake.min.js"></script>
+    <script defer src="../assets/js/vfs_fonts.js"></script>
     <style>
         .dataTables_wrapper .dataTables_filter input[type="search"] {
             width: 300px; /* Adjust the desired width */
@@ -93,7 +95,7 @@ $store->delete_supp();
 
                     <div class="card p-3">
                         <div class="table-responsive pt-2">
-                            <table id="suppliers" class="table table-bordered table-striped">
+                            <table id="table" class="table table-bordered table-striped">
                                 <thead class="text-center">
                                     <tr>
                                         <th>ID</th>
@@ -120,16 +122,7 @@ $store->delete_supp();
         </div>
     </div>
 </body>
-<script>
-        $(document).ready(function(){
-            $('#suppliers').DataTable({
-                "language": {
-                    "searchPlaceholder": "Search",
-                    "search": ""
-                }
-            });
-        })
-    </script>
+
 <script>
     $('.open-btn').on('click', function () {
         $('.sidebar').addClass('active');

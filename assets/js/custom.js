@@ -4,7 +4,7 @@ $(document).ready(function() {
             // Export buttons configuration
             {
                 extend: 'copy',
-                className: 'btn btn-sm btn-dark export rounded',
+                className: 'btn btn-sm btn-dark export rounded m-1',
                 text: '<i class="bx bx-copy"></i> Copy',
                 exportOptions: {
                     columns: ':not(:last-child)' // Exclude the last column (Options)
@@ -12,7 +12,7 @@ $(document).ready(function() {
             },
             {
                 extend: 'excel',
-                className: 'btn btn-sm btn-dark export rounded',
+                className: 'btn btn-sm btn-dark export rounded m-1',
                 text: '<i class="bx bxs-spreadsheet"></i> Excel',
                 exportOptions: {
                     columns: ':not(:last-child)' // Exclude the last column (Options)
@@ -20,7 +20,7 @@ $(document).ready(function() {
             },
             {
                 extend: 'pdf',
-                className: 'btn btn-sm btn-dark export rounded',
+                className: 'btn btn-sm btn-dark export rounded m-1',
                 text: '<i class="bx bxs-file-pdf"></i> PDF',
                 exportOptions: {
                     columns: ':not(:last-child)' // Exclude the last column (Options)
@@ -28,7 +28,7 @@ $(document).ready(function() {
             },
             {
                 extend: 'print',
-                className: 'btn btn-sm btn-dark export rounded',
+                className: 'btn btn-sm btn-dark export rounded m-1',
                 text: '<i class="bx bxs-printer"></i> Print',
                 exportOptions: {
                     columns: ':not(:last-child)' // Exclude the last column (Options)
