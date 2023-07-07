@@ -26,16 +26,18 @@ $store->generate_pdf();
     <title>Accounts | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
     <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
+    <link rel="stylesheet" href="/langgamtrading/css/tbl_btn.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-
+    <link rel="stylesheet" href="../../assets/js/datatables.1.13.5.min.css">
     <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="../../assets/js/custom.js"></script>
+    <script defer src="../../assets/js/datatables.min.js"></script>
+    <script defer src="../../assets/js/pdfmake.min.js"></script>
+    <script defer src="../../assets/js/vfs_fonts.js"></script>
     <style>
         .dataTables_wrapper .dataTables_filter input[type="search"] {
             width: 300px;
@@ -86,10 +88,6 @@ $store->generate_pdf();
                         <div class="col-lg-8">
                             <h2>Manage Accounts</h2>
                             <p>This is the Account Management Page</p>
-                            
-                            <form method="post" action="">
-                                <button type="submit" class="btn btn-danger btn-sm" name="btn_pdf"><i class='bx bxs-file-pdf'></i>PDF</button>
-                            </form>
 
                         </div>
 
@@ -99,13 +97,17 @@ $store->generate_pdf();
 
                     </div>
                     <div class="card p-3">
-                        <div class="table-responsive pt-2">
-                            <table id="accounts" class="table table-bordered table-striped">
+                        <div class="table-responsive pt-2 data_table">
+                            <table id="table" class="table table-bordered table-striped">
                                 <thead class="text-center">
                                     <tr>
                                         <th>ID</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
+                                        <th class="hidden">Username</th>
+                                        <th class="hidden">Mobile</th>
+                                        <th class="hidden">Email</th>
+                                        <th class="hidden">Address</th>
                                         <th>Role</th>
                                         <th>Date Added</th>
                                         <th style="width: 50px;">Options</th>
@@ -126,17 +128,9 @@ $store->generate_pdf();
             </div>
         </div>
     </div>
+    
     <script>
-        $(document).ready(function () {
-            $('#accounts').DataTable({
-                "language": {
-                    "searchPlaceholder": "Search",
-                    "search": ""
-                }
-            });
-        })
-    </script>
-    <script>
+        
         $('.open-btn').on('click', function () {
             $('.sidebar').addClass('active');
         });

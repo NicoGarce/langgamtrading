@@ -17,6 +17,18 @@
                 <td>
                     <?php echo htmlentities($result->lastName); ?>
                 </td>
+                <td class="hidden">
+                    <?php echo htmlentities($result->username); ?>
+                </td>
+                <td class="hidden">
+                    <?php echo htmlentities($result->mobile); ?>
+                </td>
+                <td class="hidden">
+                    <?php echo htmlentities($result->email); ?>
+                </td>
+                <td class="hidden">
+                    <?php echo htmlentities($result->address); ?>
+                </td>
                 <td>
                     <?php echo htmlentities($result->role); ?>
                 </td>
@@ -26,11 +38,11 @@
                 <td>
                     
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#editAccount<?php echo $cnt ?>">
+                        data-bs-target="#accDetails<?php echo $cnt ?>">
                         <i class='bx bx-info-circle'></i></button>
 
                     
-                    <div class="modal fade pt-5" id="editAccount<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
+                    <div class="modal fade pt-5" id="accDetails<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
                         data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
                         <div class="modal-dialog pt-5">
                             <div class="modal-content">
@@ -106,7 +118,7 @@
                         </div>
                     </div>
                     <button data-id="<?php echo $result->ID ?>" type="button" name="delete"
-                        class="btn btn-danger btn-sm delete-btn"><i class='bx bx-trash'></i></button>
+                        class="btn btn-danger btn-sm delete-btn delete"><i class='bx bx-trash'></i></button>
                 </td>
             </tr>
             <?php

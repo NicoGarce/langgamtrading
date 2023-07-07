@@ -1,5 +1,5 @@
 <div>
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addAccount">
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addAccount" id="add_btn">
         <i class="bx bx-plus"></i>Add an account</button>
 
 

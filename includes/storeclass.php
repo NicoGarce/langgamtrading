@@ -425,58 +425,93 @@ class Langgam
     }
 
     public function generate_pdf()
-    {
-        if (isset($_POST['btn_pdf'])) {
-            ob_start();
-            require_once '../../assets/fpdf/fpdf.php';
+{
+    if (isset($_POST['btn_pdf'])) {
+        ob_start();
+        require_once '../../assets/fpdf/fpdf.php';
 
-            $conn = $this->openConnection();
-            $stmt = "SELECT * FROM users ORDER by ID";
-            $sql = $conn->query($stmt);
+        $conn = $this->openConnection();
 
-            $pdf = new FPDF();
-            $pdf->AddPage();
-            $pdf->SetFont('Arial', 'B', 8);
-            
-            // Column Headers
-            $pdf->Cell(5, 10, 'ID', 1);
-            $pdf->Cell(20, 10, 'First Name', 1);
-            $pdf->Cell(20, 10, 'Last Name', 1);
-            $pdf->Cell(25, 10, 'Username', 1);
-            $pdf->Cell(20, 10, 'Mobile', 1);
-            $pdf->Cell(50, 10, 'Email', 1);
-            $pdf->Cell(20, 10, 'Role', 1);
-            $pdf->Cell(30, 10, 'Date Added', 1);
-            $pdf->Ln(); // Move to the next line
-            
-            while ($row = $sql->fetchObject()) {
-                $ID = $row->ID;
-                $firstName = $row->firstName;
-                $lastName = $row->lastName;
-                $username = $row->username;
-                $mobile = $row->mobile;
-                $email = $row->email;
-                $role = $row->role;
-                $date_added = $row->date_added;
+        // Get the DataTables server-side processing request data
+        $requestData = $_POST;
 
-                $pdf->Cell(5, 10, $ID, 1);
-                $pdf->Cell(20, 10, $firstName, 1);
-                $pdf->Cell(20, 10, $lastName, 1);
-                $pdf->Cell(25, 10, $username, 1);
-                $pdf->Cell(20, 10, $mobile, 1);
-                $pdf->Cell(50, 10, $email, 1);
-                $pdf->Cell(20, 10, $role, 1);
-                $pdf->Cell(30, 10, $date_added, 1);
+        // Get the column index to order by
+        $orderColumnIndex = $requestData['order'][0]['column'] ?? 0;
 
-                $pdf->Ln(); // Move to the next line for the next record
-            }
-            ob_end_clean();
-            $filename = 'users_report.pdf';
-            $pdf->Output($filename,'D');
+        // Get the order direction
+        $orderDirection = $requestData['order'][0]['dir'] ?? 'asc';
+
+        // Get the number of entries to display per page
+        $entriesPerPage = $requestData['length'] ?? 10;
+
+        // Get the search term
+        $searchTerm = $requestData['search']['value'] ?? '';
+
+        // Get the start position of the entries to fetch
+        $start = $requestData['start'] ?? 0;
+
+        
+        // Prepare the SQL query
+        $stmt = "SELECT * FROM users";
+
+        if (!empty($searchTerm)) {
+            $stmt .= " WHERE 
+                (ID LIKE '%" . $searchTerm . "%' OR
+                firstName LIKE '%" . $searchTerm . "%' OR
+                lastName LIKE '%" . $searchTerm . "%' OR
+                username LIKE '%" . $searchTerm . "%' OR
+                mobile LIKE '%" . $searchTerm . "%' OR
+                email LIKE '%" . $searchTerm . "%' OR
+                role LIKE '%" . $searchTerm . "%')";
         }
+
+        // Add the order by and limit clauses
+        $stmt .= " ORDER BY ID " . $orderDirection . " LIMIT " . $start . ", " . $entriesPerPage;
+
+        $sql = $conn->query($stmt);
+
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 8);
+
+        // Column Headers
+        $pdf->Cell(5, 10, 'ID', 1);
+        $pdf->Cell(20, 10, 'First Name', 1);
+        $pdf->Cell(20, 10, 'Last Name', 1);
+        $pdf->Cell(25, 10, 'Username', 1);
+        $pdf->Cell(20, 10, 'Mobile', 1);
+        $pdf->Cell(50, 10, 'Email', 1);
+        $pdf->Cell(20, 10, 'Role', 1);
+        $pdf->Cell(30, 10, 'Date Added', 1);
+        $pdf->Ln(); // Move to the next line
+
+        while ($row = $sql->fetchObject()) {
+            $ID = $row->ID;
+            $firstName = $row->firstName;
+            $lastName = $row->lastName;
+            $username = $row->username;
+            $mobile = $row->mobile;
+            $email = $row->email;
+            $role = $row->role;
+            $date_added = $row->date_added;
+
+            $pdf->Cell(5, 10, $ID, 1);
+            $pdf->Cell(20, 10, $firstName, 1);
+            $pdf->Cell(20, 10, $lastName, 1);
+            $pdf->Cell(25, 10, $username, 1);
+            $pdf->Cell(20, 10, $mobile, 1);
+            $pdf->Cell(50, 10, $email, 1);
+            $pdf->Cell(20, 10, $role, 1);
+            $pdf->Cell(30, 10, $date_added, 1);
+
+            $pdf->Ln(); // Move to the next line for the next record
+        }
+
+        ob_end_clean();
+        $filename = 'users_report.pdf';
+        $pdf->Output($filename, 'D');
     }
+}
 
-
-    
 }
 $store = new Langgam();
