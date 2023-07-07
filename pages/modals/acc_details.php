@@ -12,21 +12,19 @@
                     <?php echo htmlentities($result->ID); ?>
                 </td>
                 <td>
-                    <?php echo htmlentities($result->firstName); ?>
+                    <?php echo htmlentities($result->firstName); ?> <?php echo htmlentities($result->lastName); ?>
                 </td>
-                <td>
-                    <?php echo htmlentities($result->lastName); ?>
-                </td>
-                <td class="d-none d-md-table-cell">
+                
+                <td class="d-none">
                     <?php echo htmlentities($result->username); ?>
                 </td>
-                <td class="d-none d-md-table-cell">
+                <td class="d-none">
                     <?php echo htmlentities($result->mobile); ?>
                 </td>
-                <td class="d-none d-md-table-cell">
+                <td class="d-none">
                     <?php echo htmlentities($result->email); ?>
                 </td>
-                <td class="d-none d-md-table-cell">
+                <td class="d-none">
                     <?php echo htmlentities($result->address); ?>
                 </td>
                 <td>

@@ -91,7 +91,7 @@ $store->generate_pdf();
 
                         </div>
 
-                        <div class="col-lg-4 p-3 d-flex justify-content-end" style="margin-top: 20px;">
+                        <div class="col-lg-4 p-3 mt-3 d-flex justify-content-end">
                             <?php include("../modals/addAccModal.php") ?>
                         </div>
 
@@ -99,15 +99,14 @@ $store->generate_pdf();
                     <div class="card p-3">
                         <div class="table-responsive pt-2 data_table">
                             <table id="table" class="table table-bordered table-striped">
-                                <thead class="text-center">
+                                <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th class="d-none d-md-table-cell">Username</th>
-                                        <th class="d-none d-md-table-cell">Mobile</th>
-                                        <th class="d-none d-md-table-cell">Email</th>
-                                        <th class="d-none d-md-table-cell">Username</th>
+                                        <th>Name</th>
+                                        <th class="d-none">Username</th>
+                                        <th class="d-none">Mobile</th>
+                                        <th class="d-none">Email</th>
+                                        <th class="d-none">Username</th>
                                         <th>Role</th>
                                         <th>Date Added</th>
                                         <th style="width: 50px;">Options</th>
