@@ -33,7 +33,7 @@ $store->delete_supp();
     <script defer src="../assets/js/vfs_fonts.js"></script>
     <style>
         .dataTables_wrapper .dataTables_filter input[type="search"] {
-            width: 300px; /* Adjust the desired width */
+            
             margin-right: 5px;
         }
 
@@ -115,8 +115,6 @@ $store->delete_supp();
                             </table>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

@@ -15,18 +15,10 @@
                     <?php echo htmlentities($result->firstName); ?> <?php echo htmlentities($result->lastName); ?>
                 </td>
                 
-                <td class="d-none">
+                <td>
                     <?php echo htmlentities($result->username); ?>
                 </td>
-                <td class="d-none">
-                    <?php echo htmlentities($result->mobile); ?>
-                </td>
-                <td class="d-none">
-                    <?php echo htmlentities($result->email); ?>
-                </td>
-                <td class="d-none">
-                    <?php echo htmlentities($result->address); ?>
-                </td>
+                
                 <td>
                     <?php echo htmlentities($result->role); ?>
                 </td>

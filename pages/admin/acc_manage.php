@@ -40,10 +40,10 @@ $store->generate_pdf();
     <script defer src="../../assets/js/vfs_fonts.js"></script>
     <style>
         .dataTables_wrapper .dataTables_filter input[type="search"] {
-            width: 300px;
-            /* Adjust the desired width */
+            
             margin-right: 5px;
         }
+
     </style>
 </head>
 
@@ -52,7 +52,7 @@ $store->generate_pdf();
         <div class="sidebar pt-3 pb-3">
             <?php include("C:/xampp/htdocs/langgamtrading/includes/admin_sidebar.php") ?>
         </div>
-        <div class="content pt-1">
+        <div class="content pt-1 ">
             <nav class="navbar navbar-expand-md navbar-light bg-light rounded-4 m-3 shadow-lg">
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between d-md-none d-block">
@@ -97,17 +97,14 @@ $store->generate_pdf();
 
                     </div>
                     
-                    <div class="card col-lg-12 p-3">
-                        <div class="table-responsive pt-2 data_table">
+                    <div class="card p-3">
+                        <div class="table-responsive pt-2">
                             <table id="table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th class="d-none">Username</th>
-                                        <th class="d-none">Mobile</th>
-                                        <th class="d-none">Email</th>
-                                        <th class="d-none">Address</th>
+                                        <th>Username</th>
                                         <th>Role</th>
                                         <th>Date Added</th>
                                         <th style="width: 50px;">Options</th>
