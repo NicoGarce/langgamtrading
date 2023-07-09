@@ -81,15 +81,7 @@ $store->delete_supp();
             <div class="dashboard-content px-3 pt-4">
 
                 <div class="m-5">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <h2>Suppliers</h2>
-                            <p>This is the Suppliers Page</p>
-                        </div>
-                        <div class="col-lg-4 p-3 d-flex justify-content-end" style="margin-top: 20px;">
-                            <?php include("modals/addsupplier.php") ?>
-                        </div>
-                    </div>
+                    
 
 
 

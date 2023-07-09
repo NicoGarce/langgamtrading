@@ -1,4 +1,15 @@
 $(document).ready(function() {
+    var addButton;
+
+    if (window.location.pathname.includes('acc_manage.php')) {
+        addButton = '<div class="mb-1"><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addAccount" id="add_btn"><i class="bx bx-plus"></i> Add Account</button></div>';
+    }
+    // Check if the current page is suppliers.php
+    else if (window.location.pathname.includes('suppliers.php')) {
+        addButton = '<div class="mb-1"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplier"><i class="bx bx-plus"></i> Add Supplier</button></div>';
+    }
+    
+
     var table = $('#table').DataTable({
         buttons: [
             // Export buttons configuration
@@ -68,4 +79,9 @@ $(document).ready(function() {
     // Call the function on page load and window resize
     centerSearchBar();
     $(window).resize(centerSearchBar);
+
+    // Append the addButton only if it is defined
+    if (addButton) {
+        $('.dataTables_wrapper .dataTables_filter').prepend(addButton);
+    }
 });

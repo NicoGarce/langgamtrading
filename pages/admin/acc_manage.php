@@ -84,18 +84,7 @@ $store->generate_pdf();
 
                 <div class="m-5">
 
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <h2>Manage Accounts</h2>
-                            <p>This is the Account Management Page</p>
-
-                        </div>
-
-                        <div class="col-lg-4 p-3 mt-3 d-flex justify-content-end">
-                            <?php include("../modals/addAccModal.php") ?>
-                        </div>
-
-                    </div>
+                    
                     
                     <div class="card p-3">
                         <div class="table-responsive pt-2">
