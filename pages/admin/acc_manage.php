@@ -84,7 +84,7 @@ $store->generate_pdf();
 
                 <div class="m-5">
 
-                    
+                    <?php include('../modals/addAccModal.php') ?>
                     
                     <div class="card p-3">
                         <div class="table-responsive pt-2">

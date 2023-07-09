@@ -1,7 +1,4 @@
 <div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplier">
-        <i class="bx bx-plus"></i>Add Supplier</button>
-
 
     <div class="modal fade pt-5" id="addSupplier" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static"
         data-bs-keyboard="false" aria-hidden="true">

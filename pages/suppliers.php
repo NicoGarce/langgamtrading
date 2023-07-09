@@ -81,9 +81,8 @@ $store->delete_supp();
             <div class="dashboard-content px-3 pt-4">
 
                 <div class="m-5">
-                    
-
-
+            
+                    <?php include('modals/addsupplier.php') ?>
 
                     <div class="card p-3">
                         <div class="table-responsive pt-2">
