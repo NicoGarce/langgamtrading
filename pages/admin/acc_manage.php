@@ -82,11 +82,11 @@ $store->generate_pdf();
             </nav>
             <div class="dashboard-content px-3 pt-4">
 
-                <div class="m-5">
+                <div class="m-3">
 
                     <?php include('../modals/addAccModal.php') ?>
                     
-                    <div class="card p-3">
+                    <div class="card p-3 rounded-4">
                         <div class="table-responsive pt-2">
                             <table id="table" class="table table-bordered table-striped">
                                 <thead>
