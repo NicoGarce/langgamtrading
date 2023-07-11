@@ -82,7 +82,7 @@ $store->generate_pdf();
             </nav>
             <div class="dashboard-content px-3 pt-4">
 
-                <div class="m-3">
+                <div class="m-0 m-sm-3">
 
                     <?php include('../modals/addAccModal.php') ?>
                     
@@ -93,9 +93,9 @@ $store->generate_pdf();
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Username</th>
-                                        <th>Role</th>
-                                        <th>Date Added</th>
+                                        <th class="d-none d-sm-table-cell">Username</th>
+                                        <th class="d-none d-sm-table-cell">Role</th>
+                                        <th class="d-none d-sm-table-cell">Date Added</th>
                                         <th style="width: 50px;">Options</th>
                                     </tr>
                                 </thead>

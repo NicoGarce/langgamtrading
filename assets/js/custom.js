@@ -24,8 +24,16 @@ $(document).ready(function() {
           }
         },
         {
-          extend: 'excel',
+          extend: 'print',
           className: 'btn btn-sm btn-dark export rounded m-1',
+          text: '<i class="bx bxs-printer"></i> Print',
+          exportOptions: {
+            columns: ':not(:last-child)' // Exclude the last column (Options)
+          }
+        },
+        {
+          extend: 'excel',
+          className: 'btn btn-sm btn-success export rounded m-1',
           text: '<i class="bx bxs-spreadsheet"></i> Excel',
           exportOptions: {
             columns: ':not(:last-child)' // Exclude the last column (Options)
@@ -33,16 +41,8 @@ $(document).ready(function() {
         },
         {
           extend: 'pdf',
-          className: 'btn btn-sm btn-dark export rounded m-1',
+          className: 'btn btn-sm btn-danger export rounded m-1',
           text: '<i class="bx bxs-file-pdf"></i> PDF',
-          exportOptions: {
-            columns: ':not(:last-child)' // Exclude the last column (Options)
-          }
-        },
-        {
-          extend: 'print',
-          className: 'btn btn-sm btn-dark export rounded m-1',
-          text: '<i class="bx bxs-printer"></i> Print',
           exportOptions: {
             columns: ':not(:last-child)' // Exclude the last column (Options)
           }

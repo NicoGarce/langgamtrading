@@ -15,14 +15,14 @@
                     <?php echo htmlentities($result->firstName); ?> <?php echo htmlentities($result->lastName); ?>
                 </td>
                 
-                <td>
+                <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->username); ?>
                 </td>
                 
-                <td>
+                <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->role); ?>
                 </td>
-                <td>
+                <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->date_added); ?>
                 </td>
                 <td>

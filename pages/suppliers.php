@@ -80,7 +80,7 @@ $store->delete_supp();
             </nav>
             <div class="dashboard-content px-3 pt-4">
 
-                <div class="m-3">
+                <div class="m-0 m-sm-3">
             
                     <?php include('modals/addsupplier.php') ?>
 
@@ -91,9 +91,9 @@ $store->delete_supp();
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Address</th>
-                                        <th>Contact</th>
+                                        <th class="d-none d-sm-table-cell">Description</th>
+                                        <th class="d-none d-sm-table-cell">Address</th>
+                                        <th class="d-none d-sm-table-cell">Contact</th>
                                         <th style="width: 50px;">Options</th>
                                     </tr>
                                 </thead>

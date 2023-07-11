@@ -14,13 +14,13 @@
                 <td>
                     <?php echo htmlentities($result->supplier_name); ?>
                 </td>
-                <td>
+                <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->description); ?>
                 </td>
-                <td>
+                <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->address); ?>
                 </td>
-                <td>
+                <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->contact); ?>
                 </td>
                 <td>
