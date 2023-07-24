@@ -38,7 +38,7 @@
                         <i class='bx bx-info-circle'></i></button>
 
                     
-                    <div class="modal fade pt-5" id="accDetails<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
+                    <div class="modal fade" id="accDetails<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
                         data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
                         <div class="modal-dialog pt-5">
                             <div class="modal-content">

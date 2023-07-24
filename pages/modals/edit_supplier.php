@@ -29,7 +29,7 @@
                         data-bs-target="#editSupplier<?php echo $cnt ?>">
                         <i class='bx bx-edit'></i></button>
 
-                    <div class="modal fade pt-5" id="editSupplier<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
+                    <div class="modal fade" id="editSupplier<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
                         data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
                         <div class="modal-dialog pt-5">
                             <div class="modal-content">
@@ -42,28 +42,33 @@
                                     <form method="post" id="registration-form<?php echo $cnt ?>">
                                         <input name="ID" value="<?php echo $result->supplier_id ?>" type="hidden">
                                         <div class="form-group row justify-content-center">
-                                            <div class="form-group">
+                                            <div class="form-group col-sm-5">
+                                                <label for="supplier_id" class="label small px-1">Supplier ID</label>
                                                 <input type="text" class="form-control" id="supplier_id<?php echo $cnt ?>"
                                                     name="supplier_id" value="<?php echo $result->supplier_id ?>"
-                                                    placeholder="Supplier ID" required>
+                                                    placeholder="Supplier ID" required readonly>
                                             </div>
                                         </div>
                                         <div class="form-group pt-2">
                                             <div class="form-group">
+                                                <label for="supplier_name" class="label small px-1">Supplier Name</label>
                                                 <input type="text" class="form-control" id="supplier_name<?php echo $cnt ?>"
                                                     name="supplier_name" value="<?php echo $result->supplier_name ?>"
                                                     placeholder="Supplier Name" required>
                                             </div>
                                         </div>
                                         <div class="form-group pt-2">
+                                            <label for="description" class="label small px-1">Description</label>
                                             <textarea class="form-control" id="description<?php echo $cnt ?>" name="description"
                                                 placeholder="Description" required><?php echo $result->description ?></textarea>
                                         </div>
                                         <div class="form-group pt-2 ">
+                                            <label for="address" class="label small px-1">Address</label>
                                             <textarea class="form-control" id="address<?php echo $cnt ?>" name="address"
                                                 placeholder="Address" required><?php echo $result->address ?></textarea>
                                         </div>
                                         <div class="form-group pt-2 pb-4">
+                                            <label for="contact" class="label small px-1">Contact</label>
                                             <input type="text" class="form-control" id="contact<?php echo $cnt ?>"
                                                 name="contact" value="<?php echo $result->contact ?>" placeholder="Contact"
                                                 required>

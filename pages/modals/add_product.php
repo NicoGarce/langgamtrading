@@ -1,6 +1,6 @@
 <div>
 
-    <div class="modal fade pt-5" id="addProduct" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static"
+    <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static"
         data-bs-keyboard="false" aria-hidden="true">
         <div class="modal-dialog pt-5">
             <div class="modal-content">

@@ -2,7 +2,7 @@
     data-bs-target="#editProduct<?php echo $cnt ?>">
     <i class='bx bx-edit'></i></button>
 
-<div class="modal fade pt-5" id="editProduct<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
+<div class="modal fade" id="editProduct<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
     data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
     <div class="modal-dialog pt-5">
         <div class="modal-content">
@@ -40,7 +40,7 @@
                         <div class="form-group col-md-6">
                                 <label for="price" class="label small px-1">Price</label>
                                 <input type="text" class="form-control" id="price<?php echo $cnt ?>"
-                                    name="price" value="₱ <?php echo $result->price ?>"
+                                    name="price" value="<?php echo $result->price ?>"
                                     placeholder="Price" required>
                         </div>
                     </div>
