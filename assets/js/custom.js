@@ -8,6 +8,9 @@ $(document).ready(function() {
   else if (window.location.pathname.includes('suppliers.php')) {
     addButton = '<div class="mb-1"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplier"><i class="bx bx-plus"></i> Add Supplier</button></div>';
   }
+  else if (window.location.pathname.includes('inventory.php')) {
+    addButton = '<div class="mb-1"><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProduct"><i class="bx bx-plus"></i> Add Product</button></div>';
+  }
 
   var table;
 
@@ -50,7 +53,8 @@ $(document).ready(function() {
       ],
       language: {
         searchPlaceholder: "Search",
-        search: ""
+        search: "",
+        emptyTable: "No data available in the table. Please add some data."
       }
     });
 

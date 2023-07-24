@@ -154,22 +154,19 @@ class Langgam
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function get_inventory()
+    {
+        $conn = $this->openConnection();
+        $stmt = $conn->prepare("SELECT * FROM inventory");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function getID()
     {
         $conn = $this->openConnection();
         $userid = $_SESSION['ID'] ?? '';
         $stmt = $conn->prepare("SELECT * FROM users WHERE ID =:uid");
-        $stmt->bindParam('uid', $userid, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    public function uploadID()
-    {
-        $conn = $this->openConnection();
-        $userid = $_SESSION['ID'] ?? '';
-        $stmt = $conn->prepare("SELECT ID FROM users WHERE ID =:uid");
         $stmt->bindParam('uid', $userid, PDO::PARAM_INT);
         $stmt->execute();
 
@@ -217,6 +214,78 @@ class Langgam
                     icon: 'error',
                     title: 'Error',
                     text: 'Unable to add supplier',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    showClass: {
+                        popup: 'swal2-show'
+                    }
+                });
+            </script>";
+            }
+        }
+    }
+
+    public function add_product()
+    {
+
+        if (isset($_POST['add_product'])) {
+            $product_name = $_POST["product_name"];
+            $quantity = $_POST["quantity"];
+            $price = $_POST["price"];
+            $category = $_POST["category"];
+            $date_ordered = $_POST['date_ordered'];
+            $date_arrival = $_POST['date_arrival'];
+
+            $ID = $this->getID();
+            $added_by = $ID[0]->firstName;
+            $uid = $ID[0]->ID;
+
+            $pdo = $this->openConnection();
+
+            $sql = "INSERT INTO inventory 
+                    SET product_name = :product_name, 
+                    quantity = :quantity, 
+                    price = :price, 
+                    category = :category, 
+                    date_ordered = :date_ordered, 
+                    date_arrival= :date_arrival,
+                    added_by = :added_by,
+                    user_id = :user_id";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                'product_name' => $product_name,
+                'quantity' => $quantity,
+                'price' => $price,
+                'category' => $category,
+                'date_ordered' => $date_ordered,
+                'date_arrival' => $date_arrival,
+                'added_by' => $added_by,
+                'user_id' => $uid
+
+            ]);
+
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Product added successfully',
+                showConfirmButton: false,
+                timer: 2000,
+                showClass: {
+                    popup: 'swal2-show'
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to add product',
                     showConfirmButton: false,
                     timer: 2000,
                     showClass: {
@@ -424,94 +493,46 @@ class Langgam
         }
     }
 
-    public function generate_pdf()
-{
-    if (isset($_POST['btn_pdf'])) {
-        ob_start();
-        require_once '../../assets/fpdf/fpdf.php';
+    public function delete_product()
+    {
+        if (isset($_REQUEST['delete'])) {
+            $product_id = $_GET['product_id'] ?? '';
 
-        $conn = $this->openConnection();
+            $pdo = $this->openConnection();
+            $sql = "DELETE FROM inventory where product_id =:product_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([':product_id' => $product_id]);
 
-        // Get the DataTables server-side processing request data
-        $requestData = $_POST;
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Product removed successfully',
+                confirmButtonColor: '#3085d6',
+                customClass: {
+                    confirmButton: '#3085d6',
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to remove product',
+                    confirmButtonColor: '#3085d6',
+                    customClass: {
+                        confirmButton: '#3085d6',
+                    }
+                });
+            </script>";
+            }
 
-        // Get the column index to order by
-        $orderColumnIndex = $requestData['order'][0]['column'] ?? 0;
-
-        // Get the order direction
-        $orderDirection = $requestData['order'][0]['dir'] ?? 'asc';
-
-        // Get the number of entries to display per page
-        $entriesPerPage = $requestData['length'] ?? 10;
-
-        // Get the search term
-        $searchTerm = $requestData['search']['value'] ?? '';
-
-        // Get the start position of the entries to fetch
-        $start = $requestData['start'] ?? 0;
-
-        
-        // Prepare the SQL query
-        $stmt = "SELECT * FROM users";
-
-        if (!empty($searchTerm)) {
-            $stmt .= " WHERE 
-                (ID LIKE '%" . $searchTerm . "%' OR
-                firstName LIKE '%" . $searchTerm . "%' OR
-                lastName LIKE '%" . $searchTerm . "%' OR
-                username LIKE '%" . $searchTerm . "%' OR
-                mobile LIKE '%" . $searchTerm . "%' OR
-                email LIKE '%" . $searchTerm . "%' OR
-                role LIKE '%" . $searchTerm . "%')";
         }
-
-        // Add the order by and limit clauses
-        $stmt .= " ORDER BY ID " . $orderDirection . " LIMIT " . $start . ", " . $entriesPerPage;
-
-        $sql = $conn->query($stmt);
-
-        $pdf = new FPDF();
-        $pdf->AddPage();
-        $pdf->SetFont('Arial', 'B', 8);
-
-        // Column Headers
-        $pdf->Cell(5, 10, 'ID', 1);
-        $pdf->Cell(20, 10, 'First Name', 1);
-        $pdf->Cell(20, 10, 'Last Name', 1);
-        $pdf->Cell(25, 10, 'Username', 1);
-        $pdf->Cell(20, 10, 'Mobile', 1);
-        $pdf->Cell(50, 10, 'Email', 1);
-        $pdf->Cell(20, 10, 'Role', 1);
-        $pdf->Cell(30, 10, 'Date Added', 1);
-        $pdf->Ln(); // Move to the next line
-
-        while ($row = $sql->fetchObject()) {
-            $ID = $row->ID;
-            $firstName = $row->firstName;
-            $lastName = $row->lastName;
-            $username = $row->username;
-            $mobile = $row->mobile;
-            $email = $row->email;
-            $role = $row->role;
-            $date_added = $row->date_added;
-
-            $pdf->Cell(5, 10, $ID, 1);
-            $pdf->Cell(20, 10, $firstName, 1);
-            $pdf->Cell(20, 10, $lastName, 1);
-            $pdf->Cell(25, 10, $username, 1);
-            $pdf->Cell(20, 10, $mobile, 1);
-            $pdf->Cell(50, 10, $email, 1);
-            $pdf->Cell(20, 10, $role, 1);
-            $pdf->Cell(30, 10, $date_added, 1);
-
-            $pdf->Ln(); // Move to the next line for the next record
-        }
-
-        ob_end_clean();
-        $filename = 'users_report.pdf';
-        $pdf->Output($filename, 'D');
     }
-}
 
 }
 $store = new Langgam();

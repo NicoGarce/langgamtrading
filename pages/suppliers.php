@@ -82,7 +82,7 @@ $store->delete_supp();
 
                 <div class="m-0 m-sm-3">
             
-                    <?php include('modals/addsupplier.php') ?>
+                    <?php include('modals/add_supplier.php') ?>
 
                     <div class="card p-3 rounded-4">
                         <div class="table-responsive pt-2">

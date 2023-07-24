@@ -9,6 +9,8 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     exit();
 }
 
+$store->delete_product();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,11 +21,25 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     <title>Inventory | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
     <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
+    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
+    
+    <link rel="stylesheet" href="../assets/js/datatables.1.13.5.min.css">
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="../assets/js/custom.js"></script>
+    <script defer src="../assets/js/datatables.min.js"></script>
+    <script defer src="../assets/js/pdfmake.min.js"></script>
+    <script defer src="../assets/js/vfs_fonts.js"></script>
+    <style>
+         .dataTables_wrapper .dataTables_filter input[type="search"] {
+            
+            margin-right: 5px;
+        }
+
+    </style>
 </head>
 
 <body id="body" class="bg-light">
@@ -54,7 +70,8 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
                         </div>
                         <ul class="navbar-nav mb-2 mb-lg-0 text-center">
                             <li class="nav-item profile">
-                                <a class="nav-link active" aria-current="page" href="/langgamtrading/pages/profile.php">Profile</a>
+                                <a class="nav-link active" aria-current="page"
+                                    href="/langgamtrading/pages/profile.php">Profile</a>
                             </li>
                             <li class="nav-item logout">
                                 <a class="nav-link active" aria-current="page"
@@ -65,48 +82,36 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
                 </div>
             </nav>
             <div class="dashboard-content px-3 pt-4">
-                <h2>Inventory</h2>
-                <p>This is the Inventory Page</p>
-                
-                <div class="row px-5">
-                    <div class = "card p-2 col-sm-8">
-                        <div class="d-flex align-items-center p-1 justify-content-center">
-                            <span class="h3 mb-0">Add Product</span>
-                        </div>
-                        <div class ="card-body row">
-                            <div class="">
-                                <input type="text" class="form-control" id="pname" name="pname" placeholder="Product Name" required>
-                            </div>
-                            <div class="form-group col-md-6 pt-3">
-                                <input type="text" class="form-control" id="qty" name="qty" placeholder="Quantity" required>
-                                
-                            </div>
-                            <div class="form-group col-md-6 pt-3">
-                                <input type="text" class="form-control" id="price" name="price" placeholder="Price" required>
-                                
-                            </div>
-                            <div class="form-group col-md-6 pt-3">
-                                <input type="text" class="form-control" id="category" name="category" placeholder="Category" required>
-                                
-                            </div>
-                            <div class="form-group col-md-6 pt-3">
-                                <select class="form-control" id="supplier" name="supplier" required>
-                                    <option value="">Select Supplier</option>
+
+                <div class="m-0 m-sm-3">
+                    
+                    <?php include('modals/add_product.php') ?>
+
+                        <div class="card p-3 rounded-4">
+                            <div class="table-responsive pt-2">
+                                <table id="table" class="table table-bordered table-striped">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Quantity</th>
+                                            <th class="d-none d-sm-table-cell" >Price</th>
+                                            <th class="d-none d-sm-table-cell" >Category</th>
+                                            <th style="width: 50px;">Options</th>
+                                        </tr>
+                                    </thead>
                                     
-                                </select>
-                            </div>
-                            <div class="form-group pt-3">
-                                <button class="btn btn-dark w-100 ">Add Item</button>
+                                    <?php 
+                                        
+                                        include('modals/prod_details.php')
+                                    ?>
+                    
+                                </table>
                             </div>
                         </div>
-                    </div>
-                    <div class ="col-sm-4">
-                        <input type="text" class="form-control" id="description" name="description"
-                        placeholder="Description" required>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 <script>
@@ -117,6 +122,39 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
         $('.sidebar').removeClass('active');
     });
 
+    $('.delete-btn').on('click', function () {
+            var product_id = $(this).data('id');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Are you sure?',
+                text: 'You are about to delete this product',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform the deletion
+
+                    // Display success message after deletion
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Product deleted successfully',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        showClass: {
+                            popup: 'swal2-show'
+                        }
+                    }).then(() => {
+                        // Redirect to acc_manage.php
+                        window.location.href = 'inventory.php?delete=true&product_id=' + product_id;
+
+                        window.location.href = 'inventory.php';
+                    });
+                }
+            });
+        });
 </script>
 
 </html>

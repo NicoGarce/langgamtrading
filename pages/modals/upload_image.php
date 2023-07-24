@@ -1,5 +1,5 @@
 <?php
-    $userID = $store->uploadID();
+    $userID = $store->getID();
     $id = $userID[0]->ID;
     $store->upload_pic($id);
 ?>

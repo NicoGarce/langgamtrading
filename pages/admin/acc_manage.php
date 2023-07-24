@@ -14,7 +14,7 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
 }
 
 $store->delete_user();
-$store->generate_pdf();
+
 ?>
 
 <!DOCTYPE html>

@@ -91,9 +91,7 @@
                 $cnt++;
                 
         }
-    } else {
-        echo '<tr><td colspan="9">No suppliers found</td></tr>';
-    }
+    } 
     ?>
 
 </tbody>

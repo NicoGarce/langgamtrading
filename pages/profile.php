@@ -93,9 +93,9 @@ $current_page = $_SERVER['PHP_SELF'];
             <div class="dashboard-content px-3 pt-4">
 
                 <?php
-                $result = $store->getID();
+                    $result = $store->getID();
                 ?>
-                <div class="container p-5">
+                <div class="container mx-5">
                     <div class="row">
                         <div class="col-lg-3 pb-3">
                             <div class="card">

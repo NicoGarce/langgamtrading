@@ -24,24 +24,24 @@
           <i class='bx bxs-dashboard p-2'></i>Dashboard</a>
       </li>
       <li class="">
-        <a href="/langgamtrading/pages/admin/acc_manage.php"class="text-decoration-none px-3 py-2 d-block">
-          <i class='bx bxs-user-account p-2'></i>Accounts</a>
-      </li>
-      <li class="">
         <a href="/langgamtrading/pages/inventory.php" class="text-decoration-none px-3 py-2 d-block">
           <i class='bx bx-clipboard p-2'></i>Inventory</a>
+      </li>
+      <li class="">
+        <a href="/langgamtrading/pages/admin/sales.php" class="text-decoration-none px-3 py-2 d-block">
+          <i class='bx bx-line-chart p-2'></i>Sales</a>
       </li>
       <li class="">
         <a href="/langgamtrading/pages/orders.php" class="text-decoration-none px-3 py-2 d-block">
           <i class='bx bx-list-ul p-2'></i>Orders</a>
       </li>
       <li class="">
-        <a href="/langgamtrading/pages/suppliers.php" class="text-decoration-none px-3 py-2 d-block">
-          <i class='bx bx-package p-2'></i>Suppliers</a>
+        <a href="/langgamtrading/pages/admin/acc_manage.php"class="text-decoration-none px-3 py-2 d-block">
+          <i class='bx bxs-user-account p-2'></i>Accounts</a>
       </li>
       <li class="">
-        <a href="/langgamtrading/pages/admin/sales.php" class="text-decoration-none px-3 py-2 d-block">
-          <i class='bx bx-line-chart p-2'></i>Sales</a>
+        <a href="/langgamtrading/pages/suppliers.php" class="text-decoration-none px-3 py-2 d-block">
+          <i class='bx bx-package p-2'></i>Suppliers</a>
       </li>
     </ul>
   </div>
