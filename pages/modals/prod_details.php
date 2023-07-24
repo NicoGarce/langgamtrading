@@ -16,7 +16,7 @@
                 </td>
                 
                 <td class="d-none d-sm-table-cell">
-                    ₱ <?php echo htmlentities($result->price); ?>
+                    ₱<?php echo htmlentities($result->price); ?>
                 </td>
                 
                 <td class="d-none d-sm-table-cell">
@@ -31,7 +31,7 @@
                     <?php echo htmlentities($result->date_arrival); ?>
                 </td>
 
-                <td>
+                <td class="text-center">
                     
                     <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal"
                         data-bs-target="#accDetails<?php echo $cnt ?>">

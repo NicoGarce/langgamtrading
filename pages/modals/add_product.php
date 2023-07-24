@@ -16,13 +16,16 @@
                             <input type="text" class="form-control" id="product_name" name="product_name"
                                 placeholder="Product Name" required>
                         </div>
-                        <div class="form-group pt-2">
-                            <input class="form-control" id="quantity" name="quantity" placeholder="Quantity"
-                                required></input>
-                        </div>
-                        <div class="form-group pt-2">
-                            <input class="form-control" id="price" name="price" placeholder="Price"
-                                required></input>
+
+                        <div class="row pt-2">
+                            <div class="form-group col-md-6">
+                                <input class="form-control" id="quantity" name="quantity" placeholder="Quantity"
+                                    required></input>
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                <input class="form-control" id="price" name="price" placeholder="Price"
+                                    required></input>
+                            </div>
                         </div>
 
                         <div class="form-group pt-2">
