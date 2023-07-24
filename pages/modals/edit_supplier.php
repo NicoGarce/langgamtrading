@@ -23,6 +23,7 @@
                 <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->contact); ?>
                 </td>
+                
                 <td>
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                         data-bs-target="#editSupplier<?php echo $cnt ?>">
@@ -51,7 +52,7 @@
                                             <div class="form-group">
                                                 <input type="text" class="form-control" id="supplier_name<?php echo $cnt ?>"
                                                     name="supplier_name" value="<?php echo $result->supplier_name ?>"
-                                                    placeholder="First Name" required>
+                                                    placeholder="Supplier Name" required>
                                             </div>
                                         </div>
                                         <div class="form-group pt-2">

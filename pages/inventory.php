@@ -96,12 +96,14 @@ $store->delete_product();
                                             <th>Quantity</th>
                                             <th class="d-none d-sm-table-cell" >Price</th>
                                             <th class="d-none d-sm-table-cell" >Category</th>
-                                            <th style="width: 50px;">Options</th>
+                                            <th class="d-none d-sm-table-cell" >Date Ordered</th>
+                                            <th class="d-none d-sm-table-cell" >Date Arrival</th>
+                                            <th>Options</th>
                                         </tr>
                                     </thead>
                                     
                                     <?php 
-                                        
+                                        $store ->edit_product();
                                         include('modals/prod_details.php')
                                     ?>
                     

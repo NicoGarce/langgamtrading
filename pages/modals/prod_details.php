@@ -23,9 +23,17 @@
                     <?php echo htmlentities($result->category); ?>
                 </td>
 
+                <td class="d-none d-sm-table-cell">
+                    <?php echo htmlentities($result->date_ordered); ?>
+                </td>
+
+                <td class="d-none d-sm-table-cell">
+                    <?php echo htmlentities($result->date_arrival); ?>
+                </td>
+
                 <td>
                     
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal"
                         data-bs-target="#accDetails<?php echo $cnt ?>">
                         <i class='bx bx-info-circle'></i></button>
 
@@ -90,6 +98,9 @@
                             </div>
                         </div>
                     </div>
+
+                    <?php include('modals/edit_product.php') ?>
+
                     <button data-id="<?php echo $result->product_id ?>" type="button" name="delete"
                         class="btn btn-danger btn-sm delete-btn delete"><i class='bx bx-trash'></i></button>
                 </td>

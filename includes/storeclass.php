@@ -305,11 +305,11 @@ class Langgam
             $description = $_POST["description"];
             $address = $_POST["address"];
             $contact = $_POST["contact"];
-
+            
 
             $pdo = $this->openConnection();
 
-            $sql = "UPDATE suppliers SET supplier_id = :supplier_id , supplier_name = :supplier_name, description = :description, address = :address, contact = :contact WHERE supplier_id = :supplier_id";
+            $sql = "UPDATE suppliers SET supplier_name = :supplier_name, description = :description, address = :address, contact = :contact WHERE supplier_id = :supplier_id";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
                 'supplier_id' => $supplier_id,
@@ -341,6 +341,73 @@ class Langgam
                     icon: 'error',
                     title: 'Error',
                     text: 'Unable to edit supplier',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    showClass: {
+                        popup: 'swal2-show'
+                    }
+                });
+            </script>";
+            }
+        }
+    }
+
+    public function edit_product()
+    {
+        if (isset($_POST['update'])) {
+            $product_id = $_POST["product_id"] ?? '';
+            $product_name = $_POST["product_name"];
+            $quantity = $_POST["quantity"];
+            $price = $_POST["price"];
+            $category = $_POST["category"];
+            $date_ordered = $_POST['date_ordered'];
+            $date_arrival = $_POST['date_arrival'];
+            
+
+            $pdo = $this->openConnection();
+
+            $sql = "UPDATE inventory 
+                    SET product_name = :product_name, 
+                    quantity = :quantity, 
+                    price = :price, 
+                    category = :category, 
+                    date_ordered = :date_ordered, 
+                    date_arrival = :date_arrival 
+                    WHERE product_id = :product_id";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                'product_id' => $product_id,
+                'product_name' => $product_name,
+                'quantity' => $quantity,
+                'price' => $price,
+                'category' => $category,
+                'date_ordered' => $date_ordered,
+                'date_arrival' => $date_arrival,
+
+            ]);
+
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Product edited successfully',
+                showConfirmButton: false,
+                timer: 2000,
+                showClass: {
+                    popup: 'swal2-show'
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to edit product',
                     showConfirmButton: false,
                     timer: 2000,
                     showClass: {
