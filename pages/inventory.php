@@ -93,7 +93,7 @@ $store->delete_product();
                                     <thead class="text-center">
                                         <tr>
                                             <th>Product Name</th>
-                                            <th>Quantity</th>
+                                            <th class="d-none d-sm-table-cell">Quantity</th>
                                             <th class="d-none d-sm-table-cell" >Price</th>
                                             <th class="d-none d-sm-table-cell" >Category</th>
                                             <th class="d-none d-sm-table-cell" >Date Ordered</th>

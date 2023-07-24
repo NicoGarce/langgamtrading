@@ -25,7 +25,7 @@
                 <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->date_added); ?>
                 </td>
-                <td class="text-center">
+                <td>
                     
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                         data-bs-target="#accDetails<?php echo $cnt ?>">

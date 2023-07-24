@@ -24,7 +24,7 @@
                     <?php echo htmlentities($result->contact); ?>
                 </td>
                 
-                <td class="text-center">
+                <td>
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                         data-bs-target="#editSupplier<?php echo $cnt ?>">
                         <i class='bx bx-edit'></i></button>

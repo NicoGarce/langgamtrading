@@ -11,7 +11,7 @@
                     <?php echo htmlentities($result->product_name); ?>
                 </td>
                 
-                <td class="text-center">
+                <td class="text-center d-none d-sm-table-cell">
                     <?php echo htmlentities($result->quantity); ?>
                 </td>
                 
@@ -31,7 +31,7 @@
                     <?php echo htmlentities($result->date_arrival); ?>
                 </td>
 
-                <td class="text-center">
+                <td>
                     
                     <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal"
                         data-bs-target="#accDetails<?php echo $cnt ?>">
