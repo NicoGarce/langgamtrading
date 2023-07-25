@@ -56,7 +56,7 @@
                                                 <?php echo $result->product_id; ?>
                                             </span>
                                         </div>
-                                        <div class="form-group pt-2">
+                                        <div class="form-group pt-3">
                                             <span>Product Name: <?php echo $result->product_name ?> </span>
                                         </div>
                                         <div class="row pt-2">

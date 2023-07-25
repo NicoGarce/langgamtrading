@@ -90,21 +90,22 @@ $current_page = $_SERVER['PHP_SELF'];
                     </div>
                 </div>
             </nav>
+
             <div class="dashboard-content px-3 pt-4">
 
                 <?php
                     $result = $store->getID();
                 ?>
-                <div class="container mx-5">
-                    <div class="row">
-                        <div class="col-lg-3 pb-3">
-                            <div class="card">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 col-md-4 pb-3">
+                            <div class="card" style="border-radius: 1rem;">
                                 <div class="card-body">
                                     <h5 class="card-title">Profile Photo</h5>
                                     <div class="container pt-3">
                                         <div class="d-flex justify-content-center position-relative">
                                             <div class="photo-container" data-bs-toggle="modal" data-bs-target=#upload>
-                                                <img src="<?php echo (!empty($result[0]->photo)) ? '' . $result[0]->photo : '../assets/user_upload/default.png' ?>" alt="photo" class="img-fluid rounded-circle" width="200px" height="200px">
+                                                <img src="<?php echo (!empty($result[0]->photo)) ? '' . $result[0]->photo : '../assets/user_upload/default.png' ?>" alt="photo" class="img-fluid rounded-circle" width="150px" height="150px">
                                                 <span class="overlay">
                                                     <i class='bx bx-image-add text-light'></i>
                                                 </span>
@@ -116,9 +117,10 @@ $current_page = $_SERVER['PHP_SELF'];
                                 </div>
 
                             </div>
+                            
                         </div>
 
-                        <div class="col-lg-8">
+                        <div class="col-lg-8 col-md-8">
                             <div class="card p-3" style="border-radius: 1rem;">
                                 <div class="card-body">
                                     <h3 class="card-title text-center">General Information</h3>
@@ -126,61 +128,69 @@ $current_page = $_SERVER['PHP_SELF'];
                                         <div class="pt-3" id="alerts"></div>
                                         <div class="form-group row justify-content-center">
                                             <div class="form-group col-md-6 pt-2">
+                                                <label for="role" class="mx-1 small">First</label>
                                                 <input type="text" class="form-control" id="firstName" name="firstName"
                                                     value="<?php echo $result[0]->firstName ?>" placeholder="First Name"
                                                     required>
                                             </div>
                                             <div class="form-group col-md-6 pt-2">
+                                                <label for="role" class="mx-1 small">Last</label>
                                                 <input type="text" class="form-control" id="lastName" name="lastName"
                                                     value="<?php echo $result[0]->lastName ?>" placeholder="Last Name"
                                                     required>
                                             </div>
                                         </div>
-                                        <div class="form-group pt-2">
-                                            <input type="text" class="form-control" id="username" name="username"
-                                                minlength="6" value="<?php echo $result[0]->username ?>"
-                                                placeholder="Username" required>
-                                            <span id="username-message"></span>
-                                        </div>
+                                        <div class="row">
+                                            <div class="form-group pt-2 col-md-6">
+                                                <label for="role" class="mx-1 small">Username</label>
+                                                <input type="text" class="form-control" id="username" name="username"
+                                                    minlength="6" value="<?php echo $result[0]->username ?>"
+                                                    placeholder="Username" required>
+                                                <span id="username-message"></span>
+                                            </div>
 
-                                        <div class="form-group pt-2">
-                                            <input type="tel" class="form-control" id="mobile" name="mobile"
-                                                pattern="0\d{10}" placeholder="Mobile Number"
-                                                value="<?php echo $result[0]->mobile ?>" required>
-                                            <span id="mobile-message"></span>
+                                            <div class="form-group pt-2 col-md-6">
+                                                <label for="role" class="mx-1 small">Mobile Number</label>
+                                                <input type="tel" class="form-control" id="mobile" name="mobile"
+                                                    pattern="0\d{10}" placeholder="Mobile Number"
+                                                    value="<?php echo $result[0]->mobile ?>" required>
+                                                <span id="mobile-message"></span>
+                                            </div>
                                         </div>
+                                        
                                         <div class="form-group pt-2">
+                                            <label for="role" class="mx-1 small">Email</label>
                                             <input type="email" class="form-control" id="email" name="email"
                                                 placeholder="Email Address" value="<?php echo $result[0]->email ?>"
                                                 required>
                                             <span id="email-message"></span>
                                         </div>
                                         <div class="form-group pt-2">
+                                            <label for="role" class="mx-1 small">Address</label>
                                             <textarea class="form-control" id="address" name="address"
                                                 placeholder="Address"
                                                 required><?php echo $result[0]->address ?></textarea>
                                         </div>
-                                        <div class="form-group pt-2">
+                                        <div class="form-group pt-2 pb-4">
+                                            <label for="role" class="mx-1 small">Role</label>
                                             <select class="form-control" id="role" name="role" required>
                                                 <option value="<?php echo $result[0]->role ?>"><?php echo $result[0]->role ?></option>
                                                 <option value="Employee">Employee</option>
                                                 <option value="Administrator">Administrator</option>
                                             </select>
                                         </div>
-                                        <div class="text-center pt-3">
-                                            <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center">
-                                                <div class="mb-3 px-2">
-                                                    <button name="add" type="submit" class="btn btn-primary"
-                                                        style="width: 200px;">Change Password</button>
-                                                </div>
 
-                                                <div class="mb-3 px-2">
-                                                    <button name="add" type="submit" class="btn btn-primary"
-                                                        style="width: 200px;">Update My Account</button>
+                                        <div class="form-group text-center">
+                                            <div class="row justify-content-center">
+                                                <div class="form-group p-1 col-md-4">
+                                                    <button name="add" type="submit" class="btn btn-dark">Update Account</button>
+                                                </div>
+                                                <div class="form-group p-1 col-md-4">
+                                                    <button name="add" type="submit" class="btn btn-dark">Change Password</button>
                                                 </div>
                                             </div>
+                                            
                                         </div>
-
 
 
                                     </form>
@@ -189,6 +199,7 @@ $current_page = $_SERVER['PHP_SELF'];
                         </div>
                     </div>
                 </div>
+            </div>
 
 
 </body>
