@@ -37,11 +37,26 @@
                             <input type="date" class="form-control" id="date_ordered" name="date_ordered"
                                 placeholder="Date Ordered" required>
                         </div>
-                        <div class="form-group pt-2 pb-4">
+                        <div class="form-group pt-2">
                             <label for="date_arrival" class="label small px-1">Date of Arrival</label>
                             <input type="date" class="form-control" id="date_arrival" name="date_arrival"
                                 placeholder="Date Arrival" required>
                         </div>
+
+                        <?php
+                            $suppliers = $store->get_suppliers();
+                        ?>
+                        <div class="form-group pt-2 pb-4">
+                            <select class="form-control" id="supplier_id" name="supplier_id" required>
+                                <option value="">--Select Supplier--</option>
+                                <?php
+                                foreach ($suppliers as $supplier) {
+                                    echo '<option value="' . $supplier->supplier_id . '">' . $supplier->supplier_name . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+
 
                         <div class="modal-footer">
                             <button type="button" id="footClose" class="btn btn-secondary"

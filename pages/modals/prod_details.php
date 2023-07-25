@@ -59,34 +59,52 @@
                                         <div class="form-group pt-2">
                                             <span>Product Name: <?php echo $result->product_name ?> </span>
                                         </div>
+                                        <div class="row pt-2">
+                                            <div class="form-group pt-2 col-md-6">
+                                                <span>Quantity: <?php echo $result->quantity ?> </span>
+                                            </div>
 
-                                        <div class="form-group pt-2">
-                                            <span>Quantity: <?php echo $result->quantity ?> </span>
+                                            <div class="form-group pt-2 col-md-6">
+                                                <span>Price: ₱ <?php echo $result->price ?> </span>
+                                            </div>
                                         </div>
+                                        
+                                        <div class="row pt-2">
+                                            <div class="form-group pt-2 col-md-6">
+                                                <span>Category: <?php echo $result->category ?></span>
+                                            </div>
+                                            <div class="form-group pt-2 col-md-6">
+                                                <span>Date Added: <?php echo $result->date_added ?></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row pt-2">
+                                            <div class="form-group pt-2 col-md-6">
+                                                <span>Date Ordered: <?php echo $result->date_ordered ?></span>
+                                            </div>
+                                            <div class="form-group pt-2 col-md-6">
+                                                <span>Date of Arrival: <?php echo $result->date_arrival ?></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row pt-2 pb-4">
+                                            <div class="form-group pt-2 col-md-6">
+                                                <span>  Added By: <br> 
+                                                        &nbsp; User ID: <?php echo $result->user_id ?> <br>
+                                                        &nbsp; Name: <?php echo $result->added_by ?>  
+                                                        
+                                                </span>
+                                            </div>
 
-                                        <div class="form-group pt-2">
-                                            <span>Price: ₱ <?php echo $result->price ?> </span>
+                                            <div class="form-group pt-2 pb-4 col-md-6">
+                                                <span>  Supplier: <br> 
+                                                        &nbsp; Supplier ID: <?php echo $result->supplier_id ?> <br>
+                                                        &nbsp; Supplier Name: <?php echo $result->supplier_name ?>  
+                                                        
+                                                </span>
+                                            </div>
                                         </div>
-
-                                        <div class="form-group pt-2">
-                                            <span>Category: <?php echo $result->category ?></span>
-                                        </div>
-                                        <div class="form-group pt-2">
-                                            <span>Date Added: <?php echo $result->date_added ?></span>
-                                        </div>
-                                        <div class="form-group pt-2">
-                                            <span>Date Ordered: <?php echo $result->date_ordered ?></span>
-                                        </div>
-                                        <div class="form-group pt-2">
-                                            <span>Date of Arrival: <?php echo $result->date_arrival ?></span>
-                                        </div>
-                                        <div class="form-group pt-2 pb-4">
-                                            <span>  Added By: <br> 
-                                                    &nbsp; Name: <?php echo $result->added_by ?> <br> 
-                                                    &nbsp; User ID: <?php echo $result->user_id ?>
-                                            </span>
-                                        </div>
-
+                                        
                                         
                                         <div class="modal-footer">
                                             <button type="button" id="footClose<?php echo $cnt ?>" class="btn btn-dark"

@@ -58,11 +58,27 @@
                         placeholder="Date Ordered" value="<?php echo $result->date_ordered ?>" required>
                     </div>
 
-                    <div class="form-group pt-2 pb-4">
+                    <div class="form-group pt-2">
                         <label for="date_arrival" class="label small px-1">Date of Arrival</label>
                         <input type="date" class="form-control" id="date_arrival" name="date_arrival"
                             placeholder="Date Arrival" value="<?php echo $result->date_arrival ?>" required>
                     </div>
+
+                    <?php
+                        $suppliers = $store->get_suppliers();
+                    ?>
+                    <div class="form-group pt-2 pb-4">
+                        <label for="supplier_id" class="label small px-1">Supplier</label>
+                        <select class="form-control" id="supplier_id" name="supplier_id" required>
+                            <?php
+                            foreach ($suppliers as $supplier) {
+                                $selected = ($supplier->supplier_id == $result->supplier_id) ? "selected" : ""; // Check if the current supplier is the one in the database
+                                echo '<option value="' . $supplier->supplier_id . '" ' . $selected . '>' . $supplier->supplier_name . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+
 
                     <div class="modal-footer">
                         <button type="button" id="footClose<?php echo $cnt ?>" class="btn btn-secondary"

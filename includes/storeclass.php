@@ -235,12 +235,24 @@ class Langgam
             $category = $_POST["category"];
             $date_ordered = $_POST['date_ordered'];
             $date_arrival = $_POST['date_arrival'];
+            $supplier_id = $_POST['supplier_id'];
 
             $ID = $this->getID();
-            $added_by = $ID[0]->firstName;
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
             $uid = $ID[0]->ID;
+            
+            $added_by = $first_name . ' ' . $last_name;
 
             $pdo = $this->openConnection();
+
+            $supplier_name = "";
+            $stmt = $pdo->prepare("SELECT supplier_name FROM suppliers WHERE supplier_id = :supplier_id");
+            $stmt->execute(['supplier_id' => $supplier_id]);
+            $result = $stmt->fetch(PDO::FETCH_OBJ);
+            if ($result) {
+                $supplier_name = $result->supplier_name;
+            }
 
             $sql = "INSERT INTO inventory 
                     SET product_name = :product_name, 
@@ -250,7 +262,9 @@ class Langgam
                     date_ordered = :date_ordered, 
                     date_arrival= :date_arrival,
                     added_by = :added_by,
-                    user_id = :user_id";
+                    user_id = :user_id,
+                    supplier_id =:supplier_id,
+                    supplier_name =:supplier_name";
 
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
@@ -261,7 +275,9 @@ class Langgam
                 'date_ordered' => $date_ordered,
                 'date_arrival' => $date_arrival,
                 'added_by' => $added_by,
-                'user_id' => $uid
+                'user_id' => $uid,
+                'supplier_id' => $supplier_id,
+                'supplier_name' => $supplier_name
 
             ]);
 
@@ -362,9 +378,25 @@ class Langgam
             $category = $_POST["category"];
             $date_ordered = $_POST['date_ordered'];
             $date_arrival = $_POST['date_arrival'];
+            $supplier_id = $_POST['supplier_id'];
+
+            $ID = $this->getID();
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
+            $uid = $ID[0]->ID;
+            
+            $added_by = $first_name . ' ' . $last_name;
             
 
             $pdo = $this->openConnection();
+
+            $supplier_name = "";
+            $stmt = $pdo->prepare("SELECT supplier_name FROM suppliers WHERE supplier_id = :supplier_id");
+            $stmt->execute(['supplier_id' => $supplier_id]);
+            $result = $stmt->fetch(PDO::FETCH_OBJ);
+            if ($result) {
+                $supplier_name = $result->supplier_name;
+            }
 
             $sql = "UPDATE inventory 
                     SET product_name = :product_name, 
@@ -372,7 +404,9 @@ class Langgam
                     price = :price, 
                     category = :category, 
                     date_ordered = :date_ordered, 
-                    date_arrival = :date_arrival 
+                    date_arrival = :date_arrival,
+                    supplier_id =:supplier_id,
+                    supplier_name =:supplier_name
                     WHERE product_id = :product_id";
 
             $stmt = $pdo->prepare($sql);
@@ -384,6 +418,8 @@ class Langgam
                 'category' => $category,
                 'date_ordered' => $date_ordered,
                 'date_arrival' => $date_arrival,
+                'supplier_id' => $supplier_id,
+                'supplier_name' => $supplier_name
 
             ]);
 
