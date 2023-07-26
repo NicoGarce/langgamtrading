@@ -91,7 +91,7 @@ $current_page = $_SERVER['PHP_SELF'];
                 </div>
             </nav>
 
-            <div class="dashboard-content px-3 pt-4">
+            <div class="dashboard-content px-3">
 
                 <?php
                     $result = $store->getID();

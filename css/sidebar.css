@@ -10,12 +10,14 @@ body {
   background: #212229;
   min-width: 250px;
   max-width: 250px;
-  height: 100%;
+  height: 97vh;
   transition: all 0.3s;
   margin-left: 5px;
   flex: 0 0 auto;
   width: 300px; /* Adjust the width as needed */
   min-width: 0;
+  position: fixed;
+  z-index: 1;
 }
 
 .content {
@@ -23,6 +25,7 @@ body {
   width: 100%;
   flex: 1 1 auto;
   min-width: 0;
+  margin-left: 250px;
 }
 
 .sidebar li.active {
@@ -48,6 +51,9 @@ body {
     z-index: 1;
   }
 
+  .content{
+    margin-left: 0;
+  }
   #side_nav.active {
     margin-left: 5px;
   }

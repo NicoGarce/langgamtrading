@@ -78,7 +78,7 @@ $store->delete_supp();
                     </div>
                 </div>
             </nav>
-            <div class="dashboard-content px-3 pt-4">
+            <div class="dashboard-content px-3">
 
                 <div class="m-0 m-sm-3">
             

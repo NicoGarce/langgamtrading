@@ -81,8 +81,7 @@ $store->delete_product();
                     </div>
                 </div>
             </nav>
-            <div class="dashboard-content px-3 pt-4">
-
+            <div class="dashboard-content px-3">
                 <div class="m-0 m-sm-3">
                     
                     <?php include('modals/add_product.php') ?>
