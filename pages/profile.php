@@ -53,7 +53,7 @@ $current_page = $_SERVER['PHP_SELF'];
 
 <body id="body" class="bg-light">
     <div class="main-container d-flex">
-        <div class="sidebar pt-3 pb-3">
+        <div class="sidebar pt-2 pb-3">
             <?php if (isset($_SESSION['access']) && $_SESSION['access'] == 'Administrator') {
                 include("C:/xampp/htdocs/langgamtrading/includes/admin_sidebar.php");
             } else if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
@@ -61,35 +61,8 @@ $current_page = $_SERVER['PHP_SELF'];
             }
             ?>
         </div>
-        <div class="content pt-1">
-            <nav class="navbar navbar-expand-md navbar-light bg-light rounded-4 m-3 shadow-lg">
-                <div class="container-fluid">
-                    <div class="d-flex justify-content-between d-md-none d-block">
-                        <button class="btn px-1 py-0 open-btn me-2"><i class='bx bxs-chevrons-right'></i></button>
-                        <a class="navbar-brand fs-4" href="#">LANGGAM TRADING</a>
-                    </div>
-                    <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <div class="container-fluid">
-                            <span class="navbar-brand text-uppercase" href="#">Profile</span>
-                        </div>
-                        <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-                            <li class="nav-item profile">
-                                <a class="nav-link active" aria-current="page"
-                                    href="/langgamtrading/pages/profile.php">Profile</a>
-                            </li>
-                            <li class="nav-item logout">
-                                <a class="nav-link active" aria-current="page" id="logout"
-                                    href="/langgamtrading/includes/logout.php">Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+        <div class="content">
+            <?php include('../includes/navbar.php')?>
 
             <div class="dashboard-content px-3">
 

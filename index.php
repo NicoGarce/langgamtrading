@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="pt-1 m-2">
+    <div class="m-2">
         <?php include('.\includes\header.php'); ?>
     </div>
     <div class="">

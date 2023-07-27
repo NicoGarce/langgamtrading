@@ -10,22 +10,27 @@ body {
   background: #212229;
   min-width: 250px;
   max-width: 250px;
-  height: 97vh;
+  height: 98vh;
   transition: all 0.3s;
   margin-left: 5px;
   flex: 0 0 auto;
-  width: 300px; /* Adjust the width as needed */
+  width: 250px; /* Adjust the width as needed */
   min-width: 0;
   position: fixed;
   z-index: 1;
 }
 
 .content {
-  min-height: 100vh;
+  min-height: 100%;
   width: 100%;
   flex: 1 1 auto;
   min-width: 0;
   margin-left: 250px;
+}
+
+.navbar{
+  margin: 1rem;
+  margin-top: 0.6rem;
 }
 
 .sidebar li.active {
@@ -47,7 +52,7 @@ body {
   #side_nav {
     margin-left: -250px;
     position: fixed;
-    min-height: 100vh;
+    min-height: 97vh;
     z-index: 1;
   }
 
