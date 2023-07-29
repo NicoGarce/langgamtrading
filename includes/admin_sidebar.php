@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
+  <link rel="stylesheet" href="/langgamtrading/css/custom.css">
 </head>
 <body>
   <div class="sidebar rounded-5 shadow-lg" id="side_nav">

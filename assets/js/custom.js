@@ -60,7 +60,10 @@ $(document).ready(function() {
   }
 
   // Initialize DataTables on page load
-  initializeDataTable();
+  if (!window.location.pathname.includes('admin_dashboard.php')){
+    initializeDataTable();
+  }
+  
 
   // Append the addButton only if it is defined
   if (addButton) {
@@ -71,7 +74,9 @@ $(document).ready(function() {
   $(document).on('click', 'a.page-link', function(e) {
     e.preventDefault();
     table.destroy();
-    initializeDataTable();
+    if (!window.location.pathname.includes('admin_dashboard.php')){
+      initializeDataTable();
+    }
     // Append the addButton again after reinitializing DataTable
     table.buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
     
