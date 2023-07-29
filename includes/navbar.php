@@ -38,6 +38,10 @@ if ($current_page === "emp_dashboard.php") {
 }
 ?>
 
+<div id="progress">
+    <span id="progress-value"><i class='bx bxs-chevron-up'></i></span>
+</div>
+
 <nav class="navbar navbar-expand-md navbar-light bg-light rounded-4 shadow-lg">
     <div class="container-fluid">
         <div class="d-flex justify-content-between d-md-none d-block">

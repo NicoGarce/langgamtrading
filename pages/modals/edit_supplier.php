@@ -8,7 +8,7 @@
             ?>
             <tr>
 
-                <td>
+                <td class="text-center">
                     <?php echo htmlentities($cnt); ?>
                 </td>
                 <td>

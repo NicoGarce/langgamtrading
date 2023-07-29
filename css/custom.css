@@ -1,3 +1,7 @@
+* {
+  scroll-behavior: smooth !important;
+}
+
 body {
   background: #eee;
 }
@@ -33,6 +37,23 @@ body {
   margin-top: 0.6rem;
 }
 
+.navbar li.active{
+  background: #cfcfcf;
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+.profile:hover{
+  background: #cfcfcf;
+  border-radius: 8px;
+}
+
+.logout:hover{
+  background: #f09e9e;
+  border-radius: 8px;
+}
+
+
 .sidebar li.active {
   background: #306c76;
   border-radius: 8px;
@@ -49,6 +70,32 @@ body {
   color: #fff;
 }
 
+#progress {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  height: 70px;
+  width: 70px;
+  display: none;
+  place-items: center;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1;
+}
+
+#progress-value {
+  display: block;
+  height: calc(100% - 15px);
+  width: calc(100% - 15px);
+  background-color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 35px;
+  color: #212229;
+
+}
 
 @media (max-width: 767px) {
   #side_nav {

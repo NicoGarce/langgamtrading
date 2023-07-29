@@ -17,8 +17,7 @@ $store->delete_supp();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suppliers | Langgam Trading</title>
-    <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
-    <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
+    <link rel="stylesheet" href="/langgamtrading/css/custom.css">
     
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
@@ -41,6 +40,7 @@ $store->delete_supp();
 </head>
 
 <body id="body" class="bg-light">
+    
     <div class="main-container d-flex">
         <div class="sidebar pt-2 pb-3">
             <?php if (isset($_SESSION['access']) && $_SESSION['access'] == 'Administrator') {
@@ -53,7 +53,7 @@ $store->delete_supp();
         <div class="content">
             <?php include('../includes/navbar.php')?>
             <div class="dashboard-content px-3">
-
+                
                 <div class="m-0 m-sm-3">
             
                     <?php include('modals/add_supplier.php') ?>

@@ -16,8 +16,7 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orders | Langgam Trading</title>
-    <link rel="stylesheet" href="/langgamtrading/css/sidebar.css">
-    <link rel="stylesheet" href="/langgamtrading/css/navbar.css">
+    <link rel="stylesheet" href="/langgamtrading/css/custom.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
