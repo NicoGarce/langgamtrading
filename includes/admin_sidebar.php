@@ -9,14 +9,21 @@
 </head>
 <body>
   <div class="sidebar rounded-5 shadow-lg" id="side_nav">
-    <div class="header-box px-2 pt-3 pb-3 d-flex justify-content-between text-center">
-      <h1 class="fs-4 text-white px-2">LANGGAM TRADING</h1>
-      <button class=" btn d-md-none d-block close-btn px-1 py-0 text-white">
-        <i class='bx bxs-chevrons-left' ></i>
+    <div class="header-box px-3 pt-3 pb-3 d-flex justify-content-between text-center">
+      <button class="fs-4 btn d-md-none d-block close-btn p-0 text-white">
+        <i class='bx bx-x'></i>
       </button>
+      <h1 class="fs-4 text-white px-2">LANGGAM TRADING</h1>
     </div>
 
     <ul class="list-unstyled px-2">
+      
+      <div class="time-date-day px-3 text-center">
+        <?php date_default_timezone_set('Asia/Manila'); ?>
+        <p class="small text-white mb-1"><i class='bx bx-time'></i> <?php echo date('h:i A'); ?></p>
+        <p class="small text-white mb-0"><i class='bx bxs-calendar' ></i> <?php echo date('l'); ?> | <?php echo date('m/d/Y'); ?></p>
+      </div>
+      <hr class="text-white">
       <li class="">
         <a href="/langgamtrading/pages/admin/admin_dashboard.php" class="text-decoration-none px-3 py-2 d-block">
           <i class='bx bxs-dashboard p-2'></i>Dashboard</a>
@@ -42,13 +49,6 @@
           <i class='bx bx-package p-2'></i>Suppliers</a>
       </li>
       
-      <div class="time-date-day px-3 pt-lg-5">
-        <?php date_default_timezone_set('Asia/Manila'); ?>
-        <p class="fs-6 text-white mb-1"><?php echo date('h:i A'); ?></p>
-        <p class="fs-6 text-white mb-1"><?php echo date('Y-m-d'); ?></p>
-        <p class="fs-6 text-white mb-0"><?php echo date('l'); ?></p>
-      </div>
-      
     </ul>
   </div>
 </body>
@@ -64,5 +64,6 @@
       });
     });
 
+    
   </script>
 </html>

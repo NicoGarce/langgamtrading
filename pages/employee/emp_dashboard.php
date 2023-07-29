@@ -32,37 +32,12 @@ if(isset($_SESSION['access']) && $_SESSION['access'] == 'Administrator') {
 
 <body id="body" class="bg-light">
     <div class="main-container d-flex">
-        <div class="sidebar pt-3 pb-3">
+        <div class="sidebar pt-2 pb-3">
             <?php include("C:/xampp/htdocs/langgamtrading/includes/emp_sidebar.php") ?>
         </div>
-        <div class="content pt-1">
-            <nav class="navbar navbar-expand-md navbar-light bg-light rounded-4 m-3 shadow-lg">
-                <div class="container-fluid">
-                    <div class="d-flex justify-content-between d-md-none d-block">
-                        <button class="btn px-1 py-0 open-btn me-2"><i class='bx bxs-chevrons-right'></i></button>
-                        <a class="navbar-brand fs-4" href="#">LANGGAM TRADING</a>
-                    </div>
-                    <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <div class="container-fluid">
-                            <a class="navbar-brand text-uppercase" href="#">Home</a>
-                        </div>
-                        <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/langgamtrading/pages/profile.php">Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page"
-                                    href="/langgamtrading/includes/logout.php">Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+        <div class="content">
+            <?php include('../../includes/navbar.php')?>
+
             <div class="dashboard-content px-3 pt-4">
                 <h2>Home Page</h2>
                 <p>This is the Home Page</p>

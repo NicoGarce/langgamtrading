@@ -32,12 +32,16 @@ if ($current_page === "suppliers.php") {
 if ($current_page === "profile.php") {
     $navbar_brand = "PROFILE";
 }
+
+if ($current_page === "emp_dashboard.php") {
+    $navbar_brand = "HOME";
+}
 ?>
 
 <nav class="navbar navbar-expand-md navbar-light bg-light rounded-4 shadow-lg">
     <div class="container-fluid">
         <div class="d-flex justify-content-between d-md-none d-block">
-            <button class="btn px-1 py-0 open-btn me-2"><i class='bx bxs-chevrons-right'></i></button>
+            <button class="btn px-1 py-0 open-btn me-2"><i class='bx bx-menu'></i></i></button>
             <a class="navbar-brand fs-4" href="#">LANGGAM TRADING</a>
         </div>
         <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"

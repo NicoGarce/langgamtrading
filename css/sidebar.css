@@ -42,11 +42,13 @@ body {
   background: #306c76;
   border-radius: 8px;
   opacity: 0.8;
+  font-size: 17px;
 }
 
 .sidebar li a {
   color: #fff;
 }
+
 
 @media (max-width: 767px) {
   #side_nav {
@@ -62,4 +64,6 @@ body {
   #side_nav.active {
     margin-left: 5px;
   }
+
+  
 }
