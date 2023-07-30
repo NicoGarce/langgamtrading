@@ -57,6 +57,7 @@ $store->delete_product();
             <div class="dashboard-content px-3">
                 
                 <div class="m-0 m-sm-3">
+                    
                     <?php include('modals/add_product.php') ?>
 
                         <div class="card p-3 rounded-4">

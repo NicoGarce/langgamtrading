@@ -88,6 +88,8 @@ $(document).ready(function() {
   });
 });
 
+let hideTimer;
+
 let calcScrollValue = () => {
   let scrollProgress = document.getElementById("progress");
   let progressValue = document.getElementById("progress-value");
@@ -106,6 +108,11 @@ let calcScrollValue = () => {
   });
 
   scrollProgress.style.background = `conic-gradient(#306c76 ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
+
+  clearTimeout(hideTimer);
+  hideTimer = setTimeout(() => {
+    scrollProgress.style.display = "none";
+  }, 5000);
 };
 
 window.onscroll = calcScrollValue;

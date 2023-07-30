@@ -39,14 +39,14 @@ if ($current_page === "emp_dashboard.php") {
 ?>
 
 <div id="progress">
-    <span id="progress-value"><i class='bx bxs-chevron-up'></i></span>
+    <span id="progress-value" title="Back To Top"><i class='bx bxs-chevron-up'></i></span>
 </div>
 
 <nav class="navbar navbar-expand-md navbar-light bg-light rounded-4 shadow-lg">
     <div class="container-fluid">
         <div class="d-flex justify-content-between d-md-none d-block">
             <button class="btn px-1 py-0 open-btn me-2"><i class='bx bx-menu'></i></i></button>
-            <a class="navbar-brand fs-4" href="#">LANGGAM TRADING</a>
+            <a class="navbar-brand fs-4" id="namebrand">LANGGAM TRADING</a>
         </div>
         <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -55,7 +55,7 @@ if ($current_page === "emp_dashboard.php") {
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <div class="container-fluid">
-                <span class="navbar-brand text-uppercase" href="#"><?php echo $navbar_brand; ?></span>
+                <span class="navbar-brand text-uppercase" id="navbrand"><?php echo $navbar_brand; ?></span>
             </div>
             <ul class="navbar-nav mb-2 mb-lg-0 text-center">
                 <li class="nav-item profile">
