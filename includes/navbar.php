@@ -46,7 +46,7 @@ if ($current_page === "emp_dashboard.php") {
     <div class="container-fluid">
         <div class="d-flex justify-content-between d-md-none d-block">
             <button class="btn px-1 py-0 open-btn me-2"><i class='bx bx-menu'></i></i></button>
-            <a class="navbar-brand fs-4" id="namebrand">LANGGAM TRADING</a>
+            <a class="navbar-brand fs-4" id="namebrand"><?php echo $navbar_brand; ?></a>
         </div>
         <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

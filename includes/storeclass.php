@@ -637,5 +637,18 @@ class Langgam
         }
     }
 
+    public function inv_row() {
+        $sql = "SELECT COUNT(*) FROM inventory";
+        $pdo = $this->openConnection();
+        // Execute the query and fetch the result
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $rowCount = $stmt->fetchColumn();
+
+        // Close the connection
+        $pdo = null;
+
+        return $rowCount;
+    }
 }
 $store = new Langgam();

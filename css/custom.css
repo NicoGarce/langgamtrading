@@ -97,6 +97,10 @@ body {
 
 }
 
+.dashbtn {
+  text-align: left;
+}
+
 .modal.fade{
   transition: all 0.1s ease;
 }
@@ -122,11 +126,13 @@ body {
   }
 
   #navbrand{
-    padding-left: 20px;
-    font-size: 15px;
+    display: none;
   }
   
   #navbarSupportedContent {
     transition: all 0.3s ease;
   }
+  .col.border-end{
+    border-right: none;
+}
 }
