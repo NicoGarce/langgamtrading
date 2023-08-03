@@ -76,8 +76,9 @@ $current_page = $_SERVER['PHP_SELF'];
                                     <h5 class="card-title">Profile Photo</h5>
                                     <div class="container pt-3">
                                         <div class="d-flex justify-content-center position-relative">
-                                            <div class="photo-container" data-bs-toggle="modal" data-bs-target=#upload>
-                                                <img src="<?php echo (!empty($result[0]->photo)) ? '' . $result[0]->photo : '../assets/user_upload/default.png' ?>" alt="photo" class="img-fluid rounded-circle" width="150px" height="150px">
+                                            <div class="photo-container" data-bs-toggle="modal" data-bs-target=#upload title="Upload Photo">
+                                                <img src="<?php echo (!empty($result[0]->photo)) ? '' . $result[0]->photo : '../assets/user_upload/default.png' ?>" 
+                                                    alt="photo" class="img-fluid border border-2 rounded-circle" width="150px" height="150px">
                                                 <span class="overlay">
                                                     <i class='bx bx-image-add text-light'></i>
                                                 </span>

@@ -26,7 +26,7 @@
                 
                 <td>
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#editSupplier<?php echo $cnt ?>">
+                        data-bs-target="#editSupplier<?php echo $cnt ?>" title="Edit <?php echo $result->supplier_name ?>">
                         <i class='bx bx-edit'></i></button>
 
                     <div class="modal fade" id="editSupplier<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"
@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <button data-id="<?php echo $result->supplier_id ?>" type="button" name="delete"
-                        class="btn btn-danger btn-sm delete-btn"><i class='bx bx-trash'></i></button>
+                        class="btn btn-danger btn-sm delete-btn"><i class='bx bx-trash' title="Delete <?php echo $result->supplier_name ?>"></i></button>
                     
                 </td>
 

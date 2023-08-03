@@ -34,7 +34,7 @@
                 <td>
                     
                     <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#accDetails<?php echo $cnt ?>">
+                        data-bs-target="#accDetails<?php echo $cnt ?>" title="Product Details">
                         <i class='bx bx-info-circle'></i></button>
 
                     
@@ -120,7 +120,7 @@
                     <?php include('modals/edit_product.php') ?>
 
                     <button data-id="<?php echo $result->product_id ?>" type="button" name="delete"
-                        class="btn btn-danger btn-sm delete-btn delete"><i class='bx bx-trash'></i></button>
+                        class="btn btn-danger btn-sm delete-btn delete"><i class='bx bx-trash' title="Delete Product"></i></button>
                 </td>
             </tr>
             <?php

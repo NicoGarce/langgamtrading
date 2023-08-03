@@ -24,6 +24,12 @@ body {
   z-index: 1;
 }
 
+#side_nav ul {
+  overflow-y: auto; /* Add scrollbars when the content overflows */
+  max-height: 90vh; /* Set a maximum height to limit the sidebar's height */
+  padding-bottom: 80px;
+}
+
 .content {
   min-height: 100%;
   width: 100%;
@@ -97,6 +103,19 @@ body {
 
 }
 
+
+.profile-text {
+  display: none;
+}
+
+.logout-icon{
+  padding-top: 10px;
+}
+
+.logout-text {
+  display: none;
+}
+
 .dashbtn {
   text-align: left;
 }
@@ -108,6 +127,12 @@ body {
 #headbrand {
   display: none;
 }
+
+#fileInput {
+  position: absolute;
+  left: -9999px;
+}
+
 
 @media (max-width: 767px) {
   #side_nav {
@@ -132,7 +157,24 @@ body {
   #navbarSupportedContent {
     transition: all 0.3s ease;
   }
+
   .col.border-end{
     border-right: none;
-}
+  }
+
+  .profile-text {
+    display: block;
+  }
+
+  .profile-img {
+    display: none;
+  }
+
+  .logout-text {
+    display: block;
+  }
+
+  .logout-icon {
+    display: none;
+  }
 }

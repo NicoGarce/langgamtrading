@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-    data-bs-target="#editProduct<?php echo $cnt ?>">
+    data-bs-target="#editProduct<?php echo $cnt ?>" title="Edit Product">
     <i class='bx bx-edit'></i></button>
 
 <div class="modal fade" id="editProduct<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label"

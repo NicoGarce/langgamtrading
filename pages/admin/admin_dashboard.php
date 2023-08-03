@@ -25,6 +25,7 @@ $inv_row = $store->inv_row();
     <link rel="stylesheet" href="/langgamtrading/css/custom.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -98,7 +99,7 @@ $inv_row = $store->inv_row();
                                                     <i class='bx bxs-user-account fs-4'></i>
                                                     <?php echo $inv_row; ?>
                                                 </h2>
-                                                <p class="card-text">Inventory</p>
+                                                <p class="card-text">Accounts</p>
                                             </div>
                         
                                         </div>

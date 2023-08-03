@@ -38,14 +38,6 @@ $(document).ready(function() {
             columns: ':not(:last-child)' // Exclude the last column (Options)
           }
         },
-        {
-          extend: 'pdf',
-          className: 'btn btn-sm btn-danger export rounded m-1',
-          text: '<i class="bx bxs-file-pdf"></i> PDF',
-          exportOptions: {
-            columns: ':not(:last-child)' // Exclude the last column (Options)
-          }
-        }
       ],
       language: {
         searchPlaceholder: "Search",

@@ -36,6 +36,14 @@ if ($current_page === "profile.php") {
 if ($current_page === "emp_dashboard.php") {
     $navbar_brand = "HOME";
 }
+
+$result = $store->getID();
+
+$image_src = (!empty($result[0]->photo)) ? '' . $result[0]->photo : '../assets/user_upload/default.png';
+
+if ($current_page === "admin_dashboard.php" || $current_page === "sales.php" || $current_page === "acc_manage.php" || $current_page === "emp_dashboard.php" ) {
+    $image_src = (!empty($result[0]->photo)) ? '../' . $result[0]->photo : '../../assets/user_upload/default.png';
+}
 ?>
 
 <div id="progress">
@@ -59,10 +67,18 @@ if ($current_page === "emp_dashboard.php") {
             </div>
             <ul class="navbar-nav mb-2 mb-lg-0 text-center">
                 <li class="nav-item profile">
-                    <a class="nav-link active" aria-current="page" href="/langgamtrading/pages/profile.php">Profile</a>
+                    <a class="nav-link active profile-img" aria-current="page" href="/langgamtrading/pages/profile.php" title="Profile">
+                        <img src="<?php echo $image_src; ?>" alt="photo" class="img-fluid border border-2 rounded-circle" width="30px" height="30px">
+                    </a>
+                    
+                    <a class="nav-link active profile-text" aria-current="page" href="/langgamtrading/pages/profile.php">Profile</a>
                 </li>
+
                 <li class="nav-item logout">
-                    <a class="nav-link active" aria-current="page" href="/langgamtrading/includes/logout.php">Logout</a>
+                    <a class="nav-link active logout-icon" title="Logout" aria-current="page" href="/langgamtrading/includes/logout.php">
+                        <i class='bx bx-log-out-circle'></i>
+                    </a>
+                    <a class="nav-link active logout-text" aria-current="page" href="/langgamtrading/includes/logout.php">Logout</a>
                 </li>
             </ul>
         </div>

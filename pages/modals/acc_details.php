@@ -28,7 +28,7 @@
                 <td>
                     
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#accDetails<?php echo $cnt ?>">
+                        data-bs-target="#accDetails<?php echo $cnt ?>" title="Account Details (<?php echo $result->firstName ?>)">
                         <i class='bx bx-info-circle'></i></button>
 
                     
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <button data-id="<?php echo $result->ID ?>" type="button" name="delete"
-                        class="btn btn-danger btn-sm delete-btn delete"><i class='bx bx-trash'></i></button>
+                        class="btn btn-danger btn-sm delete-btn delete"><i class='bx bx-trash' title="Delete <?php echo $result->firstName ?>"></i></button>
                 </td>
             </tr>
             <?php
