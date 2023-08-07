@@ -66,9 +66,18 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
               </div>
               <div class="form-group pt-2">
                 <select class="form-control" id="role" name="role" required>
-                  <option value="">--Select Role--</option>
+                  <option value="">Select Role</option>
                   <option value="Employee">Employee</option>
                   <option value="Administrator">Administrator</option>
+                </select>
+              </div>
+
+              <div class="form-group pt-2">
+                <select class="form-control" id="branch" name="branch" required>
+                  <option value="">Select Branch</option>
+                  <option value="1">Langgam Trading</option>
+                  <option value="2">NOAC Materials Trading Corp.</option>   
+                  <option value="3">Branch 3</option>
                 </select>
               </div>
               <div class="text-center pt-3">

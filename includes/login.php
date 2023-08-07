@@ -35,6 +35,14 @@
                                             <input type="password" name="password" id="password"
                                                 placeholder="Enter Password" class="form-control form-control-lg" required/>
                                         </div>
+                                        <div class="form-outline mb-4">
+                                                <select class="form-control" id="branch" name="branch" required>
+                                                    <option value="0" class="text-muted">Select Branch</option>
+                                                    <option value="1">Langgam Trading</option>
+                                                    <option value="2">NOAC Materials Trading Corporation</option>   
+                                                    <option value="3">Branch 3</option>
+                                                </select>
+                                        </div>
 
                                         <div class="pt-1 mb-4">
                                             <button class="btn btn-dark btn-lg w-100 shadow" name="submit"
@@ -42,7 +50,7 @@
                                         </div>
 
                                         <a class="small text-muted" href="#!">Forgot password?</a>
-                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a
+                                        <p class="" style="color: #393f81;">Don't have an account? <a
                                                 href="includes/signup.php" style="color: #393f81;">Register here</a></p>
                                         <div class="d-flex justify-content-center">
                                             <a href="#!" class="small text-muted">Terms of use.</a>

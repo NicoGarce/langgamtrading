@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Langgam Trading</title>
 </head>
-
 <body>
     <div class="m-2">
         <?php include('.\includes\header.php'); ?>

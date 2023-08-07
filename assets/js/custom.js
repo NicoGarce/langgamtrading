@@ -19,7 +19,7 @@ $(document).ready(function() {
           className: 'btn btn-sm btn-dark export rounded m-1',
           text: '<i class="bx bx-copy"></i> Copy',
           exportOptions: {
-            columns: ':not(:last-child)' // Exclude the last column (Options)
+            columns: ':not(:nth-child(2)):not(:last-child)' // Exclude the last column (Options)
           }
         },
         {
@@ -27,7 +27,7 @@ $(document).ready(function() {
           className: 'btn btn-sm btn-dark export rounded m-1',
           text: '<i class="bx bxs-printer"></i> Print',
           exportOptions: {
-            columns: ':not(:last-child)' // Exclude the last column (Options)
+            columns: ':not(:nth-child(2)):not(:last-child)' // Exclude the last column (Options)
           }
         },
         {
@@ -35,7 +35,7 @@ $(document).ready(function() {
           className: 'btn btn-sm btn-success export rounded m-1',
           text: '<i class="bx bxs-spreadsheet"></i> Excel',
           exportOptions: {
-            columns: ':not(:last-child)' // Exclude the last column (Options)
+            columns: ':not(:nth-child(2)):not(:last-child)' // Exclude the last column (Options)
           }
         },
       ],
