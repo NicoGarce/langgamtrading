@@ -29,6 +29,7 @@ class Langgam
         $this->con = null;
     }
 
+    //LOGIN FUNCTION
     public function login()
     {
         session_start();
@@ -179,7 +180,9 @@ class Langgam
             $conn = null;
         }
     }
-    public function upload_pic($id)
+
+
+    public function upload_pic($id)//UPLOAD PIC FUNCTION
     {
         if (isset($_POST['upload'])) {
             $userid = intval($id);
@@ -243,6 +246,7 @@ class Langgam
         }
     }
 
+    //USERS FUNCTIONS
     public function get_users()
     {
         $conn = $this->openConnection();
@@ -250,23 +254,6 @@ class Langgam
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-
-    public function get_suppliers()
-    {
-        $conn = $this->openConnection();
-        $stmt = $conn->prepare("SELECT * FROM branch2_suppliers");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    public function get_inventory()
-    {
-        $conn = $this->openConnection();
-        $stmt = $conn->prepare("SELECT * FROM branch2_inventory");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
-
     public function getID()
     {
         $conn = $this->openConnection();
@@ -277,7 +264,114 @@ class Langgam
 
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    public function update_user()
+    {
+        if (isset($_POST['update'])) {
+            $userid = $_POST['ID'] ?? '';
+            $firstName = $_POST["firstName"];
+            $lastName = $_POST["lastName"];
+            $username = $_POST["username"];
+            $mobile = $_POST["mobile"];
+            $email = $_POST["email"];
+            $address = $_POST["address"];
+            $role = $_POST["role"];
 
+            $pdo = $this->openConnection();
+
+            $sql = "UPDATE branch2_users SET firstName = :firstName, lastName = :lastName, username = :username, mobile = :mobile, email = :email, address = :address, role = :role WHERE id = :uid";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+                'username' => $username,
+                'mobile' => $mobile,
+                'email' => $email,
+                'address' => $address,
+                'role' => $role,
+                'uid' => $userid
+            ]);
+
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'User edited successfully',
+                showConfirmButton: false,
+                timer: 2000,
+                showClass: {
+                    popup: 'swal2-show'
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to edit user',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    showClass: {
+                        popup: 'swal2-show'
+                    }
+                });
+            </script>";
+            }
+        }
+    }
+    public function delete_user()
+    {
+        if (isset($_REQUEST['delete'])) {
+            $uid = $_GET['ID'] ?? '';
+
+            $pdo = $this->openConnection();
+            $sql = "DELETE FROM branch2_users where id=:uid";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(['uid' => $uid]);
+
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'User removed successfully',
+                confirmButtonColor: '#3085d6',
+                customClass: {
+                    confirmButton: '#3085d6',
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to remove user',
+                    confirmButtonColor: '#3085d6',
+                    customClass: {
+                        confirmButton: '#3085d6',
+                    }
+                });
+            </script>";
+            }
+
+        }
+    }
+    
+
+    //SUPPLIERS FUNCTIONS
+    public function get_suppliers()
+    {
+        $conn = $this->openConnection();
+        $stmt = $conn->prepare("SELECT * FROM branch2_suppliers");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
     public function add_supplier()
     {
 
@@ -329,7 +423,109 @@ class Langgam
             }
         }
     }
+    public function edit_supplier()
+    {
+        if (isset($_POST['update'])) {
+            $supplier_id = $_POST['supplier_id'] ?? '';
+            $supplier_name = $_POST["supplier_name"];
+            $description = $_POST["description"];
+            $address = $_POST["address"];
+            $contact = $_POST["contact"];
 
+
+            $pdo = $this->openConnection();
+
+            $sql = "UPDATE branch2_suppliers SET supplier_name = :supplier_name, description = :description, address = :address, contact = :contact WHERE supplier_id = :supplier_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                'supplier_id' => $supplier_id,
+                'supplier_name' => $supplier_name,
+                'description' => $description,
+                'address' => $address,
+                'contact' => $contact,
+
+            ]);
+
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Supplier edited successfully',
+                showConfirmButton: false,
+                timer: 2000,
+                showClass: {
+                    popup: 'swal2-show'
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to edit supplier',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    showClass: {
+                        popup: 'swal2-show'
+                    }
+                });
+            </script>";
+            }
+        }
+    }
+    public function delete_supp()
+    {
+        if (isset($_REQUEST['delete'])) {
+            $supplier_id = $_GET['supplier_id'] ?? '';
+
+            $pdo = $this->openConnection();
+            $sql = "DELETE FROM branch2_suppliers where supplier_id =:supplier_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([':supplier_id' => $supplier_id]);
+
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Supplier removed successfully',
+                confirmButtonColor: '#3085d6',
+                customClass: {
+                    confirmButton: '#3085d6',
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to remove supplier',
+                    confirmButtonColor: '#3085d6',
+                    customClass: {
+                        confirmButton: '#3085d6',
+                    }
+                });
+            </script>";
+            }
+
+        }
+    }
+
+    //INVENTORY FUNCTIONS
+    public function get_inventory()
+    {
+        $conn = $this->openConnection();
+        $stmt = $conn->prepare("SELECT * FROM branch2_inventory");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
     public function add_product()
     {
 
@@ -417,62 +613,6 @@ class Langgam
             }
         }
     }
-
-    public function edit_supplier()
-    {
-        if (isset($_POST['update'])) {
-            $supplier_id = $_POST['supplier_id'] ?? '';
-            $supplier_name = $_POST["supplier_name"];
-            $description = $_POST["description"];
-            $address = $_POST["address"];
-            $contact = $_POST["contact"];
-
-
-            $pdo = $this->openConnection();
-
-            $sql = "UPDATE branch2_suppliers SET supplier_name = :supplier_name, description = :description, address = :address, contact = :contact WHERE supplier_id = :supplier_id";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([
-                'supplier_id' => $supplier_id,
-                'supplier_name' => $supplier_name,
-                'description' => $description,
-                'address' => $address,
-                'contact' => $contact,
-
-            ]);
-
-            if ($stmt->rowCount() !== false) {
-                echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'Supplier edited successfully',
-                showConfirmButton: false,
-                timer: 2000,
-                showClass: {
-                    popup: 'swal2-show'
-                }
-            }).then(function() {
-                window.location.href = window.location.href;
-            });
-        </script>";
-            } else {
-                echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Unable to edit supplier',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    showClass: {
-                        popup: 'swal2-show'
-                    }
-                });
-            </script>";
-            }
-        }
-    }
-
     public function edit_product()
     {
         if (isset($_POST['update'])) {
@@ -559,148 +699,6 @@ class Langgam
             }
         }
     }
-
-    public function update_user()
-    {
-        if (isset($_POST['update'])) {
-            $userid = $_POST['ID'] ?? '';
-            $firstName = $_POST["firstName"];
-            $lastName = $_POST["lastName"];
-            $username = $_POST["username"];
-            $mobile = $_POST["mobile"];
-            $email = $_POST["email"];
-            $address = $_POST["address"];
-            $role = $_POST["role"];
-
-            $pdo = $this->openConnection();
-
-            $sql = "UPDATE branch2_users SET firstName = :firstName, lastName = :lastName, username = :username, mobile = :mobile, email = :email, address = :address, role = :role WHERE id = :uid";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([
-                'firstName' => $firstName,
-                'lastName' => $lastName,
-                'username' => $username,
-                'mobile' => $mobile,
-                'email' => $email,
-                'address' => $address,
-                'role' => $role,
-                'uid' => $userid
-            ]);
-
-            if ($stmt->rowCount() !== false) {
-                echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'User edited successfully',
-                showConfirmButton: false,
-                timer: 2000,
-                showClass: {
-                    popup: 'swal2-show'
-                }
-            }).then(function() {
-                window.location.href = window.location.href;
-            });
-        </script>";
-            } else {
-                echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Unable to edit user',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    showClass: {
-                        popup: 'swal2-show'
-                    }
-                });
-            </script>";
-            }
-        }
-    }
-
-    public function delete_user()
-    {
-        if (isset($_REQUEST['delete'])) {
-            $uid = $_GET['ID'] ?? '';
-
-            $pdo = $this->openConnection();
-            $sql = "DELETE FROM branch2_users where id=:uid";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute(['uid' => $uid]);
-
-            if ($stmt->rowCount() !== false) {
-                echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'User removed successfully',
-                confirmButtonColor: '#3085d6',
-                customClass: {
-                    confirmButton: '#3085d6',
-                }
-            }).then(function() {
-                window.location.href = window.location.href;
-            });
-        </script>";
-            } else {
-                echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Unable to remove user',
-                    confirmButtonColor: '#3085d6',
-                    customClass: {
-                        confirmButton: '#3085d6',
-                    }
-                });
-            </script>";
-            }
-
-        }
-    }
-
-    public function delete_supp()
-    {
-        if (isset($_REQUEST['delete'])) {
-            $supplier_id = $_GET['supplier_id'] ?? '';
-
-            $pdo = $this->openConnection();
-            $sql = "DELETE FROM branch2_suppliers where supplier_id =:supplier_id";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([':supplier_id' => $supplier_id]);
-
-            if ($stmt->rowCount() !== false) {
-                echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'Supplier removed successfully',
-                confirmButtonColor: '#3085d6',
-                customClass: {
-                    confirmButton: '#3085d6',
-                }
-            }).then(function() {
-                window.location.href = window.location.href;
-            });
-        </script>";
-            } else {
-                echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Unable to remove supplier',
-                    confirmButtonColor: '#3085d6',
-                    customClass: {
-                        confirmButton: '#3085d6',
-                    }
-                });
-            </script>";
-            }
-
-        }
-    }
-
     public function delete_product()
     {
         if (isset($_REQUEST['delete'])) {
@@ -742,6 +740,7 @@ class Langgam
         }
     }
 
+    //DASHBOARD FUNCTIONS
     public function inv_row()
     {
         $sql = "SELECT COUNT(*) FROM branch2_inventory";

@@ -2,11 +2,13 @@ $(document).ready(function() {
   var addButton;
 
   if (window.location.pathname.includes('acc_manage.php')) {
-    addButton = '<div class="mb-1"><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addAccount" id="add_btn"><i class="bx bx-plus"></i> Add Account</button></div>';
+    addButton = '<div class="mb-1"><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addAccount" ><i class="bx bx-plus"></i> Add Account</button></div>';
   } else if (window.location.pathname.includes('suppliers.php')) {
-    addButton = '<div class="mb-1"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplier"><i class="bx bx-plus"></i> Add Supplier</button></div>';
+    addButton = '<div class="mb-1"><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addSupplier"><i class="bx bx-plus"></i> Add Supplier</button></div>';
   } else if (window.location.pathname.includes('inventory.php')) {
     addButton = '<div class="mb-1"><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProduct"><i class="bx bx-plus"></i> Add Product</button></div>';
+  } else if (window.location.pathname.includes('orders.php')) {
+    addButton = '<div class="mb-1"><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addOrder"><i class="bx bx-plus"></i> Create Order</button></div>';
   }
 
   var table;
@@ -56,7 +58,6 @@ $(document).ready(function() {
     initializeDataTable();
   }
   
-
   // Append the addButton only if it is defined
   if (addButton) {
     $('.dataTables_wrapper .dataTables_filter').prepend(addButton);

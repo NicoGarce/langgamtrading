@@ -49,7 +49,7 @@
                                     <form method="post" id="registration-form<?php echo $cnt ?>">
                                         <input name="ID" value="<?php echo $result->ID ?>" type="hidden">
                                         <div class="form-group d-flex justify-content-center">
-                                            <img src="<?php echo (!empty($result->photo)) ? '' . $result->photo : '../../../assets/user_upload/default.png' ?>" class="img-fluid rounded-circle" width="250px">
+                                            <img src="<?php echo (!empty($result->photo)) ? '../../' . $result->photo : '../../../assets/user_upload/default.png' ?>" class="img-fluid rounded-circle" width="250px">
                                         </div>
 
 

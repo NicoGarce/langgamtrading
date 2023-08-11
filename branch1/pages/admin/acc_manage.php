@@ -60,7 +60,7 @@ $store->delete_user();
 
                     <?php include('../modals/addAccModal.php') ?>
                     
-                    <div class="card p-3 rounded-4">
+                    <div class="container-fluid card p-3 rounded-4">
                         <div class="table-responsive pt-2">
                             <table id="table" class="table table-bordered table-striped">
                                 <thead>
