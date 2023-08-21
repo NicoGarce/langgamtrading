@@ -1,7 +1,8 @@
 <?php
-require_once('../../branch1/includes/storeclass.php');
-
-$store->login();
+require_once('../../branch1/includes/sups_function.php');
+require_once('../../branch1/includes/users_function.php');
+require_once('../../includes/login_function.php');
+$login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     print_r('user');
@@ -9,7 +10,7 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     exit();
 }
 
-$store->delete_supp();
+$sups->delete_supp();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +75,7 @@ $store->delete_supp();
                                 </thead>
                                 
                                 <?php 
-                                    $store ->edit_supplier();
+                                    $sups ->edit_supplier();
                                     include('modals/edit_supplier.php') 
                                 ?>
                  

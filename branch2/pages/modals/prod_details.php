@@ -1,6 +1,6 @@
 <tbody>
     <?php
-    $results = $store->get_inventory();
+    $results = $inventory->get_inventory();
 
     $cnt = 1;
     if (count($results) > 0) {

@@ -1,7 +1,8 @@
 <?php
-require_once('../../branch2/includes/storeclass.php');
-
-$store->login();
+require_once('../../branch2/includes/pf_function.php');
+require_once('../../branch2/includes/users_function.php');
+require_once('../../includes/login_function.php');
+$login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     print_r('user');
@@ -67,7 +68,7 @@ $current_page = $_SERVER['PHP_SELF'];
             <div class="dashboard-content px-3">
 
                 <?php
-                    $result = $store->getID();
+                    $result = $users->getID();
                 ?>
                 <div class="container">
                     <div class="row justify-content-center">

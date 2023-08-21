@@ -1,7 +1,8 @@
 <?php
-require_once('../../includes/storeclass.php');
+require_once('../../../branch1/includes/users_function.php');
+require_once('../../../includes/login_function.php');
+$login->login();
 
-$store -> login();
 
 if(!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])){
     header('Location: /langgamtrading/index.php');

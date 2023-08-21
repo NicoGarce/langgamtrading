@@ -44,7 +44,7 @@
                         </div>
 
                         <?php
-                            $suppliers = $store->get_suppliers();
+                            $suppliers = $sups->get_suppliers();
                         ?>
                         <div class="form-group pt-2 pb-4">
                             <select class="form-control" id="supplier_id" name="supplier_id" required>
@@ -69,5 +69,5 @@
         </div>
     </div>
 </div>
-<?php $store->add_product(); ?>
+<?php $inventory->add_product(); ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

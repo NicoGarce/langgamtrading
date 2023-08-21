@@ -1,5 +1,5 @@
 <?php
-require_once('storeclass.php');
+require_once('../../includes/storeclass.php');
 
 
 $email = $_POST['email'];

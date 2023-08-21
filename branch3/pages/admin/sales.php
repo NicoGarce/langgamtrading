@@ -1,18 +1,17 @@
 <?php
-require_once('../../includes/storeclass.php');
+require_once('../../../branch3/includes/users_function.php');
+require_once('../../../includes/login_function.php');
+$login->login();
 
-$store -> login();
-
-if(!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])){
+if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     header('Location: /langgamtrading/index.php');
     exit();
-}
+}   
 
-if(isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
+if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
     header('Location: /langgamtrading/branch3/pages/employee/emp_dashboard.php');
     exit();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

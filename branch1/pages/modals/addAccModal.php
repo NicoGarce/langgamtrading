@@ -168,8 +168,6 @@
             const confirm = confirmInput.value.trim();
             const address = addressInput.value.trim();
             const role = roleInput.value.trim();
-            const branch = '1';
-            const branchString = String(branch);
 
             // Check if the password and confirm password fields match
             if (password !== confirm) {
@@ -180,7 +178,7 @@
                 const isUsernameAvailable = await checkAvailability('/langgamtrading/branch1/includes/check_username.php', `username=${username}`, usernameMessage);
                 const isEmailAvailable = await checkAvailability('/langgamtrading/branch1/includes/check_email.php', `email=${email}`, emailMessage);
                 const isMobileAvailable = await checkAvailability('/langgamtrading/branch1/includes/check_mobile.php', `mobile=${mobile}`, mobileMessage);
-                console.log(isUsernameAvailable,isEmailAvailable,isMobileAvailable);
+                //console.log(isUsernameAvailable,isEmailAvailable,isMobileAvailable);
                 // If any of the attributes is not available, display a SweetAlert message
                 if (!isUsernameAvailable || !isEmailAvailable || !isMobileAvailable) {
                     showAlert('danger', 'Some attributes are already in use.');
@@ -197,8 +195,7 @@
                     formData.append('email', email);
                     formData.append('address', address);
                     formData.append('role', role);
-                    formData.append('branch', branchString);
-
+                    
                     const response = await fetch('/langgamtrading/branch1/includes/addToDb.php', {
                         method: 'POST',
                         body: formData

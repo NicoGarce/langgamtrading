@@ -37,7 +37,7 @@ if ($current_page === "emp_dashboard.php") {
     $navbar_brand = "HOME";
 }
 
-$result = $store->getID();
+$result = $users->getID();
 
 $image_src = (!empty($result[0]->photo)) ? '../' . $result[0]->photo : '../../assets/user_upload/default.png';
 

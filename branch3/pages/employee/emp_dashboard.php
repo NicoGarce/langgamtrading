@@ -1,5 +1,5 @@
 <?php
-require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
+require_once('../../includes/storeclass.php');
 
 $store -> login();
 
@@ -9,7 +9,7 @@ if(!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])){
 }
 
 if(isset($_SESSION['access']) && $_SESSION['access'] == 'Administrator') {
-    header('Location: /langgamtrading/pages/admin/admin_dashboard.php');
+    header('Location: /langgamtrading/branch3/pages/admin/admin_dashboard.php');
     exit();
 }
 
@@ -32,7 +32,7 @@ if(isset($_SESSION['access']) && $_SESSION['access'] == 'Administrator') {
 <body id="body" class="bg-light">
     <div class="main-container d-flex">
         <div class="sidebar pt-2 pb-3">
-            <?php include("C:/xampp/htdocs/langgamtrading/includes/emp_sidebar.php") ?>
+            <?php include("../../includes/emp_sidebar.php") ?>
         </div>
         <div class="content">
             <?php include('../../includes/navbar.php')?>

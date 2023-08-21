@@ -1,7 +1,9 @@
 <?php
-require_once('../../branch1/includes/storeclass.php');
-
-$store->login();
+require_once('../../includes/storeclass.php');
+require_once('../../branch1/includes/users_function.php');
+require_once('../../branch1/includes/inv_function.php');
+require_once('../../includes/login_function.php');
+$login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     header('Location: /langgamtrading/index.php');
@@ -64,17 +66,18 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
                                 <thead class="text-center">
                                     <tr>
                                         <th>Order ID</th>
-                                        <th class="d-none d-sm-table-cell">Customer Name</th>
-                                        <th class="d-none d-sm-table-cell">Total</th>
-                                        <th class="d-none d-sm-table-cell">Tax</th>
-                                        <th class="d-none d-sm-table-cell">No. of Items</th>
                                         <th class="d-none d-sm-table-cell">Order Date</th>
+                                        <th class="d-none d-sm-table-cell">Payment Method</th>
+                                        <th class="d-none d-sm-table-cell">Total Cost</th>
+                                        <th class="d-none d-sm-table-cell">Order Status</th>
+                                        <th class="d-none d-sm-table-cell">Payment Status</th>
+                                        <th class="d-none d-sm-table-cell">Order Type</th>
                                         <th>Options</th>
                                     </tr>
                                 </thead>    
 
                                 <?php
-                               
+                                    
                                 ?>
 
                             </table>

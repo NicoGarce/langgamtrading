@@ -1,7 +1,8 @@
 <?php
-require_once('../../includes/storeclass.php');
-
-$store->login();
+require_once('../../../branch2/includes/dash_function.php');
+require_once('../../../branch2/includes/users_function.php');
+require_once('../../../includes/login_function.php');
+$login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     header('Location: /langgamtrading/index.php');
@@ -9,11 +10,11 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
 }   
 
 if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
-    header('Location: /langgamtrading/branch1/pages/employee/emp_dashboard.php');
+    header('Location: /langgamtrading/branch2/pages/employee/emp_dashboard.php');
     exit();
 }
 
-$inv_row = $store->inv_row();
+$inv_row = $dash->inv_row();
 ?>
 <!DOCTYPE html>
 <html lang="en">

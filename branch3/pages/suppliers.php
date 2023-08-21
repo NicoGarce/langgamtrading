@@ -1,14 +1,16 @@
 <?php
-require_once('../../branch3/includes/storeclass.php');
-
-$store->login();
+require_once('../../branch3/includes/sups_function.php');
+require_once('../../branch3/includes/users_function.php');
+require_once('../../includes/login_function.php');
+$login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
-    header('Location: /langgamtrading/index.php');
+    print_r('user');
+    header('Location: /langgamtrading/index.php');  
     exit();
 }
 
-$store->delete_supp();
+$sups->delete_supp();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,13 +18,13 @@ $store->delete_supp();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory | Langgam Trading</title>
+    <title>Suppliers | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/custom.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <link rel="stylesheet" href="/langgamtrading/assets/js/datatables.1.13.5.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -44,12 +46,12 @@ $store->delete_supp();
     <div class="main-container d-flex">
         <div class="sidebar pt-2 pb-3">
             <?php if (isset($_SESSION['access']) && $_SESSION['access'] == 'Administrator') {
-                include("C:/xampp/htdocs/langgamtrading/branch3/includes/admin_sidebar.php");
+                include("../../branch3/includes/admin_sidebar.php");
             } else if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
-                include("C:/xampp/htdocs/langgamtrading/branch3/includes/emp_sidebar.php");
+                include("../../branch3/includes/emp_sidebar.php");
             }
             ?>
-        </div>
+        </div>  
         <div class="content">
             <?php include('../includes/navbar.php')?>
             <div class="dashboard-content px-3">
@@ -73,7 +75,7 @@ $store->delete_supp();
                                 </thead>
                                 
                                 <?php 
-                                    $store ->edit_supplier();
+                                    $sups ->edit_supplier();
                                     include('modals/edit_supplier.php') 
                                 ?>
                  

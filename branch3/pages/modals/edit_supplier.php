@@ -1,6 +1,6 @@
 <tbody>
     <?php
-    $results = $store->get_suppliers();
+    $results = $sups->get_suppliers();
 
     $cnt = 1;
     if (count($results) > 0) {
@@ -78,7 +78,7 @@
                                         <div class="modal-footer">
                                             <button type="button" id="footClose<?php echo $cnt ?>" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" name="update" class="btn btn-primary">Edit Account</button>
+                                            <button type="submit" name="update" class="btn btn-primary">Edit Supplier</button>
                                         </div>
 
                                     </form>

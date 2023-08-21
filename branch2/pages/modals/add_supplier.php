@@ -40,7 +40,7 @@
         </div>
     </div>
 </div>
-<?php $store->add_supplier(); ?>
+<?php $sups->add_supplier(); ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 

@@ -1,6 +1,6 @@
 <tbody>
     <?php
-    $results = $store->get_users();
+    $results = $users->get_users();
 
     $cnt = 1;
     if (count($results) > 0) {

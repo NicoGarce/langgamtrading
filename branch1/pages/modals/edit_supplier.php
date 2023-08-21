@@ -1,6 +1,6 @@
 <tbody>
     <?php
-    $results = $store->get_suppliers();
+    $results = $sups->get_suppliers();
 
     $cnt = 1;
     if (count($results) > 0) {

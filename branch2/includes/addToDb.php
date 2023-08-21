@@ -1,5 +1,5 @@
 <?php
-require_once('storeclass.php');
+require_once('../../includes/storeclass.php');
 //endpoint for adding user to db ajax
 
 if (isset($_POST['add'])) {

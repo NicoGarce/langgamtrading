@@ -1,7 +1,7 @@
 <?php
-require_once('../../includes/storeclass.php');
-
-$store->login();
+require_once('../../../branch1/includes/users_function.php');
+require_once('../../../includes/login_function.php');
+$login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     header('Location: /langgamtrading/index.php');
@@ -13,7 +13,7 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
     exit();
 }
 
-$store->delete_user();
+$users->delete_user();
 
 ?>
 
@@ -76,8 +76,8 @@ $store->delete_user();
                                 </thead>
                                 
                                 <?php 
-                                    $store->getID();
-                                    $store->update_user();
+                                    $users->getID();
+                                    $users->update_user();
                                     include('../modals/acc_details.php') 
                                 ?>
                                                     

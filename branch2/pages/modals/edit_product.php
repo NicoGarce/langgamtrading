@@ -65,7 +65,7 @@
                     </div>
 
                     <?php
-                        $suppliers = $store->get_suppliers();
+                        $suppliers = $sups->get_suppliers();
                     ?>
                     <div class="form-group pt-2 pb-4">
                         <label for="supplier_id" class="label small px-1">Supplier</label>

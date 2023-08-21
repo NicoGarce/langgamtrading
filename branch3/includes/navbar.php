@@ -37,7 +37,7 @@ if ($current_page === "emp_dashboard.php") {
     $navbar_brand = "HOME";
 }
 
-$result = $store->getID();
+$result = $users->getID();
 
 $image_src = (!empty($result[0]->photo)) ? '../' . $result[0]->photo : '../../assets/user_upload/default.png';
 
@@ -71,7 +71,7 @@ if ($current_page === "admin_dashboard.php" || $current_page === "sales.php" || 
                         <img src="<?php echo $image_src; ?>" alt="photo" class="img-fluid border border-2 rounded-circle" width="30px" height="30px">
                     </a>
                     
-                    <a class="nav-link active profile-text" aria-current="page" href="/langgamtrading/pages/profile.php">Profile</a>
+                    <a class="nav-link active profile-text" aria-current="page" href="/langgamtrading/branch3/pages/profile.php">Profile</a>
                 </li>
 
                 <li class="nav-item logout">

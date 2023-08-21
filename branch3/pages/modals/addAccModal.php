@@ -168,6 +168,8 @@
             const confirm = confirmInput.value.trim();
             const address = addressInput.value.trim();
             const role = roleInput.value.trim();
+            const branch = '1';
+            const branchString = String(branch);
 
             // Check if the password and confirm password fields match
             if (password !== confirm) {
@@ -195,6 +197,7 @@
                     formData.append('email', email);
                     formData.append('address', address);
                     formData.append('role', role);
+                    formData.append('branch', branchString);
 
                     const response = await fetch('/langgamtrading/branch3/includes/addToDb.php', {
                         method: 'POST',

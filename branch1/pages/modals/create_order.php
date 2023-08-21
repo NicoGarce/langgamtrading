@@ -1,5 +1,5 @@
 <div>
-
+    
     <div class="modal fade" id="addOrder" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static"
         data-bs-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-lg pt-5">
@@ -11,18 +11,20 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" id="registration-form">
-                        <div class="form-group pt-2 text-center"> <!-- Added text-center class to center the content -->
-                            <input type="text" class="form-control w-50 mx-auto" id="order_id" name="order_id"
-                                placeholder="Order ID" title="Order ID" required>
-                            <!-- Added w-50 and mx-auto classes to adjust width and center the input -->
-                        </div>
                         <div class="form-group pt-2">
                             <input type="text" class="form-control" id="customer_name" name="customer_name"
                                 placeholder="Customer Name" title="Customer Name" required>
                         </div>
                         <div class="form-group pt-2">
-                            <textarea class="form-control" id="cust_address" name="cust_address" placeholder="Address"
-                                required title="Customer Address"></textarea>
+                            <input class="form-control" id="contact_info" name="contact_info" placeholder="Contact Information"
+                                required title="Contact Information"></input>
+                        </div>
+                        <div class="form-group pt-2">
+                            <select class="form-control" id="order_type" name="order_type" required title="Order Type">
+                                <option value="" disabled selected>-Order Type-</option>
+                                <option value="Standard">Standard</option>
+                                <option value="Delivery">Delivery</option>
+                            </select>
                         </div>
                         <hr>
                         <div class="container-fluid table-responsive">
@@ -31,7 +33,7 @@
                                     <th class="text-center border" colspan="4">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="text-center flex-grow-1">
-                                                <span>Order List</span>
+                                                <span class="text-uppercase">Order List</span>
                                             </div>
                                             <div>
                                                 <button type="button" class="btn btn-primary btn-sm" id="addRowButton" 
@@ -45,21 +47,34 @@
                         </div>
                         <hr>
                         <div class="row gx-1 pb-4 px-3">
-                            <div class="col">
-                                <h6 for="MOP" class="label small">Mode of Payment</h6>
-                                <input type="text" class="form-control form-control-sm" id="MOP" name="MOP"
-                                    placeholder="Mode of Payment" title="Mode of Payment" required>
+                            <div class="col-7">
+                                <h6 for="MOP" class="label small">Payment Method</h6>
+                                <input type="text" class="form-control form-control-sm" id="pay_method" name="pay_method"
+                                    placeholder="Enter Payment Method" title="Payment Method" required>
                             </div>
-                            <div class="col">
-                                <h6 for="totalCost" class="label small">Total Cost</h6>
-                                <input type="text" class="form-control form-control-sm" id="totalCost" name="totalCost"
+                            <div class="col-5">
+                                <h6 for="total_cost" class="label small">Total Cost</h6>
+                                <input type="text" class="form-control form-control-sm" id="total_cost" name="total_cost"
                                     placeholder="0.00" title="Total Cost" required readonly>
                             </div>
+                            <div class="col-7 pt-1">
+                                <select class="form-control form-control-sm" id="pay_status" name="pay_status" required title="Payment Status">
+                                    <option value="" disabled selected>- Payment Status -</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Paid">Paid</option>
+                                    <option value="Partial">Partial</option>
+                                </select>
+                            </div>
+                            <input type="hidden" id="salesperson" name="salesperson" value="<?php $uid = $users->getID();
+                                $first_name = $uid[0]->firstName;
+                                $last_name = $uid[0]->lastName;
+                                echo $first_name . ' ' . $last_name; 
+                            ?>">
                         </div>
                         <div class="modal-footer">
                             <button type="button" id="footClose" class="btn btn-secondary"
                                 data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="add_product" class="btn btn-primary">Create Order</button>
+                            <button type="submit" id="create_order" name="create_order" class="btn btn-primary">Create Order</button>
                         </div>
                     </form>
                 </div>

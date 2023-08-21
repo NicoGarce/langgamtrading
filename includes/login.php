@@ -22,8 +22,8 @@
                                         <h5 class="fw-normal mb-3 pb-3 text-center" style="letter-spacing: 1px;">Sign into your account</h5>
                                         <?php
 
-                                        require_once('storeclass.php');
-                                        $store->login();
+                                        require_once('login_function.php');
+                                        $login->login();
 
                                         ?>
                                         <div class="form-outline mb-4">

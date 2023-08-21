@@ -1,7 +1,7 @@
 <?php
-    $userID = $store->getID();
+    $userID = $users->getID();
     $id = $userID[0]->ID;
-    $store->upload_pic($id);
+    $profile->upload_pic($id);
 ?>
 
 <div class="modal fade pt-5" id="upload" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static"
