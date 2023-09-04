@@ -49,58 +49,62 @@
                                     <form method="post" id="registration-form<?php echo $cnt ?>">
                                         <input name="ID" value="<?php echo $result->ID ?>" type="hidden">
                                         <div class="form-group d-flex justify-content-center">
-                                            <img src="<?php echo (!empty($result->photo)) ? '../../' . $result->photo : '../../../assets/user_upload/default.png' ?>" class="img-fluid rounded-circle" width="250px">
+                                            <img src="<?php echo (!empty($result->photo)) ? '../../' . $result->photo : '../../../assets/user_upload/default.png' ?>" class="img-fluid rounded-circle border border-2" width="200px">
                                         </div>
 
-
-
-                                        <div class="form-group">
-                                            <span>Account ID:
-                                                <?php echo $result->ID; ?>
-                                            </span>
+                                        
+                                        <div class="row pt-2">
+                                            <div class="form-group col-md-5">
+                                                <label for="uid" class="label small px-1">Account ID</label>
+                                                <input type="text" class="form-control" id="uid<?php echo $cnt ?>"
+                                                    name="uid" value="<?php echo $result->ID; ?>" required readonly>
+                                            </div>
+                                            <div class="form-group col-md-7">
+                                                <label for="name" class="label small px-1">Name</label>
+                                                <input type="text" class="form-control" id="name<?php echo $cnt ?>"
+                                                    name="name" value="<?php echo $result->firstName ?> <?php echo $result->lastName ?>" required readonly>
+                                            </div>
                                         </div>
-                                        <div class="form-group pt-2">
-                                            <span>Name:
-                                                <?php echo $result->firstName ?>
-                                                <?php echo $result->lastName ?>
-                                            </span>
-                                        </div>
+                                        
+                                        <div class="row pt-2">
+                                            <div class="form-group col-md-5">
+                                                <label for="username" class="label small px-1">Username</label>
+                                                <input type="username" class="form-control" id="username<?php echo $cnt ?>"
+                                                    name="username" value="<?php echo $result->username ?>" required readonly>
+                                            </div>
 
-                                        <div class="form-group pt-2">
-                                            <span>Username:
-                                                <?php echo $result->username ?>
-                                            </span>
-                                        </div>
-
-                                        <div class="form-group pt-2">
-                                            <span>Mobile:
-                                                <?php echo $result->mobile ?>
-                                            </span>
-                                        </div>
-
-                                        <div class="form-group pt-2">
-                                            <span>Email:
-                                                <?php echo $result->email ?>
-                                            </span>
+                                            <div class="form-group col-md-7">
+                                                <label for="mobile" class="label small px-1">Mobile</label>
+                                                <input type="text" class="form-control" id="mobile<?php echo $cnt ?>"
+                                                    name="mobile" value="<?php echo $result->mobile ?>" required readonly>
+                                            </div>
                                         </div>
 
                                         <div class="form-group pt-2">
-                                            <span>Address:
-                                                <?php echo $result->address ?>
-                                            </span>
-                                        </div>
+                                                <label for="email" class="label small px-1">Email</label>
+                                                <input type="text" class="form-control" id="email<?php echo $cnt ?>"
+                                                    name="email" value="<?php echo $result->email ?>" required readonly>
+                                            </div>
 
                                         <div class="form-group pt-2">
-                                            <span>Role:
-                                                <?php echo $result->role ?>
-                                            </span>
+                                            <label for="address" class="label small px-1">Address</label>
+                                            <textarea type="text" class="form-control" id="address<?php echo $cnt ?>" name="address" value="<?php echo $result->address ?>" required readonly><?php echo $result->address ?></textarea>
                                         </div>
+                                        
+                                        <div class="row pt-2 pb-3">
+                                            <div class="form-group col">
+                                                <label for="role" class="label small px-1">Role</label>
+                                                <input type="text" class="form-control" id="role<?php echo $cnt ?>"
+                                                name="role" value="<?php echo $result->role ?>" required readonly>
+                                            </div>
 
-                                        <div class="form-group pt-2 pb-3">
-                                            <span>Date Added:
-                                                <?php echo $result->date_added ?>
-                                            </span>
+                                            <div class="form-group col">
+                                                <label for="date_added" class="label small px-1">Date Added</label>
+                                                <input type="text" class="form-control" id="date_added<?php echo $cnt ?>"
+                                                name="date_added" value="<?php echo $result->date_added ?>" required readonly>
+                                            </div>
                                         </div>
+                                        
                                         <div class="modal-footer">
                                             <button type="button" id="footClose<?php echo $cnt ?>" class="btn btn-dark"
                                                 data-bs-dismiss="modal">Close</button>

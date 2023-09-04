@@ -15,6 +15,8 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
 }
 
 $inv_row = $dash->inv_row();
+$ord_row = $dash->ord_row();
+$acc_row = $dash->acc_row();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,13 +81,13 @@ $inv_row = $dash->inv_row();
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='../inventory.php'"
+                                    <div class="btn dashbtn p-0" onclick="window.location.href='../orders.php'"
                                         title="Inventory">
                                         <div class="card-body d-flex">
                                             <div class="d-flex flex-column flex-grow-1">
                                                 <h2 class="card-title">
                                                     <i class='bx bx-list-ul fs-4'></i>
-                                                    <?php echo $inv_row; ?>
+                                                    <?php echo $ord_row; ?>
                                                 </h2>
                                                 <p class="card-text">Inventory</p>
                                             </div>
@@ -95,13 +97,13 @@ $inv_row = $dash->inv_row();
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='../inventory.php'"
+                                    <div class="btn dashbtn p-0" onclick="window.location.href='../acc_manage.php'"
                                         title="Inventory">
                                         <div class="card-body d-flex">
                                             <div class="d-flex flex-column flex-grow-1">
                                                 <h2 class="card-title">
                                                     <i class='bx bxs-user-account fs-4'></i>
-                                                    <?php echo $inv_row; ?>
+                                                    <?php echo $acc_row; ?>
                                                 </h2>
                                                 <p class="card-text">Accounts</p>
                                             </div>
@@ -111,8 +113,9 @@ $inv_row = $dash->inv_row();
                                 </div>
                             </div>
                         </div>
+                        <div class=""><h1>GRAPH CONTENT</h1></div>
                     </div>
-                    <div class="col-lg-4 col-md-4 pb-2">
+                    <div class="col-lg-4 col-md-5 pb-2">
                         <div class="card rounded-4">
 
                             <div class="card-body">

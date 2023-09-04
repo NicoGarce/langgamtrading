@@ -12,9 +12,12 @@ Login Page *
             - Low Stock Products Count
             - Employee Count
         CRUD:
+            DONE
             Account Manager Page
                 - Position/Role In Company
                 - Can access/manage accounts
+            
+            DONE
             Inventory Page
                 - Picture of Product
                 - Name of Product
@@ -28,6 +31,8 @@ Login Page *
             Orders Page
                 - Creating Orders
                 - Outgoing Orders
+
+            DONE
             Supplier Page
                 - Add Edit Delete Supplier
                 - Supplier Details
@@ -52,6 +57,8 @@ Login Page *
             Orders Page
                 - Creating Orders
                 - Outgoing Orders
+
+            DONE
             Inventory Page
                 - Picture of Product
                 - Name of Product
@@ -62,6 +69,9 @@ Login Page *
                 - Supplier
                 - Add Edit Delete Product
                 - Added By
+
+
+            DONE
             Supplier Page
                     - Add Edit Delete Supplier
                     - Supplier Details

@@ -68,6 +68,66 @@ class Profile{
             }
         }
     }
+
+
+    public function edit_profile(){
+        $store = new Langgam();
+
+
+        if (isset($_POST['update'])) {
+            
+            $userid = $_POST['ID'] ?? '';
+            $firstName = $_POST["firstName"];
+            $lastName = $_POST["lastName"];
+            $mobile = $_POST["mobile"];
+            $address = $_POST["address"];
+            $role = $_POST["role"];
+
+            $pdo = $store->openConnection();
+
+            $sql = "UPDATE branch3_users SET firstName = :firstName, lastName = :lastName,  mobile = :mobile, address = :address, role = :role WHERE id = :uid";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+                'mobile' => $mobile,
+                'address' => $address,
+                'role' => $role,
+                'uid' => $userid
+            ]);
+
+            if ($stmt->rowCount() !== false) {
+                echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Profile Edited Successfully',
+                showConfirmButton: false,
+                timer: 2000,
+                showClass: {
+                    popup: 'swal2-show'
+                }
+            }).then(function() {
+                window.location.href = window.location.href;
+            });
+        </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Unable to edit profile',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    showClass: {
+                        popup: 'swal2-show'
+                    }
+                });
+            </script>";
+            }
+        }
+
+    }
 }
 
 $profile = new Profile();

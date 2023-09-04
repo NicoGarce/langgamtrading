@@ -1,6 +1,7 @@
 <?php
 require_once('../../includes/storeclass.php');
 require_once('../../branch1/includes/users_function.php');
+require_once('../../branch1/includes/ord_function.php');
 require_once('../../branch1/includes/inv_function.php');
 require_once('../../includes/login_function.php');
 $login->login();
@@ -10,6 +11,7 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     exit();
 }
 
+$orders->delete_order();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +33,6 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     <script defer src="/langgamtrading/assets/js/datatables.min.js"></script>
     <script defer src="/langgamtrading/assets/js/pdfmake.min.js"></script>
     <script defer src="/langgamtrading/assets/js/vfs_fonts.js"></script>
-    <script defer src ="modals/create_order.js"></script>
     <style>
         .dataTables_wrapper .dataTables_filter input[type="search"] {
             
@@ -58,26 +59,26 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
                     <div>
                         <?php include('modals/create_order.php') ?>
                     </div>
-                    
 
                     <div class="container-fluid card p-3 rounded-4">
                         <div class="table-responsive pt-2">
-                            <table id="table" class="table table-bordered table-striped">
+                            <table id="table" class="table table-bordered table-striped table-hover">
                                 <thead class="text-center">
                                     <tr>
                                         <th>Order ID</th>
-                                        <th class="d-none d-sm-table-cell">Order Date</th>
+                                        <th class="d-none d-sm-table-cell">Date</th>
                                         <th class="d-none d-sm-table-cell">Payment Method</th>
-                                        <th class="d-none d-sm-table-cell">Total Cost</th>
+                                        <th class="d-none d-sm-table-cell">Total</th>
                                         <th class="d-none d-sm-table-cell">Order Status</th>
                                         <th class="d-none d-sm-table-cell">Payment Status</th>
-                                        <th class="d-none d-sm-table-cell">Order Type</th>
+                                        <th class="d-none d-sm-table-cell">Type</th>
                                         <th>Options</th>
                                     </tr>
                                 </thead>    
 
                                 <?php
-                                    
+                                    $orders->update_stat();
+                                    include('modals/order_details.php')
                                 ?>
 
                             </table>
@@ -96,6 +97,40 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
         $('.sidebar').removeClass('active');
     });
 
+
+    $('.delete-btn').on('click', function () {
+        var order_id = $(this).data('id');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Are you sure?',
+            text: 'You are about to delete this order.',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Perform the deletion
+
+                // Display success message after deletion
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Order deleted successfully',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    showClass: {
+                        popup: 'swal2-show'
+                    }
+                }).then(() => {
+                    // Redirect to acc_manage.php
+                    window.location.href = 'orders.php?delete=true&order_id=' + order_id;
+
+                    window.location.href = 'orders.php';
+                });
+            }
+        });
+    });
 </script>
 
 </html>

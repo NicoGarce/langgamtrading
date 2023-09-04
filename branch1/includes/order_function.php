@@ -64,6 +64,20 @@ if (isset($_POST['create_order'])) {
 
     if ($stmt->rowCount() > 0) {
         $message = "Order added successfully.";
+    
+        // Decrease stock in branch1_inventory for each item in the order
+        foreach ($orderList as $item) {
+            $product_name = $item["product_name"];
+            $quantity_ordered = $item["quantity"];
+    
+            $sqlUpdateStock = "UPDATE branch1_inventory SET stock = stock - :quantity_ordered WHERE product_name = :product_name";
+    
+            $stmtUpdateStock = $pdo->prepare($sqlUpdateStock);
+            $stmtUpdateStock->execute([
+                ':quantity_ordered' => $quantity_ordered,
+                ':product_name' => $product_name
+            ]);
+        }
     } else {
         $message = "Error: Unable to add order.";
     }

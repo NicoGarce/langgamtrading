@@ -62,7 +62,7 @@ $sups->delete_supp();
 
                     <div class="card p-3 rounded-4">
                         <div class="table-responsive pt-2">
-                            <table id="table" class="table table-bordered table-striped">
+                            <table id="table" class="table table-bordered table-striped table-hover">
                                 <thead class="text-center">
                                     <tr>
                                         <th>ID</th>

@@ -1,5 +1,5 @@
 <?php
-require_once('../../includes/storeclass.php');
+require_once('../../../includes/storeclass.php');
 require_once('../../../branch1/includes/inv_function.php');
 
 $products = $inventory->get_inventory();

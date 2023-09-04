@@ -170,11 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 quantity = 1;
             }
 
-            const totalPrice = selectedPrice * quantity;
+            const totalPrice = (selectedPrice * quantity).toFixed(2);
+            console.log(totalPrice);
             const orderItem = {
                 product_name: selectedOption.value,
                 quantity: parseFloat(quantityInput.value),
-                price: parseFloat(totalPrice)
+                price: totalPrice
             };
             orderList.push(orderItem);
         });
@@ -182,7 +183,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const customer_name = customerNameInput.value.trim();
         const contact_info = contactInfoInput.value.trim();
         const order_type = orderTypeInput.value.trim();
-        const pay_method = payMethodInput.value.trim();
+        
+        let pay_method = payMethodInput.value.trim();
+        pay_method = pay_method.charAt(0).toUpperCase() + pay_method.slice(1).toLowerCase();
+
         const total_cost = totalCostInput.value.trim();
         const pay_status = payStatusInput.value.trim();
 
@@ -201,8 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append('pay_status', pay_status);
         formData.append('salesperson', document.getElementById('salesperson').value);
         
-        if (order_type === "Standard") {
-            formData.append('shipping_details', 'None');
+        if (order_type === "In-Store") {
+            formData.append('shipping_details', 'N/A');
         } else if (order_type === "Delivery") {
             const shipDetailsInput = document.getElementById('shipping_details')
             const shipping_details = shipDetailsInput.value.trim();
@@ -221,7 +225,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         //console.log(await response.text());
         if (response.ok) {
-            // Display success message if user was added successfully
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
@@ -232,13 +235,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     popup: 'swal2-show'
                 }
             }).then(() => {
-                // Reset form after success message is closed
                 document.getElementById('registration-form').reset();
                 location.reload();
             });
 
         } else {
-            // Display error message if user was not added
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -257,7 +258,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     addRowButton.addEventListener("click", createRow);
 
-    // Add an initial row on page load
     createRow();
 
     updateTotalCost();

@@ -71,105 +71,88 @@ $current_page = $_SERVER['PHP_SELF'];
                     $result = $users->getID();
                 ?>
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-3 col-md-4 pb-3">
-                            <div class="card" style="border-radius: 1rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">Profile Photo</h5>
-                                    <div class="container pt-3">
-                                        <div class="d-flex justify-content-center position-relative">
-                                            <div class="photo-container" data-bs-toggle="modal" data-bs-target=#upload title="Upload Photo">
-                                                <img src="<?php echo (!empty($result[0]->photo)) ? '../' . $result[0]->photo : '/langgamtrading/assets/user_upload/default.png' ?>" 
-                                                    alt="photo" class="img-fluid border border-2 rounded-circle" width="150px" height="150px">
-                                                <span class="overlay">
-                                                    <i class='bx bx-image-add text-light'></i>
-                                                </span>
+                    <div class="col-md-9 mx-auto">
+                        <div class="card p-3" style="border-radius: 1rem;">
+                            <div class="card-body">
+                                <h3 class="card-title text-center">General Information</h3>
+                                <div class="row">
+                                    <div class="col-md-12 mx-auto">
+                                        <div class="container pt-3">
+                                            <div class="d-flex justify-content-center position-relative">
+                                                <div class="photo-container" data-bs-toggle="modal" data-bs-target=#upload title="Upload Photo">
+                                                    <img src="<?php echo (!empty($result[0]->photo)) ? '../' . $result[0]->photo : '/langgamtrading/assets/user_upload/default.png' ?>" alt="photo" class="img-fluid border border-2 rounded-circle" width="250px" height="250px">
+                                                    <span class="overlay">
+                                                        <i class='bx bx-image-add text-light'></i>
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <?php include('modals/upload_image.php'); ?>
+                                            <?php include('modals/upload_image.php'); ?>
+                                        </div>
                                     </div>
-                                </div>
-
-                            </div>
-                            
-                        </div>
-
-                        <div class="col-lg-8 col-md-8">
-                            <div class="card p-3" style="border-radius: 1rem;">
-                                <div class="card-body">
-                                    <h3 class="card-title text-center">General Information</h3>
-                                    <form method="post" id="registration-form">
-                                        <div class="pt-3" id="alerts"></div>
-                                        <div class="form-group row justify-content-center">
-                                            <div class="form-group col-md-6 pt-2">
-                                                <label for="role" class="mx-1 small">First</label>
-                                                <input type="text" class="form-control" id="firstName" name="firstName"
-                                                    value="<?php echo $result[0]->firstName ?>" placeholder="First Name"
-                                                    required>
-                                            </div>
-                                            <div class="form-group col-md-6 pt-2">
-                                                <label for="role" class="mx-1 small">Last</label>
-                                                <input type="text" class="form-control" id="lastName" name="lastName"
-                                                    value="<?php echo $result[0]->lastName ?>" placeholder="Last Name"
-                                                    required>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group pt-2 col-md-6">
-                                                <label for="role" class="mx-1 small">Username</label>
-                                                <input type="text" class="form-control" id="username" name="username"
-                                                    minlength="6" value="<?php echo $result[0]->username ?>"
-                                                    placeholder="Username" required>
-                                                <span id="username-message"></span>
-                                            </div>
-
-                                            <div class="form-group pt-2 col-md-6">
-                                                <label for="role" class="mx-1 small">Mobile Number</label>
-                                                <input type="tel" class="form-control" id="mobile" name="mobile"
-                                                    pattern="0\d{10}" placeholder="Mobile Number"
-                                                    value="<?php echo $result[0]->mobile ?>" required>
-                                                <span id="mobile-message"></span>
-                                            </div>
-                                        </div>
+                                    <div class="col-md-12 pt-2">
                                         
-                                        <div class="form-group pt-2">
-                                            <label for="role" class="mx-1 small">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email"
-                                                placeholder="Email Address" value="<?php echo $result[0]->email ?>"
-                                                required>
-                                            <span id="email-message"></span>
-                                        </div>
-                                        <div class="form-group pt-2">
-                                            <label for="role" class="mx-1 small">Address</label>
-                                            <textarea class="form-control" id="address" name="address"
-                                                placeholder="Address"
-                                                required><?php echo $result[0]->address ?></textarea>
-                                        </div>
-                                        <div class="form-group pt-2 pb-4">
-                                            <label for="role" class="mx-1 small">Role</label>
-                                            <select class="form-control" id="role" name="role" required>
-                                                <option value="<?php echo $result[0]->role ?>"><?php echo $result[0]->role ?></option>
-                                                <option value="Employee">Employee</option>
-                                                <option value="Administrator">Administrator</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group text-center">
-                                            <div class="row justify-content-center">
-                                                <div class="form-group p-1 col-md-4">
-                                                    <button name="add" type="submit" class="btn btn-dark">Update Account</button>
+                                        <div class="px-lg-5">
+                                            <form method="post" id="registration-form">
+                                                <input name="ID" value="<?php echo $result[0]->ID ?>" type="hidden">
+                                                <div class="pt-3" id="alerts"></div>
+                                                <div class="form-group row justify-content-center">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="role" class="mx-1 small">First</label>
+                                                        <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $result[0]->firstName ?>" placeholder="First Name" required>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="role" class="mx-1 small">Last</label>
+                                                        <input type="text" class="form-control" id="lastName" name="lastName" value="<?php echo $result[0]->lastName ?>" placeholder="Last Name" required>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group p-1 col-md-4">
-                                                    <button name="add" type="submit" class="btn btn-dark">Change Password</button>
+                                                <div class="row">
+                                                    <div class="form-group pt-2 col-md-6">
+                                                        <label for="role" class="mx-1 small">Username</label>
+                                                        <input type="text" class="form-control" id="username" name="username" minlength="6" value="<?php echo $result[0]->username ?>" placeholder="Username" required readonly>
+                                                        <span id="username-message"></span>
+                                                    </div>
+
+                                                    <div class="form-group pt-2 col-md-6">
+                                                        <label for="role" class="mx-1 small">Mobile Number</label>
+                                                        <input type="tel" class="form-control" id="mobile" name="mobile" pattern="0\d{10}" placeholder="Mobile Number (eg.09123456789)" value="<?php echo $result[0]->mobile ?>" required>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            
+
+                                                <div class="form-group pt-2">
+                                                    <label for="role" class="mx-1 small">Email</label>
+                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="<?php echo $result[0]->email ?>" required readonly>
+                                                    <span id="email-message"></span>
+                                                </div>
+                                                <div class="form-group pt-2">
+                                                    <label for="role" class="mx-1 small">Address</label>
+                                                    <textarea class="form-control" id="address" name="address" placeholder="Address" required><?php echo $result[0]->address ?></textarea>
+                                                </div>
+                                                <div class="form-group pt-2 pb-4">
+                                                    <label for="role" class="mx-1 small">Role</label>
+                                                    <input type="role" class="form-control" id="role" name="role" placeholder="Role" value="<?php echo $result[0]->role ?>" required readonly>
+                                                </div>
+
+                                                <div class="form-group text-center">
+                                                    <div class="row justify-content-center">
+                                                        <div class="form-group p-1 col-md-4">
+                                                            <button name="update" type="submit" id="update" class="btn btn-dark">Update Account</button>
+                                                        </div>
+                                                        <div class="form-group p-1 col-md-4">
+                                                            <button name="add" type="button" class="btn btn-dark">Change Password</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </form>
                                         </div>
 
+                                    </div>
 
-                                    </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -178,7 +161,8 @@ $current_page = $_SERVER['PHP_SELF'];
 
 
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<?php $profile->edit_profile();?>
 <script>
 
     $('.open-btn').on('click', function () {
@@ -195,6 +179,50 @@ $current_page = $_SERVER['PHP_SELF'];
         }
     });
 
+    $(document).ready(function() {
+        var currentUrl = "<?php echo $current_page; ?>";
+        if (currentUrl.includes('/profile.php')) {
+            $('.nav-link[href="/langgamtrading/pages/profile.php"]').addClass('active');
+        }
+    });
+
+    function checkForChanges() {
+        var originalValues = {
+            firstName: "<?php echo $result[0]->firstName ?>",
+            lastName: "<?php echo $result[0]->lastName ?>",
+            mobile: "<?php echo $result[0]->mobile ?>",
+            address: "<?php echo $result[0]->address ?>",
+        };
+
+        var updatedValues = {
+            firstName: $("#firstName").val(),
+            lastName: $("#lastName").val(),
+            mobile: $("#mobile").val(),
+            address: $("#address").val(),
+        };
+
+        // Compare the current values with the original values
+        var hasChanges = false;
+        for (var key in updatedValues) {
+            if (updatedValues.hasOwnProperty(key) && updatedValues[key] !== originalValues[key]) {
+                hasChanges = true;
+                break;
+            }
+        }
+
+        // Enable or disable the "Update Account" button based on changes
+        if (hasChanges) {
+            $("#update").prop("disabled", false);
+        } else {
+            $("#update").prop("disabled", true);
+        }
+    }
+
+    // Attach the checkForChanges function to input fields' change events
+    $("#firstName, #lastName, #mobile, #address").on("change keyup paste", checkForChanges);
+
+    // Initially, disable the "Update Account" button
+    $("#update").prop("disabled", true);
 </script>
 
 </html>

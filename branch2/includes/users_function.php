@@ -90,34 +90,6 @@ class Users {
             $stmt = $pdo->prepare($sql);
             $stmt->execute(['uid' => $uid]);
 
-            if ($stmt->rowCount() !== false) {
-                echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'User removed successfully',
-                confirmButtonColor: '#3085d6',
-                customClass: {
-                    confirmButton: '#3085d6',
-                }
-            }).then(function() {
-                window.location.href = window.location.href;
-            });
-        </script>";
-            } else {
-                echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Unable to remove user',
-                    confirmButtonColor: '#3085d6',
-                    customClass: {
-                        confirmButton: '#3085d6',
-                    }
-                });
-            </script>";
-            }
-
         }
     }
 }

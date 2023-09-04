@@ -101,6 +101,7 @@ class Inventory{
     public function edit_product()
     {
         $store = new Langgam();
+        $users = new Users();
         if (isset($_POST['update'])) {
             $product_id = $_POST["product_id"] ?? '';
             $product_name = $_POST["product_name"];
@@ -111,7 +112,7 @@ class Inventory{
             $date_arrival = $_POST['date_arrival'];
             $supplier_id = $_POST['supplier_id'];
 
-            $ID = $store->getID();
+            $ID = $users->getID();
             $first_name = $ID[0]->firstName;
             $last_name = $ID[0]->lastName;
             $uid = $ID[0]->ID;
@@ -195,34 +196,6 @@ class Inventory{
             $sql = "DELETE FROM branch2_inventory where product_id =:product_id";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':product_id' => $product_id]);
-
-            if ($stmt->rowCount() !== false) {
-                echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'Product removed successfully',
-                confirmButtonColor: '#3085d6',
-                customClass: {
-                    confirmButton: '#3085d6',
-                }
-            }).then(function() {
-                window.location.href = window.location.href;
-            });
-        </script>";
-            } else {
-                echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Unable to remove product',
-                    confirmButtonColor: '#3085d6',
-                    customClass: {
-                        confirmButton: '#3085d6',
-                    }
-                });
-            </script>";
-            }
 
         }
     }

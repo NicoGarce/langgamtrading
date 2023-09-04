@@ -41,6 +41,12 @@ $(document).ready(function() {
           }
         },
       ],
+      columnDefs: [
+        {
+          targets: -1, // The last column
+          searchable: false, // Make the last column not searchable
+        },
+      ],
       language: {
         searchPlaceholder: "Search",
         search: "",

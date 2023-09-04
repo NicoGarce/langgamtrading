@@ -63,7 +63,7 @@ $inventory->delete_product();
 
                         <div class="card p-3 rounded-4">
                             <div class="table-responsive pt-2">
-                                <table id="table" class="table table-bordered table-striped">
+                                <table id="table" class="table table-bordered table-striped table-hover">
                                     <thead class="text-center">
                                         <tr>
                                             <th>Product Name</th>
@@ -72,13 +72,13 @@ $inventory->delete_product();
                                             <th class="d-none d-sm-table-cell" >Category</th>
                                             <th class="d-none d-sm-table-cell" >Date Ordered</th>
                                             <th class="d-none d-sm-table-cell" >Date Arrival</th>
-                                            <th>Options</th>
+                                            <th style="width: 50px;">Options</th>
                                         </tr>
                                     </thead>
                                     
                                     <?php 
                                         $inventory ->edit_product();
-                                        include('modals/prod_details.php')
+                                        include('modals/edit_product.php')
                                     ?>
                     
                                 </table>

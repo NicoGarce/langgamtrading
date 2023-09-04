@@ -22,7 +22,7 @@
                         <div class="form-group pt-2">
                             <select class="form-control" id="order_type" name="order_type" required title="Order Type">
                                 <option value="" disabled selected>-Order Type-</option>
-                                <option value="Standard">Standard</option>
+                                <option value="In-Store">In-Store</option>
                                 <option value="Delivery">Delivery</option>
                             </select>
                         </div>
@@ -48,13 +48,13 @@
                         <hr>
                         <div class="row gx-1 pb-4 px-3">
                             <div class="col-7">
-                                <h6 for="MOP" class="label small">Payment Method</h6>
+                                <h6 for="pay_method" class="label small">Payment Method</h6>
                                 <input type="text" class="form-control form-control-sm" id="pay_method" name="pay_method"
                                     placeholder="Enter Payment Method" title="Payment Method" required>
                             </div>
-                            <div class="col-5">
+                            <div class="col-5 ps-2">
                                 <h6 for="total_cost" class="label small">Total Cost</h6>
-                                <input type="text" class="form-control form-control-sm" id="total_cost" name="total_cost"
+                                <input type="text" class="form-control form-control-lg" id="total_cost" name="total_cost"
                                     placeholder="0.00" title="Total Cost" required readonly>
                             </div>
                             <div class="col-7 pt-1">
@@ -82,5 +82,5 @@
         </div>
     </div>
 </div>
-<?php ?>
+<script defer src ="modals/create_order.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
