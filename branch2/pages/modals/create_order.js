@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-        const response = await fetch('/langgamtrading/branch1/includes/order_function.php', {
+        const response = await fetch('/langgamtrading/branch2/includes/order_function.php', {
             method: 'POST',
             body: formData
 

@@ -1,6 +1,6 @@
 <tbody>
     <?php
-    $results = $orders->get_orders();
+    $results = $orders->get_voided();
 
     $cnt = 1;
     if (count($results) > 0) {
@@ -40,10 +40,10 @@
 
                 <td style="width: 50px;">
 
-                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#editOrder<?php echo $cnt ?>" title="Edit Order">
+                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#voided<?php echo $cnt ?>" title="Edit Order">
                     <i class='bx bx-info-circle'></i></button>
 
-                    <div class="modal fade" id="editOrder<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+                    <div class="modal fade" id="voided<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -201,10 +201,10 @@
 function generatePDF(order_id) {
     $.ajax({
         type: "POST",
-        url: "/langgamtrading/branch1/includes/generatePDF.php",
+        url: "/langgamtrading/branch2/includes/generatePDF.php",
         data: { order_id: order_id },
         success: function(data) {
-            window.open('/langgamtrading/branch1/includes/generatePDF.php?order_id=' + order_id, '_blank');
+            window.open('/langgamtrading/branch2/includes/generatePDF.php?order_id=' + order_id, '_blank');
         },
         error: function(xhr, status, error) {
             alert('An error occurred while generating the PDF: ' + error);

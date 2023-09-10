@@ -201,10 +201,10 @@
 function generatePDF(order_id) {
     $.ajax({
         type: "POST",
-        url: "/langgamtrading/branch1/includes/generatePDF.php",
+        url: "/langgamtrading/branch2/includes/generatePDF.php",
         data: { order_id: order_id },
         success: function(data) {
-            window.open('/langgamtrading/branch1/includes/generatePDF.php?order_id=' + order_id, '_blank');
+            window.open('/langgamtrading/branch2/includes/generatePDF.php?order_id=' + order_id, '_blank');
         },
         error: function(xhr, status, error) {
             alert('An error occurred while generating the PDF: ' + error);

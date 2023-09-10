@@ -5,7 +5,7 @@ require_once('../../includes/login_function.php');
 $login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
-    
+
     header('Location: /langgamtrading/index.php');
     exit();
 }
@@ -19,20 +19,25 @@ $inventory->delete_product();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory | Langgam Trading</title>
+    <title>Orders | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/custom.css">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/langgamtrading/css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="/langgamtrading/assets/js/datatables.1.13.5.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script defer src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script defer src="/langgamtrading/assets/js/custom.js"></script>
-    <script defer src="/langgamtrading/assets/js/datatables.min.js"></script>
-    <script defer src="/langgamtrading/assets/js/pdfmake.min.js"></script>
-    <script defer src="/langgamtrading/assets/js/vfs_fonts.js"></script>
+
+
+    <link rel="stylesheet" href="/langgamtrading/css/main.css">
+    <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.css" rel="stylesheet">
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script defer src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.js"></script>
+
     <style>
         .dataTables_wrapper .dataTables_filter input[type="search"] {
 
@@ -70,14 +75,14 @@ $inventory->delete_product();
                                         <th class="d-none d-sm-table-cell">Price</th>
                                         <th class="d-none d-sm-table-cell">Category</th>
                                         <th class="d-none d-sm-table-cell">Date Ordered</th>
-                                        <th class="d-none d-sm-table-cell" >Date Arrival</th>
+                                        <th class="d-none d-sm-table-cell">Date Arrival</th>
                                         <th style="width: 50px;">Options</th>
                                     </tr>
                                 </thead>
 
                                 <?php
-                                    $inventory->edit_product();
-                                    include('modals/edit_product.php')
+                                $inventory->edit_product();
+                                include('modals/edit_product.php')
                                 ?>
 
                             </table>
@@ -90,14 +95,14 @@ $inventory->delete_product();
     </div>
 </body>
 <script>
-    $('.open-btn').on('click', function () {
+    $('.open-btn').on('click', function() {
         $('.sidebar').addClass('active');
     });
-    $('.close-btn').on('click', function () {
+    $('.close-btn').on('click', function() {
         $('.sidebar').removeClass('active');
     });
 
-    $('.delete-btn').on('click', function () {
+    $('.delete-btn').on('click', function() {
         var product_id = $(this).data('id');
         Swal.fire({
             icon: 'warning',
@@ -122,7 +127,6 @@ $inventory->delete_product();
                         popup: 'swal2-show'
                     }
                 }).then(() => {
-                    // Redirect to acc_manage.php
                     window.location.href = 'inventory.php?delete=true&product_id=' + product_id;
 
                     window.location.href = 'inventory.php';

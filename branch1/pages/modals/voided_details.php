@@ -1,6 +1,6 @@
 <tbody>
     <?php
-    $results = $orders->get_orders();
+    $results = $orders->get_voided();
 
     $cnt = 1;
     if (count($results) > 0) {
@@ -37,13 +37,13 @@
                 <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->order_type); ?>
                 </td>
-
+                
                 <td style="width: 50px;">
 
-                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#editOrder<?php echo $cnt ?>" title="Edit Order">
+                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#voided<?php echo $cnt ?>" title="Edit Order">
                     <i class='bx bx-info-circle'></i></button>
 
-                    <div class="modal fade" id="editOrder<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+                    <div class="modal fade" id="voided<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -176,7 +176,6 @@
                                         <div class="modal-footer">
                                             <button type="button" id="invoice<?php echo $result->order_id ?>" onclick="generatePDF(<?php echo $result->order_id  ?>)" 
                                                 title="Print Invoice" class="btn btn-dark"><i class='bx bxs-printer'></i></button>
-                                            <button type="submit" name="update_order" id="updateStat<?php echo $result->order_id ?>" class="btn btn-dark">Update</button>
                                         </div>
                                     </form>
                                 </div>

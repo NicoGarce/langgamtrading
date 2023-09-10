@@ -1,6 +1,6 @@
 <tbody>
     <?php
-    $results = $orders->get_orders();
+    $results = $sales->get_sales();
 
     $cnt = 1;
     if (count($results) > 0) {
@@ -8,15 +8,17 @@
     ?>
             <tr>
                 <td class="text-center">
-                    <?php echo htmlentities($result->order_id); ?>
+                    <?php echo htmlentities($result->sale_id); ?>
                 </td>
 
                 <td class="d-none d-sm-table-cell">
-                    <?php echo htmlentities($result->order_date); ?>
+                    <?php echo htmlentities($result->date_complete); ?>
                 </td>
+
                 <td class="d-none d-sm-table-cell">
-                    <?php echo htmlentities($result->order_time); ?>
+                    <?php echo htmlentities($result->time_complete); ?>
                 </td>
+
                 <td class="text-center d-none d-sm-table-cell">
                     <?php echo htmlentities($result->pay_method); ?>
                 </td>
@@ -24,14 +26,6 @@
                 <td class="d-none d-sm-table-cell">
                     ₱
                     <?php echo htmlentities($result->total_cost); ?>
-                </td>
-
-                <td class="d-none d-sm-table-cell text-center">
-                    <?php echo htmlentities($result->order_status); ?>
-                </td>
-
-                <td class="d-none d-sm-table-cell text-center">
-                    <?php echo htmlentities($result->payment_status); ?>
                 </td>
 
                 <td class="d-none d-sm-table-cell">
@@ -47,19 +41,20 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="labelEdit">Order <?php echo $result->order_id ?> | Details</h5>
+                                    <h5 class="modal-title" id="labelEdit">Sale <?php echo $result->sale_id ?> | Details</h5>
                                     <button type="button" id="headClose<?php echo $cnt ?>" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="post" id="edit-reg-form<?php echo $result->order_id ?>">
+                                    <form method="post" id="edit-reg-form<?php echo $result->sale_id ?>">
 
-                                        <input id ="ID" name="ID" value="<?php echo $result->order_id ?>" type="hidden">
-
+                                        <input id ="ID" name="ID" value="<?php echo $result->sale_id ?>" type="hidden">
+                                        
                                         <div class="form-group pt-2">
                                             <label for="customer_name" class="label small">Customer Name</label>
                                             <input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="Customer Name" 
-                                            value="<?php echo $result->customer_name ?>" title="Customer Name" required readonly>
+                                                value="<?php echo $result->customer_name ?>" title="Customer Name" required readonly>
                                         </div>
+                                        
                                         <div class="form-group pt-2">
                                             <label for="contact_info" class="label small">Contact Information</label>
                                             <input class="form-control" id="contact_info" name="contact_info" placeholder="Contact Information"
@@ -86,7 +81,7 @@
 
                                         <hr>
                                         <div class="container-fluid table-responsive">
-                                            <table class="table table-striped table-bordered" id="orderTable<?php echo $order_id ?>">
+                                            <table class="table table-striped table-bordered" id="orderTable<?php echo $sale_id ?>">
                                                 <tr>
                                                     <th class="text-center" colspan="3">
                                                         <div class="d-flex justify-content-between align-items-center">
@@ -109,7 +104,7 @@
                                                 </tr>
                                                 <tr>
                                                     <?php 
-                                                    $order_id = $result->order_id;
+                                                    $sale_id = $result->sale_id;
                                                     $list = json_decode($result->order_list);
                                                     foreach ($list as $orderItem) {
                                                         ?>
@@ -142,41 +137,20 @@
 
                                         <div class="row gx-1 pb-4 px-3">
                                             <div class="col pt-1">
-                                                <label for="pay_status" class="label small fw-bold">Update Payment Status</label>
-                                                <select class="form-control" id="pay_status" name="pay_status" required title="Payment Status">
-                                                    <?php
-                                                        $databaseValue = $result->payment_status; 
-
-                                                        $options = array("Pending", "Paid", "Partial");
-                                                        
-                                                        foreach ($options as $option) {
-                                                            $selected = ($option === $databaseValue) ? "selected" : "";
-                                                            echo '<option value="' . $option . '" ' . $selected . '>' . $option . '</option>';
-                                                        }
-                                                    ?>
-                                                </select>
+                                                <label for="pay_status" class="label small">Payment Status</label>
+                                                <input type="text" class="form-control" id="payment_status" name="payment_status"
+                                                 value="<?php echo $result->payment_status ?>" title="Payment Status" required readonly>
                                             </div>
                                             <div class="col pt-1">
-                                                <label for="order_status" class="label small fw-bold">Update Order Status</label>
-                                                <select class="form-control" id="order_status" name="order_status" required title="Order Status">
-                                                    <?php
-                                                        $databaseValue = $result->order_status; 
-
-                                                        $options = array("In Fullfillment", "Complete", "Cancelled", "Returned", "Refunded");
-                                                        
-                                                        foreach ($options as $option) {
-                                                            $selected = ($option === $databaseValue) ? "selected" : "";
-                                                            echo '<option value="' . $option . '" ' . $selected . '>' . $option . '</option>';
-                                                        }
-                                                    ?>
-                                                </select>
+                                                <label for="order_status" class="label small">Order Status</label>
+                                                <input type="text" class="form-control" id="order_status" name="order_status"
+                                                 value="<?php echo $result->order_status ?>" title="Order Status" required readonly>
                                             </div>
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="button" id="invoice<?php echo $result->order_id ?>" onclick="generatePDF(<?php echo $result->order_id  ?>)" 
+                                            <button type="button" id="invoice<?php echo $result->sale_id ?>" onclick="generatePDF(<?php echo $result->sale_id  ?>)" 
                                                 title="Print Invoice" class="btn btn-dark"><i class='bx bxs-printer'></i></button>
-                                            <button type="submit" name="update_order" id="updateStat<?php echo $result->order_id ?>" class="btn btn-dark">Update</button>
                                         </div>
                                     </form>
                                 </div>
@@ -184,7 +158,7 @@
                         </div>
                     </div>
 
-                    <button data-id="<?php echo $result->order_id ?>" type="button" name="delete" class="btn btn-danger btn-sm delete-btn delete"><i class='bx bx-trash' title="Delete Product"></i></button>
+                    <button data-id="<?php echo $result->sale_id ?>" type="button" name="delete" class="btn btn-danger btn-sm delete-btn delete"><i class='bx bx-trash' title="Delete Product"></i></button>
                 </td>
             </tr>
             
@@ -196,15 +170,14 @@
 </tbody>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
-function generatePDF(order_id) {
+function generatePDF(sale_id) {
     $.ajax({
         type: "POST",
-        url: "/langgamtrading/branch1/includes/generatePDF.php",
-        data: { order_id: order_id },
+        url: "/langgamtrading/branch2/includes/salesPDF.php",
+        data: { sale_id: sale_id },
         success: function(data) {
-            window.open('/langgamtrading/branch1/includes/generatePDF.php?order_id=' + order_id, '_blank');
+            window.open('/langgamtrading/branch2/includes/salesPDF.php?sale_id=' + sale_id, '_blank');
         },
         error: function(xhr, status, error) {
             alert('An error occurred while generating the PDF: ' + error);
@@ -212,4 +185,3 @@ function generatePDF(order_id) {
     });
 }
 </script>
-

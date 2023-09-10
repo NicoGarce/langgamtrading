@@ -198,10 +198,9 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
           // Send AJAX requests to check the availability of each attribute
           const isUsernameAvailable = await checkAvailability('/langgamtrading/includes/check_username.php', `username=${username}`, usernameMessage);
           const isEmailAvailable = await checkAvailability('/langgamtrading/includes/check_email.php', `email=${email}`, emailMessage);
-          const isMobileAvailable = await checkAvailability('/langgamtrading/includes/check_mobile.php', `mobile=${mobile}`, mobileMessage);
 
           // If any of the attributes is not available, display a SweetAlert message
-          if (!isUsernameAvailable || !isEmailAvailable || !isMobileAvailable) {
+          if (!isUsernameAvailable || !isEmailAvailable) {
             showAlert('danger', 'Some attributes are already in use.');
           } else {
             // If all attributes are available and passwords match, submit the form
@@ -279,15 +278,6 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
           await checkAvailability('/langgamtrading/includes/check_email.php', `email=${email}`, emailMessage);
         } else {
           emailMessage.innerHTML = '';
-        }
-      });
-
-      mobileInput.addEventListener('input', async () => {
-        const mobile = mobileInput.value.trim();
-        if (mobile.length >= 3) {
-          await checkAvailability('/langgamtrading/includes/check_mobile.php', `mobile=${mobile}`, mobileMessage);
-        } else {
-          mobileMessage.innerHTML = '';
         }
       });
 

@@ -75,10 +75,10 @@ if ($current_page === "admin_dashboard.php" || $current_page === "sales.php" || 
                 </li>
 
                 <li class="nav-item logout">
-                    <a class="nav-link active logout-icon" title="Logout" aria-current="page" href="/langgamtrading/includes/logout.php">
+                    <a class="nav-link active logout-icon" title="Logout" aria-current="page" href="/langgamtrading/includes/logout_b1.php">
                         <i class='bx bx-log-out-circle'></i>
                     </a>
-                    <a class="nav-link active logout-text" aria-current="page" href="/langgamtrading/includes/logout.php">Logout</a>
+                    <a class="nav-link active logout-text" aria-current="page" href="/langgamtrading/includes/logout_b1.php">Logout</a>
                 </li>
             </ul>
         </div>

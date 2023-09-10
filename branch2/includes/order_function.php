@@ -21,7 +21,7 @@ if (isset($_POST['create_order'])) {
     $pdo = $store->openConnection();
 
     if ($order_status === "Complete") {
-        $sqlSales = "INSERT INTO branch1_sales (
+        $sqlSales = "INSERT INTO branch2_sales (
                         customer_name, 
                         contact_info, 
                         order_type, 
@@ -71,7 +71,7 @@ if (isset($_POST['create_order'])) {
                 $product_name = $item["product_name"];
                 $quantity_ordered = $item["quantity"];
         
-                $sqlUpdateStock = "UPDATE branch1_inventory SET stock = stock - :quantity_ordered WHERE product_name = :product_name";
+                $sqlUpdateStock = "UPDATE branch2_inventory SET stock = stock - :quantity_ordered WHERE product_name = :product_name";
         
                 $stmtUpdateStock = $pdo->prepare($sqlUpdateStock);
                 $stmtUpdateStock->execute([
@@ -87,7 +87,7 @@ if (isset($_POST['create_order'])) {
     }
     
     else {
-                $sql = "INSERT INTO branch1_orders (
+                $sql = "INSERT INTO branch2_orders (
                     customer_name, 
                     contact_info, 
                     order_type, 
@@ -134,12 +134,12 @@ if (isset($_POST['create_order'])) {
         if ($stmt->rowCount() > 0) {
             $message = "Order added successfully.";
 
-            // Decrease stock in branch1_inventory for each item in the order
+            // Decrease stock in branch2_inventory for each item in the order
             foreach ($orderList as $item) {
                 $product_name = $item["product_name"];
                 $quantity_ordered = $item["quantity"];
 
-                $sqlUpdateStock = "UPDATE branch1_inventory SET stock = stock - :quantity_ordered WHERE product_name = :product_name";
+                $sqlUpdateStock = "UPDATE branch2_inventory SET stock = stock - :quantity_ordered WHERE product_name = :product_name";
 
                 $stmtUpdateStock = $pdo->prepare($sqlUpdateStock);
                 $stmtUpdateStock->execute([

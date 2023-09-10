@@ -6,7 +6,7 @@ class Orders
     {
         $store = new Langgam();
         $conn = $store->openConnection();
-        $stmt = $conn->prepare("SELECT * FROM branch1_orders WHERE order_status NOT IN ('Cancelled', 'Returned', 'Refunded')");
+        $stmt = $conn->prepare("SELECT * FROM branch2_orders WHERE order_status NOT IN ('Cancelled', 'Returned', 'Refunded')");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -36,7 +36,7 @@ class Orders
     {
         $store = new Langgam();
         $conn = $store->openConnection();
-        $stmt = $conn->prepare("SELECT * FROM branch1_orders WHERE order_status IN ('Cancelled', 'Returned', 'Refunded')");
+        $stmt = $conn->prepare("SELECT * FROM branch2_orders WHERE order_status IN ('Cancelled', 'Returned', 'Refunded')");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -66,7 +66,7 @@ class Orders
     {
         $store = new Langgam();
         $conn = $store->openConnection();
-        $stmt = $conn->prepare("SELECT * FROM branch1_orders WHERE order_id = :order_id");
+        $stmt = $conn->prepare("SELECT * FROM branch2_orders WHERE order_id = :order_id");
         $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_OBJ);
@@ -97,8 +97,7 @@ class Orders
         $store = new Langgam();
         $conn = $store->openConnection();
 
-        // Fetch the order from branch1_orders
-        $stmt = $conn->prepare("SELECT * FROM branch1_orders WHERE order_id = :order_id");
+        $stmt = $conn->prepare("SELECT * FROM branch2_orders WHERE order_id = :order_id");
         $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
         $stmt->execute();
         $order = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -109,8 +108,8 @@ class Orders
         }
 
         $update_ord_stat = $_POST["order_status"] ?? '';
-        // Insert the order into branch1_sales
-        $stmt = $conn->prepare("INSERT INTO branch1_sales (customer_name, order_date, order_time, contact_info, order_type, shipping_details, salesperson, order_list, pay_method, total_cost, order_status, payment_status)
+        
+        $stmt = $conn->prepare("INSERT INTO branch2_sales (customer_name, order_date, order_time, contact_info, order_type, shipping_details, salesperson, order_list, pay_method, total_cost, order_status, payment_status)
                         VALUES ( :customer_name, :order_date, :order_time, :contact_info, :order_type, :shipping_details, :salesperson, :order_list, :pay_method, :total_cost, :order_status, :payment_status)");
         $stmt->execute([
             ':customer_name' => $order['customer_name'],
@@ -129,8 +128,8 @@ class Orders
 
         // Check if the insertion was successful
         if ($stmt->rowCount() > 0) {
-            // Delete the order from branch1_orders
-            $stmt = $conn->prepare("DELETE FROM branch1_orders WHERE order_id = :order_id");
+            
+            $stmt = $conn->prepare("DELETE FROM branch2_orders WHERE order_id = :order_id");
             $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
             $stmt->execute();
 
@@ -208,6 +207,7 @@ class Orders
                     return;
                 }
 
+                // Iterate through the products in the order list
                 $order_list = json_decode($order->order_list);
                 if ($order_list) {
                     foreach ($order_list as $orderItem) {
@@ -215,24 +215,25 @@ class Orders
                         $quantity = $orderItem->quantity;
 
                         // Retrieve the current stock quantity for the product
-                        $stmtSelect = $conn->prepare("SELECT stock FROM branch1_inventory WHERE product_name = :product_name");
-                        $stmtSelect->bindParam(':product_name', $product_name, PDO::PARAM_STR);
-                        $stmtSelect->execute();
-                        $current_stock = $stmtSelect->fetchColumn();
+                        $stmt = $conn->prepare("SELECT stock FROM branch2_inventory WHERE product_name = :product_name");
+                        $stmt->bindParam(':product_name', $product_name, PDO::PARAM_STR);
+                        $stmt->execute();
+                        $current_stock = $stmt->fetchColumn();
 
                         if ($current_stock !== false) {
-                            
-                            $stmtUpdate = $conn->prepare("UPDATE branch1_inventory SET stock = stock + :quantity WHERE product_name = :product_name");
-                            $stmtUpdate->bindParam(':quantity', $quantity, PDO::PARAM_INT);
-                            $stmtUpdate->bindParam(':product_name', $product_name, PDO::PARAM_STR);
-                            $stmtUpdate->execute();
+                            // Calculate the new stock quantity after adding back the ordered quantity
+                            $void_stock = $current_stock + $quantity;
+
+                            $stmt = $conn->prepare("UPDATE branch2_inventory SET stock = :void_stock WHERE product_name = :product_name");
+                            $stmt->bindParam(':void_stock', $void_stock, PDO::PARAM_INT);
+                            $stmt->bindParam(':product_name', $product_name, PDO::PARAM_STR);
+                            $stmt->execute();
                         }
                     }
                 }
 
-
                 // Update the order status and payment status
-                $sql = "UPDATE branch1_orders SET payment_status = :payment_status, order_status = :order_status WHERE order_id = :order_id";
+                $sql = "UPDATE branch2_orders SET payment_status = :payment_status, order_status = :order_status WHERE order_id = :order_id";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([
                     'order_id' => $order_id,
@@ -271,7 +272,7 @@ class Orders
                 }
             }
             else{
-                $sql = "UPDATE branch1_orders SET payment_status = :payment_status, order_status = :order_status WHERE order_id = :order_id";
+                $sql = "UPDATE branch2_orders SET payment_status = :payment_status, order_status = :order_status WHERE order_id = :order_id";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([
                     'order_id' => $order_id,
@@ -322,7 +323,7 @@ class Orders
             $order_id = $_GET['order_id'] ?? '';
 
             $pdo = $store->openConnection();
-            $sql = "DELETE FROM branch1_orders where order_id =:order_id";
+            $sql = "DELETE FROM branch2_orders where order_id =:order_id";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':order_id' => $order_id]);
         }
