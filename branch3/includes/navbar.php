@@ -16,6 +16,9 @@ if ($current_page === "inventory.php") {
 if ($current_page === "orders.php") {
     $navbar_brand = "ORDERS";
 }
+if ($current_page === "voided.php") {
+    $navbar_brand = "VOIDED";
+}
 
 if ($current_page === "sales.php") {
     $navbar_brand = "SALES";
