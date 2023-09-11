@@ -66,18 +66,9 @@ $orders->delete_order();
                     </div>
 
                     <div class="container-fluid card p-3 rounded-4">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="tab1" data-bs-toggle="tab" data-bs-target="#table1Container">Orders</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="tab2" data-bs-toggle="tab" data-bs-target="#table2Container">Voided</a>
-                            </li>
-                        </ul>
-
-                        <div class="tab-content" id="tabs-content">
-                            <div class="table-responsive pt-2 tab-pane fade show active" id="table1Container" role="tabpanel" aria-labelledby="tab1">
-                                <table id="table1" class="table table-bordered table-striped table-hover">
+                        
+                            <div class="table-responsive pt-2">
+                                <table id="table" class="table table-bordered table-striped table-hover">
                                     <thead class="text-center">
                                         <tr>
                                             <th>Order ID</th>
@@ -99,27 +90,7 @@ $orders->delete_order();
                                     ?> 
                                 </table>
                             </div>
-                            <div class="table-responsive pt-2 tab-pane fade" id="table2Container" role="tabpanel" aria-labelledby="tab2">
-                                <table id="table2" class="table table-bordered table-striped table-hover">
-                                    <thead class="text-center">
-                                        <tr>
-                                            <th>Order ID</th>
-                                            <th class="d-none d-sm-table-cell">Date</th>
-                                            <th class="d-none d-sm-table-cell">Time</th>
-                                            <th class="d-none d-sm-table-cell">Payment Method</th>
-                                            <th class="d-none d-sm-table-cell">Total</th>
-                                            <th class="d-none d-sm-table-cell">Order Status</th>
-                                            <th class="d-none d-sm-table-cell">Payment Status</th>
-                                            <th class="d-none d-sm-table-cell">Type</th>
-                                            <th>Options</th>
-                                        </tr>
-                                    </thead>
-                                    <?php
-                                        include('modals/voided_details.php')
-                                    ?> 
-                                </table>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -17,6 +17,9 @@
                 <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->order_time); ?>
                 </td>
+                <td class="d-none d-sm-table-cell text-center">
+                    <?php echo htmlentities($result->order_status); ?>
+                </td>
                 <td class="text-center d-none d-sm-table-cell">
                     <?php echo htmlentities($result->pay_method); ?>
                 </td>
@@ -26,18 +29,6 @@
                     <?php echo htmlentities($result->total_cost); ?>
                 </td>
 
-                <td class="d-none d-sm-table-cell text-center">
-                    <?php echo htmlentities($result->order_status); ?>
-                </td>
-
-                <td class="d-none d-sm-table-cell text-center">
-                    <?php echo htmlentities($result->payment_status); ?>
-                </td>
-
-                <td class="d-none d-sm-table-cell">
-                    <?php echo htmlentities($result->order_type); ?>
-                </td>
-                
                 <td style="width: 50px;">
 
                     <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#voided<?php echo $cnt ?>" title="Edit Order">

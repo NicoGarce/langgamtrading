@@ -17,6 +17,10 @@
                 <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->order_time); ?>
                 </td>
+
+                <td class="d-none d-sm-table-cell text-center">
+                    <?php echo htmlentities($result->order_status); ?>
+                </td>
                 <td class="text-center d-none d-sm-table-cell">
                     <?php echo htmlentities($result->pay_method); ?>
                 </td>
@@ -24,18 +28,6 @@
                 <td class="d-none d-sm-table-cell">
                     ₱
                     <?php echo htmlentities($result->total_cost); ?>
-                </td>
-
-                <td class="d-none d-sm-table-cell text-center">
-                    <?php echo htmlentities($result->order_status); ?>
-                </td>
-
-                <td class="d-none d-sm-table-cell text-center">
-                    <?php echo htmlentities($result->payment_status); ?>
-                </td>
-
-                <td class="d-none d-sm-table-cell">
-                    <?php echo htmlentities($result->order_type); ?>
                 </td>
 
                 <td style="width: 50px;">
