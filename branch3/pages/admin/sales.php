@@ -15,6 +15,14 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
     exit();
 }
 
+if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
+    header('Location: /langgamtrading/branch1/pages/admin/sales.php');
+    exit();
+}elseif(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
+    header('Location: /langgamtrading/branch2/pages/admin/sales.php');
+    exit();
+}
+
 $sales->delete_sale();
 
 ?>

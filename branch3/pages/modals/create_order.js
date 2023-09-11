@@ -153,8 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
     orderStatusSelect.addEventListener("change", () => {
         if (orderStatusSelect.value === "Complete") {
             paymentStatusSelect.value = "Paid";
-        } else {
-            paymentStatusSelect.value = ""; // Reset payment status if order status changes
         }
     });
     registrationForm.addEventListener('submit', async (event) => {

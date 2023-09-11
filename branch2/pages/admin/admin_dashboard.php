@@ -14,7 +14,16 @@ if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
     exit();
 }
 
+if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
+    header('Location: /langgamtrading/branch1/pages/admin/admin_dashboard.php');
+    exit();
+}elseif(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
+    header('Location: /langgamtrading/branch3/pages/admin/admin_dashboard.php');
+    exit();
+}
+
 $inv_row = $dash->inv_row();
+$sale_row = $dash->sale_row();
 $ord_row = $dash->ord_row();
 $acc_row = $dash->acc_row();
 ?>
@@ -48,9 +57,9 @@ $acc_row = $dash->acc_row();
                 <div class="row">
                     <div class="col-lg-8 col-md-7 pb-2">
                         <div class="card rounded-4 p-1">
-                            <div class="row">
+                        <div class="row">
                                 <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='../inventory.php'" title="Inventory">
+                                    <div class="btn dashbtn p-0" onclick="window.location.href='../inventory.php'" title="Inventory Count">
                                         <div class="card-body d-flex">
                                             <div class="d-flex flex-column flex-grow-1">
                                                 <h2 class="card-title">
@@ -64,28 +73,28 @@ $acc_row = $dash->acc_row();
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='../inventory.php'" title="Inventory">
+                                    <div class="btn dashbtn p-0" onclick="window.location.href='sales.php'" title="Sales Count">
                                         <div class="card-body d-flex">
                                             <div class="d-flex flex-column flex-grow-1">
                                                 <h2 class="card-title">
                                                     <i class='bx bx-line-chart fs-4'></i>
-                                                    <?php echo $inv_row; ?>
+                                                    <?php echo $sale_row; ?>
                                                 </h2>
-                                                <p class="card-text">Inventory</p>
+                                                <p class="card-text">Sales</p>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='../orders.php'" title="Inventory">
+                                    <div class="btn dashbtn p-0" onclick="window.location.href='../orders.php'" title="Order Count">
                                         <div class="card-body d-flex">
                                             <div class="d-flex flex-column flex-grow-1">
                                                 <h2 class="card-title">
                                                     <i class='bx bx-list-ul fs-4'></i>
                                                     <?php echo $ord_row; ?>
                                                 </h2>
-                                                <p class="card-text">Inventory</p>
+                                                <p class="card-text">Orders</p>
                                             </div>
 
 
@@ -93,7 +102,7 @@ $acc_row = $dash->acc_row();
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='../acc_manage.php'" title="Inventory">
+                                    <div class="btn dashbtn p-0" onclick="window.location.href='acc_manage.php'" title="Accounts Count">
                                         <div class="card-body d-flex">
                                             <div class="d-flex flex-column flex-grow-1">
                                                 <h2 class="card-title">

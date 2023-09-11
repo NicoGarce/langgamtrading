@@ -15,7 +15,9 @@ $(document).ready(function () {
     addButton =
       '<div class="mb-1"><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addOrder"><i class="bx bx-plus"></i> Create Order</button></div>';
   }
-
+  if (!window.location.pathname.includes("admin_dashboard.php")) {
+    initializeDataTable();
+  }
   function initializeDataTable() {
     var windowLocation = window.location.pathname; // Get the current window location
     var enableOrdering =
@@ -80,11 +82,6 @@ $(document).ready(function () {
       }
       table.buttons().container().appendTo("#table_wrapper .col-md-6:eq(0)");
       $(".page-link.active, .active > .page-link").css("z-index", "0");
-  }
-
-  // Initialize DataTables on page load
-  if (!window.location.pathname.includes("admin_dashboard.php")) {
-    initializeDataTable();
   }
 });
 

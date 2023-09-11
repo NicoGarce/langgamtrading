@@ -14,6 +14,13 @@ if(isset($_SESSION['access']) && $_SESSION['access'] == 'Administrator') {
     exit();
 }
 
+if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
+    header('Location: /langgamtrading/branch2/pages/employee/emp_dashboard.php');
+    exit();
+}elseif(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
+    header('Location: /langgamtrading/branch3/pages/employee/emp_dashboard.php');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -10,6 +10,14 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     exit();
 }
 
+if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
+    header('Location: /langgamtrading/branch1/pages/inventory.php');
+    exit();
+}elseif(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
+    header('Location: /langgamtrading/branch2/pages/inventory.php');
+    exit();
+}
+
 $inventory->delete_product();
 
 ?>

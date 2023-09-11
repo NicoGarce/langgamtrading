@@ -9,6 +9,15 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     header('Location: /langgamtrading/index.php');
     exit();
 }
+
+if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
+    header('Location: /langgamtrading/branch2/pages/profile.php');
+    exit();
+}elseif(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
+    header('Location: /langgamtrading/branch3/pages/profile.php');
+    exit();
+}
+
 $current_page = $_SERVER['PHP_SELF'];
 ?>
 <!DOCTYPE html>

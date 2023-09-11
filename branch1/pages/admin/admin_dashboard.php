@@ -7,14 +7,23 @@ $login->login();
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     header('Location: /langgamtrading/index.php');
     exit();
-}   
+}
 
 if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
     header('Location: /langgamtrading/branch1/pages/employee/emp_dashboard.php');
     exit();
 }
 
+if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
+    header('Location: /langgamtrading/branch2/pages/admin/admin_dashboard.php');
+    exit();
+}elseif(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
+    header('Location: /langgamtrading/branch3/pages/admin/admin_dashboard.php');
+    exit();
+}
+
 $inv_row = $dash->inv_row();
+$sale_row = $dash->sale_row();
 $ord_row = $dash->ord_row();
 $acc_row = $dash->acc_row();
 ?>
@@ -35,7 +44,7 @@ $acc_row = $dash->acc_row();
 
 <body id="body" class="bg-light">
     <div class="main-container d-flex">
-        <div class="sidebar pt-2 pb-3"> 
+        <div class="sidebar pt-2 pb-3">
             <?php include("../../includes/admin_sidebar.php") ?>
         </div>
         <div class="content">
@@ -46,8 +55,7 @@ $acc_row = $dash->acc_row();
                         <div class="card rounded-4 p-1">
                             <div class="row">
                                 <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='../inventory.php'"
-                                        title="Inventory Count">
+                                    <div class="btn dashbtn p-0" onclick="window.location.href='../inventory.php'" title="Inventory Count">
                                         <div class="card-body d-flex">
                                             <div class="d-flex flex-column flex-grow-1">
                                                 <h2 class="card-title">
@@ -61,23 +69,21 @@ $acc_row = $dash->acc_row();
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='../inventory.php'"
-                                        title="Inventory">
+                                    <div class="btn dashbtn p-0" onclick="window.location.href='sales.php'" title="Sales Count">
                                         <div class="card-body d-flex">
                                             <div class="d-flex flex-column flex-grow-1">
                                                 <h2 class="card-title">
                                                     <i class='bx bx-line-chart fs-4'></i>
-                                                    <?php echo $inv_row; ?>
+                                                    <?php echo $sale_row; ?>
                                                 </h2>
-                                                <p class="card-text">Inventory</p>
+                                                <p class="card-text">Sales</p>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='../orders.php'"
-                                        title="Order Count">
+                                    <div class="btn dashbtn p-0" onclick="window.location.href='../orders.php'" title="Order Count">
                                         <div class="card-body d-flex">
                                             <div class="d-flex flex-column flex-grow-1">
                                                 <h2 class="card-title">
@@ -92,8 +98,7 @@ $acc_row = $dash->acc_row();
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='acc_manage.php'"
-                                        title="Accounts Count">
+                                    <div class="btn dashbtn p-0" onclick="window.location.href='acc_manage.php'" title="Accounts Count">
                                         <div class="card-body d-flex">
                                             <div class="d-flex flex-column flex-grow-1">
                                                 <h2 class="card-title">
@@ -102,15 +107,17 @@ $acc_row = $dash->acc_row();
                                                 </h2>
                                                 <p class="card-text">Accounts</p>
                                             </div>
-                        
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class=""><h1>GRAPH CONTENT</h1></div>
+                        <div class="pt-2">
+                            <?php include('graphs.php')?>
+                        </div>
                     </div>
-                    
+
                     <div class="col-lg-4 col-md-5 pb-2">
                         <div class="card rounded-4">
 
@@ -169,7 +176,7 @@ $acc_row = $dash->acc_row();
                                     bulk of the card's content.</p>
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -181,10 +188,10 @@ $acc_row = $dash->acc_row();
         </div>
 </body>
 <script>
-    $('.open-btn').on('click', function () {
+    $('.open-btn').on('click', function() {
         $('.sidebar').addClass('active');
     });
-    $('.close-btn').on('click', function () {
+    $('.close-btn').on('click', function() {
         $('.sidebar').removeClass('active');
     });
 </script>

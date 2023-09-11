@@ -32,6 +32,7 @@ class Login
                     $name = $user['firstName'] . ' ' . $user['lastName'];
                     $username = $user['username'];
                     $role = $user['role'];
+                    $userBranch = $user['branch'];
 
                     $user_agent = $_SERVER['HTTP_USER_AGENT'];
                     $browser_info = get_browser($user_agent, true);
@@ -108,12 +109,14 @@ class Login
                         if ($_SESSION['role'] == "Administrator") {
                             $_SESSION['m_un'] = $username;
                             $_SESSION['access'] = $role;
+                            $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
                             header("Location: branch1/pages/admin/admin_dashboard.php");
                             exit;
                         } else if ($_SESSION['role'] == "Employee") {
                             $_SESSION['m_un'] = $username;
                             $_SESSION['access'] = $role;
+                            $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
                             header("Location: branch1/pages/employee/emp_dashboard.php");
                             exit;
@@ -144,6 +147,7 @@ class Login
                     $name = $user['firstName'] . ' ' . $user['lastName'];
                     $username = $user['username'];
                     $role = $user['role'];
+                    $userBranch = $user['branch'];
 
                     $user_agent = $_SERVER['HTTP_USER_AGENT'];
                     $browser_info = get_browser($user_agent, true);
@@ -217,12 +221,14 @@ class Login
                         if ($_SESSION['role'] == "Administrator") {
                             $_SESSION['m_un'] = $username;
                             $_SESSION['access'] = $role;
+                            $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
                             header("Location: branch2/pages/admin/admin_dashboard.php");
                             exit;
                         } else if ($_SESSION['role'] == "Employee") {
                             $_SESSION['m_un'] = $username;
                             $_SESSION['access'] = $role;
+                            $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
                             header("Location: branch2/pages/employee/emp_dashboard.php");
                             exit;
@@ -253,6 +259,7 @@ class Login
                     $name = $user['firstName'] . ' ' . $user['lastName'];
                     $username = $user['username'];
                     $role = $user['role'];
+                    $userBranch = $user['branch'];
 
                     $user_agent = $_SERVER['HTTP_USER_AGENT'];
                     $browser_info = get_browser($user_agent, true);
@@ -326,12 +333,14 @@ class Login
                         if ($_SESSION['role'] == "Administrator") {
                             $_SESSION['m_un'] = $username;
                             $_SESSION['access'] = $role;
+                            $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
                             header("Location: branch3/pages/admin/admin_dashboard.php");
                             exit;
                         } else if ($_SESSION['role'] == "Employee") {
                             $_SESSION['m_un'] = $username;
                             $_SESSION['access'] = $role;
+                            $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
                             header("Location: branch3/pages/employee/emp_dashboard.php");
                             exit;

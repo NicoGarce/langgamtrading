@@ -11,6 +11,14 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     exit();
 }
 
+if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
+    header('Location: /langgamtrading/branch1/pages/voided.php');
+    exit();
+}elseif(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
+    header('Location: /langgamtrading/branch3/pages/voided.php');
+    exit();
+}
+
 $orders->delete_order();
 ?>
 <!DOCTYPE html>
