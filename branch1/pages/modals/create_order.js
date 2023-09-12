@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const quantityInput = newRow.querySelector("#quantity");
     const priceInput = newRow.querySelector("#price");
     const stockSpan = newRow.querySelector("#stockSpan");
-
+    
     chooseProductSelect.addEventListener("change", () => {
       const selectedOption =
         chooseProductSelect.options[chooseProductSelect.selectedIndex];
