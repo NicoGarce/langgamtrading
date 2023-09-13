@@ -134,34 +134,14 @@
 
                                         <div class="row gx-1 pb-4 px-3">
                                             <div class="col pt-1">
-                                                <label for="pay_status" class="label small fw-bold">Update Payment Status</label>
-                                                <select class="form-control" id="pay_status" name="pay_status" required title="Payment Status">
-                                                    <?php
-                                                        $databaseValue = $result->payment_status; 
-
-                                                        $options = array("Pending", "Paid", "Partial");
-                                                        
-                                                        foreach ($options as $option) {
-                                                            $selected = ($option === $databaseValue) ? "selected" : "";
-                                                            echo '<option value="' . $option . '" ' . $selected . '>' . $option . '</option>';
-                                                        }
-                                                    ?>
-                                                </select>
+                                                <label for="pay_status" class="label small">Payment Status</label>
+                                                <input type="text" class="form-control" id="payment_status" name="payment_status"
+                                                 value="<?php echo $result->payment_status ?>" title="Payment Status" required readonly>
                                             </div>
                                             <div class="col pt-1">
-                                                <label for="order_status" class="label small fw-bold">Update Order Status</label>
-                                                <select class="form-control" id="order_status" name="order_status" required title="Order Status">
-                                                    <?php
-                                                        $databaseValue = $result->order_status; 
-
-                                                        $options = array("In Fullfillment", "Complete", "Cancelled", "Returned", "Refunded");
-                                                        
-                                                        foreach ($options as $option) {
-                                                            $selected = ($option === $databaseValue) ? "selected" : "";
-                                                            echo '<option value="' . $option . '" ' . $selected . '>' . $option . '</option>';
-                                                        }
-                                                    ?>
-                                                </select>
+                                                <label for="order_status" class="label small">Order Status</label>
+                                                <input type="text" class="form-control" id="order_status" name="order_status"
+                                                 value="<?php echo $result->order_status ?>" title="Order Status" required readonly>
                                             </div>
                                         </div>
 

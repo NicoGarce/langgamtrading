@@ -6,29 +6,29 @@
     if (count($results) > 0) {
         foreach ($results as $result) {
             ?>
-            <tr>
-                <td>
+            <tr class="<?php if ($result->stock == 0) echo 'bg-danger bg-gradient'; ?>">
+                <td class="<?php if ($result->stock == 0) echo 'text-light'; ?>">
                     <?php echo htmlentities($result->product_name); ?>
                 </td>
 
-                <td class="text-center d-none d-sm-table-cell">
+                <td class="text-center d-none d-sm-table-cell <?php if ($result->stock == 0) echo 'text-light'; ?>">
                     <?php echo htmlentities($result->stock); ?>
                 </td>
 
-                <td class="d-none d-sm-table-cell">
+                <td class="d-none d-sm-table-cell <?php if ($result->stock == 0) echo 'text-light'; ?>">
                     ₱
                     <?php echo htmlentities($result->price); ?>
                 </td>
 
-                <td class="d-none d-sm-table-cell">
+                <td class="d-none d-sm-table-cell <?php if ($result->stock == 0) echo 'text-light'; ?>">
                     <?php echo htmlentities($result->category); ?>
                 </td>
 
-                <td class="d-none d-sm-table-cell">
+                <td class="d-none d-sm-table-cell <?php if ($result->stock == 0) echo 'text-light'; ?>">
                     <?php echo htmlentities($result->date_ordered); ?>
                 </td>
 
-                <td class="d-none d-sm-table-cell">
+                <td class="d-none d-sm-table-cell <?php if ($result->stock == 0) echo 'text-light'; ?>">
                     <?php echo htmlentities($result->date_arrival); ?>
                 </td>
 

@@ -44,7 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch("modals/get_inventory.php");
       const products = await response.json();
-      return products;
+      const filteredProducts = products.filter(product => product.stock > 0);
+
+      return filteredProducts;
     } catch (error) {
       console.error("Error fetching product options:", error);
     }
@@ -63,7 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         ${products
                           .map(
                             (product) =>
-                              `<option value="${product.product_name}" data-price="${product.price}">${product.product_name}</option>`
+                              `<option value="${product.product_name}" 
+                                data-price="${product.price}" 
+                                data-stock="${product.stock}">
+                                ${product.product_name}</option>`
                           )
                           .join("")}
                     </select>
@@ -124,6 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const selectedOption =
         chooseProductSelect.options[chooseProductSelect.selectedIndex];
       const selectedPrice = selectedOption.getAttribute("data-price");
+      const stock = selectedOption.getAttribute("data-stock"); 
       let quantity = parseFloat(quantityInput.value);
 
       // Prevent entering 0
@@ -138,6 +144,9 @@ document.addEventListener("DOMContentLoaded", () => {
       // Set price to default when quantity is empty
       if (isNaN(quantity) || quantity === "") {
         priceInput.value = "0.00";
+      } else if (!isNaN(quantity) && quantity > stock){
+        quantityInput.value = stock;
+        quantity = stock;
       }
 
       updateTotalCost();
