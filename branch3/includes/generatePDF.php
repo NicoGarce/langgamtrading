@@ -49,13 +49,13 @@ if (isset($_GET['order_id'])) {
             $pdf->SetFont('Helvetica', '', 10);
             $pdf->Cell(63, 10, $orderItem->quantity, 0, 0, 'C');
             $pdf->Cell(63, 10, $orderItem->product_name, 0, 0, 'C');
-            $pdf->Cell(63, 10, $orderItem->price, 0, 1, 'C');
+            $pdf->Cell(63, 10, 'PHP '.$orderItem->price, 0, 1, 'C');
         }
 
 
         $pdf->SetFont('Helvetica', 'B', 12);
         $pdf->Cell(126, 10, 'Total: ', 0, 0, 'R');
-        $pdf->Cell(63, 10, $result->total_cost, 0, 1,'C');
+        $pdf->Cell(63, 10, 'PHP '.$result->total_cost, 0, 1,'C');
 
         $pdf->SetFont('Helvetica', '', 10);
 

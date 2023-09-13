@@ -49,18 +49,12 @@ if (isset($_GET['sale_id'])) {
             $pdf->SetFont('Helvetica', '', 10);
             $pdf->Cell(63, 10, $orderItem->quantity, 0, 0, 'C');
             $pdf->Cell(63, 10, $orderItem->product_name, 0, 0, 'C');
-            $pdf->Cell(63, 10, $orderItem->price, 0, 1, 'C');
+            $pdf->Cell(63, 10, 'PHP '.$orderItem->price, 0, 1, 'C');
         }
-
-        $pdf->SetLineWidth(0.1); // Set the line width as needed
-        $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 189, $pdf->GetY());
 
         $pdf->SetFont('Helvetica', 'B', 12);
         $pdf->Cell(126, 10, 'Total: ', 0, 0, 'R');
-        $pdf->Cell(63, 10, $result->total_cost, 0, 1,'C');
-
-        $pdf->SetLineWidth(0.1); // Set the line width as needed
-        $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 189, $pdf->GetY());
+        $pdf->Cell(63, 10, 'PHP '.$result->total_cost, 0, 1,'C');
         
         $pdf->SetFont('Helvetica', '', 10);
 

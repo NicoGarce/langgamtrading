@@ -82,8 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </td>
             <td class="col">
-                <div class="form-group px-0">
-                    <input class="form-control form-control-sm class" id="price" name="price" placeholder="Price" readonly>
+                <div class="form-group input-group input-group-sm px-0">
+                    <span class="input-group-text">₱</span>
+                    <input class="form-control form-control-sm" id="price" name="price" placeholder="Price" readonly>
                 </div>
             </td>
             <td class="col-auto">

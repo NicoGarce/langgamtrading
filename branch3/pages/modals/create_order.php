@@ -52,10 +52,14 @@
                                 <input type="text" class="form-control form-control-sm" id="pay_method" name="pay_method"
                                     placeholder="Enter Payment Method" title="Payment Method" required>
                             </div>
-                            <div class="col-5 ps-2">
+                            <div class="col ps-2">
                                 <h6 for="total_cost" class="label small">Total Cost</h6>
-                                <input type="text" class="form-control form-control-lg" id="total_cost" name="total_cost"
-                                    placeholder="0.00" title="Total Cost" required readonly>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-text">₱</span>
+                                    <input type="text" class="form-control form-control-lg" id="total_cost" name="total_cost"
+                                        placeholder="0.00" title="Total Cost" required readonly>
+                                </div>
+                                
                             </div>
                             <div class="col-7 pt-1">
                                 <select class="form-control form-control-sm" id="pay_status" name="pay_status" required title="Payment Status">

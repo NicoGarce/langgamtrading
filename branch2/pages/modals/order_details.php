@@ -115,7 +115,7 @@
                                                         ?>
                                                         <td class="text-center"><?php echo $orderItem->product_name; ?></td>
                                                         <td class="text-center"><?php echo $orderItem->quantity; ?></td>
-                                                        <td class="text-center"><?php echo $orderItem->price; ?></td>
+                                                        <td class="text-center">₱ <?php echo $orderItem->price; ?></td>
                                                         </tr><tr> <!-- Add a new row for the next product -->
                                                         <?php
                                                     }
@@ -136,7 +136,7 @@
                                             <div class="col ps-2">
                                                 <label for="total_cost" class="label small">Total Cost</label>
                                                 <input type="text" class="form-control form-control-lg" id="total_cost" name="total_cost" 
-                                                placeholder="0.00" value="<?php echo $result->total_cost ?>" title="Total Cost" required readonly>
+                                                placeholder="0.00" value="₱ <?php echo $result->total_cost ?>" title="Total Cost" required readonly>
                                             </div>
                                         </div>
 
