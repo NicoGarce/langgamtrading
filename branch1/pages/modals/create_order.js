@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
         body: formData,
       }
     );
-    console.log(await response.text());
+    //console.log(await response.text());
     if (response.ok) {
       if (order_status === "Complete") {
         Swal.fire({

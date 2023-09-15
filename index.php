@@ -11,10 +11,7 @@
     <title>Login | Langgam Trading</title>
 </head>
 <body>
-    <div class="m-2">
-        <?php include('.\includes\header.php'); ?>
-    </div>
-    <div class="">
+    <div class="pt-5">
         <?php include('.\includes\login.php');  ?>
     </div>
     
