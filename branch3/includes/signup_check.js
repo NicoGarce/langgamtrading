@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         emailMessage.textContent = '';
                         confirmMessage.textContent = '';
                         location.reload();
-                        //window.location.href = 'index.php';
+                        window.location.href = '../../index.php';
                     });
 
                 } else {
