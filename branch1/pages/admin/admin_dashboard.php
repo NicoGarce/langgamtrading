@@ -38,6 +38,7 @@ $acc_row = $dash->acc_row();
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="../../../assets/js/custom.js"></script>
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </head>

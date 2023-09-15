@@ -40,7 +40,7 @@ $acc_row = $dash->acc_row();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script defer src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
+    <script defer src="../../../assets/js/custom.js"></script>
 
     <link rel="stylesheet" href="/langgamtrading/css/main.css">
     <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
