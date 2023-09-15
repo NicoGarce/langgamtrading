@@ -168,7 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
+    mobileInput.addEventListener('input', function() {
+        // Remove any non-numeric characters from the input
+        this.value = this.value.replace(/\D/g, '');
+    });
 
     // Add event listener to the input fields for live checking
     usernameInput.addEventListener('input', async () => {
