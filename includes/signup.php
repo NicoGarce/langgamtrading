@@ -72,7 +72,7 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
                     redirectUrl = '../branch3/includes/signup.php';
                     break;
                 default:
-                    break;
+                    return;
             }
 
             // Redirect the user to the selected URL
