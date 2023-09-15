@@ -200,5 +200,18 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmMessage.innerHTML = '';
         }
     });
+    const headCloseButton = document.getElementById('headClose');
+    const footCloseButton = document.getElementById('footClose');
+    headCloseButton.addEventListener('click', resetForm);
+    footCloseButton.addEventListener('click', resetForm);
 
+    // Function to reset the form
+    function resetForm() {
+        // Reset the form when a "Close" button is clicked
+        document.getElementById('registration-form').reset();
+        usernameMessage.textContent = '';
+        emailMessage.textContent = '';
+        confirmMessage.textContent = '';
+        alertsContainer.textContent = '';
+    }
 });

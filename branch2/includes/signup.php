@@ -80,7 +80,7 @@ require_once('../../includes/storeclass.php');
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <script src="acc_check.js"></script>
+  <script src="signup_check.js"></script>
 
 </body>
 

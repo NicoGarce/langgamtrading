@@ -100,8 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
             showAlert('danger', 'Passwords do not match.');
         } else {
             // Send AJAX requests to check the availability of each attribute
-            const isUsernameAvailable = await checkAvailability('/langgamtrading/branch2/includes/check_username.php', `username=${username}`, usernameMessage);
-            const isEmailAvailable = await checkAvailability('/langgamtrading/branch2/includes/check_email.php', `email=${email}`, emailMessage);
+            const isUsernameAvailable = await checkAvailability('/langgamtrading/branch1/includes/check_username.php', `username=${username}`, usernameMessage);
+            const isEmailAvailable = await checkAvailability('/langgamtrading/branch1/includes/check_email.php', `email=${email}`, emailMessage);
             //console.log(isUsernameAvailable,isEmailAvailable,isMobileAvailable);
             // If any of the attributes is not available, display a SweetAlert message
             if (!isUsernameAvailable || !isEmailAvailable) {
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.append('address', address);
                 formData.append('role', role);
                 
-                const response = await fetch('/langgamtrading/branch2/includes/addToDb.php', {
+                const response = await fetch('/langgamtrading/branch1/includes/addToDb.php', {
                     method: 'POST',
                     body: formData
 
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
-                        text: 'User added successfully',
+                        text: 'Sign-Up Successful',
                         showConfirmButton: false,
                         timer: 2000,
                         showClass: {
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Error: Unable to add user.',
+                        text: 'Error: Unable to register account.',
                         showConfirmButton: false,
                         timer: 2000,
                         showClass: {
@@ -161,9 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                 }
-                const modal = document.getElementById('addAccount');
-                const modalInstance = bootstrap.Modal.getInstance(modal);
-                modalInstance.hide();
             }
         }
     });
@@ -174,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     usernameInput.addEventListener('input', async () => {
         const username = usernameInput.value.trim();
         if (username.length >= 3) {
-            await checkAvailability('/langgamtrading/branch2/includes/check_username.php', `username=${username}`, usernameMessage);
+            await checkAvailability('/langgamtrading/branch1/includes/check_username.php', `username=${username}`, usernameMessage);
         } else {
             usernameMessage.innerHTML = '';
         }
@@ -183,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     emailInput.addEventListener('input', async () => {
         const email = emailInput.value.trim();
         if (email.length >= 3) {
-            await checkAvailability('/langgamtrading/branch2/includes/check_email.php', `email=${email}`, emailMessage);
+            await checkAvailability('/langgamtrading/branch1/includes/check_email.php', `email=${email}`, emailMessage);
         } else {
             emailMessage.innerHTML = '';
         }
@@ -194,24 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const confirm = confirmInput.value.trim();
 
         if (confirm !== '') {
-            const response = await checkConfirmation('/langgamtrading/branch2/includes/check_confirmation.php', `password=${password}&confirm=${confirm}`);
+            const response = await checkConfirmation('/langgamtrading/branch1/includes/check_confirmation.php', `password=${password}&confirm=${confirm}`);
             confirmMessage.innerHTML = response;
         } else {
             confirmMessage.innerHTML = '';
         }
     });
-    const headCloseButton = document.getElementById('headClose');
-    const footCloseButton = document.getElementById('footClose');
-    headCloseButton.addEventListener('click', resetForm);
-    footCloseButton.addEventListener('click', resetForm);
-
-    // Function to reset the form
-    function resetForm() {
-        // Reset the form when a "Close" button is clicked
-        document.getElementById('registration-form').reset();
-        usernameMessage.textContent = '';
-        emailMessage.textContent = '';
-        confirmMessage.textContent = '';
-        alertsContainer.textContent = '';
-    }
 });

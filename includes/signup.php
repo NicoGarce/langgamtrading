@@ -31,10 +31,10 @@ require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
 
                             <div class="form-group pt-4">
                                 <select class="form-control" id="branch" name="branch" required>
-                                    <option value="">Select Branch</option>
-                                    <option value="branch1">Langgam Trading</option>
-                                    <option value="branch2">NOAC Materials Trading Corp.</option>
-                                    <option value="branch3">Branch 3</option>
+                                    <option value="" disabled selected class="text-center">Select Branch</option>
+                                    <option value="branch1" class="text-center">Langgam Trading</option>
+                                    <option value="branch2" class="text-center">NOAC Materials Trading Corp.</option>
+                                    <option value="branch3" class="text-center">Branch 3</option>
                                 </select>
                             </div>
                             <div class="text-center pt-4">

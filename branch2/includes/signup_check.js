@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
-                        text: 'User added successfully',
+                        text: 'Sign-Up Successful',
                         showConfirmButton: false,
                         timer: 2000,
                         showClass: {
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Error: Unable to add user.',
+                        text: 'Error: Unable to register account.',
                         showConfirmButton: false,
                         timer: 2000,
                         showClass: {
@@ -161,9 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                 }
-                const modal = document.getElementById('addAccount');
-                const modalInstance = bootstrap.Modal.getInstance(modal);
-                modalInstance.hide();
             }
         }
     });
@@ -200,18 +197,4 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmMessage.innerHTML = '';
         }
     });
-    const headCloseButton = document.getElementById('headClose');
-    const footCloseButton = document.getElementById('footClose');
-    headCloseButton.addEventListener('click', resetForm);
-    footCloseButton.addEventListener('click', resetForm);
-
-    // Function to reset the form
-    function resetForm() {
-        // Reset the form when a "Close" button is clicked
-        document.getElementById('registration-form').reset();
-        usernameMessage.textContent = '';
-        emailMessage.textContent = '';
-        confirmMessage.textContent = '';
-        alertsContainer.textContent = '';
-    }
 });
