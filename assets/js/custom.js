@@ -16,6 +16,9 @@ $(document).ready(function () {
       '<div class="mb-1"><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addOrder"><i class="bx bx-plus"></i> Create Order</button></div>';
   }
   if (!window.location.pathname.includes("admin_dashboard.php")) {
+    if ($.fn.DataTable.isDataTable("#table")) {
+      table.destroy();
+    }
     initializeDataTable();
   }
   function initializeDataTable() {
@@ -32,7 +35,7 @@ $(document).ready(function () {
         ]
       : []; // Configure the order conditionally
 
-      table = $("#table").DataTable({
+    let table = $("#table").DataTable({
         lengthMenu: [
           [10, 25, 50, -1],
           [10, 25, 50, 'All']
