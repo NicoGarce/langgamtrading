@@ -26,7 +26,7 @@ require_once('../../includes/storeclass.php');
       <div class="col-md-8">
         <div class="card p-3" style="border-radius: 1rem;">
           <div class="card-body">
-            <a href="javascript:history.back()" class="back-button btn btn-primary">
+            <a href="javascript:history.back()" class="back-button btn btn-primary" title="Back">
               <i class='bx bx-left-arrow-alt'></i>
             </a>
             <div class="card-title text-center">
