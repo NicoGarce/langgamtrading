@@ -80,7 +80,7 @@
 
 
                                         <hr>
-                                        <div class="container-fluid table-responsive">
+                                        <div class="table-responsive">
                                             <table class="table table-striped table-bordered" id="orderTable<?php echo $sale_id ?>">
                                                 <tr>
                                                     <th class="text-center" colspan="3">
@@ -122,26 +122,26 @@
                                         </div>
 
                                         <hr>
-                                        <div class="row gx-1 pb-2 px-3">
-                                            <div class="col">
+                                        <div class="row gx-1 pt-2 pb-2 px-3">
+                                            <div class="col-12 col-sm-12 col-lg-6">
                                                 <label for="pay_method" class="label small">Payment Method</label>
                                                 <input type="text" class="form-control form-control-lg" id="pay_method" name="pay_method" placeholder="Enter Payment Method" 
                                                     value="<?php echo $result->pay_method ?>" title="Payment Method" required readonly>
                                             </div>
-                                            <div class="col ps-2">
+                                            <div class="col-12 col-sm-12 col-lg-6">
                                                 <label for="total_cost" class="label small">Total Cost</label>
                                                 <input type="text" class="form-control form-control-lg" id="total_cost" name="total_cost" 
                                                 placeholder="0.00" value="₱ <?php echo $result->total_cost ?>" title="Total Cost" required readonly>
                                             </div>
                                         </div>
 
-                                        <div class="row gx-1 pb-4 px-3">
-                                            <div class="col pt-1">
+                                        <div class="row gx-1 pt-1 pb-4 px-3">
+                                            <div class="col-12 col-sm-6 col-lg-6">
                                                 <label for="pay_status" class="label small">Payment Status</label>
                                                 <input type="text" class="form-control" id="payment_status" name="payment_status"
                                                  value="<?php echo $result->payment_status ?>" title="Payment Status" required readonly>
                                             </div>
-                                            <div class="col pt-1">
+                                            <div class="col-12 col-sm-6 col-lg-6">
                                                 <label for="order_status" class="label small">Order Status</label>
                                                 <input type="text" class="form-control" id="order_status" name="order_status"
                                                  value="<?php echo $result->order_status ?>" title="Order Status" required readonly>
