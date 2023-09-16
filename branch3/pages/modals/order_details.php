@@ -85,7 +85,7 @@
 
 
                                         <hr>
-                                        <div class="container-fluid table-responsive">
+                                        <div class="table-responsive">
                                             <table class="table table-striped table-bordered" id="orderTable<?php echo $order_id ?>">
                                                 <tr>
                                                     <th class="text-center" colspan="3">
