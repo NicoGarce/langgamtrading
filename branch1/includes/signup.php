@@ -12,6 +12,7 @@ require_once('../../includes/storeclass.php');
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/langgamtrading/css/main.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <title>Sign Up | Langgam Trading</title>
 </head>
@@ -25,6 +26,9 @@ require_once('../../includes/storeclass.php');
       <div class="col-md-8">
         <div class="card p-3" style="border-radius: 1rem;">
           <div class="card-body">
+            <a href="javascript:history.back()" class="back-button btn btn-primary">
+              <i class='bx bx-left-arrow-alt'></i>
+            </a>
             <div class="card-title text-center">
               <h2>Sign Up</h2>
               <h6>Langgam Trading</h6>
