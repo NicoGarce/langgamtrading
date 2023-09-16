@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const products = await fetchProductOptions();
     newRow.innerHTML = `
-            <td class="col-6 col-auto">
+            <td class="col-12 col-sm-12 col-lg-6">
                 <div class="form-group px-0">
                     <select class="form-control form-control-sm" id="selectProduct" name="selectProduct" required title="Select Product">
                         <option value="">Select Product</option>
@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <button type="button" class="btn btn-danger btn-sm removeRowButton" title="Remove Item"><i class='bx bx-minus'></i></button>
                 </div>
             </td>
+            <hr>
         `;
 
     const newInputs = newRow.querySelectorAll("input");

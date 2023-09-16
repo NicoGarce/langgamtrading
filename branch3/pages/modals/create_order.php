@@ -47,12 +47,12 @@
                         </div>
                         <hr>
                         <div class="row gx-1 pb-4 px-3">
-                            <div class="col-7">
+                            <div class="col-12 col-sm-12 col-lg-7 pt-2">
                                 <h6 for="pay_method" class="label small">Payment Method</h6>
-                                <input type="text" class="form-control form-control-sm" id="pay_method" name="pay_method"
+                                <input type="text" class="form-control" id="pay_method" name="pay_method"
                                     placeholder="Enter Payment Method" title="Payment Method" required>
                             </div>
-                            <div class="col ps-2">
+                            <div class="col-12 col-sm-12 col-lg-5 pt-2">
                                 <h6 for="total_cost" class="label small">Total Cost</h6>
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-text">₱</span>
@@ -61,16 +61,16 @@
                                 </div>
                                 
                             </div>
-                            <div class="col-7 pt-1">
-                                <select class="form-control form-control-sm" id="pay_status" name="pay_status" required title="Payment Status">
+                            <div class="col-12 col-sm-6 col-lg-7 pt-2">
+                                <select class="form-control" id="pay_status" name="pay_status" required title="Payment Status">
                                     <option value="" disabled selected>- Payment Status -</option>
                                     <option value="Pending">Pending</option>
                                     <option value="Paid">Paid</option>
                                     <option value="Partial">Partial</option>
                                 </select>
                             </div>
-                            <div class="col-5 ps-2 pt-1">
-                                <select class="form-control form-control-sm" id="order_status" name="order_status" required title="Payment Status">
+                            <div class="col-12 col-sm-6 col-lg-5 pt-2">
+                                <select class="form-control" id="order_status" name="order_status" required title="Payment Status">
                                     <option value="" disabled selected>- Order Status -</option>
                                     <option value="In Fullfillment">In Fullfillment</option></option>
                                     <option value="Complete">Complete</option>
