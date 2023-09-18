@@ -231,6 +231,12 @@ $current_page = $_SERVER['PHP_SELF'];
 
     // Initially, disable the "Update Account" button
     $("#update").prop("disabled", true);
+    
+    var mobileInput = document.getElementById('mobile');
+    mobileInput.addEventListener('input', function() {
+        // Remove any non-numeric characters from the input
+        this.value = this.value.replace(/\D/g, '');
+    });
 </script>
 
 </html>
