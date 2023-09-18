@@ -16,10 +16,10 @@
 
                         <div class="row pt-2">
                             <div class="form-group col-md-6">
-                                <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock" required></input>
+                                <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock" oninput="if (this.value < 0 || this.value.includes('.')) this.value = 0;" required></input>
                             </div>
                             <div class="form-group col-md-6 ">
-                                <input class="form-control" id="price" name="price" placeholder="Price" required></input>
+                                <input type="number" class="form-control" id="price" name="price" placeholder="Price" required oninput="if (this.value < 0) this.value = 0;">
                             </div>
                         </div>
 
@@ -62,33 +62,3 @@
 </div>
 <?php $inventory->add_product(); ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    // Get a reference to the input element
-    var stockInput = document.getElementById('stock');
-    var priceInput = document.getElementById('price');
-
-    priceInput.addEventListener('input' , function(){
-        var currentPrice = parseFloat(priceInput.value);
-
-        // Check if the input value is not a number or is negative
-        if (currentPrice  < 0) {
-            // If it's not a number or is negative, set the input value to 0
-            priceInput.value = 0;
-        }
-    });
-
-    // Add an event listener for the 'input' event
-    stockInput.addEventListener('input', function() {
-        // Get the current value of the input
-        var currentValue = parseFloat(stockInput.value);
-
-        // Check if the input value is not a number or is negative
-        if (isNaN(currentValue) || currentValue < 0) {
-            // If it's not a number or is negative, set the input value to 0
-            stockInput.value = 0;
-        } else {
-            // If it's a positive number, round it to the nearest integer
-            stockInput.value = Math.round(currentValue);
-        }
-    });
-</script>

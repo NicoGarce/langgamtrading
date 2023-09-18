@@ -70,15 +70,15 @@
                                         <div class="row pt-2">
                                             <div class="form-group col-md-6">
                                                 <label for="stock" class="label small px-1">Stock</label>
-                                                <input type="text" class="form-control" id="stock<?php echo $cnt ?>"
+                                                <input type="number" class="form-control" id="stock<?php echo $cnt ?>"
                                                     name="stock" value="<?php echo $result->stock ?>" placeholder="Stock"
-                                                    required>
+                                                    oninput="if (this.value < 0 || this.value.includes('.')) this.value = 0;" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="price" class="label small px-1">Price</label>
-                                                <input type="text" class="form-control" id="price<?php echo $cnt ?>"
+                                                <input type="number" class="form-control" id="price<?php echo $cnt ?>"
                                                     name="price" value="<?php echo $result->price ?>" placeholder="Price"
-                                                    required>
+                                                    oninput="if (this.value < 0) this.value = 0;" required>
                                             </div>
                                         </div>
 
