@@ -36,7 +36,7 @@ class Dashboard{
     public function ord_row()
     {
         $store = new Langgam;
-        $sql = "SELECT COUNT(*) FROM branch3_orders";
+        $sql = "SELECT COUNT(*) FROM branch3_orders WHERE order_status NOT IN ('Cancelled', 'Returned', 'Refunded')";
         $pdo = $store->openConnection();
         // Execute the query and fetch the result
         $stmt = $pdo->prepare($sql);
