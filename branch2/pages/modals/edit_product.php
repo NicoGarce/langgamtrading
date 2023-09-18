@@ -120,7 +120,7 @@
                                             <div class="col">
                                                 <label for="date_added" class="label small px-1">Date Added</label>
                                                 <input type="date" class="form-control" id="date_added" name="date_added"
-                                                    placeholder="Date Arrival" value="<?php echo $result->date_added ?>" required>
+                                                    placeholder="Date Arrival" value="<?php echo $result->date_added ?>" required readonly>
                                             </div>
                                             <div class="col">
                                                 <label for="added_by" class="label small px-1">Added By</label>
