@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Add event listener to the input fields for live checking
-    usernameInput.addEventListener('input', async () => {
+    usernameInput.addEventListener('blur', async () => {
         const username = usernameInput.value.trim();
         if (username.length >= 3) {
             await checkAvailability('/langgamtrading/branch2/includes/check_username.php', `username=${username}`, usernameMessage);
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    emailInput.addEventListener('input', async () => {
+    emailInput.addEventListener('blur', async () => {
         const email = emailInput.value.trim();
         if (email.length >= 3) {
             await checkAvailability('/langgamtrading/branch2/includes/check_email.php', `email=${email}`, emailMessage);
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    confirmInput.addEventListener('input', async () => {
+    confirmInput.addEventListener('blur', async () => {
         const password = passwordInput.value.trim();
         const confirm = confirmInput.value.trim();
 
