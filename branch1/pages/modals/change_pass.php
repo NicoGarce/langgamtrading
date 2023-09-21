@@ -7,7 +7,6 @@
             </div>
             <div class="modal-body">
                 <form method="post" id="edit-reg-form">
-                    <div class="pt-3" id="alerts"></div>
                     <input id="ID" name="ID" value="<?php echo $result[0]->order_id ?>" type="hidden">
                     
                     <div class="pt-2 pb-2">
@@ -21,11 +20,12 @@
                         </div>
                         <div>
                             <input type="password" id="confirm-new" name="confirm-new" class="form-control" placeholder="Confirm New Password" disabled>
+                            <span id="confirm-message"></span>
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" name="change" id="change" class="btn btn-dark">Change</button>
+                        <button type="submit" name="change" id="change" class="btn btn-dark" disabled>Change</button>
                     </div>
                 </form>
             </div>

@@ -29,10 +29,8 @@ if (isset($_SESSION['ID'])) {
         }
     } else {
         echo "<span style='color:red'>Error retrieving password or user ID is invalid.</span>";
-        // Handle the error gracefully, e.g., redirect or show an error message.
     }
 } else {
     echo "<span style='color:red'>User session not available.</span>";
-    // Handle the error gracefully, e.g., redirect or show an error message.
 }
 ?>
