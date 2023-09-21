@@ -102,7 +102,7 @@ $current_page = $_SERVER['PHP_SELF'];
                                         
                                         <div class="px-lg-5">
                                             <form method="post" id="registration-form">
-                                                <input name="ID" value="<?php echo $result[0]->ID ?>" type="hidden">
+                                                <input id="uid" name="ID" value="<?php echo $result[0]->ID ?>" type="hidden">
                                                 <div class="pt-3" id="alerts"></div>
                                                 <div class="form-group row justify-content-center">
                                                     <div class="form-group col-md-6">
@@ -147,7 +147,9 @@ $current_page = $_SERVER['PHP_SELF'];
                                                             <button name="update" type="submit" id="update" class="btn btn-dark">Update Account</button>
                                                         </div>
                                                         <div class="form-group p-1 col-md-4">
-                                                            <button name="add" type="button" class="btn btn-dark">Change Password</button>
+                                                            <button name="add" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#changePass" title="Change Password">Change Password</button>
+                            
+                                                            <?php include('../../branch1/pages/modals/change_pass.php');?>
                                                         </div>
                                                     </div>
 
