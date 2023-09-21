@@ -147,7 +147,9 @@ $current_page = $_SERVER['PHP_SELF'];
                                                             <button name="update" type="submit" id="update" class="btn btn-dark">Update Account</button>
                                                         </div>
                                                         <div class="form-group p-1 col-md-4">
-                                                            <button name="add" type="button" class="btn btn-dark">Change Password</button>
+                                                            <button name="add" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#changePass" title="Change Password">Change Password</button>
+                                    
+                                                            <?php include('../../branch3/pages/modals/change_pass.php');?>
                                                         </div>
                                                     </div>
 
