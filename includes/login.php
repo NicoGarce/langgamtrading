@@ -49,7 +49,6 @@
                                                 type="submit">Login</button>
                                         </div>
 
-                                        <a class="small text-muted" href="#!">Forgot password?</a>
                                         <p class="" style="color: #393f81;">Don't have an account? <a
                                                 href="includes/signup.php" style="color: #393f81;">Register here</a></p>
                                         <div class="d-flex justify-content-center">
