@@ -54,11 +54,11 @@ foreach ($stmt as $data) {
 
 
 <div class="card rounded-4 p-2 ">
-    <canvas id="myChart"></canvas>
+    <canvas id="sales-chart" height="350"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const ctx = document.getElementById('myChart');
+    const ctx = document.getElementById('sales-chart');
 
     new Chart(ctx, {
         type: 'line',
@@ -75,7 +75,9 @@ foreach ($stmt as $data) {
                 y: {
                     beginAtZero: true
                 }
-            }
+            },
+            responsive: true,
+            maintainAspectRatio: false
         }
     });
 </script>

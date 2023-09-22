@@ -114,9 +114,15 @@ $acc_row = $dash->acc_row();
                                 </div>
                             </div>
                         </div>
-                        <div class="pt-2">
-                            <?php include('graphs.php')?>
+                        <div class="row">
+                            <div class="col col-lg-6 col-md-12 pt-2">
+                                <?php include('sales_graph.php')?>
+                            </div>
+                            <div class="col col-lg-6 col-md-12 pt-2">
+                                <?php include('inv_graph.php'); ?>
+                            </div>
                         </div>
+                        
                     </div>
 
                     <div class="col-lg-4 col-md-5 pb-2">
