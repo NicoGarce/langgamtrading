@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
           title: "Success",
           text: "Password Change Successful",
           showConfirmButton: false,
-          timer: 2000,
+          timer: 3000,
           showClass: {
             popup: "swal2-show",
           },
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
           newPasswordInput.setAttribute("disabled", null);
           confirmNew.setAttribute("disabled", null);
           document.getElementById("change").setAttribute("disabled", "true");
-          location.reload();
+          window.close();
         });
       } else {
         // Display error message if user was not added
@@ -106,9 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
           },
         });
       }
-      const modal = document.getElementById("changePass");
-      const modalInstance = bootstrap.Modal.getInstance(modal);
-      modalInstance.hide();
     } catch (error) {
       // Handle the JSON parsing error
       console.error("Error parsing JSON:", error);
@@ -179,17 +176,4 @@ document.addEventListener("DOMContentLoaded", () => {
       confirmMessage.innerHTML = "";
     }
   });
-  const headCloseButton = document.getElementById("headClose");
-  headCloseButton.addEventListener("click", resetForm);
-
-  // Function to reset the form
-  function resetForm() {
-    // Reset the form when a "Close" button is clicked
-    document.getElementById("registration-form").reset();
-    newPasswordInput.setAttribute("disabled", null);
-    confirmNew.setAttribute("disabled", null);
-    document.getElementById("change").setAttribute("disabled", "true");
-    oldPasswordMessage.textContent = "";
-    confirmMessage.textContent = "";
-  }
 });
