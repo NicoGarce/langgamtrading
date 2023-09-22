@@ -78,7 +78,7 @@
                                                 <label for="price" class="label small px-1">Price</label>
                                                 <input type="number" class="form-control" id="price<?php echo $cnt ?>"
                                                     name="price" value="<?php echo $result->price ?>" placeholder="Price"
-                                                    oninput="if (this.value < 0) this.value = 0;" required>
+                                                    oninput="if (this.value < 0) this.value = 0;" step="any" required>
                                             </div>
                                         </div>
 

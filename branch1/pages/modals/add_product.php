@@ -19,7 +19,7 @@
                                 <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock" oninput="if (this.value < 0 || this.value.includes('.')) this.value = 0;" required></input>
                             </div>
                             <div class="form-group col-md-6 ">
-                                <input type="number" class="form-control" id="price" name="price" placeholder="Price" required oninput="if (this.value < 0) this.value = 0;">
+                                <input type="number" class="form-control" id="price" name="price" placeholder="Price" required oninput="if (this.value < 0) this.value = 0;" step="any">
                             </div>
                         </div>
 
