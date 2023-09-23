@@ -80,18 +80,16 @@ class Profile{
             $lastName = $_POST["lastName"];
             $mobile = $_POST["mobile"];
             $address = $_POST["address"];
-            $role = $_POST["role"];
 
             $pdo = $store->openConnection();
 
-            $sql = "UPDATE branch2_users SET firstName = :firstName, lastName = :lastName,  mobile = :mobile, address = :address, role = :role WHERE id = :uid";
+            $sql = "UPDATE branch2_users SET firstName = :firstName, lastName = :lastName,  mobile = :mobile, address = :address WHERE id = :uid";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
                 'firstName' => $firstName,
                 'lastName' => $lastName,
                 'mobile' => $mobile,
                 'address' => $address,
-                'role' => $role,
                 'uid' => $userid
             ]);
 

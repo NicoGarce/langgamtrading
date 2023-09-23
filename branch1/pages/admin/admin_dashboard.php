@@ -122,7 +122,6 @@ $acc_row = $dash->acc_row();
                                 <?php include('inv_graph.php'); ?>
                             </div>
                         </div>
-                        
                     </div>
 
                     <div class="col-lg-4 col-md-5 pb-2">

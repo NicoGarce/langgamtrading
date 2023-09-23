@@ -53,7 +53,7 @@ foreach ($stmt as $data) {
 
 
 
-<div class="card rounded-4 p-2 ">
+<div class="card rounded-4 p-2">
     <canvas id="sales-chart" height="350"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
