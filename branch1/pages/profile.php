@@ -10,10 +10,10 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     exit();
 }
 
-if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
+if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
     header('Location: /langgamtrading/branch2/pages/profile.php');
     exit();
-}elseif(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
+} elseif (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
     header('Location: /langgamtrading/branch3/pages/profile.php');
     exit();
 }
@@ -75,7 +75,7 @@ $current_page = $_SERVER['PHP_SELF'];
             <div class="dashboard-content px-3">
 
                 <?php
-                    $result = $users->getID();
+                $result = $users->getID();
                 ?>
                 <div class="container">
 
@@ -99,12 +99,19 @@ $current_page = $_SERVER['PHP_SELF'];
                                         </div>
                                     </div>
                                     <div class="col-md-12 pt-2">
-                                        
+
                                         <div class="px-lg-5">
                                             <form method="post" id="registration-form">
                                                 <input id="uid" name="ID" value="<?php echo $result[0]->ID ?>" type="hidden">
                                                 <div class="pt-3" id="alerts"></div>
-                                                <div class="form-group row justify-content-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="form-group">
+                                                        <h6 style="display: flex; align-items: center;">
+                                                            <i class='bx bxs-user-circle mt-1 pe-1'></i> <?php echo $result[0]->username ?> | <?php echo $result[0]->role ?>
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group pt-2 row justify-content-center">
                                                     <div class="form-group col-md-6">
                                                         <label for="role" class="mx-1 small">First</label>
                                                         <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $result[0]->firstName ?>" placeholder="First Name" required>
@@ -116,29 +123,18 @@ $current_page = $_SERVER['PHP_SELF'];
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group pt-2 col-md-6">
-                                                        <label for="role" class="mx-1 small">Username</label>
-                                                        <input type="text" class="form-control" id="username" name="username" minlength="6" value="<?php echo $result[0]->username ?>" placeholder="Username" required readonly>
-                                                        <span id="username-message"></span>
-                                                    </div>
-
-                                                    <div class="form-group pt-2 col-md-6">
                                                         <label for="role" class="mx-1 small">Mobile Number</label>
                                                         <input type="tel" class="form-control" id="mobile" name="mobile" pattern="0\d{10}" placeholder="Mobile Number (eg.09123456789)" value="<?php echo $result[0]->mobile ?>" required>
                                                     </div>
+                                                    <div class="form-group pt-2 col-md-6">
+                                                        <label for="role" class="mx-1 small">Email</label>
+                                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="<?php echo $result[0]->email ?>" required readonly>
+                                                        <span id="email-message"></span>
+                                                    </div>
                                                 </div>
-
-                                                <div class="form-group pt-2">
-                                                    <label for="role" class="mx-1 small">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="<?php echo $result[0]->email ?>" required readonly>
-                                                    <span id="email-message"></span>
-                                                </div>
-                                                <div class="form-group pt-2">
+                                                <div class="form-group pt-2 pb-3">
                                                     <label for="role" class="mx-1 small">Address</label>
                                                     <textarea class="form-control" id="address" name="address" placeholder="Address" required><?php echo $result[0]->address ?></textarea>
-                                                </div>
-                                                <div class="form-group pt-2 pb-4">
-                                                    <label for="role" class="mx-1 small">Role</label>
-                                                    <input type="role" class="form-control" id="role" name="role" placeholder="Role" value="<?php echo $result[0]->role ?>" required readonly>
                                                 </div>
 
                                                 <div class="form-group text-center">
@@ -148,13 +144,13 @@ $current_page = $_SERVER['PHP_SELF'];
                                                         </div>
                                                         <div class="form-group p-1 col-md-4">
                                                             <button name="add" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#verify" title="Change Password">Change Password</button>
-                            
-                                                            
+
+
                                                         </div>
                                                     </div>
 
                                                 </div>
-                                                <?php include('../../branch1/pages/modals/verify.php');?>
+                                                <?php include('../../branch1/pages/modals/verify.php'); ?>
 
                                             </form>
                                         </div>
@@ -173,7 +169,7 @@ $current_page = $_SERVER['PHP_SELF'];
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<?php $profile->edit_profile();?>
+<?php $profile->edit_profile(); ?>
 <script>
     $('.open-btn').on('click', function() {
         $('.sidebar').addClass('active');
@@ -232,6 +228,6 @@ $current_page = $_SERVER['PHP_SELF'];
         // Remove any non-numeric characters from the input
         this.value = this.value.replace(/\D/g, '');
     });
-
 </script>
+
 </html>
