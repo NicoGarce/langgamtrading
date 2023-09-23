@@ -111,6 +111,40 @@ $orders->delete_order();
     $('.close-btn').on('click', function() {
         $('.sidebar').removeClass('active');
     });
+
+    $('.delete-btn').on('click', function () {
+        var order_id = $(this).data('id');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Are you sure?',
+            text: 'You are about to delete this order.',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Perform the deletion
+
+                // Display success message after deletion
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Order deleted successfully',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    showClass: {
+                        popup: 'swal2-show'
+                    }
+                }).then(() => {
+                    // Redirect to acc_manage.php
+                    window.location.href = 'orders.php?delete=true&order_id=' + order_id;
+
+                    window.location.href = 'orders.php';
+                });
+            }
+        });
+    });
 </script>
 
 </html>
