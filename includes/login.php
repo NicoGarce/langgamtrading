@@ -28,15 +28,15 @@
                                         ?>
                                         <div class="form-outline mb-4">
                                             <input type="text" name="username" id="username"
-                                                placeholder="Enter Username" class="form-control form-control-lg" required/>
+                                                placeholder="Enter Username" class="form-control form-control-lg rounded-5" required/>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <input type="password" name="password" id="password"
-                                                placeholder="Enter Password" class="form-control form-control-lg" required/>
+                                                placeholder="Enter Password" class="form-control form-control-lg rounded-5" required/>
                                         </div>
                                         <div class="form-outline mb-4">
-                                                <select class="form-control" id="branch" name="branch" required>
+                                                <select class="form-control rounded-5" id="branch" name="branch" required>
                                                     <option value="0" class="text-muted">Select Branch</option>
                                                     <option value="1">Langgam Trading</option>
                                                     <option value="2">NOAC Materials Trading Corporation</option>   
@@ -45,7 +45,7 @@
                                         </div>
 
                                         <div class="pt-1 mb-4">
-                                            <button class="btn btn-dark btn-lg w-100 shadow" name="submit"
+                                            <button class="btn btn-dark btn-lg w-100 shadow rounded-5" name="submit"
                                                 type="submit">Login</button>
                                         </div>
 

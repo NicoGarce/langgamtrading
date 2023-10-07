@@ -53,67 +53,7 @@ $acc_row = $dash->acc_row();
             <div class="dashboard-content mx-4">
                 <div class="row">
                     <div class="col-lg-8 col-md-7 pb-2">
-                        <div class="card rounded-4 p-1">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='../inventory.php'" title="Inventory Count">
-                                        <div class="card-body d-flex">
-                                            <div class="d-flex flex-column flex-grow-1">
-                                                <h2 class="card-title">
-                                                    <i class='bx bx-clipboard fs-4'></i>
-                                                    <?php echo $inv_row; ?>
-                                                </h2>
-                                                <p class="card-text">Inventory</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='sales.php'" title="Sales Count">
-                                        <div class="card-body d-flex">
-                                            <div class="d-flex flex-column flex-grow-1">
-                                                <h2 class="card-title">
-                                                    <i class='bx bx-line-chart fs-4'></i>
-                                                    <?php echo $sale_row; ?>
-                                                </h2>
-                                                <p class="card-text">Sales</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='../orders.php'" title="Order Count">
-                                        <div class="card-body d-flex">
-                                            <div class="d-flex flex-column flex-grow-1">
-                                                <h2 class="card-title">
-                                                    <i class='bx bx-list-ul fs-4'></i>
-                                                    <?php echo $ord_row; ?>
-                                                </h2>
-                                                <p class="card-text">Orders</p>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="btn dashbtn p-0" onclick="window.location.href='acc_manage.php'" title="Accounts Count">
-                                        <div class="card-body d-flex">
-                                            <div class="d-flex flex-column flex-grow-1">
-                                                <h2 class="card-title">
-                                                    <i class='bx bxs-user-account fs-4'></i>
-                                                    <?php echo $acc_row; ?>
-                                                </h2>
-                                                <p class="card-text">Accounts</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            
                         <div class="row">
                             <div class="col col-lg-6 col-md-12 pt-2">
                                 <?php include('sales_graph.php')?>
