@@ -45,7 +45,7 @@ if ($current_page === "activity_logs.php") {
     $navbar_brand = "ACTIVTY LOGS";
 }
 
-if ($current_page === "activity_logs.php") {
+if ($current_page === "logbook.php") {
     $navbar_brand = "LOG BOOK";
 }
 

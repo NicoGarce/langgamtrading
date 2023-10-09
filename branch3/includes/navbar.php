@@ -40,6 +40,14 @@ if ($current_page === "emp_dashboard.php") {
     $navbar_brand = "HOME";
 }
 
+if ($current_page === "activity_logs.php") {
+    $navbar_brand = "ACTIVTY LOGS";
+}
+
+if ($current_page === "logbook.php") {
+    $navbar_brand = "LOG BOOK";
+}
+
 $result = $users->getID();
 
 $image_src = (!empty($result[0]->photo)) ? '../' . $result[0]->photo : '../../assets/user_upload/default.png';

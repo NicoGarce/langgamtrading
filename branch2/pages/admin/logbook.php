@@ -57,9 +57,9 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
     <div class="main-container d-flex">
         <div class="sidebar pt-2 pb-3">
             <?php if (isset($_SESSION['access']) && $_SESSION['access'] == 'Administrator') {
-                include("../../../branch1/includes/admin_sidebar.php");
+                include("../../../branch2/includes/admin_sidebar.php");
             } else if (isset($_SESSION['access']) && $_SESSION['access'] == 'Employee') {
-                include("../../../branch1/includes/emp_sidebar.php");
+                include("../../../branch2/includes/emp_sidebar.php");
             }
             ?>
         </div>
