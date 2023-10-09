@@ -52,6 +52,14 @@
         <a href="/langgamtrading/branch3/pages/suppliers.php" class="text-decoration-none px-3 py-2 d-block">
           <i class='bx bx-package p-2'></i>Suppliers</a>
       </li>
+      <li class="">
+        <a href="/langgamtrading/branch3/pages/admin/activity_logs.php" class="text-decoration-none px-3 py-2 d-block">
+        <i class='bx bx-history p-2'></i>Activity Logs</a>
+      </li>
+      <li class="">
+        <a href="/langgamtrading/branch3/pages/admin/logbook.php" class="text-decoration-none px-3 py-2 d-block">
+        <i class='bx bxs-book-bookmark p-2'></i>Log Book</a>
+      </li>
       
     </ul>
   </div>

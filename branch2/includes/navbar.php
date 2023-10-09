@@ -40,12 +40,19 @@ if ($current_page === "profile.php") {
 if ($current_page === "emp_dashboard.php") {
     $navbar_brand = "HOME";
 }
+if ($current_page === "activity_logs.php") {
+    $navbar_brand = "ACTIVTY LOGS";
+}
+
+if ($current_page === "logbook.php") {
+    $navbar_brand = "LOG BOOK";
+}
 
 $result = $users->getID();
 
 $image_src = (!empty($result[0]->photo)) ? '../' . $result[0]->photo : '../../assets/user_upload/default.png';
 
-if ($current_page === "admin_dashboard.php" || $current_page === "sales.php" || $current_page === "acc_manage.php" || $current_page === "emp_dashboard.php" ) {
+if ($current_page === "admin_dashboard.php" || $current_page === "sales.php" || $current_page === "acc_manage.php" || $current_page === "emp_dashboard.php" || $current_page === "activity_logs.php" || $current_page === "logbook.php") {
     $image_src = (!empty($result[0]->photo)) ? '../../' . $result[0]->photo : '../../../assets/user_upload/default.png';
 }
 ?>

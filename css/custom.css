@@ -104,7 +104,7 @@ body {
 }
 
 .gradient-navbar {
-  background: linear-gradient(to right, #ffffff 40%, #3d8896);
+  background: linear-gradient(to right, #ffffff 40%, #4aa9b9);
 }
 
 .profile-text {
@@ -185,4 +185,5 @@ body {
   .logout-icon {
     display: none;
   }
+  
 }
