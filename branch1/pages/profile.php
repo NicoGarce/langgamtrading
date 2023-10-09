@@ -128,7 +128,7 @@ $current_page = $_SERVER['PHP_SELF'];
                                                     </div>
                                                     <div class="form-group pt-2 col-md-6">
                                                         <label for="role" class="mx-1 small">Email</label>
-                                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="<?php echo $result[0]->email ?>" required readonly>
+                                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="<?php echo $result[0]->email ?>" required readonly disabled>
                                                         <span id="email-message"></span>
                                                     </div>
                                                 </div>

@@ -57,12 +57,12 @@
                                             <div class="form-group col-md-5">
                                                 <label for="uid" class="label small px-1">Account ID</label>
                                                 <input type="text" class="form-control" id="uid<?php echo $cnt ?>"
-                                                    name="uid" value="<?php echo $result->ID; ?>" required readonly>
+                                                    name="uid" value="<?php echo $result->ID; ?>" required readonly disabled>
                                             </div>
                                             <div class="form-group col-md-7">
                                                 <label for="name" class="label small px-1">Name</label>
                                                 <input type="text" class="form-control" id="name<?php echo $cnt ?>"
-                                                    name="name" value="<?php echo $result->firstName ?> <?php echo $result->lastName ?>" required readonly>
+                                                    name="name" value="<?php echo $result->firstName ?> <?php echo $result->lastName ?>" required readonly disabled>
                                             </div>
                                         </div>
                                         
@@ -70,38 +70,38 @@
                                             <div class="form-group col-md-5">
                                                 <label for="username" class="label small px-1">Username</label>
                                                 <input type="username" class="form-control" id="username<?php echo $cnt ?>"
-                                                    name="username" value="<?php echo $result->username ?>" required readonly>
+                                                    name="username" value="<?php echo $result->username ?>" required readonly disabled>
                                             </div>
 
                                             <div class="form-group col-md-7">
                                                 <label for="mobile" class="label small px-1">Mobile</label>
                                                 <input type="text" class="form-control" id="mobile<?php echo $cnt ?>"
-                                                    name="mobile" value="<?php echo $result->mobile ?>" required readonly>
+                                                    name="mobile" value="<?php echo $result->mobile ?>" required readonly disabled>
                                             </div>
                                         </div>
 
                                         <div class="form-group pt-2">
                                                 <label for="email" class="label small px-1">Email</label>
                                                 <input type="text" class="form-control" id="email<?php echo $cnt ?>"
-                                                    name="email" value="<?php echo $result->email ?>" required readonly>
+                                                    name="email" value="<?php echo $result->email ?>" required readonly disabled>
                                             </div>
 
                                         <div class="form-group pt-2">
                                             <label for="address" class="label small px-1">Address</label>
-                                            <textarea type="text" class="form-control" id="address<?php echo $cnt ?>" name="address" value="<?php echo $result->address ?>" required readonly><?php echo $result->address ?></textarea>
+                                            <textarea type="text" class="form-control" id="address<?php echo $cnt ?>" name="address" value="<?php echo $result->address ?>" required readonly disabled><?php echo $result->address ?></textarea>
                                         </div>
                                         
                                         <div class="row pt-2 pb-3">
                                             <div class="form-group col">
                                                 <label for="role" class="label small px-1">Role</label>
                                                 <input type="text" class="form-control" id="role<?php echo $cnt ?>"
-                                                name="role" value="<?php echo $result->role ?>" required readonly>
+                                                name="role" value="<?php echo $result->role ?>" required readonly disabled>
                                             </div>
 
                                             <div class="form-group col">
                                                 <label for="date_added" class="label small px-1">Date Added</label>
                                                 <input type="text" class="form-control" id="date_added<?php echo $cnt ?>"
-                                                name="date_added" value="<?php echo $result->date_added ?>" required readonly>
+                                                name="date_added" value="<?php echo $result->date_added ?>" required readonly disabled>
                                             </div>
                                         </div>
                                         
