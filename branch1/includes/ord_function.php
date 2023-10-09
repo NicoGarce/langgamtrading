@@ -95,6 +95,8 @@ class Orders
     public function move_to_sales($order_id)
     {
         $store = new Langgam();
+        $users = new Users();
+
         $conn = $store->openConnection();
 
         // Fetch the order from branch1_orders
@@ -129,6 +131,27 @@ class Orders
 
         // Check if the insertion was successful
         if ($stmt->rowCount() > 0) {
+            $ID = $users->getID();
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
+            $uid = $ID[0]->ID;
+            $username = $ID[0]->username;
+            $role = $ID[0]->role;
+            $added_by = $first_name . ' ' . $last_name;
+
+            $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $stmt = $conn->prepare($edit);
+                $stmt->execute([
+                    'action_type'=>"Made a Sale",
+                    'user_id' => $uid,
+                    'username' => $username,
+                    'full_name' =>$added_by,
+                    'role' => $role,
+                    'table_name' => 'Orders',
+                    'record_id' => $order_id
+                ]);
+
             // Delete the order from branch1_orders
             $stmt = $conn->prepare("DELETE FROM branch1_orders WHERE order_id = :order_id");
             $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
@@ -147,6 +170,8 @@ class Orders
     public function update_stat()
     {
         $store = new Langgam();
+        $users = new Users();
+
         $conn = $store->openConnection();
 
         if (isset($_POST['update_order'])) {
@@ -241,6 +266,26 @@ class Orders
                 ]);
 
                 if ($stmt->rowCount() !== false) {
+                    $ID = $users->getID();
+                    $first_name = $ID[0]->firstName;
+                    $last_name = $ID[0]->lastName;
+                    $uid = $ID[0]->ID;
+                    $username = $ID[0]->username;
+                    $role = $ID[0]->role;
+                    $added_by = $first_name . ' ' . $last_name;
+
+                    $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                                VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                        $stmt = $conn->prepare($edit);
+                        $stmt->execute([
+                            'action_type'=>"Voided an Order",
+                            'user_id' => $uid,
+                            'username' => $username,
+                            'full_name' =>$added_by,
+                            'role' => $role,
+                            'table_name' => 'Orders',
+                            'record_id' => $order_id
+                        ]);
                     echo "<script>
                         Swal.fire({
                             icon: 'success',
@@ -280,6 +325,28 @@ class Orders
                 ]);
 
                 if ($stmt->rowCount() !== false) {
+
+                    $ID = $users->getID();
+                    $first_name = $ID[0]->firstName;
+                    $last_name = $ID[0]->lastName;
+                    $uid = $ID[0]->ID;
+                    $username = $ID[0]->username;
+                    $role = $ID[0]->role;
+                    $added_by = $first_name . ' ' . $last_name;
+
+                    $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                                VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                        $stmt = $conn->prepare($edit);
+                        $stmt->execute([
+                            'action_type'=>"Updated an Order/Payment Status",
+                            'user_id' => $uid,
+                            'username' => $username,
+                            'full_name' =>$added_by,
+                            'role' => $role,
+                            'table_name' => 'Orders',
+                            'record_id' => $order_id
+                        ]);
+
                     echo "<script>
                         Swal.fire({
                             icon: 'success',
@@ -318,13 +385,74 @@ class Orders
     public function delete_order()
     {
         $store = new Langgam();
+        $users = new Users();
         if (isset($_REQUEST['delete'])) {
             $order_id = $_GET['order_id'] ?? '';
+            $ID = $users->getID();
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
+            $uid = $ID[0]->ID;
+            $username = $ID[0]->username;
+            $role = $ID[0]->role;
+            $added_by = $first_name . ' ' . $last_name;
 
             $pdo = $store->openConnection();
             $sql = "DELETE FROM branch1_orders where order_id =:order_id";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':order_id' => $order_id]);
+
+            if ($stmt->rowCount() !== false) {
+
+                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $stmt = $pdo->prepare($edit);
+                $stmt->execute([
+                    'action_type'=>"Removed an Order",
+                    'user_id' => $uid,
+                    'username' => $username,
+                    'full_name' =>$added_by,
+                    'role' => $role,
+                    'table_name' => 'Orders',
+                    'record_id' => $order_id
+                ]);
+            }
+        }
+    }
+
+    public function delete_voided()
+    {
+        $store = new Langgam();
+        $users = new Users();
+        if (isset($_REQUEST['delete'])) {
+            $order_id = $_GET['order_id'] ?? '';
+            $ID = $users->getID();
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
+            $uid = $ID[0]->ID;
+            $username = $ID[0]->username;
+            $role = $ID[0]->role;
+            $added_by = $first_name . ' ' . $last_name;
+
+            $pdo = $store->openConnection();
+            $sql = "DELETE FROM branch1_orders where order_id =:order_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([':order_id' => $order_id]);
+
+            if ($stmt->rowCount() !== false) {
+
+                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $stmt = $pdo->prepare($edit);
+                $stmt->execute([
+                    'action_type'=>"Removed a Voided Order",
+                    'user_id' => $uid,
+                    'username' => $username,
+                    'full_name' =>$added_by,
+                    'role' => $role,
+                    'table_name' => 'Voided',
+                    'record_id' => $order_id
+                ]);
+            }
         }
     }
 }

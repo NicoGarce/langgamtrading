@@ -82,13 +82,38 @@ class Users {
     public function delete_user()
     {
         $store = new Langgam();
+        $users = new Users;
+        
         if (isset($_REQUEST['delete'])) {
             $uid = $_GET['ID'] ?? '';
+            $ID = $users->getID();
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
+            $user_id = $ID[0]->ID;
+            $username = $ID[0]->username;
+            $role = $ID[0]->role;
+            $fullname = $first_name . ' ' . $last_name;
 
             $pdo = $store->openConnection();
             $sql = "DELETE FROM branch2_users where id=:uid";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(['uid' => $uid]);
+
+            if ($stmt->rowCount() !== false) {
+
+                $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $stmt = $pdo->prepare($edit);
+                $stmt->execute([
+                    'action_type'=>"Removed an Account",
+                    'user_id' => $user_id,
+                    'username' => $username,
+                    'full_name' =>$fullname,
+                    'role' => $role,
+                    'table_name' => 'Accounts',
+                    'record_id' => $uid
+                ]);
+            }
 
         }
     }

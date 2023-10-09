@@ -64,13 +64,38 @@ class Sales{
     public function delete_sale()
     {
         $store = new Langgam();
+        $users = new Users;
+
         if (isset($_REQUEST['delete'])) {
             $sale_id = $_GET['sale_id'] ?? '';
+            $ID = $users->getID();
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
+            $user_id = $ID[0]->ID;
+            $username = $ID[0]->username;
+            $role = $ID[0]->role;
+            $fullname = $first_name . ' ' . $last_name;
 
             $pdo = $store->openConnection();
             $sql = "DELETE FROM branch2_sales where sale_id =:sale_id";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':sale_id' => $sale_id]);
+            
+            if ($stmt->rowCount() !== false) {
+
+                $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $stmt = $pdo->prepare($edit);
+                $stmt->execute([
+                    'action_type'=>"Removed a Sale",
+                    'user_id' => $user_id,
+                    'username' => $username,
+                    'full_name' =>$fullname,
+                    'role' => $role,
+                    'table_name' => 'Sales',
+                    'record_id' => $sale_id
+                ]);
+            }
         }
     }
 

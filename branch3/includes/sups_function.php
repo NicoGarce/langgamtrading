@@ -11,12 +11,21 @@ class Suppliers {
     public function add_supplier()
     {
         $store = new Langgam();
+        $users = new Users();
 
         if (isset($_POST['add_supplier'])) {
             $supplier_name = $_POST["supplier_name"];
             $description = $_POST["description"];
             $address = $_POST["address"];
             $contact = $_POST["contact"];
+
+            $ID = $users->getID();
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
+            $uid = $ID[0]->ID;
+            $username = $ID[0]->username;
+            $role = $ID[0]->role;
+            $added_by = $first_name . ' ' . $last_name;
 
             $pdo = $store->openConnection();
 
@@ -30,6 +39,21 @@ class Suppliers {
             ]);
 
             if ($stmt->rowCount() !== false) {
+
+                $record_id = $pdo->lastInsertId();
+                $add = "INSERT INTO branch3_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $stmt = $pdo->prepare($add);
+                $stmt->execute([
+                    'action_type'=> "Added a Supplier",
+                    'user_id' => $uid,
+                    'username' => $username,
+                    'full_name' => $added_by,
+                    'role' => $role,
+                    'table_name'=> "Suppliers",
+                    'record_id' => $record_id
+                ]);
+
                 echo "<script>
             Swal.fire({
                 icon: 'success',
@@ -63,6 +87,7 @@ class Suppliers {
     public function edit_supplier()
     {
         $store = new Langgam();
+        $users = new Users();
 
         if (isset($_POST['update'])) {
             $supplier_id = $_POST['supplier_id'] ?? '';
@@ -71,6 +96,13 @@ class Suppliers {
             $address = $_POST["address"];
             $contact = $_POST["contact"];
 
+            $ID = $users->getID();
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
+            $uid = $ID[0]->ID;
+            $username = $ID[0]->username;
+            $role = $ID[0]->role;
+            $added_by = $first_name . ' ' . $last_name;
 
             $pdo = $store->openConnection();
 
@@ -86,6 +118,20 @@ class Suppliers {
             ]);
 
             if ($stmt->rowCount() !== false) {
+
+                $edit = "INSERT INTO branch3_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $stmt = $pdo->prepare($edit);
+                $stmt->execute([
+                    'action_type'=>"Edited a Supplier",
+                    'user_id' => $uid,
+                    'username' => $username,
+                    'full_name' =>$added_by,
+                    'role' => $role,
+                    'table_name' => 'Suppliers',
+                    'record_id' => $supplier_id
+                ]);
+
                 echo "<script>
             Swal.fire({
                 icon: 'success',
@@ -119,9 +165,17 @@ class Suppliers {
     public function delete_supp()
     {
         $store = new Langgam();
+        $users = new Users();
 
         if (isset($_REQUEST['delete'])) {
             $supplier_id = $_GET['supplier_id'] ?? '';
+            $ID = $users->getID();
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
+            $uid = $ID[0]->ID;
+            $username = $ID[0]->username;
+            $role = $ID[0]->role;
+            $added_by = $first_name . ' ' . $last_name;
 
             $pdo = $store->openConnection();
             $sql = "DELETE FROM branch3_suppliers where supplier_id =:supplier_id";
@@ -129,31 +183,18 @@ class Suppliers {
             $stmt->execute([':supplier_id' => $supplier_id]);
 
             if ($stmt->rowCount() !== false) {
-                echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'Supplier removed successfully',
-                confirmButtonColor: '#3085d6',
-                customClass: {
-                    confirmButton: '#3085d6',
-                }
-            }).then(function() {
-                window.location.href = window.location.href;
-            });
-        </script>";
-            } else {
-                echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Unable to remove supplier',
-                    confirmButtonColor: '#3085d6',
-                    customClass: {
-                        confirmButton: '#3085d6',
-                    }
-                });
-            </script>";
+                $edit = "INSERT INTO branch3_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $stmt = $pdo->prepare($edit);
+                $stmt->execute([
+                    'action_type'=>"Deleted a Supplier",
+                    'user_id' => $uid,
+                    'username' => $username,
+                    'full_name' =>$added_by,
+                    'role' => $role,
+                    'table_name' => 'Inventory',
+                    'record_id' => $supplier_id
+                ]);
             }
 
         }

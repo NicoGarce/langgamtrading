@@ -1,6 +1,18 @@
 <?php
 require_once('../../includes/storeclass.php');
+require_once('users_function.php');
 //endpoint for adding user to db ajax
+session_start();
+
+$users = new Users();
+
+    $ID = $users->getID();
+    $first_name = $ID[0]->firstName;
+    $last_name = $ID[0]->lastName;
+    $uid = $ID[0]->ID;
+    $username_crud = $ID[0]->username;
+    $role_crud = $ID[0]->role;
+    $added_by = $first_name . ' ' . $last_name;
 
 if (isset($_POST['add'])) {
     $firstName = $_POST["firstName"];
@@ -11,7 +23,8 @@ if (isset($_POST['add'])) {
     $email = $_POST["email"];
     $address = $_POST["address"];
     $role = $_POST["role"];
-
+    
+    
     // Generate a hashed password using bcrypt
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $store = new Langgam();
@@ -33,6 +46,20 @@ if (isset($_POST['add'])) {
 
     if ($stmt->rowCount() > 0) {
         $message = "User added successfully.";
+
+        $record_id = $pdo->lastInsertId();
+        $add = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+        $stmt_crud = $pdo->prepare($add);
+        $stmt_crud->execute([
+            'action_type'=> "Created an Account",
+            'user_id' => $uid,
+            'username' => $username_crud,
+            'full_name' => $added_by,
+            'role' => $role_crud,
+            'table_name'=> "Accounts",
+            'record_id' => $record_id
+        ]);
     } else {
         $message = "Error: Unable to add user.";
     }

@@ -19,7 +19,7 @@ if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
     exit();
 }
 
-$orders->delete_order();
+$orders->delete_voided();
 ?>
 <!DOCTYPE html>
 <html lang="en">

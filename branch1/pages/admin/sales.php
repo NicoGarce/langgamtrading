@@ -68,23 +68,6 @@ $sales->delete_sale();
 
             <div class="dashboard-content px-3">
                 <div class="m-0 m-sm-3">
-                    <div class="pb-2">
-                        <div class="card p-3 rounded-4">
-                            <div class="row">
-                                <div class="form-group col-12 col-md-5">
-                                    <label for="start_date" class="label small px-1">Start</label>
-                                    <input type="date" class="form-control" id="start_date">
-                                </div>
-                                <div class="form-group col-12 col-md-5">
-                                    <label for="end_date" class="label small px-1">End</label>
-                                    <input type="date" class="form-control" id="end_date">
-                                </div>
-                                <div class="col-12 col-md-2 pt-3">
-                                    <button class="btn btn-primary col-12 col-md-12"><i class='bx bx-file'></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="container-fluid card p-3 rounded-4">
                         <div class="table-responsive pt-2">
                             <table id="table" class="table table-bordered table-striped table-hover">

@@ -1,7 +1,11 @@
 <?php
 require_once('../../includes/storeclass.php');
-$store = new Langgam;
+require_once('users_function.php');
 
+$store = new Langgam;
+$users = new Users;
+
+session_start();
 if (isset($_POST['create_order'])) {
 
     $customer_name = $_POST["customer_name"];
@@ -63,9 +67,9 @@ if (isset($_POST['create_order'])) {
             ':order_status' => $order_status,
             ':salesperson' => $salesperson
         ]);
-    
+        
+        $record_id = $pdo->lastInsertId();
         if ($stmtSales->rowCount() > 0) {
-            $message = "Order Complete. Sale made successfully";
             
             foreach ($orderList as $item) {
                 $product_name = $item["product_name"];
@@ -80,6 +84,29 @@ if (isset($_POST['create_order'])) {
                 ]);
             }
 
+            $ID = $users->getID();
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
+            $uid = $ID[0]->ID;
+            $username_crud = $ID[0]->username;
+            $role_crud = $ID[0]->role;
+            $added_by = $first_name.' '.$last_name;
+            
+
+            $add = "INSERT INTO branch3_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                    VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+            $stmt_crud = $pdo->prepare($add);
+            $stmt_crud->execute([
+                'action_type'=> "Created a Sale",
+                'user_id' => $uid,
+                'username' => $username_crud,
+                'full_name' => $added_by,
+                'role' => $role_crud,
+                'table_name'=> "Sales",
+                'record_id' => $record_id
+            ]);
+
+            $message = "Order Complete. Sale made successfully";
             
         } else {
             $message = "Error: Unable to add order as a sale.";
@@ -131,9 +158,9 @@ if (isset($_POST['create_order'])) {
             ':salesperson' => $salesperson
         ]);
 
+        $record_id = $pdo->lastInsertId();
         if ($stmt->rowCount() > 0) {
-            $message = "Order added successfully.";
-
+            
             // Decrease stock in branch3_inventory for each item in the order
             foreach ($orderList as $item) {
                 $product_name = $item["product_name"];
@@ -147,6 +174,30 @@ if (isset($_POST['create_order'])) {
                     ':product_name' => $product_name
                 ]);
             }
+
+            $ID = $users->getID();
+            $first_name = $ID[0]->firstName;
+            $last_name = $ID[0]->lastName;
+            $uid = $ID[0]->ID;
+            $username_crud = $ID[0]->username;
+            $role_crud = $ID[0]->role;
+            $added_by = $first_name.' '.$last_name;
+            
+            $add = "INSERT INTO branch3_crud (action_type, user_id, username, full_name, role, table_name, record_id)
+                    VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+            $stmt_crud = $pdo->prepare($add);
+            $stmt_crud->execute([
+                'action_type'=> "Created an Order",
+                'user_id' => $uid,
+                'username' => $username_crud,
+                'full_name' => $added_by,
+                'role' => $role_crud,
+                'table_name'=> "Orders",
+                'record_id' => $record_id
+            ]);
+
+            $message = "Order added successfully.";
+
         } else {
             $message = "Error: Unable to add order.";
         }

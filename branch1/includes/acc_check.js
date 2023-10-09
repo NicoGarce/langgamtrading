@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: formData
 
                 });
-
+                //console.log(await response.text());
                 if (response.ok) {
                     const data = await response.json();
                     // Display success message if user was added successfully
