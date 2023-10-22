@@ -1,6 +1,6 @@
 <?php
 
-require_once('C:\xampp\htdocs\langgamtrading\includes\storeclass.php');
+require_once('storeclass.php');
 
 
 ?>

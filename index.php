@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="pt-5">
-        <?php include('.\includes\login.php');  ?>
+        <?php include('./includes/login.php');  ?>
     </div>
     
 </body>
