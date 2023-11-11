@@ -41,8 +41,14 @@ class Suppliers {
             if ($stmt->rowCount() !== false) {
 
                 $record_id = $pdo->lastInsertId();
-                $add = "INSERT INTO branch3_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                
+                date_default_timezone_set('Asia/Manila');
+                
+                $time = date('H:i:s');   
+                $date = date('Y-m-d');
+
+                $add = "INSERT INTO branch3_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $pdo->prepare($add);
                 $stmt->execute([
                     'action_type'=> "Added a Supplier",
@@ -50,6 +56,8 @@ class Suppliers {
                     'username' => $username,
                     'full_name' => $added_by,
                     'role' => $role,
+                    'time' => $time,
+                    'date' => $date,
                     'table_name'=> "Suppliers",
                     'record_id' => $record_id
                 ]);
@@ -118,9 +126,14 @@ class Suppliers {
             ]);
 
             if ($stmt->rowCount() !== false) {
+                
+                date_default_timezone_set('Asia/Manila');
+                
+                $time = date('H:i:s');   
+                $date = date('Y-m-d');
 
-                $edit = "INSERT INTO branch3_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $edit = "INSERT INTO branch3_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $pdo->prepare($edit);
                 $stmt->execute([
                     'action_type'=>"Edited a Supplier",
@@ -128,6 +141,8 @@ class Suppliers {
                     'username' => $username,
                     'full_name' =>$added_by,
                     'role' => $role,
+                    'time' => $time,
+                    'date' => $date,
                     'table_name' => 'Suppliers',
                     'record_id' => $supplier_id
                 ]);
@@ -183,8 +198,14 @@ class Suppliers {
             $stmt->execute([':supplier_id' => $supplier_id]);
 
             if ($stmt->rowCount() !== false) {
-                $edit = "INSERT INTO branch3_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                
+                date_default_timezone_set('Asia/Manila');
+
+                $time = date('H:i:s');   
+                $date = date('Y-m-d');
+
+                $edit = "INSERT INTO branch3_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $pdo->prepare($edit);
                 $stmt->execute([
                     'action_type'=>"Deleted a Supplier",
@@ -192,7 +213,9 @@ class Suppliers {
                     'username' => $username,
                     'full_name' =>$added_by,
                     'role' => $role,
-                    'table_name' => 'Inventory',
+                    'time' => $time,
+                    'date' => $date,
+                    'table_name' => 'Suppliers',
                     'record_id' => $supplier_id
                 ]);
             }

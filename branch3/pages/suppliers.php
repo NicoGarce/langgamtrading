@@ -6,7 +6,7 @@ $login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     print_r('user');
-    header('Location: /langgamtrading/index.php');
+    header('Location: ../../index.php');
     exit();
 }
 
@@ -28,7 +28,7 @@ $sups->delete_supp();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/custom.css">
-
+    <link rel="icon" href="../../assets/icon.png" type="image/png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -73,7 +73,7 @@ $sups->delete_supp();
 
                     <div class="card p-3 rounded-4">
                         <div class="table-responsive pt-2">
-                            <table id="table" class="table table-bordered table-striped table-hover">
+                            <table id="table" class="table table-striped table-hover">
                                 <thead class="text-center">
                                     <tr>
                                         <th>ID</th>

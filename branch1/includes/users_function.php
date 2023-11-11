@@ -99,9 +99,14 @@ class Users {
             $stmt->execute(['uid' => $uid]);
 
             if ($stmt->rowCount() !== false) {
-
-                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                
+                date_default_timezone_set('Asia/Manila');
+    
+                $date = date('Y-m-d');
+                $time = date('H:i:s');
+                
+                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $pdo->prepare($edit);
                 $stmt->execute([
                     'action_type'=>"Removed an Account",
@@ -109,6 +114,8 @@ class Users {
                     'username' => $username,
                     'full_name' =>$fullname,
                     'role' => $role,
+                    'time' => $time,
+                    'date' => $date,
                     'table_name' => 'Accounts',
                     'record_id' => $uid
                 ]);

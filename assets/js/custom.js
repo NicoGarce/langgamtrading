@@ -14,8 +14,11 @@ $(document).ready(function () {
   } else if (window.location.pathname.includes("orders.php")) {
     addButton =
       '<div class="mb-1"><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addOrder"><i class="bx bx-plus"></i> Create Order</button></div>';
+  } else if (window.location.pathname.includes("sales.php")) {
+    addButton =
+      '<div class="mb-1"><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#salesImport"><i class="bx bx-plus"></i> Import Sales</button></div>';
   }
-  if (!window.location.pathname.includes("admin_dashboard.php")) {
+  if (!window.location.pathname.includes("admin_dashboard.php") && !window.location.pathname.includes("emp_dashboard.php")) {
     initializeDataTable();
   }
   function initializeDataTable() {
@@ -106,7 +109,7 @@ let calcScrollValue = () => {
     document.documentElement.scrollTop = 0;
   });
 
-  scrollProgress.style.background = `conic-gradient(#306c76 ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
+  scrollProgress.style.background = `conic-gradient(#32384D ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
 
   clearTimeout(hideTimer);
   hideTimer = setTimeout(() => {

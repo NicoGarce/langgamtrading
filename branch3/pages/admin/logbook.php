@@ -7,7 +7,7 @@ $login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     print_r('user');
-    header('Location: /langgamtrading/index.php');
+    header('Location: ../../../index.php');
     exit();
 }
 
@@ -28,7 +28,7 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log Book | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/custom.css">
-
+    <link rel="icon" href="../../../assets/icon.png" type="image/png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -71,7 +71,7 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
 
                     <div class="container-fluid card p-3 rounded-4">
                         <div class="table-responsive pt-2">
-                            <table id="table" class="table table-bordered table-striped table-hover">
+                            <table id="table" class="table table-striped table-hover">
                                 <thead class="text-center">
                                     <tr>
                                         <th class="d-none d-sm-table-cell">#</th>
@@ -81,7 +81,6 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
                                         <th class="d-none d-sm-table-cell">Action</th>
                                         <th>Date</th>
                                         <th>Time</th>
-                                        <th class="d-none d-sm-table-cell">Browser|Device|OS</th>
                                         <th><i class='bx bx-info-circle'></th>
                                     </tr>
                                 </thead>
@@ -120,9 +119,6 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
                                                 <td>
                                                     <?php echo htmlentities($result->log_time); ?>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <?php echo htmlentities($result->browser); ?> <?php echo htmlentities($result->device); ?> <?php echo htmlentities($result->device_os); ?>
-                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#logDetails<?php echo $cnt ?>" title="Account Details (<?php echo $result->firstName ?>)">
                                                         <i class='bx bx-info-circle'></i></button>
@@ -147,16 +143,7 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
                                                                                 <input type="text" class="form-control" id="action<?php echo $cnt ?>" name="action" value="<?php echo $result->action ?>" required readonly disabled>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row pt-2">
-                                                                            <div class="form-group col">
-                                                                                <label for="device" class="label small px-1">Device</label>
-                                                                                <input type="text" class="form-control" id="device<?php echo $cnt ?>" name="device" value="<?php echo $result->device ?>" required readonly disabled>
-                                                                            </div>
-                                                                            <div class="form-group col">
-                                                                                <label for="bos" class="label small px-1">Browser | OS</label>
-                                                                                <input type="text" class="form-control" id="bos<?php echo $cnt ?>" name="bos" value="<?php echo $result->browser?> | <?php echo $result->device_os?>" required readonly disabled>
-                                                                            </div>
-                                                                        </div>
+                                                                        
                                                                         <div class="row pt-2">
                                                                             <div class="form-group col">
                                                                                 <label for="date" class="label small px-1">Date</label>

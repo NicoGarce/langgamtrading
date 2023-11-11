@@ -15,7 +15,7 @@ if(isset($_POST['send'])){
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'agl.systems.info@gmail.com';
-    $mail->Password = 'qggmgewsmiqpxuov';
+    $mail->Password = 'xbqlmyrythaaanwe';
     $mail->SMTPSecure = 'ssl'; // You can also use 'tls'
     $mail->Port = 465; // For SSL, or 587 for TLS
 
@@ -71,7 +71,7 @@ if(isset($_POST['send'])){
     <div class="container">
         <h1>Password Reset</h1>
         <p>Click the button below to change your password:</p>
-        <p><a href="http://localhost/langgamtrading/branch2/pages/change_password.php" id="openModalLink">Change Password</a></p>
+        <p><a href="https://langgamtrading-system.000webhostapp.com/branch2/pages/change_password.php" id="openModalLink">Change Password</a></p>
     </div>
 </body>
 </html>';

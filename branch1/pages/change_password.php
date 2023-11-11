@@ -6,15 +6,15 @@ $login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     print_r('user');
-    header('Location: /langgamtrading/index.php');
+    header('Location: ../../index.php');
     exit();
 }
 
 if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
-    header('Location: /langgamtrading/branch2/pages/profile.php');
+    header('Location: /branch2/pages/profile.php');
     exit();
 } elseif (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
-    header('Location: /langgamtrading/branch3/pages/profile.php');
+    header('Location: /branch3/pages/profile.php');
     exit();
 }
 
@@ -27,12 +27,12 @@ $current_page = $_SERVER['PHP_SELF'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile | Langgam Trading</title>
-    <link rel="stylesheet" href="/langgamtrading/css/custom.css">
+    <link rel="stylesheet" href="/css/custom.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/langgamtrading/css/main.css">
-    <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>

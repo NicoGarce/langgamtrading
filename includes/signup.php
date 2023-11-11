@@ -11,9 +11,10 @@ require_once('storeclass.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/langgamtrading/css/main.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <title>Sign Up | Langgam Trading</title>
 </head>
 
@@ -26,10 +27,10 @@ require_once('storeclass.php');
             <div class="col-md-6">
                 <div class="card p-3" style="border-radius: 1rem;">
                     <div class="card-body">
-                        <h2 class="card-title text-center">Choose Branch</h2>
+                        <h2 class="card-title text-center font">Choose Branch</h2>
                         <form method="post" id="registration-form">
 
-                            <div class="form-group pt-4">
+                            <div class="form-group pt-4 font">
                                 <select class="form-control" id="branch" name="branch" required>
                                     <option value="" disabled selected class="text-center">Select Branch</option>
                                     <option value="branch1" class="text-center">Langgam Trading</option>

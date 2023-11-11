@@ -1,6 +1,6 @@
 //Change Password
 document.addEventListener("DOMContentLoaded", () => {
-  const registrationForm = document.getElementById("registration-form");
+  const registrationForm = document.getElementById("change-pass-form");
   const oldPasswordInput = document.getElementById("old-pass");
   const oldPasswordMessage = document.getElementById("old-pass-msg");
 
@@ -91,7 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
           newPasswordInput.setAttribute("disabled", null);
           confirmNew.setAttribute("disabled", null);
           document.getElementById("change").setAttribute("disabled", "true");
-          window.close();
+          window.location.reload();
+          //window.close();
         });
       } else {
         // Display error message if user was not added

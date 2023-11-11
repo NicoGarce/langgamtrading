@@ -1,6 +1,6 @@
 //Change Password
 document.addEventListener("DOMContentLoaded", () => {
-  const registrationForm = document.getElementById("registration-form");
+  const registrationForm = document.getElementById("change-pass-form");
   const oldPasswordInput = document.getElementById("old-pass");
   const oldPasswordMessage = document.getElementById("old-pass-msg");
 
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        "/langgamtrading/branch3/includes/password.php",
+        "/branch3/includes/password.php",
         {
           method: "POST",
           body: formData,
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
           newPasswordInput.setAttribute("disabled", null);
           confirmNew.setAttribute("disabled", null);
           document.getElementById("change").setAttribute("disabled", "true");
-          window.close();
+          window.location.reload();
         });
       } else {
         // Display error message if user was not added
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (oldPassword !== "") {
       const response = await checkOldPassword(
-        "/langgamtrading/branch3/includes/check_old_pass.php",
+        "/branch3/includes/check_old_pass.php",
         `old-pass=${oldPassword}`,
         oldPasswordMessage
       );
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (confirm !== "") {
       const response = await checkConfirmation(
-        "/langgamtrading/branch3/includes/check_confirmation.php",
+        "/branch3/includes/check_confirmation.php",
         `password=${newPassword}&confirm=${confirm}`
       );
       confirmMessage.innerHTML = response;

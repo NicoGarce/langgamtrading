@@ -23,9 +23,9 @@ if (isset($_SESSION['ID'])) {
         $hashedPassword = $result['password'];
 
         if (password_verify($oldPassword, $hashedPassword)) {
-            echo "<span style='color:green'>Old Password Confirmed.</span>";
+            echo "<span style='color:green'>Current Password Confirmed.</span>";
         } else {
-            echo "<span style='color:red'>Try Again, Old Password is incorrect.</span>";
+            echo "<span style='color:red'>Try Again, Current Password is incorrect.</span>";
         }
     } else {
         echo "<span style='color:red'>Error retrieving password or user ID is invalid.</span>";

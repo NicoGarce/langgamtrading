@@ -76,6 +76,7 @@
                                     <option value="Complete">Complete</option>
                                 </select>
                             </div>
+                            <input type="hidden" id="user_id" name="user_id" value="<?php $uid = $users->getID(); echo $uid[0]->ID; ?>">
                             <input type="hidden" id="salesperson" name="salesperson" value="<?php $uid = $users->getID();
                                 $first_name = $uid[0]->firstName;
                                 $last_name = $uid[0]->lastName;

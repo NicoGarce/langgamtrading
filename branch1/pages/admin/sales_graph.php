@@ -3,18 +3,24 @@
 $store = new Langgam();
 $conn = $store->openConnection();
 
+$currentYear = date('Y');
+
 $stmt = $conn->prepare('SELECT
-    EXTRACT(MONTH FROM order_date) AS order_month,
-    EXTRACT(YEAR FROM order_date) AS order_year,
+    EXTRACT(MONTH FROM date_complete) AS order_month,
+    EXTRACT(YEAR FROM date_complete) AS order_year,
     SUM(total_cost) AS total_sales
     FROM
         branch1_sales
+    WHERE
+        EXTRACT(YEAR FROM order_date) = :currentYear
     GROUP BY
         order_month,
         order_year
     ORDER BY
         order_year,
         order_month;');
+
+$stmt->bindParam(':currentYear', $currentYear, PDO::PARAM_INT);
 $stmt->execute();
 
 $monthyear = []; // To store month names
@@ -65,8 +71,9 @@ foreach ($stmt as $data) {
         data: {
             labels: <?php echo json_encode(($monthyear)) ?>,
             datasets: [{
-                label: '# Amount of Sales in Php',
+                label: 'Amount of Sales per Month in Pesos',
                 data: <?php echo json_encode(($total))?>,
+                backgroundColor: 'rgba(249, 186, 50, 1)',
                 borderWidth: 1
             }]
         },

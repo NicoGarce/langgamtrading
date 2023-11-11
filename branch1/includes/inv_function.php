@@ -71,8 +71,13 @@ class Inventory{
 
             if ($stmt->rowCount() !== false) {
                 $record_id = $pdo->lastInsertId();
-                $add = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                date_default_timezone_set('Asia/Manila');
+    
+                $date = date('Y-m-d');
+                $time = date('H:i:s');
+                
+                $add = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $pdo->prepare($add);
                 $stmt->execute([
                     'action_type'=> "Added a Product",
@@ -80,6 +85,8 @@ class Inventory{
                     'username' => $username,
                     'full_name' => $added_by,
                     'role' => $role,
+                    'time' => $time,
+                    'date' => $date,
                     'table_name'=> "Inventory",
                     'record_id' => $record_id
                 ]);
@@ -173,9 +180,14 @@ class Inventory{
             ]);
 
             if ($stmt->rowCount() !== false) {
-
-                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                
+                date_default_timezone_set('Asia/Manila');
+    
+                $date = date('Y-m-d');
+                $time = date('H:i:s');
+                
+                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $pdo->prepare($edit);
                 $stmt->execute([
                     'action_type'=>"Edited a Product",
@@ -183,6 +195,8 @@ class Inventory{
                     'username' => $username,
                     'full_name' =>$added_by,
                     'role' => $role,
+                    'time' => $time,
+                    'date' => $date,
                     'table_name' => 'Inventory',
                     'record_id' => $product_id
                 ]);
@@ -239,9 +253,14 @@ class Inventory{
             $stmt->execute([':product_id' => $product_id]);
 
             if ($stmt->rowCount() !== false) {
-
-                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                
+                date_default_timezone_set('Asia/Manila');
+    
+                $date = date('Y-m-d');
+                $time = date('H:i:s');
+                
+                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $pdo->prepare($edit);
                 $stmt->execute([
                     'action_type'=>"Deleted a Product",
@@ -249,6 +268,8 @@ class Inventory{
                     'username' => $username,
                     'full_name' =>$added_by,
                     'role' => $role,
+                    'time' => $time,
+                    'date' => $date,
                     'table_name' => 'Inventory',
                     'record_id' => $product_id
                 ]);

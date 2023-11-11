@@ -7,15 +7,15 @@ $login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     print_r('user');
-    header('Location: /langgamtrading/index.php');
+    header('Location: ../../../index.php');
     exit();
 }
 
 if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
-    header('Location: /langgamtrading/branch2/pages/logs.php');
+    header('Location: ../../../branch2/pages/logs.php');
     exit();
 } elseif (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
-    header('Location: /langgamtrading/branch3/pages/logs.php');
+    header('Location: ../../../branch3/pages/logs.php');
     exit();
 }
 
@@ -27,22 +27,22 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log Book | Langgam Trading</title>
-    <link rel="stylesheet" href="/langgamtrading/css/custom.css">
-
+    <link rel="stylesheet" href="../../../css/custom.css">
+    <link rel="icon" href="../../../assets/icon.png" type="image/png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script defer src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
-    <link rel="stylesheet" href="/langgamtrading/css/main.css">
-    <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../../css/main.css">
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.css" rel="stylesheet">
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script defer src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.js"></script>
-    <script defer src="/langgamtrading/assets/js/custom.js"></script>
+    <script defer src="../../../assets/js/custom.js"></script>
 
     <style>
         .dataTables_wrapper .dataTables_filter input[type="search"] {
@@ -71,7 +71,7 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
 
                     <div class="container-fluid card p-3 rounded-4">
                         <div class="table-responsive pt-2">
-                            <table id="table" class="table table-bordered table-striped table-hover">
+                            <table id="table" class="table table-striped table-hover">
                                 <thead class="text-center">
                                     <tr>
                                         <th class="d-none d-sm-table-cell">#</th>
@@ -81,7 +81,6 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
                                         <th class="d-none d-sm-table-cell">Action</th>
                                         <th>Date</th>
                                         <th>Time</th>
-                                        <th class="d-none d-sm-table-cell">Browser|Device|OS</th>
                                         <th><i class='bx bx-info-circle'></th>
                                     </tr>
                                 </thead>
@@ -120,9 +119,6 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
                                                 <td>
                                                     <?php echo htmlentities($result->log_time); ?>
                                                 </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <?php echo htmlentities($result->browser); ?> <?php echo htmlentities($result->device); ?> <?php echo htmlentities($result->device_os); ?>
-                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#logDetails<?php echo $cnt ?>" title="Account Details (<?php echo $result->firstName ?>)">
                                                         <i class='bx bx-info-circle'></i></button>
@@ -147,16 +143,7 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
                                                                                 <input type="text" class="form-control" id="action<?php echo $cnt ?>" name="action" value="<?php echo $result->action ?>" required readonly disabled>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row pt-2">
-                                                                            <div class="form-group col">
-                                                                                <label for="device" class="label small px-1">Device</label>
-                                                                                <input type="text" class="form-control" id="device<?php echo $cnt ?>" name="device" value="<?php echo $result->device ?>" required readonly disabled>
-                                                                            </div>
-                                                                            <div class="form-group col">
-                                                                                <label for="bos" class="label small px-1">Browser | OS</label>
-                                                                                <input type="text" class="form-control" id="bos<?php echo $cnt ?>" name="bos" value="<?php echo $result->browser?> | <?php echo $result->device_os?>" required readonly disabled>
-                                                                            </div>
-                                                                        </div>
+                                                                        
                                                                         <div class="row pt-2">
                                                                             <div class="form-group col">
                                                                                 <label for="date" class="label small px-1">Date</label>

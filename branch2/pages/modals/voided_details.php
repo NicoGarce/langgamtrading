@@ -17,7 +17,9 @@
                 <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->order_time); ?>
                 </td>
-
+                <td class="d-none d-sm-table-cell">
+                    <?php echo htmlentities($result->salesperson); ?>
+                </td>
                 <td class="d-none d-sm-table-cell text-center">
                     <?php echo htmlentities($result->order_status); ?>
                 </td>
@@ -44,7 +46,12 @@
                                 </div>
                                 <div class="modal-body">
                                     <form method="post" id="edit-reg-form<?php echo $result->order_id ?>">
-
+                                        <div class="row d-flex justify-content-end">
+                                            <div class="col-12 col-md-6 col-lg-4">
+                                                <label for="orde_date" class="label small d-flex justify-content-end">Date & Time</label>
+                                                <input class="form-control text-center" type="text" id="order_date" disabled readonly placeholder="<?php echo $result->order_date .' | '. $result->order_time ?>">
+                                            </div>
+                                        </div>
                                         <input id ="ID" name="ID" value="<?php echo $result->order_id ?>" type="hidden">
 
                                         <div class="form-group pt-2">
@@ -148,7 +155,6 @@
                                         <div class="modal-footer">
                                             <button type="button" id="invoice<?php echo $result->order_id ?>" onclick="generatePDF(<?php echo $result->order_id  ?>)" 
                                                 title="Print Invoice" class="btn btn-dark"><i class='bx bxs-printer'></i></button>
-                                            <button type="submit" name="update_order" id="updateStat<?php echo $result->order_id ?>" class="btn btn-dark">Update</button>
                                         </div>
                                     </form>
                                 </div>

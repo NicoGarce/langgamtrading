@@ -13,7 +13,7 @@
       <button class="fs-4 btn d-md-none d-block close-btn p-0 text-white">
         <i class='bx bx-x'></i>
       </button>
-      <h1 class="fs-4 text-white px-2">NOAC MATERIALS TRADING CORP.</h1>
+      <h1 class="fs-4 text-white px-2 side-brand">NOAC MATERIALS TRADING CORP.</h1>
     </div>
 
     <ul class="list-unstyled px-2">

@@ -18,11 +18,11 @@ if(isset($_POST['send'])){
     $mail->Password = 'qggmgewsmiqpxuov';
     $mail->SMTPSecure = 'ssl'; // You can also use 'tls'
     $mail->Port = 465; // For SSL, or 587 for TLS
-
     //Email
     $mail->setFrom('agl.systems.info@gmail.com','Langgam Trading');
     $mail->addAddress($email);
     $mail->isHTML(true);
+    //$mail->SMTPDebug = 2;
     
     $mail->Subject = 'Change Password Link';
     $mail->Body = '
@@ -71,7 +71,7 @@ if(isset($_POST['send'])){
     <div class="container">
         <h1>Password Reset</h1>
         <p>Click the button below to change your password:</p>
-        <p><a href="http://localhost/langgamtrading/branch1/pages/change_password.php" id="openModalLink">Change Password</a></p>
+        <p><a href="https://langgamtrading-system.000webhostapp.com/branch1/pages/change_password.php" id="openModalLink">Change Password</a></p>
     </div>
 </body>
 </html>';

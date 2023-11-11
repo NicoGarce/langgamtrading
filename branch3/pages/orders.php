@@ -8,7 +8,7 @@ $login->login();
 
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
-    header('Location: /langgamtrading/index.php');
+    header('Location: ../../index.php');
     exit();
 }
 
@@ -30,7 +30,7 @@ $orders->delete_order();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orders | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/custom.css">
-
+    <link rel="icon" href="../../assets/icon.png" type="image/png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -75,12 +75,13 @@ $orders->delete_order();
                     <div class="container-fluid card p-3 rounded-4">
 
                         <div class="table-responsive pt-2 tab-pane fade show active" id="table1Container" role="tabpanel" aria-labelledby="tab1">
-                            <table id="table" class="table table-bordered table-striped table-hover">
+                            <table id="table" class="table table-striped table-hover">
                                 <thead class="text-center">
                                     <tr>
                                         <th>Order ID</th>
                                         <th class="d-none d-sm-table-cell">Date</th>
                                         <th class="d-none d-sm-table-cell">Time</th>
+                                        <th class="d-none d-sm-table-cell">Salesperson</th>
                                         <th class="d-none d-sm-table-cell">Payment Method</th>
                                         <th class="d-none d-sm-table-cell">Total</th>
                                         <th class="d-none d-sm-table-cell">Order Status</th>

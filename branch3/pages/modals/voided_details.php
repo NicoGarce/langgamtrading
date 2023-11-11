@@ -17,7 +17,9 @@
                 <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->order_time); ?>
                 </td>
-
+                <td class="d-none d-sm-table-cell">
+                    <?php echo htmlentities($result->salesperson); ?>
+                </td>
                 <td class="d-none d-sm-table-cell text-center">
                     <?php echo htmlentities($result->order_status); ?>
                 </td>
@@ -173,10 +175,10 @@
 function generatePDF(order_id) {
     $.ajax({
         type: "POST",
-        url: "/langgamtrading/branch3/includes/generatePDF.php",
+        url: "/branch3/includes/generatePDF.php",
         data: { order_id: order_id },
         success: function(data) {
-            window.open('/langgamtrading/branch3/includes/generatePDF.php?order_id=' + order_id, '_blank');
+            window.open('/branch3/includes/generatePDF.php?order_id=' + order_id, '_blank');
         },
         error: function(xhr, status, error) {
             alert('An error occurred while generating the PDF: ' + error);

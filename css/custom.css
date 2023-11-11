@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600;700&display=swap');
+
 html {
   scroll-behavior: smooth;
 }
@@ -10,8 +12,33 @@ body {
   transition: 0.3s;
 }
 
+.dataTables_wrapper {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+}
+
+.modal.fade {
+  font-family: 'Poppins', sans-serif;
+}
+
+.card{
+  font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-content{
+  font-family: 'Poppins', sans-serif;
+}
+
+.header-box{
+  font-family: 'Poppins', sans-serif;
+}
+
+.side-brand{
+  font-weight: 600;
+}
+
 #side_nav {
-  background: #212229;
+  background: #252a2e;
   min-width: 250px;
   max-width: 250px;
   height: 98vh;
@@ -22,6 +49,7 @@ body {
   min-width: 0;
   position: fixed;
   z-index: 1;
+  font-family: 'Poppins', sans-serif;
 }
 
 #side_nav ul {
@@ -41,32 +69,34 @@ body {
 .navbar{
   margin: 1rem;
   margin-top: 0.6rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 .navbar li.active{
-  background: #306c76;
+  background: #3f4661;
   border-radius: 8px;
   color: #ffffff;
 }
 
 .profile:hover{
-  background: #306c76;
+  background: #3f4661;
   border-radius: 8px;
 }
 
 .logout:hover{
-  background: #306c76;
+  background: #3f4661;
   border-radius: 8px;
 }
 
 
 .sidebar li.active {
-  background: #306c76;
+  background: #32384D;
   border-radius: 8px;
+  font-weight: bold;
 }
 
 .sidebar li:hover {
-  background: #306c76;
+  background: #32384D;
   border-radius: 8px;
   opacity: 0.8;
   font-size: 17px;
@@ -104,7 +134,7 @@ body {
 }
 
 .gradient-navbar {
-  background: linear-gradient(to right, #ffffff 40%, #4aa9b9);
+  background: linear-gradient(to right, #474c61 40%, #2c3236);
 }
 
 .profile-text {

@@ -61,7 +61,7 @@ class Orders
 
         return $orderItems;
     }
-    
+
     public function get_order_by_id($order_id)
     {
         $store = new Langgam();
@@ -110,10 +110,16 @@ class Orders
             return false;
         }
 
+        date_default_timezone_set('Asia/Manila');
+
+        // Get the current date and time in the desired format
+        $date_complete = date('Y-m-d'); // Format the date as 'YYYY-MM-DD'
+        $time_complete = date('H:i:s');
+
         $update_ord_stat = $_POST["order_status"] ?? '';
         // Insert the order into branch1_sales
-        $stmt = $conn->prepare("INSERT INTO branch1_sales (customer_name, order_date, order_time, contact_info, order_type, shipping_details, salesperson, order_list, pay_method, total_cost, order_status, payment_status)
-                        VALUES ( :customer_name, :order_date, :order_time, :contact_info, :order_type, :shipping_details, :salesperson, :order_list, :pay_method, :total_cost, :order_status, :payment_status)");
+        $stmt = $conn->prepare("INSERT INTO branch1_sales (customer_name, order_date, order_time, contact_info, order_type, shipping_details, user_id, salesperson, order_list, pay_method, total_cost, order_status, payment_status, date_complete, time_complete)
+                        VALUES ( :customer_name, :order_date, :order_time, :contact_info, :order_type, :shipping_details, :user_id, :salesperson, :order_list, :pay_method, :total_cost, :order_status, :payment_status, :date_complete, :time_complete)");
         $stmt->execute([
             ':customer_name' => $order['customer_name'],
             ':order_date' => $order['order_date'],
@@ -121,12 +127,15 @@ class Orders
             ':contact_info' => $order['contact_info'],
             ':order_type' => $order['order_type'],
             ':shipping_details' => $order['shipping_details'],
+            ':user_id' => $order['user_id'],
             ':salesperson' => $order['salesperson'],
             ':order_list' => $order['order_list'],
             ':pay_method' => $order['pay_method'],
             ':total_cost' => $order['total_cost'],
             ':order_status' => $update_ord_stat, // Update order_status to 'Complete'
             ':payment_status' => 'Paid',   // Update payment_status to 'Paid'
+            ':date_complete' => $date_complete,
+            ':time_complete' => $time_complete
         ]);
 
         // Check if the insertion was successful
@@ -139,18 +148,23 @@ class Orders
             $role = $ID[0]->role;
             $added_by = $first_name . ' ' . $last_name;
 
-            $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
-                $stmt = $conn->prepare($edit);
-                $stmt->execute([
-                    'action_type'=>"Made a Sale",
-                    'user_id' => $uid,
-                    'username' => $username,
-                    'full_name' =>$added_by,
-                    'role' => $role,
-                    'table_name' => 'Orders',
-                    'record_id' => $order_id
-                ]);
+            $date = date('Y-m-d');
+            $time = date('H:i:s');
+
+            $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
+            $stmt = $conn->prepare($edit);
+            $stmt->execute([
+                'action_type' => "Made a Sale",
+                'user_id' => $uid,
+                'username' => $username,
+                'full_name' => $added_by,
+                'role' => $role,
+                'time' => $time,
+                'date' => $date,
+                'table_name' => 'Orders',
+                'record_id' => $order_id
+            ]);
 
             // Delete the order from branch1_orders
             $stmt = $conn->prepare("DELETE FROM branch1_orders WHERE order_id = :order_id");
@@ -173,6 +187,7 @@ class Orders
         $users = new Users();
 
         $conn = $store->openConnection();
+        date_default_timezone_set('Asia/Manila');
 
         if (isset($_POST['update_order'])) {
             $order_id = $_POST["ID"] ?? '';
@@ -198,8 +213,8 @@ class Orders
                             window.location.href = window.location.href;
                         });
                         </script>";
-                            } else {
-                                echo "<script>
+                } else {
+                    echo "<script>
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
@@ -246,7 +261,7 @@ class Orders
                         $current_stock = $stmtSelect->fetchColumn();
 
                         if ($current_stock !== false) {
-                            
+
                             $stmtUpdate = $conn->prepare("UPDATE branch1_inventory SET stock = stock + :quantity WHERE product_name = :product_name");
                             $stmtUpdate->bindParam(':quantity', $quantity, PDO::PARAM_INT);
                             $stmtUpdate->bindParam(':product_name', $product_name, PDO::PARAM_STR);
@@ -274,18 +289,23 @@ class Orders
                     $role = $ID[0]->role;
                     $added_by = $first_name . ' ' . $last_name;
 
-                    $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                                VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
-                        $stmt = $conn->prepare($edit);
-                        $stmt->execute([
-                            'action_type'=>"Voided an Order",
-                            'user_id' => $uid,
-                            'username' => $username,
-                            'full_name' =>$added_by,
-                            'role' => $role,
-                            'table_name' => 'Orders',
-                            'record_id' => $order_id
-                        ]);
+                    $date = date('Y-m-d');
+                    $time = date('H:i:s');
+
+                    $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                                VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
+                    $stmt = $conn->prepare($edit);
+                    $stmt->execute([
+                        'action_type' => "Voided an Order",
+                        'user_id' => $uid,
+                        'username' => $username,
+                        'full_name' => $added_by,
+                        'role' => $role,
+                        'time' => $time,
+                        'date' => $date,
+                        'table_name' => 'Orders',
+                        'record_id' => $order_id
+                    ]);
                     echo "<script>
                         Swal.fire({
                             icon: 'success',
@@ -314,8 +334,7 @@ class Orders
                         });
                         </script>";
                 }
-            }
-            else{
+            } else {
                 $sql = "UPDATE branch1_orders SET payment_status = :payment_status, order_status = :order_status WHERE order_id = :order_id";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([
@@ -334,18 +353,23 @@ class Orders
                     $role = $ID[0]->role;
                     $added_by = $first_name . ' ' . $last_name;
 
-                    $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                                VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
-                        $stmt = $conn->prepare($edit);
-                        $stmt->execute([
-                            'action_type'=>"Updated an Order/Payment Status",
-                            'user_id' => $uid,
-                            'username' => $username,
-                            'full_name' =>$added_by,
-                            'role' => $role,
-                            'table_name' => 'Orders',
-                            'record_id' => $order_id
-                        ]);
+                    $date = date('Y-m-d');
+                    $time = date('H:i:s');
+
+                    $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                                VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
+                    $stmt = $conn->prepare($edit);
+                    $stmt->execute([
+                        'action_type' => "Updated an Order/Payment Status",
+                        'user_id' => $uid,
+                        'username' => $username,
+                        'full_name' => $added_by,
+                        'role' => $role,
+                        'time' => $time,
+                        'date' => $date,
+                        'table_name' => 'Orders',
+                        'record_id' => $order_id
+                    ]);
 
                     echo "<script>
                         Swal.fire({
@@ -397,21 +421,28 @@ class Orders
             $added_by = $first_name . ' ' . $last_name;
 
             $pdo = $store->openConnection();
+
+            date_default_timezone_set('Asia/Manila');
+            $date = date('Y-m-d');
+            $time = date('H:i:s');
+
             $sql = "DELETE FROM branch1_orders where order_id =:order_id";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':order_id' => $order_id]);
 
             if ($stmt->rowCount() !== false) {
 
-                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $pdo->prepare($edit);
                 $stmt->execute([
-                    'action_type'=>"Removed an Order",
+                    'action_type' => "Removed an Order",
                     'user_id' => $uid,
                     'username' => $username,
-                    'full_name' =>$added_by,
+                    'full_name' => $added_by,
                     'role' => $role,
+                    'time' => $time,
+                    'date' => $date,
                     'table_name' => 'Orders',
                     'record_id' => $order_id
                 ]);
@@ -434,21 +465,28 @@ class Orders
             $added_by = $first_name . ' ' . $last_name;
 
             $pdo = $store->openConnection();
+
+            date_default_timezone_set('Asia/Manila');
+            $date = date('Y-m-d');
+            $time = date('H:i:s');
+
             $sql = "DELETE FROM branch1_orders where order_id =:order_id";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':order_id' => $order_id]);
 
             if ($stmt->rowCount() !== false) {
 
-                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $edit = "INSERT INTO branch1_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $pdo->prepare($edit);
                 $stmt->execute([
-                    'action_type'=>"Removed a Voided Order",
+                    'action_type' => "Removed a Voided Order",
                     'user_id' => $uid,
                     'username' => $username,
-                    'full_name' =>$added_by,
+                    'full_name' => $added_by,
                     'role' => $role,
+                    'time' => $time,
+                    'date' => $date,
                     'table_name' => 'Voided',
                     'record_id' => $order_id
                 ]);

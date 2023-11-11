@@ -1,12 +1,13 @@
 <?php
 require_once('storeclass.php');
+session_start();
 class Login
 {
 
     public function login() //LOGIN FUNCTION
     {
-        session_start();
         $store = new Langgam();
+        date_default_timezone_set('Asia/Manila');
         if (isset($_POST['submit'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
@@ -14,7 +15,7 @@ class Login
 
             $conn = $store->openConnection();
             if ($branch == 0) {
-                echo '<div class="alert alert-danger text-center p-2 px-2 small">
+                echo '<div class="alert alert-danger col-11 col-md-8 col-lg-8 mx-auto text-center p-2 px-2 small">
                         <strong>Please select a branch</strong>
                         <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert"></button>
                     </div>';
@@ -33,60 +34,12 @@ class Login
                     $username = $user['username'];
                     $role = $user['role'];
                     $userBranch = $user['branch'];
-
-                    $user_agent = $_SERVER['HTTP_USER_AGENT'];
-                    $browser_info = get_browser($user_agent, true);
-
-                    // Extract browser name and version
-                    $browser = $browser_info['browser'];
-
-                    // Function to detect device type
-                    function getDeviceType($user_agent)
-                    {
-                        $user_agent = strtolower($user_agent);
-                        if (strpos($user_agent, 'iphone') !== false) {
-                            return 'iPhone';
-                        } elseif (strpos($user_agent, 'ipad') !== false){
-                            return 'iPad';
-                        } elseif (strpos($user_agent, 'android') !== false) {
-                            return 'Mobile';
-                        } elseif (strpos($user_agent, 'tablet') !== false) {
-                            return 'Tablet';
-                        } elseif (strpos($user_agent, 'macbook') !== false) {
-                            return 'MacBook';
-                        } elseif (strpos($user_agent, 'macintosh') !== false) {
-                            return 'Mac';
-                        } elseif (strpos($user_agent, 'windows') !== false || strpos($user_agent, 'linux') !== false){
-                            return 'Desktop';
-                        }
-                    }
-
-                    function getDeviceOS($user_agent)
-                    {
-                        $user_agent = strtolower($user_agent);
-
-                        if (strpos($user_agent, 'iphone') !== false) {
-                            return 'iOS';
-                        } elseif (strpos($user_agent, 'ipad') !== false) {
-                            return 'iOS';
-                        } elseif (strpos($user_agent, 'windows') !== false) {
-                            return 'Windows';
-                        } elseif (strpos($user_agent, 'android') !== false) {
-                            return 'Android';
-                        } elseif (strpos($user_agent, 'mac os x') !== false || strpos($user_agent, 'macintosh') !== false) {
-                            return 'macOS';
-                        } elseif (strpos($user_agent, 'linux') !== false) {
-                            return 'Linux';
-                        } else {
-                            return 'Unknown';
-                        }
-                    }
-                    // Detect device type based on the user agent
-                    $device = getDeviceType($user_agent);
-                    $deviceOS = getDeviceOS($user_agent);
-
+    
+                    $log_time = date('H:i:s');
+                    $log_date = date('Y-m-d');
+                    
                     // Insert the extracted information into the database
-                    $log = "INSERT INTO branch1_user_logs (user_id, name, username, role, action, browser, device, device_os) VALUES (:user_id, :name, :username, :role, :action, :browser, :device, :device_os)";
+                    $log = "INSERT INTO branch1_user_logs (user_id, name, username, role, action, log_time, log_date) VALUES (:user_id, :name, :username, :role, :action, :log_time, :log_date)";
                     $stmt = $conn->prepare($log);
                     $stmt->execute([
                         'user_id' => $user_id,
@@ -94,9 +47,8 @@ class Login
                         'username' => $username,
                         'role' => $role,
                         'action' => 'Logged In',
-                        'browser' => $browser,
-                        'device' => $device,
-                        'device_os' => $deviceOS
+                        'log_time' => $log_time,
+                        'log_date' => $log_date
                     ]);
 
 
@@ -111,26 +63,26 @@ class Login
                             $_SESSION['access'] = $role;
                             $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
-                            header("Location: branch1/pages/admin/admin_dashboard.php");
+                            echo '<script>window.location.href = "./branch1/pages/admin/admin_dashboard.php";</script>';
                             exit;
                         } else if ($_SESSION['role'] == "Employee") {
                             $_SESSION['m_un'] = $username;
                             $_SESSION['access'] = $role;
                             $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
-                            header("Location: branch1/pages/employee/emp_dashboard.php");
+                            echo '<script>window.location.href = "./branch1/pages/employee/emp_dashboard.php";</script>';
                             exit;
                         }
                     } else {
                         // Display an error message if the password is incorrect
-                        echo '<div class="alert alert-danger fade show text-center p-2 px-2 small">
-                            <strong>Incorrect Password</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                          </div>';
+                        echo '<div class="alert alert-danger col-11 col-md-8 col-lg-8 mx-auto text-center p-2 px-2 small">
+                                <strong>Incorrect Password</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>';
                     }
                 } else {
                     // Display an error message if the username is incorrect
-                    echo '<div class="alert alert-danger text-center p-2 px-2 small">
+                    echo '<div class="alert alert-danger col-11 col-md-8 col-lg-8 mx-auto text-center p-2 px-2 small">
                             <strong>No such user is registered</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>';
@@ -148,59 +100,12 @@ class Login
                     $username = $user['username'];
                     $role = $user['role'];
                     $userBranch = $user['branch'];
-
-                    $user_agent = $_SERVER['HTTP_USER_AGENT'];
-                    $browser_info = get_browser($user_agent, true);
-
-                    // Extract browser name and version
-                    $browser = $browser_info['browser'];
-
-                    function getDeviceType($user_agent)
-                    {
-                        $user_agent = strtolower($user_agent);
-                        if (strpos($user_agent, 'iphone') !== false) {
-                            return 'iPhone';
-                        } elseif (strpos($user_agent, 'ipad') !== false){
-                            return 'iPad';
-                        } elseif (strpos($user_agent, 'android') !== false) {
-                            return 'Mobile';
-                        } elseif (strpos($user_agent, 'tablet') !== false) {
-                            return 'Tablet';
-                        } elseif (strpos($user_agent, 'macbook') !== false) {
-                            return 'MacBook';
-                        } elseif (strpos($user_agent, 'macintosh') !== false) {
-                            return 'Mac';
-                        } elseif (strpos($user_agent, 'windows') !== false || strpos($user_agent, 'linux') !== false){
-                            return 'Desktop';
-                        }
-                    }
-
-                    function getDeviceOS($user_agent)
-                    {
-                        $user_agent = strtolower($user_agent);
-
-                        if (strpos($user_agent, 'iphone') !== false) {
-                            return 'iOS';
-                        } elseif (strpos($user_agent, 'ipad') !== false) {
-                            return 'iOS';
-                        } elseif (strpos($user_agent, 'windows') !== false) {
-                            return 'Windows';
-                        } elseif (strpos($user_agent, 'android') !== false) {
-                            return 'Android';
-                        } elseif (strpos($user_agent, 'mac os x') !== false || strpos($user_agent, 'macintosh') !== false) {
-                            return 'macOS';
-                        } elseif (strpos($user_agent, 'linux') !== false) {
-                            return 'Linux';
-                        } else {
-                            return 'Unknown';
-                        }
-                    }
-                    // Detect device type based on the user agent
-                    $device = getDeviceType($user_agent);
-                    $deviceOS = getDeviceOS($user_agent);
+                    
+                    $log_time = date('H:i:s');
+                    $log_date = date('Y-m-d');
 
                     // Insert the extracted information into the database
-                    $log = "INSERT INTO branch2_user_logs (user_id, name, username, role, action, browser, device, device_os) VALUES (:user_id, :name, :username, :role, :action, :browser, :device, :device_os)";
+                    $log = "INSERT INTO branch2_user_logs (user_id, name, username, role, action, log_time, log_date) VALUES (:user_id, :name, :username, :role, :action, :log_time, :log_date)";
                     $stmt = $conn->prepare($log);
                     $stmt->execute([
                         'user_id' => $user_id,
@@ -208,9 +113,8 @@ class Login
                         'username' => $username,
                         'role' => $role,
                         'action' => 'Logged In',
-                        'browser' => $browser,
-                        'device' => $device,
-                        'device_os' => $deviceOS
+                        'log_time' => $log_time,
+                        'log_date' => $log_date
                     ]);
 
                     if (password_verify($password, $user['password'])) {
@@ -223,26 +127,26 @@ class Login
                             $_SESSION['access'] = $role;
                             $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
-                            header("Location: branch2/pages/admin/admin_dashboard.php");
+                            echo '<script>window.location.href = "./branch2/pages/admin/admin_dashboard.php";</script>';
                             exit;
                         } else if ($_SESSION['role'] == "Employee") {
                             $_SESSION['m_un'] = $username;
                             $_SESSION['access'] = $role;
                             $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
-                            header("Location: branch2/pages/employee/emp_dashboard.php");
+                            echo '<script>window.location.href = "./branch2/pages/employee/emp_dashboard.php";</script>';
                             exit;
                         }
                     } else {
                         // Display an error message if the password is incorrect
-                        echo '<div class="alert alert-danger fade show text-center p-2 px-2 small">
+                        echo '<div class="alert alert-danger col-11 col-md-8 col-lg-8 mx-auto text-center p-2 px-2 small">
                                 <strong>Incorrect Password</strong>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                             </div>';
                     }
                 } else {
                     // Display an error message if the username is incorrect
-                    echo '<div class="alert alert-danger text-center p-2 px-2 small">
+                    echo '<div class="alert alert-danger col-11 col-md-8 col-lg-8 mx-auto text-center p-2 px-2 small">
                             <strong>No such user is registered</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>';
@@ -261,58 +165,11 @@ class Login
                     $role = $user['role'];
                     $userBranch = $user['branch'];
 
-                    $user_agent = $_SERVER['HTTP_USER_AGENT'];
-                    $browser_info = get_browser($user_agent, true);
-
-                    // Extract browser name and version
-                    $browser = $browser_info['browser'];
-
-                    function getDeviceType($user_agent)
-                    {
-                        $user_agent = strtolower($user_agent);
-                        if (strpos($user_agent, 'iphone') !== false) {
-                            return 'iPhone';
-                        } elseif (strpos($user_agent, 'ipad') !== false){
-                            return 'iPad';
-                        } elseif (strpos($user_agent, 'android') !== false) {
-                            return 'Mobile';
-                        } elseif (strpos($user_agent, 'tablet') !== false) {
-                            return 'Tablet';
-                        } elseif (strpos($user_agent, 'macbook') !== false) {
-                            return 'MacBook';
-                        } elseif (strpos($user_agent, 'macintosh') !== false) {
-                            return 'Mac';
-                        } elseif (strpos($user_agent, 'windows') !== false || strpos($user_agent, 'linux') !== false){
-                            return 'Desktop';
-                        }
-                    }
-
-                    function getDeviceOS($user_agent)
-                    {
-                        $user_agent = strtolower($user_agent);
-
-                        if (strpos($user_agent, 'iphone') !== false) {
-                            return 'iOS';
-                        } elseif (strpos($user_agent, 'ipad') !== false) {
-                            return 'iOS';
-                        } elseif (strpos($user_agent, 'windows') !== false) {
-                            return 'Windows';
-                        } elseif (strpos($user_agent, 'android') !== false) {
-                            return 'Android';
-                        } elseif (strpos($user_agent, 'mac os x') !== false || strpos($user_agent, 'macintosh') !== false) {
-                            return 'macOS';
-                        } elseif (strpos($user_agent, 'linux') !== false) {
-                            return 'Linux';
-                        } else {
-                            return 'Unknown';
-                        }
-                    }
-                    // Detect device type based on the user agent
-                    $device = getDeviceType($user_agent);
-                    $deviceOS = getDeviceOS($user_agent);
+                    $log_time = date('H:i:s');
+                    $log_date = date('Y-m-d');
 
                     // Insert the extracted information into the database
-                    $log = "INSERT INTO branch3_user_logs (user_id, name, username, role, action, browser, device, device_os) VALUES (:user_id, :name, :username, :role, :action, :browser, :device, :device_os)";
+                    $log = "INSERT INTO branch3_user_logs (user_id, name, username, role, action, log_time, log_date) VALUES (:user_id, :name, :username, :role, :action, :log_time, :log_date)";
                     $stmt = $conn->prepare($log);
                     $stmt->execute([
                         'user_id' => $user_id,
@@ -320,9 +177,8 @@ class Login
                         'username' => $username,
                         'role' => $role,
                         'action' => 'Logged In',
-                        'browser' => $browser,
-                        'device' => $device,
-                        'device_os' => $deviceOS
+                        'log_time' => $log_time,
+                        'log_date' => $log_date
                     ]);
 
                     if (password_verify($password, $user['password'])) {
@@ -335,26 +191,26 @@ class Login
                             $_SESSION['access'] = $role;
                             $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
-                            header("Location: branch3/pages/admin/admin_dashboard.php");
+                            echo '<script>window.location.href = "./branch3/pages/admin/admin_dashboard.php";</script>';
                             exit;
                         } else if ($_SESSION['role'] == "Employee") {
                             $_SESSION['m_un'] = $username;
                             $_SESSION['access'] = $role;
                             $_SESSION['branch'] = $userBranch;
                             $_SESSION['ID'] = $user['ID'];
-                            header("Location: branch3/pages/employee/emp_dashboard.php");
+                            echo '<script>window.location.href = "./branch3/pages/employee/emp_dashboard.php";</script>';
                             exit;
                         }
                     } else {
                         // Display an error message if the password is incorrect
-                        echo '<div class="alert alert-danger fade show text-center p-2 px-2 small">
+                        echo '<div class="alert alert-danger col-11 col-md-8 col-lg-8 mx-auto text-center p-2 px-2 small">
                                 <strong>Incorrect Password</strong>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                             </div>';
                     }
                 } else {
                     // Display an error message if the username is incorrect
-                    echo '<div class="alert alert-danger text-center p-2 px-2 small">
+                    echo '<div class="alert alert-danger col-11 col-md-8 col-lg-8 mx-auto text-center p-2 px-2 small">
                             <strong>No such user is registered</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>';

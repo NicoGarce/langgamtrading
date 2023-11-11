@@ -10,12 +10,14 @@
                 <td class="text-center">
                     <?php echo htmlentities($result->order_id); ?>
                 </td>
-
                 <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->order_date); ?>
                 </td>
                 <td class="d-none d-sm-table-cell">
                     <?php echo htmlentities($result->order_time); ?>
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    <?php echo htmlentities($result->salesperson); ?>
                 </td>
                 <td class="text-center d-none d-sm-table-cell">
                     <?php echo htmlentities($result->pay_method); ?>
@@ -52,7 +54,12 @@
                                 </div>
                                 <div class="modal-body">
                                     <form method="post" id="edit-reg-form<?php echo $result->order_id ?>">
-
+                                        <div class="row d-flex justify-content-end">
+                                            <div class="col-12 col-md-6 col-lg-4">
+                                                <label for="orde_date" class="label small d-flex justify-content-end">Date & Time</label>
+                                                <input class="form-control text-center" type="text" id="order_date" disabled readonly placeholder="<?php echo $result->order_date .' | '. $result->order_time ?>">
+                                            </div>
+                                        </div>
                                         <input id ="ID" name="ID" value="<?php echo $result->order_id ?>" type="hidden">
 
                                         <div class="form-group pt-2">

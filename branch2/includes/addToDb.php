@@ -13,6 +13,11 @@ $users = new Users();
     $username_crud = $ID[0]->username;
     $role_crud = $ID[0]->role;
     $added_by = $first_name . ' ' . $last_name;
+    
+    date_default_timezone_set('Asia/Manila');
+
+    $time = date('H:i:s');   
+    $date = date('Y-m-d');
 
 if (isset($_POST['add'])) {
     $firstName = $_POST["firstName"];
@@ -29,7 +34,7 @@ if (isset($_POST['add'])) {
     $store = new Langgam();
     $pdo = $store->openConnection();
 
-    $sql = "INSERT INTO branch2_users (firstName, lastName, username, password, mobile, email, address, role) VALUES (:firstName, :lastName, :username, :password, :mobile, :email, :address, :role)";
+    $sql = "INSERT INTO branch2_users (firstName, lastName, username, password, mobile, email, address, role, date_added) VALUES (:firstName, :lastName, :username, :password, :mobile, :email, :address, :role, :date_added)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         'firstName' => $firstName,
@@ -40,15 +45,16 @@ if (isset($_POST['add'])) {
         'mobile' => $mobile,
         'email' => $email,
         'address' => $address,
-        'role' => $role
+        'role' => $role,
+        'date_added' => $date
     ]);
 
     if ($stmt->rowCount() > 0) {
         $message = "User added successfully.";
 
         $record_id = $pdo->lastInsertId();
-        $add = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+        $add = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
         $stmt_crud = $pdo->prepare($add);
         $stmt_crud->execute([
             'action_type'=> "Created an Account",
@@ -56,6 +62,8 @@ if (isset($_POST['add'])) {
             'username' => $username_crud,
             'full_name' => $added_by,
             'role' => $role_crud,
+            'time' => $time,
+            'date' => $date,
             'table_name'=> "Accounts",
             'record_id' => $record_id
         ]);

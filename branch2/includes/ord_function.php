@@ -110,9 +110,13 @@ class Orders
         }
 
         $update_ord_stat = $_POST["order_status"] ?? '';
+        date_default_timezone_set('Asia/Manila');
         
-        $stmt = $conn->prepare("INSERT INTO branch2_sales (customer_name, order_date, order_time, contact_info, order_type, shipping_details, salesperson, order_list, pay_method, total_cost, order_status, payment_status)
-                        VALUES ( :customer_name, :order_date, :order_time, :contact_info, :order_type, :shipping_details, :salesperson, :order_list, :pay_method, :total_cost, :order_status, :payment_status)");
+        $time_complete = date('H:i:s');   
+        $date_complete = date('Y-m-d');
+
+        $stmt = $conn->prepare("INSERT INTO branch2_sales (customer_name, order_date, order_time, contact_info, order_type, shipping_details, user_id, salesperson, order_list, pay_method, total_cost, order_status, payment_status, date_complete, time_complete)
+                        VALUES ( :customer_name, :order_date, :order_time, :contact_info, :order_type, :shipping_details, :user_id, :salesperson, :order_list, :pay_method, :total_cost, :order_status, :payment_status, :date_complete, :time_complete)");
         $stmt->execute([
             ':customer_name' => $order['customer_name'],
             ':order_date' => $order['order_date'],
@@ -120,12 +124,15 @@ class Orders
             ':contact_info' => $order['contact_info'],
             ':order_type' => $order['order_type'],
             ':shipping_details' => $order['shipping_details'],
+            ':user_id' => $order['user_id'],
             ':salesperson' => $order['salesperson'],
             ':order_list' => $order['order_list'],
             ':pay_method' => $order['pay_method'],
             ':total_cost' => $order['total_cost'],
             ':order_status' => $update_ord_stat, // Update order_status to 'Complete'
             ':payment_status' => 'Paid',   // Update payment_status to 'Paid'
+            ':date_complete' => $date_complete,
+            ':time_complete' => $time_complete
         ]);
 
         // Check if the insertion was successful
@@ -137,9 +144,12 @@ class Orders
             $username = $ID[0]->username;
             $role = $ID[0]->role;
             $added_by = $first_name . ' ' . $last_name;
+            
+            $time = date('H:i:s');   
+            $date = date('Y-m-d');
 
-            $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+            $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $conn->prepare($edit);
                 $stmt->execute([
                     'action_type'=>"Made a Sale",
@@ -147,6 +157,8 @@ class Orders
                     'username' => $username,
                     'full_name' =>$added_by,
                     'role' => $role,
+                    'time' => $time,
+                    'date' => $date,
                     'table_name' => 'Orders',
                     'record_id' => $order_id
                 ]);
@@ -273,9 +285,14 @@ class Orders
                     $username = $ID[0]->username;
                     $role = $ID[0]->role;
                     $added_by = $first_name . ' ' . $last_name;
+                    
+                    date_default_timezone_set('Asia/Manila');
 
-                    $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                                VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                    $time = date('H:i:s');   
+                    $date = date('Y-m-d');
+
+                    $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                                VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                         $stmt = $conn->prepare($edit);
                         $stmt->execute([
                             'action_type'=>"Voided an Order",
@@ -283,6 +300,8 @@ class Orders
                             'username' => $username,
                             'full_name' =>$added_by,
                             'role' => $role,
+                            'time' => $time,
+                            'date' => $date,
                             'table_name' => 'Orders',
                             'record_id' => $order_id
                         ]);
@@ -333,9 +352,12 @@ class Orders
                     $username = $ID[0]->username;
                     $role = $ID[0]->role;
                     $added_by = $first_name . ' ' . $last_name;
+                    
+                    $time = date('H:i:s');   
+                    $date = date('Y-m-d');
 
-                    $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                                VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                    $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                                VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                         $stmt = $conn->prepare($edit);
                         $stmt->execute([
                             'action_type'=>"Updated an Order/Payment Status",
@@ -343,6 +365,8 @@ class Orders
                             'username' => $username,
                             'full_name' =>$added_by,
                             'role' => $role,
+                            'time' => $time,
+                            'date' => $date,
                             'table_name' => 'Orders',
                             'record_id' => $order_id
                         ]);
@@ -403,9 +427,14 @@ class Orders
             $stmt->execute([':order_id' => $order_id]);
 
             if ($stmt->rowCount() !== false) {
+                
+                date_default_timezone_set('Asia/Manila');
 
-                $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $time = date('H:i:s');   
+                $date = date('Y-m-d');
+
+                $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $pdo->prepare($edit);
                 $stmt->execute([
                     'action_type'=>"Removed an Order",
@@ -413,6 +442,8 @@ class Orders
                     'username' => $username,
                     'full_name' =>$added_by,
                     'role' => $role,
+                    'time' => $time,
+                    'date' => $date,
                     'table_name' => 'Orders',
                     'record_id' => $order_id
                 ]);
@@ -440,9 +471,13 @@ class Orders
             $stmt->execute([':order_id' => $order_id]);
 
             if ($stmt->rowCount() !== false) {
+                date_default_timezone_set('Asia/Manila');
 
-                $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, table_name, record_id)
-                        VALUES (:action_type, :user_id, :username, :full_name, :role, :table_name, :record_id)";
+                $time = date('H:i:s');   
+                $date = date('Y-m-d');
+                
+                $edit = "INSERT INTO branch2_crud (action_type, user_id, username, full_name, role, time, date, table_name, record_id)
+                        VALUES (:action_type, :user_id, :username, :full_name, :role, :time, :date, :table_name, :record_id)";
                 $stmt = $pdo->prepare($edit);
                 $stmt->execute([
                     'action_type'=>"Removed a Voided Order",
@@ -450,6 +485,8 @@ class Orders
                     'username' => $username,
                     'full_name' =>$added_by,
                     'role' => $role,
+                    'time' => $time,
+                    'date' => $date,
                     'table_name' => 'Voided',
                     'record_id' => $order_id
                 ]);

@@ -7,15 +7,15 @@ require_once('../../includes/login_function.php');
 $login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
-    header('Location: /langgamtrading/index.php');
+    header('Location: ../../index.php');
     exit();
 }
 
 if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
-    header('Location: /langgamtrading/branch2/pages/voided.php');
+    header('Location: ../../branch2/pages/voided.php');
     exit();
 }elseif(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
-    header('Location: /langgamtrading/branch3/pages/voided.php');
+    header('Location: ../../branch3/pages/voided.php');
     exit();
 }
 
@@ -28,22 +28,22 @@ $orders->delete_voided();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voided | Langgam Trading</title>
-    <link rel="stylesheet" href="/langgamtrading/css/custom.css">
-    
+    <link rel="stylesheet" href="../../css/custom.css">
+    <link rel="icon" href="../../assets/icon.png" type="image/png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <script defer src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     
-    <link rel="stylesheet" href="/langgamtrading/css/main.css">
-    <script src="/langgamtrading/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     
     <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.css" rel="stylesheet">
  
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script defer src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.js"></script>
-    <script defer src="/langgamtrading/assets/js/custom.js"></script>
+    <script defer src="../../assets/js/custom.js"></script>
 
     <style>
         .dataTables_wrapper .dataTables_filter input[type="search"] {
@@ -76,12 +76,13 @@ $orders->delete_voided();
                         
                             
                             <div class="table-responsive pt-2">
-                                <table id="table" class="table table-bordered table-striped table-hover tbl">
+                                <table id="table" class="table table-striped table-hover tbl">
                                     <thead class="text-center">
                                         <tr>
                                             <th>Order ID</th>
                                             <th class="d-none d-sm-table-cell">Date</th>
                                             <th class="d-none d-sm-table-cell">Time</th>
+                                            <th class="d-none d-sm-table-cell">Salesperson</th>
                                             <th class="d-none d-sm-table-cell">Order Status</th>
                                             <th class="d-none d-sm-table-cell">Payment Method</th>
                                             <th class="d-none d-sm-table-cell">Total</th>

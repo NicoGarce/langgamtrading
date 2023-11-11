@@ -15,7 +15,7 @@
       <button class="fs-4 btn d-md-none d-block close-btn p-0 text-white">
         <i class='bx bx-x'></i>
       </button>
-      <h1 class="fs-4 text-white px-2">LANGGAM TRADING</h1>
+      <h1 class="fs-4 text-white px-2 side-brand">LANGGAM TRADING 3RD BRANCH</h1>
     </div>
 
     <ul class="list-unstyled px-2">
@@ -36,6 +36,10 @@
       <li class="">
         <a href="/langgamtrading/branch3/pages/orders.php" class="text-decoration-none px-3 py-2 d-block">
           <i class='bx bx-list-ul p-2'></i>Orders</a>
+      </li>
+      <li class="">
+        <a href="/langgamtrading/branch3/pages/voided.php" class="text-decoration-none px-3 py-2 d-block">
+        <i class='bx bx-folder-minus p-2'></i>Voided</a>
       </li>
       <li class="">
         <a href="/langgamtrading/branch3/pages/suppliers.php" class="text-decoration-none px-3 py-2 d-block">

@@ -64,17 +64,17 @@ if ($current_page === "admin_dashboard.php" || $current_page === "sales.php" || 
 <nav class="navbar navbar-expand-md navbar-light gradient-navbar rounded-4 shadow-lg">
     <div class="container-fluid">
         <div class="d-flex justify-content-between d-md-none d-block">
-            <button class="btn px-1 py-0 open-btn me-2"><i class='bx bx-menu'></i></i></button>
-            <a class="navbar-brand fs-4" id="namebrand"><?php echo $navbar_brand; ?></a>
+            <button class="btn px-1 py-0 open-btn me-2"><i class='bx bx-menu text-white'></i></i></button>
+            <a class="navbar-brand fs-4 text-white" id="namebrand"><?php echo $navbar_brand; ?></a>
         </div>
         <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
-            <i class='bx bx-cog'></i>
+            <i class='bx bx-cog text-white'></i>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <div class="container-fluid">
-                <span class="navbar-brand text-uppercase" id="navbrand"><?php echo $navbar_brand; ?></span>
+                <span class="navbar-brand text-uppercase text-white" id="navbrand"><?php echo $navbar_brand; ?></span>
             </div>
             <ul class="navbar-nav mb-2 mb-lg-0 text-center">
                 <li class="nav-item profile">
@@ -82,14 +82,14 @@ if ($current_page === "admin_dashboard.php" || $current_page === "sales.php" || 
                         <img src="<?php echo $image_src; ?>" alt="photo" class="img-fluid border border-2 rounded-circle" width="30px" height="30px">
                     </a>
                     
-                    <a class="nav-link active profile-text" aria-current="page" href="/langgamtrading/branch2/pages/profile.php">Profile</a>
+                    <a class="nav-link active profile-text text-white" aria-current="page" href="/langgamtrading/branch2/pages/profile.php">Profile</a>
                 </li>
 
                 <li class="nav-item logout">
                     <a class="nav-link active logout-icon" title="Logout" aria-current="page" href="/langgamtrading/includes/logout_b2.php">
-                        <i class='bx bx-log-out-circle'></i>
+                        <i class='bx bx-log-out-circle text-white'></i>
                     </a>
-                    <a class="nav-link active logout-text" aria-current="page" href="/langgamtrading/includes/logout_b2.php">Logout</a>
+                    <a class="nav-link active logout-text text-white" aria-current="page" href="/langgamtrading/includes/logout_b2.php">Logout</a>
                 </li>
             </ul>
         </div>

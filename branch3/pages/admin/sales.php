@@ -6,7 +6,7 @@ require_once('../../../includes/login_function.php');
 $login->login();
 
 if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
-    header('Location: /langgamtrading/index.php');
+    header('Location: ../../../index.php');
     exit();
 }
 
@@ -34,7 +34,7 @@ $sales->delete_sale();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales | Langgam Trading</title>
     <link rel="stylesheet" href="/langgamtrading/css/custom.css">
-
+    <link rel="icon" href="../../../assets/icon.png" type="image/png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -68,14 +68,18 @@ $sales->delete_sale();
 
             <div class="dashboard-content px-3">
                 <div class="m-0 m-sm-3">
+                    <div>
+                        <?php include('../modals/sales_import.php') ?>
+                    </div>
                     <div class="container-fluid card p-3 rounded-4">
                         <div class="table-responsive pt-2">
-                            <table id="table" class="table table-bordered table-striped table-hover">
+                            <table id="table" class="table table-striped table-hover">
                                 <thead class="text-center">
                                     <tr>
                                         <th>Sale ID</th>
                                         <th class="d-none d-sm-table-cell">Date</th>
                                         <th class="d-none d-sm-table-cell">Time</th>
+                                        <th class="d-none d-sm-table-cell">Salesperson</th>
                                         <th class="d-none d-sm-table-cell">Payment Method</th>
                                         <th class="d-none d-sm-table-cell">Total</th>
                                         <th class="d-none d-sm-table-cell">Type</th>

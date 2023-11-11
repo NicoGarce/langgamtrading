@@ -242,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("total_cost", total_cost);
     formData.append("order_status", order_status);
     formData.append("pay_status", pay_status);
+    formData.append("user_id",document.getElementById("user_id").value);
     formData.append(
       "salesperson",
       document.getElementById("salesperson").value

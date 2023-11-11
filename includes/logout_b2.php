@@ -17,57 +17,12 @@ if (isset($_SESSION['ID'])) {
     $username = $users[0]->username;
     $role = $users[0]->role;
 
-    $user_agent = $_SERVER['HTTP_USER_AGENT'];
-    $browser_info = get_browser($user_agent, true);
-
-    $browser = $browser_info['browser'];
-    
-    function getDeviceType($user_agent)
-    {
-        $user_agent = strtolower($user_agent);
-        if (strpos($user_agent, 'iphone') !== false) {
-            return 'iPhone';
-        } elseif (strpos($user_agent, 'ipad') !== false){
-            return 'iPad';
-        } elseif (strpos($user_agent, 'android') !== false) {
-            return 'Mobile';
-        } elseif (strpos($user_agent, 'tablet') !== false) {
-            return 'Tablet';
-        } elseif (strpos($user_agent, 'macbook') !== false) {
-            return 'MacBook';
-        } elseif (strpos($user_agent, 'macintosh') !== false) {
-            return 'Mac';
-        } elseif (strpos($user_agent, 'windows') !== false || strpos($user_agent, 'linux') !== false){
-            return 'Desktop';
-        }
-    }
-
-    function getDeviceOS($user_agent)
-    {
-        $user_agent = strtolower($user_agent);
-
-        if (strpos($user_agent, 'iphone') !== false) {
-            return 'iOS';
-        } elseif (strpos($user_agent, 'ipad') !== false) {
-            return 'iOS';
-        } elseif (strpos($user_agent, 'windows') !== false) {
-            return 'Windows';
-        } elseif (strpos($user_agent, 'android') !== false) {
-            return 'Android';
-        } elseif (strpos($user_agent, 'mac os x') !== false || strpos($user_agent, 'macintosh') !== false) {
-            return 'macOS';
-        } elseif (strpos($user_agent, 'linux') !== false) {
-            return 'Linux';
-        } else {
-            return 'Unknown';
-        }
-    }
-    // Detect device type based on the user agent
-    $device = getDeviceType($user_agent);
-    $deviceOS = getDeviceOS($user_agent);
+    date_default_timezone_set('Asia/Manila');
+    $log_time = date('H:i:s');
+    $log_date = date('Y-m-d');
 
     // Insert the extracted information into the database
-    $log = "INSERT INTO branch2_user_logs (user_id, name, username, role, action, browser, device, device_os) VALUES (:user_id, :name, :username, :role, :action, :browser, :device, :device_os)";
+    $log = "INSERT INTO branch2_user_logs (user_id, name, username, role, action, log_time, log_date) VALUES (:user_id, :name, :username, :role, :action, :log_time, :log_date)";
     $stmt = $conn->prepare($log);
     $stmt->execute([
         'user_id' => $user_id,
@@ -75,14 +30,13 @@ if (isset($_SESSION['ID'])) {
         'username' => $username,
         'role' => $role,
         'action' => 'Logged Out',
-        'browser' => $browser,
-        'device' => $device,
-        'device_os' => $deviceOS
+        'log_time' => $log_time,
+        'log_date' => $log_date
     ]);
 
     // Destroy the session
     session_destroy();
 }
 
-header("Location: \langgamtrading\index.php");
+header("Location: ../index.php");
 exit();
