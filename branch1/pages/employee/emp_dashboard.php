@@ -3,6 +3,7 @@ require_once('../../../branch1/includes/users_function.php');
 require_once('../../../branch1/includes/dash_function.php');
 require_once('../../../branch1/includes/log_function.php');
 require_once('../../../branch1/includes/sales_function.php');
+require_once('../../../branch1/includes/ord_function.php');
 require_once('../../../includes/login_function.php');
 $login->login();
 
@@ -26,6 +27,8 @@ if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
 }
 
 $emp_ord_row = $dash->emp_ord_row();
+
+$topVoid = $orders->getTopVoided();
 
 // Check if the "Welcome" message has been displayed
 $welcomeMessageDisplayed = isset($_SESSION['welcome_message_displayed']) && $_SESSION['welcome_message_displayed'];
@@ -72,68 +75,88 @@ if (!$welcomeMessageDisplayed) {
                             <?php include('inv_graph.php'); ?>
                         </div>
 
-                        <div class="pt-2">
-                            <div class="card rounded-4 p-2">
-                                <h6 class="text-center p-2">Top Products</h6>
-                                <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link active" id="allTimeTab" data-bs-toggle="tab" href="#allTime" role="tab" aria-controls="allTime" aria-selected="true">All Time</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="monthTab" data-bs-toggle="tab" href="#month" role="tab" aria-controls="month" aria-selected="false">Current Month</a>
-                                    </li>
-                                </ul>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-center pt-2">
+                                    <div class="card rounded-4">
+                                        <div class="card-body">
+                                            <a class="btn font" href="../../../branch1/pages/voided.php">
+                                                <h6>Most Voided</h6>
+                                                <div class="container pt-2">
+                                                    <p class="fw-semibold">Most Cancelled Item: <?php echo $topVoid['Cancelled'] ?? 'N/A'; ?></p>
+                                                    <p class="fw-semibold">Most Returned Item: <?php echo $topVoid['Returned'] ?? 'N/A'; ?></p>
+                                                    <p class="fw-semibold">Most Refunded Item: <?php echo $topVoid['Refunded'] ?? 'N/A'; ?></p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="pt-2">
+                                    <div class="card rounded-4 p-2">
+                                        <h6 class="text-center p-2">Top Products</h6>
+                                        <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link active" id="allTimeTab" data-bs-toggle="tab" href="#allTime" role="tab" aria-controls="allTime" aria-selected="true">All Time</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" id="monthTab" data-bs-toggle="tab" href="#month" role="tab" aria-controls="month" aria-selected="false">Current Month</a>
+                                            </li>
+                                        </ul>
 
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="allTime" role="tabpanel" aria-labelledby="allTimeTab">
-                                        <div class="pt-2">
-                                            <div>
-                                                <div class="card-body">
-                                                    <?php $top10Items = $sales->getTop10MostBoughtItems(); ?>
-                                                    <div style="max-height: 150px; overflow-y: auto;">
-                                                        <table class="table table-striped table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Product</th>
-                                                                    <th>Count</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <?php foreach ($top10Items as $productName => $count) : ?>
-                                                                    <tr>
-                                                                        <td><?php echo $productName; ?></td>
-                                                                        <td><?php echo $count; ?></td>
-                                                                    </tr>
-                                                                <?php endforeach; ?>
-                                                            </tbody>
-                                                        </table>
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="allTime" role="tabpanel" aria-labelledby="allTimeTab">
+                                                <div class="pt-2">
+                                                    <div>
+                                                        <div class="card-body">
+                                                            <?php $top10Items = $sales->getTop10MostBoughtItems(); ?>
+                                                            <div style="max-height: 150px; overflow-y: auto;">
+                                                                <table class="table table-striped table-hover">
+                                                                    <thead>
+                                                                        <tr style="position: sticky; top: 0; background-color: #f9f9f9;">
+                                                                            <th>Product</th>
+                                                                            <th>Count</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <?php foreach ($top10Items as $productName => $count) : ?>
+                                                                            <tr>
+                                                                                <td><?php echo $productName; ?></td>
+                                                                                <td><?php echo $count; ?></td>
+                                                                            </tr>
+                                                                        <?php endforeach; ?>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="month" role="tabpanel" aria-labelledby="monthTab">
-                                        <div class="pt-2">
-                                            <div>
-                                                <div class="card-body">
-                                                    <?php $top10Items = $sales->getTop10Month(); ?>
-                                                    <div style="max-height: 150px; overflow-y: auto;">
-                                                        <table class="table table-striped table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Product</th>
-                                                                    <th>Count</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <?php foreach ($top10Items as $productName => $count) : ?>
-                                                                    <tr>
-                                                                        <td><?php echo $productName; ?></td>
-                                                                        <td><?php echo $count; ?></td>
-                                                                    </tr>
-                                                                <?php endforeach; ?>
-                                                            </tbody>
-                                                        </table>
+                                            <div class="tab-pane fade" id="month" role="tabpanel" aria-labelledby="monthTab">
+                                                <div class="pt-2">
+                                                    <div>
+                                                        <div class="card-body">
+                                                            <?php $top10Items = $sales->getTop10Month(); ?>
+                                                            <div style="max-height: 150px; overflow-y: auto;">
+                                                                <table class="table table-striped table-hover">
+                                                                    <thead>
+                                                                        <tr style="position: sticky; top: 0; background-color: #f9f9f9;">
+                                                                            <th>Product</th>
+                                                                            <th>Count</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <?php foreach ($top10Items as $productName => $count) : ?>
+                                                                            <tr>
+                                                                                <td><?php echo $productName; ?></td>
+                                                                                <td><?php echo $count; ?></td>
+                                                                            </tr>
+                                                                        <?php endforeach; ?>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,7 +165,6 @@ if (!$welcomeMessageDisplayed) {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="col-lg-3 col-md-12 pt-2 pb-2">
                         <div class="text-center">
@@ -163,7 +185,7 @@ if (!$welcomeMessageDisplayed) {
                                     <div style="max-height: 450px; overflow-y: auto;">
                                         <table class="table table-striped table-hover">
                                             <thead>
-                                                <tr>
+                                                <tr style="position: sticky; top: 0; background-color: #f9f9f9;">
                                                     <th>Action</th>
                                                     <th>Time</th>
                                                 </tr>

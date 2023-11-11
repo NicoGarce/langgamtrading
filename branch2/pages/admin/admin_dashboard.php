@@ -2,6 +2,7 @@
 require_once('../../../branch2/includes/dash_function.php');
 require_once('../../../branch2/includes/users_function.php');
 require_once('../../../branch2/includes/sales_function.php');
+require_once('../../../branch2/includes/ord_function.php');
 require_once('../../../includes/login_function.php');
 $login->login();
 
@@ -27,6 +28,8 @@ $inv_row = $dash->inv_row();
 $sale_row = $dash->sale_row();
 $ord_row = $dash->ord_row();
 $acc_row = $dash->acc_row();
+
+$topVoid = $orders->getTopVoided();
 
 // Check if the "Welcome" message has been displayed
 $welcomeMessageDisplayed = isset($_SESSION['welcome_message_displayed']) && $_SESSION['welcome_message_displayed'];
@@ -92,7 +95,7 @@ if (!$welcomeMessageDisplayed) {
                         <div class="text-center">
                             <div class="card rounded-4">
                                 <div class="card-body">
-                                    <a class="btn" href="../../../branch1/pages/orders.php">
+                                    <a class="btn" href="../../../branch2/pages/orders.php">
                                         <h6>On Going Orders</h6>
                                         <h1><?php echo $ord_row ?></h1>
                                     </a>
@@ -101,8 +104,8 @@ if (!$welcomeMessageDisplayed) {
                         </div>
                         <div class="pt-2">
                             <div class="card rounded-4 p-2">
-                                <h6 class="text-center p-2">Top Products</h6>
-                                <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                                <h6 class="text-center p-2 font fw-semibold">Top Products</h6>
+                                <ul class="nav nav-tabs font" id="myTabs" role="tablist">
                                     <li class="nav-item" role="presentation">
                                         <a class="nav-link active" id="allTimeTab" data-bs-toggle="tab" href="#allTime" role="tab" aria-controls="allTime" aria-selected="true">All Time</a>
                                     </li>
@@ -117,22 +120,24 @@ if (!$welcomeMessageDisplayed) {
                                             <div>
                                                 <div class="card-body">
                                                     <?php $top10Items = $sales->getTop10MostBoughtItems(); ?>
-                                                    <table class="table table-striped table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Product</th>
-                                                                <th>Count</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php foreach ($top10Items as $productName => $count) : ?>
-                                                                <tr>
-                                                                    <td><?php echo $productName; ?></td>
-                                                                    <td><?php echo $count; ?></td>
+                                                    <div style="max-height: 200px; overflow-y: auto;">
+                                                        <table class="table table-striped table-hover font">
+                                                            <thead>
+                                                                <tr style="position: sticky; top: 0; background-color: #f9f9f9;">
+                                                                    <th>Product</th>
+                                                                    <th>Count</th>
                                                                 </tr>
-                                                            <?php endforeach; ?>
-                                                        </tbody>
-                                                    </table>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php foreach ($top10Items as $productName => $count) : ?>
+                                                                    <tr>
+                                                                        <td><?php echo $productName; ?></td>
+                                                                        <td><?php echo $count; ?></td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -143,26 +148,40 @@ if (!$welcomeMessageDisplayed) {
                                             <div>
                                                 <div class="card-body">
                                                     <?php $top10Items = $sales->getTop10Month(); ?>
-                                                    <table class="table table-striped table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Product</th>
-                                                                <th>Count</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php foreach ($top10Items as $productName => $count) : ?>
+                                                    <div style="max-height: 200px; overflow-y: auto;">
+                                                        <table class="table table-striped table-hover font">
+                                                            <thead>
                                                                 <tr>
-                                                                    <td><?php echo $productName; ?></td>
-                                                                    <td><?php echo $count; ?></td>
+                                                                    <th>Product</th>
+                                                                    <th>Count</th>
                                                                 </tr>
-                                                            <?php endforeach; ?>
-                                                        </tbody>
-                                                    </table>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php foreach ($top10Items as $productName => $count) : ?>
+                                                                    <tr>
+                                                                        <td><?php echo $productName; ?></td>
+                                                                        <td><?php echo $count; ?></td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center pt-2">
+                            <div class="card rounded-4">
+                                <div class="card-body">
+                                    <a class="btn font" href="../../../branch2/pages/voided.php">
+                                        <h6>Most Voided</h6>
+                                        <p class="fw-semibold">Most Cancelled Item: <?php echo $topVoid['Cancelled'] ?? 'N/A'; ?></p>
+                                        <p class="fw-semibold">Most Returned Item: <?php echo $topVoid['Returned'] ?? 'N/A'; ?></p>
+                                        <p class="fw-semibold">Most Refunded Item: <?php echo $topVoid['Refunded'] ?? 'N/A'; ?></p>
+                                    </a>
                                 </div>
                             </div>
                         </div>

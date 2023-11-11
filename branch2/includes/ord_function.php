@@ -402,7 +402,56 @@ class Orders
         }
     }
 
+    public function getTopVoided()
+    {
+        $store = new Langgam();
+        $conn = $store->openConnection();
 
+        // Select sales with 'Cancelled', 'Returned', and 'Refunded' statuses
+        $stmt = $conn->prepare("SELECT * FROM branch2_orders WHERE order_status IN ('Cancelled', 'Returned', 'Refunded')");
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        $orderItems = [];
+
+        foreach ($results as $result) {
+            $orderList = json_decode($result->order_list);
+
+            if ($orderList !== null) {
+                foreach ($orderList as $orderItem) {
+                    // Add the 'order_status' to each order item
+                    $orderItem->order_status = $result->order_status;
+                    $orderItems[] = $orderItem;
+                }
+            } else {
+                // Handle decoding error if needed
+            }
+        }
+
+        // Calculate item counts based on order status
+        $itemCounts = [];
+
+        foreach ($orderItems as $orderItem) {
+            $productName = $orderItem->product_name;
+            $orderStatus = $orderItem->order_status;
+
+            if (!isset($itemCounts[$productName])) {
+                $itemCounts[$productName] = ['Cancelled' => 0, 'Returned' => 0, 'Refunded' => 0];
+            }
+
+            $itemCounts[$productName][$orderStatus]++;
+        }
+
+        // Get the top 1 most cancelled, returned, and refunded items
+        $top1Items = [];
+        foreach ($itemCounts as $productName => $counts) {
+            arsort($counts);
+            $topStatus = array_key_first($counts);
+            $top1Items[$topStatus] = $productName;
+        }
+
+        return $top1Items;
+    }
 
 
     public function delete_order()
