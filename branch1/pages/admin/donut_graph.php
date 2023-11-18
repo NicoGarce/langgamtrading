@@ -46,11 +46,10 @@ $refundedOrdersCount = $refundedOrdersCountStmt->fetchColumn();
                     <?php echo $refundedOrdersCount; ?>
                 ],
                 backgroundColor: [
-                    'rgba(80, 49, 47, 1)',
-                    'rgba(209, 53, 37, 1)',
                     'rgba(242, 192, 87, 1)',
+                    'rgba(209, 53, 37, 1)',
+                    'rgba(51,169,83,255)',
                     'rgba(77, 133, 189, 1)'
-                    
                 ],
             }]
         },

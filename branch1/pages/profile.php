@@ -75,28 +75,28 @@ $current_page = $_SERVER['PHP_SELF'];
 
             <div class="dashboard-content">
                 <?php
-                    $result = $users->getID();
+                $result = $users->getID();
                 ?>
                 <div class="container">
-                    
+
                     <div class="mx-auto container">
                         <div class="card p-2" style="border-radius: 1rem;">
                             <div class="card-body">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                  <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="pf-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
-                                  </li>
-                                  <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="sc-tab" data-bs-toggle="tab" data-bs-target="#secure" type="button" role="tab" aria-controls="secure" aria-selected="false">Security</button>
-                                  </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="pf-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="sc-tab" data-bs-toggle="tab" data-bs-target="#secure" type="button" role="tab" aria-controls="secure" aria-selected="false">Security</button>
+                                    </li>
                                 </ul>
                                 <div class="tab-content pt-3">
                                     <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="pf-tab">
                                         <h3 class="card-title text-center">General Information</h3>
-                                
-                                    
+
+
                                         <div class="col-md-12 pt-2">
-                                            
+
                                             <div class="px-lg-5">
                                                 <?php include('modals/upload_image.php'); ?>
                                                 <form method="post" id="registration-form">
@@ -114,8 +114,8 @@ $current_page = $_SERVER['PHP_SELF'];
                                                                             </span>
                                                                         </div>
                                                                     </div>
-                        
-                                                                    
+
+
                                                                 </div>
                                                             </div>
                                                             <div class="d-flex justify-content-center align-items-center">
@@ -131,11 +131,11 @@ $current_page = $_SERVER['PHP_SELF'];
                                                                 <span id="email-message"></span>
                                                             </div>
                                                         </div>
-                                                        
+
                                                         <div class="col-12 col-md-12 col-lg-12 col-xl-1 col-sm-12">
                                                         </div>
                                                         <div class="col-12 col-md-12 col-lg-12 col-xl-6 col-sm-12 pt-5" id="right">
-                                                            
+
                                                             <div class="row form-group pt-2">
                                                                 <div class="col-md-6 form-group">
                                                                     <label for="role" class="mx-1 small">First</label>
@@ -150,36 +150,36 @@ $current_page = $_SERVER['PHP_SELF'];
                                                                 <label for="role" class="mx-1 small">Mobile Number</label>
                                                                 <input type="tel" class="form-control" id="mobile" name="mobile" pattern="0\d{10}" placeholder="Mobile Number (eg.09123456789)" value="<?php echo $result[0]->mobile ?>" required>
                                                             </div>
-                                                            
+
                                                             <div class="form-group pt-2">
                                                                 <label for="role" class="mx-1 small">Address</label>
                                                                 <textarea class="form-control" id="address" name="address" placeholder="Address" required><?php echo $result[0]->address ?></textarea>
                                                             </div>
                                                             <hr>
                                                             <div class="form-group modal-footer">
-                                                                
-                                                                    <div class="form-group p-1">
-                                                                        <button name="update" type="submit" id="update" class="btn btn-dark">Update Account</button>
-                                                                    </div>
-                                                                
-            
+
+                                                                <div class="form-group p-1">
+                                                                    <button name="update" type="submit" id="update" class="btn btn-dark">Update Account</button>
+                                                                </div>
+
+
                                                             </div>
                                                         </div>
                                                     </div>
-                                            
+
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="secure" role="tabpanel" aria-labelledby="sc-tab">
                                         <h3 class="card-title text-center">Change Password</h3>
-                                        <div class="row">
-                                            <div class="col-md-12 pt-2">
-        
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-md-7 pt-2">
+
                                                 <div class="px-lg-5">
                                                     <form method="post" id="change-pass-form">
                                                         <input id="ID" name="ID" value="<?php echo $result[0]->order_id ?>" type="hidden">
-        
+
                                                         <div class="pt-2 pb-2">
                                                             <input type="password" id="old-pass" name="old-pass" class="form-control" placeholder="Enter Current Password">
                                                             <span id="old-pass-msg"></span>
@@ -194,25 +194,27 @@ $current_page = $_SERVER['PHP_SELF'];
                                                                 <span id="confirm-message"></span>
                                                             </div>
                                                         </div>
-        
+
                                                         <div class="modal-footer">
                                                             <button type="submit" name="change" id="change" class="btn btn-dark" disabled>Change</button>
                                                         </div>
                                                     </form>
                                                 </div>
-        
+
                                             </div>
-        
+
                                         </div>
+
                                     </div>
                                 </div>
-                                
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
 </body>
