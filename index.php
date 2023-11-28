@@ -16,12 +16,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Langgam Trading</title>
-    <link rel="icon" href="assets/icon.png" type="image/png">
+    <link rel="icon" href="/assets/icon.png" type="image/png">
 
     <style>
     .card-bg {
-        background: url('assets/BG1.png') no-repeat center center;
+        background: url('assets/newbg.png') no-repeat center center;
         background-size: cover;
+    }
+
+    .card-container {
+        background-color: rgba(33, 31, 48, 0.5); /* Set the background color with 50% opacity */
+        padding: 15px;
+        border-radius: 10px;
     }
     </style>
 </head>

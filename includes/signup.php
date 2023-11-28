@@ -15,10 +15,11 @@ require_once('storeclass.php');
     <link rel="stylesheet" href="../css/main.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="../assets/icon.png" type="image/png">
     <title>Sign Up | Langgam Trading</title>
 </head>
 
-<body style="background-color: lightgray;">
+<body style="background-color: #302d45;">
     <div class="pt-1 m-2 pb-5">
         <?php include('header.php'); ?>
     </div>
