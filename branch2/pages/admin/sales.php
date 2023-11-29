@@ -70,6 +70,29 @@ $sales->delete_sale();
                     <div>
                         <?php include('../modals/sales_import.php') ?>
                     </div>
+                    <div class="mb-2">
+                        <div class="container-fluid card p-3 rounded-4">
+                            <div class="row p-2 justify-content-center">
+                                <div class="col-md-5 p-2">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Start Date:</span>
+                                        <input type="date" id="start_date" class="form-control" aria-describedby="start_date">
+                                    </div>
+                                </div>
+                                <div class="col-md-5 p-2">
+                                    <div class="input-group">
+                                        <span class="input-group-text">End Date:</span>
+                                        <input type="date" id="end_date" class="form-control" aria-describedby="end_date">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 p-2">
+                                    <div class="input-group">
+                                        <button class="btn btn-primary" type="button" id="generateBtn" onclick="generateReport()">Generate Report</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="container-fluid card p-3 rounded-4">
                         <div class="table-responsive pt-2">
                             <table id="table" class="table table-striped table-hover">
@@ -135,6 +158,64 @@ $sales->delete_sale();
                 });
             }
         });
+    });
+
+    // Move the generateReport function outside the click event block
+    function generateReport() {
+        var startDate = $('#start_date').val();
+        var endDate = $('#end_date').val();
+
+        // Check if the start date is ahead of the end date
+        if (new Date(startDate) > new Date(endDate)) {
+            // Display SweetAlert message
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Start date cannot be ahead of the end date',
+                position: 'top-end',
+                toast: true,
+                showConfirmButton: false,
+                timer: 3000 // Adjust the timer as needed
+            });
+        } else {
+            // Perform an AJAX request to fetch sales records
+            $.ajax({
+                url: '../../includes/fetch_sales.php',
+                type: 'POST',
+                data: {
+                    start_date: startDate,
+                    end_date: endDate
+                },
+                success: function(data) {
+                    var url = '../../includes/fetch_sales.php?start_date=' + startDate + '&end_date=' + endDate;
+                    window.open(url, '_blank');
+                },
+                error: function(xhr, status, error) {
+                    alert('An error occurred while generating the PDF: ' + error);
+                }
+            });
+        }
+    }
+
+    $(document).ready(function() {
+        // Function to check if the button should be disabled
+        function shouldDisableButton() {
+            var startDate = $('#start_date').val();
+            var endDate = $('#end_date').val();
+
+            // Disable the button if there is no date input or only one date input
+            return !startDate || !endDate;
+        }
+
+        // Update button state on page load
+        $('#generateBtn').prop('disabled', shouldDisableButton());
+
+        // Update button state when date inputs change
+        $('#start_date, #end_date').on('change', function() {
+            $('#generateBtn').prop('disabled', shouldDisableButton());
+        });
+
+        $('#generateBtn').on('click', generateReport);
     });
 </script>
 

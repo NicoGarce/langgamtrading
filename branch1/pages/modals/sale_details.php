@@ -38,7 +38,7 @@
 
                 <td style="width: 50px;">
 
-                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#editOrder<?php echo $cnt ?>" title="Edit Order">
+                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#editOrder<?php echo $cnt ?>" title="Sale Details">
                     <i class='bx bx-info-circle'></i></button>
 
                     <div class="modal fade" id="editOrder<?php echo $cnt ?>" tabindex="-1" aria-labelledby="label" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
