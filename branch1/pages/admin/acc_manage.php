@@ -138,7 +138,6 @@ $users->delete_user();
                     }).then(() => {
                         // Redirect to acc_manage.php
                         window.location.href = 'acc_manage.php?delete=true&ID=' + id;
-                        window.location.href = 'acc_manage.php';
                     });
                 }
             });

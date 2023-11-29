@@ -136,8 +136,6 @@ $inventory->delete_product();
                 }).then(() => {
                     // Redirect to acc_manage.php
                     window.location.href = 'inventory.php?delete=true&product_id=' + product_id;
-
-                    window.location.href = 'inventory.php';
                 });
             }
         });

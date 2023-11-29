@@ -139,10 +139,8 @@ $orders->delete_order();
                         popup: 'swal2-show'
                     }
                 }).then(() => {
-                    // Redirect to acc_manage.php
                     window.location.href = 'orders.php?delete=true&order_id=' + order_id;
 
-                    window.location.href = 'orders.php';
                 });
             }
         });

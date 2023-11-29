@@ -132,8 +132,6 @@ $sales->delete_sale();
                     }
                 }).then(() => {
                     window.location.href = 'sales.php?delete=true&sale_id=' + sale_id;
-
-                    window.location.href = 'sales.php';
                 });
             }
         });

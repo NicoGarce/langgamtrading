@@ -140,8 +140,6 @@ $orders->delete_order();
                 }).then(() => {
                     // Redirect to acc_manage.php
                     window.location.href = 'orders.php?delete=true&order_id=' + order_id;
-
-                    window.location.href = 'orders.php';
                 });
             }
         });

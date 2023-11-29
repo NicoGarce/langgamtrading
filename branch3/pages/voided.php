@@ -137,8 +137,6 @@ $orders->delete_voided();
                 }).then(() => {
                     // Redirect to acc_manage.php
                     window.location.href = 'voided.php?delete=true&order_id=' + order_id;
-
-                    window.location.href = 'voided.php';
                 });
             }
         });

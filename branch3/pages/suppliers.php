@@ -134,8 +134,6 @@ $sups->delete_supp();
                 }).then(() => {
                     // Redirect to acc_manage.php
                     window.location.href = 'suppliers.php?delete=true&supplier_id=' + supplier_id;
-
-                    window.location.href = 'suppliers.php';
                 });
             }
         });
