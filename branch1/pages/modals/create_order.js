@@ -77,14 +77,14 @@ document.addEventListener("DOMContentLoaded", () => {
             </td>
             <td class="col">
                 <div class="form-group input-group input-group-sm px-0">
-                    <input type="number" class="form-control form-control-sm" id="quantity" name="quantity" placeholder="Qty" required>
+                    <input type="number" class="form-control form-control-sm" id="quantity" name="quantity" placeholder="Qty" required autocomplete="off">
                     <span class="input-group-text" id="stockSpan">Stock</span>
                 </div>
             </td>
             <td class="col">
                 <div class="form-group input-group input-group-sm px-0">
                     <span class="input-group-text">₱</span>
-                    <input class="form-control form-control-sm" id="price" name="price" placeholder="Price" readonly>
+                    <input class="form-control form-control-sm" id="price" name="price" placeholder="Price" readonly autocomplete="off">
                 </div>
             </td>
             <td class="col-auto">
