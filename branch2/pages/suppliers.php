@@ -10,10 +10,10 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     exit();
 }
 
-if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
+if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
     header('Location: /langgamtrading/branch1/pages/suppliers.php');
     exit();
-}elseif(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
+} elseif (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 3') {
     header('Location: /langgamtrading/branch3/pages/suppliers.php');
     exit();
 }
@@ -109,31 +109,77 @@ $sups->delete_supp();
 
     $('.delete-btn').on('click', function() {
         var supplier_id = $(this).data('id');
+
+        // Show a modal with a password input field
         Swal.fire({
-            icon: 'warning',
-            title: 'Are you sure?',
-            text: 'You are about to delete this supplier',
+            title: 'Enter your password to confirm deletion',
+            input: 'password',
+            inputAttributes: {
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            },
             showCancelButton: true,
+            confirmButtonText: 'Confirm',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it'
+            showLoaderOnConfirm: true,
+            customClass: {
+                title: 'smaller-title'
+            },
+            preConfirm: (password) => {
+                // Return a Promise that resolves with the server response
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: '../includes/validate_password.php',
+                        method: 'POST',
+                        data: {
+                            password: password
+                        },
+                        success: (response) => {
+                            try {
+                                const result = JSON.parse(response);
+                                console.log('Server response:', result); // Log the server response
+                                resolve(result);
+                            } catch (error) {
+                                console.error('Error parsing JSON response:', error);
+                                reject('Invalid JSON response from the server');
+                            }
+                        },
+                        error: (xhr, status, error) => {
+                            console.error('Server error:', status, error);
+                            reject(`Server error: ${status} - ${error}`);
+                        }
+                    });
+                });
+            },
+            allowOutsideClick: false,
         }).then((result) => {
-            if (result.isConfirmed) {
+            if (result.value && result.value.valid) {
+                // Password is valid
                 // Perform the deletion
-
                 // Display success message after deletion
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
-                    text: 'Supplier deleted successfully',
+                    text: 'Sale deleted successfully',
                     showConfirmButton: false,
                     timer: 2000,
                     showClass: {
                         popup: 'swal2-show'
                     }
                 }).then(() => {
-                    // Redirect to acc_manage.php
                     window.location.href = 'suppliers.php?delete=true&supplier_id=' + supplier_id;
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // User canceled the modal
+                console.log('User canceled the deletion');
+            } else {
+                // Password is invalid or an error occurred
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: result.value ? result.value.message : 'Incorrect password',
+                    showConfirmButton: false
                 });
             }
         });

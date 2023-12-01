@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         usernameMessage.textContent = '';
                         emailMessage.textContent = '';
                         confirmMessage.textContent = '';
-                        location.reload();
+                        //location.reload();
                         //window.location.href = 'index.php';
                     });
 

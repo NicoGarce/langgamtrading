@@ -16,7 +16,7 @@
                             <input type="file" class="form-control" id="excel" name="excel">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" id="import" name="import" class="btn btn-primary">Import File</button>
+                            <button type="submit" id="import" name="import" class="btn btn-primary" disabled>Import File</button>
                         </div>
                     </form>
                 </div>
@@ -26,3 +26,26 @@
 </div>
 <?php $sales->importSale(); ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function () {
+        // Get references to the file input and import button
+        var fileInput = $("#excel");
+        var importButton = $("#import");
+
+        // Add an event listener to the file input
+        fileInput.change(function () {
+            // Enable the import button if a file is selected, otherwise disable it
+            importButton.prop("disabled", !fileInput.val());
+        });
+
+        // Add an event listener to the form to handle submission
+        $("#registration-form").submit(function (event) {
+            // Check if a file is chosen before submitting the form
+            if (!fileInput.val()) {
+                // Display an alert or perform any necessary actions
+                alert("Please choose a file before submitting.");
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    });
+</script>

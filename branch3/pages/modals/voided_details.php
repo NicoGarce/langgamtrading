@@ -158,7 +158,7 @@
                         </div>
                     </div>
 
-                    <button data-id="<?php echo $result->order_id ?>" type="button" name="delete" class="btn btn-danger btn-sm delete-btn delete"><i class='bx bx-trash' title="Delete Product"></i></button>
+                    <!--<button data-id="<?php echo $result->order_id ?>" type="button" name="delete" class="btn btn-danger btn-sm delete-btn delete"><i class='bx bx-trash' title="Delete Product"></i></button>-->
                 </td>
             </tr>
             

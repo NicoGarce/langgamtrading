@@ -111,18 +111,54 @@ $inventory->delete_product();
 
     $('.delete-btn').on('click', function() {
         var product_id = $(this).data('id');
+
+        // Show a modal with a password input field
         Swal.fire({
-            icon: 'warning',
-            title: 'Are you sure?',
-            text: 'You are about to delete this product',
+            title: 'Enter your password to confirm deletion',
+            input: 'password',
+            inputAttributes: {
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            },
             showCancelButton: true,
+            confirmButtonText: 'Confirm',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it'
+            showLoaderOnConfirm: true,
+            customClass: {
+                title: 'smaller-title'
+            },
+            preConfirm: (password) => {
+                // Return a Promise that resolves with the server response
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: '../includes/validate_password.php',
+                        method: 'POST',
+                        data: {
+                            password: password
+                        },
+                        success: (response) => {
+                            try {
+                                const result = JSON.parse(response);
+                                console.log('Server response:', result); // Log the server response
+                                resolve(result);
+                            } catch (error) {
+                                console.error('Error parsing JSON response:', error);
+                                reject('Invalid JSON response from the server');
+                            }
+                        },
+                        error: (xhr, status, error) => {
+                            console.error('Server error:', status, error);
+                            reject(`Server error: ${status} - ${error}`);
+                        }
+                    });
+                });
+            },
+            allowOutsideClick: () => !Swal.isLoading()
         }).then((result) => {
-            if (result.isConfirmed) {
+            if (result.value && result.value.valid) {
+                // Password is valid
                 // Perform the deletion
-
                 // Display success message after deletion
                 Swal.fire({
                     icon: 'success',
@@ -134,8 +170,18 @@ $inventory->delete_product();
                         popup: 'swal2-show'
                     }
                 }).then(() => {
-                    // Redirect to acc_manage.php
                     window.location.href = 'inventory.php?delete=true&product_id=' + product_id;
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // User canceled the modal
+                console.log('User canceled the deletion');
+            } else {
+                // Password is invalid or an error occurred
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: result.value ? result.value.message : 'Incorrect password',
+                    showConfirmButton: false
                 });
             }
         });

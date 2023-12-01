@@ -12,6 +12,12 @@ body {
   transition: 0.3s;
 }
 
+.smaller-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
+
+
 .dataTables_wrapper {
   font-family: 'Poppins', sans-serif;
   font-size: 15px;

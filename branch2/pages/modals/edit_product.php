@@ -90,13 +90,13 @@
                                         <div class="row form-group pt-2">
                                             <div class="col">
                                                 <label for="date_ordered" class="label small px-1">Date Ordered</label>
-                                                <input type="date" class="form-control" id="date_ordered" name="date_ordered"
+                                                <input type="date" class="form-control" id="date_ordered<?php echo $cnt ?>" name="date_ordered"
                                                     placeholder="Date Ordered" value="<?php echo $result->date_ordered ?>" required>
                                             </div>
 
                                             <div class="col">
                                                 <label for="date_arrival" class="label small px-1">Date of Arrival</label>
-                                                <input type="date" class="form-control" id="date_arrival" name="date_arrival"
+                                                <input type="date" class="form-control" id="date_arrival<?php echo $cnt ?>" name="date_arrival"
                                                     placeholder="Date Arrival" value="<?php echo $result->date_arrival ?>" required>
                                             </div>
                                         </div>
@@ -106,7 +106,7 @@
                                         ?>
                                         <div class="form-group pt-2">
                                             <label for="supplier_id" class="label small px-1">Supplier</label>
-                                            <select class="form-control" id="supplier_id" name="supplier_id" required>
+                                            <select class="form-control" id="supplier_id<?php echo $cnt ?>" name="supplier_id" required>
                                                 <?php
                                                 foreach ($suppliers as $supplier) {
                                                     $selected = ($supplier->supplier_id == $result->supplier_id) ? "selected" : "";
@@ -119,7 +119,7 @@
                                         <div class="row form-group pt-2 pb-4">
                                             <div class="col">
                                                 <label for="date_added" class="label small px-1">Date Added</label>
-                                                <input type="date" class="form-control" id="date_added" name="date_added"
+                                                <input type="date" class="form-control" id="date_added<?php echo $cnt ?>" name="date_added"
                                                     placeholder="Date Arrival" value="<?php echo $result->date_added ?>" required readonly>
                                             </div>
                                             <div class="col">
