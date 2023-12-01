@@ -117,7 +117,7 @@
 
                                         <div class="modal-footer">
                                             <button type="button" id="footClose<?php echo $cnt ?>" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" name="update" class="btn btn-primary">Edit Product</button>
+                                            <button type="submit" name="update" class="btn btn-primary" disabled>Edit Product</button>
                                         </div>
 
                                     </form>
@@ -137,3 +137,24 @@
 </tbody>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Include the following script at the end of your HTML file, after the modal markup -->
+<script>
+    $(document).ready(function () {
+        <?php for ($i = 1; $i <= $cnt; $i++) { ?>
+            // Listen for changes in the form fields
+            $("#registration-form<?php echo $i ?> :input").on("input change", function () {
+                // Enable the "Edit Product" button when there's a change
+                $("#registration-form<?php echo $i ?> button[name='update']").prop("disabled", false);
+            });
+
+            // Disable the button initially (assuming the form is not pre-filled)
+            $("#registration-form<?php echo $i ?> button[name='update']").prop("disabled", true);
+
+            // Handle the modal close event to reset the form and disable the button
+            $("#headClose<?php echo $i ?>, #footClose<?php echo $i ?>").on("click", function () {
+                $("#registration-form<?php echo $i ?>")[0].reset(); // Reset the form
+                $("#registration-form<?php echo $i ?> button[name='update']").prop("disabled", true); // Disable the button
+            });
+        <?php } ?>
+    });
+</script>
