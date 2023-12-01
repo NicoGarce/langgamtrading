@@ -10,10 +10,10 @@ if (!isset($_SESSION['m_un']) && empty($_SESSION['m_un'])) {
     exit();
 }
 
-if(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
+if (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 1') {
     header('Location: /langgamtrading/branch1/pages/inventory.php');
     exit();
-}elseif(isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
+} elseif (isset($_SESSION['branch']) && $_SESSION['branch'] == 'Branch 2') {
     header('Location: /langgamtrading/branch2/pages/inventory.php');
     exit();
 }
@@ -109,59 +109,60 @@ $inventory->delete_product();
         $('.sidebar').removeClass('active');
     });
 
-    function verifyPassword() {
-        return Swal.fire({
-            title: 'Enter your password',
-            input: 'password',
-            inputAttributes: {
-                autocapitalize: 'off',
-                autocorrect: 'off',
-            },
-            showCancelButton: true,
-            confirmButtonText: 'Confirm',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            customClass: {
-                title: 'smaller-title',
-            },
-            preConfirm: (password) => {
-                return new Promise((resolve, reject) => {
-                    $.ajax({
-                        url: '../includes/validate_password.php',
-                        method: 'POST',
-                        data: {
-                            password: password,
-                        },
-                        success: (response) => {
-                            try {
-                                const result = JSON.parse(response);
-                                console.log('Server response:', result);
-                                resolve(result);
-                            } catch (error) {
-                                console.error('Error parsing JSON response:', error);
-                                reject('Invalid JSON response from the server');
-                            }
-                        },
-                        error: (xhr, status, error) => {
-                            console.error('Server error:', status, error);
-                            reject(`Server error: ${status} - ${error}`);
-                        },
-                    });
-                });
-            },
-            allowOutsideClick: false,
-        });
-    }
+    document.addEventListener('DOMContentLoaded', () => {
 
-    $(document).ready(function() {
+        function verifyPassword() {
+            return Swal.fire({
+                title: 'Enter your password',
+                input: 'password',
+                inputAttributes: {
+                    autocapitalize: 'off',
+                    autocorrect: 'off',
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Confirm',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                customClass: {
+                    title: 'smaller-title',
+                },
+                preConfirm: (password) => {
+                    return new Promise((resolve, reject) => {
+                        $.ajax({
+                            url: '../includes/validate_password.php',
+                            method: 'POST',
+                            data: {
+                                password: password,
+                            },
+                            success: (response) => {
+                                try {
+                                    const result = JSON.parse(response);
+                                    console.log('Server response:', result);
+                                    resolve(result);
+                                } catch (error) {
+                                    console.error('Error parsing JSON response:', error);
+                                    reject('Invalid JSON response from the server');
+                                }
+                            },
+                            error: (xhr, status, error) => {
+                                console.error('Server error:', status, error);
+                                reject(`Server error: ${status} - ${error}`);
+                            },
+                        });
+                    });
+                },
+                allowOutsideClick: false,
+            });
+        }
+
         // Listen for the custom event
         $(document).on("customButtonAppended", function() {
             // Attach the click event handler to the dynamically generated button
-            $('#add-product-btn').on('click', function() {
+            $('#add-supp-btn').on('click', function() {
                 verifyPassword()
                     .then((result) => {
                         if (result.value && result.value.valid) {
-                            $('#addProduct').modal('show');
+                            $('#addSupplier').modal('show');
                         } else if (result.dismiss === Swal.DismissReason.cancel) {
 
                         } else {
@@ -180,11 +181,9 @@ $inventory->delete_product();
                     });
             });
         });
-    });
 
-    $(document).ready(function() {
         // Attach the click event handler to the dynamically generated button with class 'btn-edit-product'
-        $('.btn-edit-product').on('click', function() {
+        $('.btn-edit-supplier').on('click', function() {
             verifyPassword()
                 .then((result) => {
                     if (result.value && result.value.valid) {
@@ -209,40 +208,40 @@ $inventory->delete_product();
                     // Handle the error (e.g., show an error message)
                 });
         });
-    });
 
 
-    $('.delete-btn').on('click', function() {
-        var product_id = $(this).data('id');
+        $('.delete-btn').on('click', function() {
+            var supplier_id = $(this).data('id');
 
-        verifyPassword(product_id).then((result) => {
-            if (result.value && result.value.valid) {
-                // Password is valid
-                // Perform the deletion
-                // Display success message after deletion
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'Product deleted successfully',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    showClass: {
-                        popup: 'swal2-show',
-                    },
-                }).then(() => {
-                    window.location.href = 'inventory.php?delete=true&product_id=' + product_id;
-                });
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
+            verifyPassword(supplier_id).then((result) => {
+                if (result.value && result.value.valid) {
+                    // Password is valid
+                    // Perform the deletion
+                    // Display success message after deletion
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Suppplier deleted successfully',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        showClass: {
+                            popup: 'swal2-show'
+                        }
+                    }).then(() => {
+                        window.location.href = 'suppliers.php?delete=true&supplier_id=' + supplier_id;
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
 
-            } else {
-                // Password is invalid or an error occurred
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: result.value ? result.value.message : 'Incorrect password',
-                    showConfirmButton: false,
-                });
-            }
+                } else {
+                    // Password is invalid or an error occurred
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: result.value ? result.value.message : 'Incorrect password',
+                        showConfirmButton: false,
+                    });
+                }
+            });
         });
     });
 </script>
