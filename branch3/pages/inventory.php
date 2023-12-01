@@ -109,38 +109,33 @@ $inventory->delete_product();
         $('.sidebar').removeClass('active');
     });
 
-    $('.delete-btn').on('click', function() {
-        var product_id = $(this).data('id');
-
-        // Show a modal with a password input field
-        Swal.fire({
-            title: 'Enter your password to confirm deletion',
+    function verifyPassword() {
+        return Swal.fire({
+            title: 'Enter your password',
             input: 'password',
             inputAttributes: {
                 autocapitalize: 'off',
-                autocorrect: 'off'
+                autocorrect: 'off',
             },
             showCancelButton: true,
             confirmButtonText: 'Confirm',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            showLoaderOnConfirm: true,
             customClass: {
-                title: 'smaller-title'
+                title: 'smaller-title',
             },
             preConfirm: (password) => {
-                // Return a Promise that resolves with the server response
                 return new Promise((resolve, reject) => {
                     $.ajax({
                         url: '../includes/validate_password.php',
                         method: 'POST',
                         data: {
-                            password: password
+                            password: password,
                         },
                         success: (response) => {
                             try {
                                 const result = JSON.parse(response);
-                                console.log('Server response:', result); // Log the server response
+                                console.log('Server response:', result);
                                 resolve(result);
                             } catch (error) {
                                 console.error('Error parsing JSON response:', error);
@@ -150,12 +145,77 @@ $inventory->delete_product();
                         error: (xhr, status, error) => {
                             console.error('Server error:', status, error);
                             reject(`Server error: ${status} - ${error}`);
-                        }
+                        },
                     });
                 });
             },
             allowOutsideClick: false,
-        }).then((result) => {
+        });
+    }
+
+    $(document).ready(function() {
+        // Listen for the custom event
+        $(document).on("customButtonAppended", function() {
+            // Attach the click event handler to the dynamically generated button
+            $('#add-product-btn').on('click', function() {
+                verifyPassword()
+                    .then((result) => {
+                        if (result.value && result.value.valid) {
+                            $('#addProduct').modal('show');
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+                        } else {
+                            // Password is invalid or an error occurred
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: result.value ? result.value.message : 'Incorrect password',
+                                showConfirmButton: false,
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('Password verification failed:', error);
+                        // Handle the error (e.g., show an error message)
+                    });
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        // Attach the click event handler to the dynamically generated button with class 'btn-edit-product'
+        $('.btn-edit-product').on('click', function() {
+            verifyPassword()
+                .then((result) => {
+                    if (result.value && result.value.valid) {
+                        const modalId = $(this).data('bs-target');
+
+                        // Show the modal using the retrieved ID
+                        $(modalId).modal('show');
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+                    } else {
+                        // Password is invalid or an error occurred
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: result.value ? result.value.message : 'Incorrect password',
+                            showConfirmButton: false,
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.log('Password verification failed:', error);
+                    // Handle the error (e.g., show an error message)
+                });
+        });
+    });
+
+
+    $('.delete-btn').on('click', function() {
+        var product_id = $(this).data('id');
+
+        verifyPassword(product_id).then((result) => {
             if (result.value && result.value.valid) {
                 // Password is valid
                 // Perform the deletion
@@ -167,21 +227,20 @@ $inventory->delete_product();
                     showConfirmButton: false,
                     timer: 2000,
                     showClass: {
-                        popup: 'swal2-show'
-                    }
+                        popup: 'swal2-show',
+                    },
                 }).then(() => {
                     window.location.href = 'inventory.php?delete=true&product_id=' + product_id;
                 });
             } else if (result.dismiss === Swal.DismissReason.cancel) {
-                // User canceled the modal
-                console.log('User canceled the deletion');
+
             } else {
                 // Password is invalid or an error occurred
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
                     text: result.value ? result.value.message : 'Incorrect password',
-                    showConfirmButton: false
+                    showConfirmButton: false,
                 });
             }
         });
