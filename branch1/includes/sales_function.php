@@ -80,6 +80,8 @@ class Sales
 
             $reader = new SpreadsheetReader($targetDirectory);
 
+            $expectedColumns = 15;
+
             // Initialize a flag or counter to skip the first row
             $skipFirstRow = true;
 
@@ -88,6 +90,22 @@ class Sales
                 if ($skipFirstRow) {
                     $skipFirstRow = false;
                     continue;
+                }
+
+                if (count($row) != $expectedColumns) {
+                    echo "<script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Please upload the excel file with the correct format.',
+                            showConfirmButton: false,
+                            timer: 5000,
+                            showClass: {
+                                popup: 'swal2-show'
+                            }
+                        });
+                        </script>";
+                    return; // Stop processing further if validation fails
                 }
 
                 $customer_name = $row[0];
@@ -174,8 +192,6 @@ class Sales
                     showClass: {
                         popup: 'swal2-show'
                     }
-                }).then(function() {
-                    window.location.href = window.location.href;
                 });
                 </script>";
                 } else {
