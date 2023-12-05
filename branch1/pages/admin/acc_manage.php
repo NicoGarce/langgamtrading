@@ -164,7 +164,7 @@ $users->delete_user();
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
-                        text: 'Sale deleted successfully',
+                        text: 'Account deleted successfully',
                         showConfirmButton: false,
                         timer: 2000,
                         showClass: {
