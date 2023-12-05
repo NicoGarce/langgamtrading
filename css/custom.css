@@ -58,6 +58,10 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+#generateBtn {
+  z-index: 0;
+}
+
 #side_nav ul {
   overflow-y: auto; /* Add scrollbars when the content overflows */
   max-height: 90vh; /* Set a maximum height to limit the sidebar's height */
