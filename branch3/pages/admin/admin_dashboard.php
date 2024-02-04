@@ -185,13 +185,27 @@ if (!$welcomeMessageDisplayed) {
                             </div>
                         </div>
                         <div class="text-center pt-2">
-                            <div class="card rounded-4">
-                                <div class="card-body">
+                            <div class="card rounded-4" id="slideshow-container">
+                                <div class="card-body slide" style="display: block;">
                                     <a class="btn font" href="../../../branch3/pages/voided.php">
-                                        <h6>Most Voided</h6>
-                                        <p class="fw-semibold">Most Cancelled Item: <?php echo $topVoid['Cancelled'] ?? 'N/A'; ?></p>
-                                        <p class="fw-semibold">Most Returned Item: <?php echo $topVoid['Returned'] ?? 'N/A'; ?></p>
-                                        <p class="fw-semibold">Most Refunded Item: <?php echo $topVoid['Refunded'] ?? 'N/A'; ?></p>
+                                        <h6>Most Cancelled Item</h6>
+                                        <p class="fw-semibold"><?php echo $topVoid['Cancelled'] ?? 'N/A'; ?></p>
+                                    </a>
+                                </div>
+
+                                <div class="card-body slide" style="display: none;">
+                                    <!-- Content for the second slide -->
+                                    <a class="btn font" href="../../../branch3/pages/voided.php">
+                                        <h6>Most Refunded Item</h6>
+                                        <p class="fw-semibold"><?php echo $topVoid['Refunded'] ?? 'N/A'; ?></p>
+                                    </a>
+                                </div>
+
+                                <div class="card-body slide" style="display: none;">
+                                    <!-- Content for the third slide -->
+                                    <a class="btn font" href="../../../branch3/pages/voided.php">
+                                        <h6>Most Returned Item</h6>
+                                        <p class="fw-semibold"><?php echo $topVoid['Returned'] ?? 'N/A'; ?></p>
                                     </a>
                                 </div>
                             </div>
@@ -208,6 +222,37 @@ if (!$welcomeMessageDisplayed) {
     });
     $('.close-btn').on('click', function() {
         $('.sidebar').removeClass('active');
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var currentSlide = 0;
+        var slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach(function(slide) {
+                slide.style.display = 'none';
+                slide.style.opacity = 0;
+            });
+
+            slides[index].style.display = 'block';
+
+            // Trigger reflow to apply the transition
+            slides[index].offsetHeight;
+
+            // Fade in the current slide
+            slides[index].style.opacity = 1;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Set the interval to switch slides (in milliseconds)
+        var interval = 5000; // Change this value as needed
+
+        // Start the slideshow
+        var slideshowInterval = setInterval(nextSlide, interval);
     });
 </script>
 

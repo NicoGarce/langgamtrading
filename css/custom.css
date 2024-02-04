@@ -43,6 +43,10 @@ body {
   font-weight: 600;
 }
 
+.slide {
+  transition: opacity 0.5s ease-in-out;
+}
+
 #side_nav {
   background: #252a2e;
   min-width: 250px;

@@ -182,7 +182,7 @@ if (!$welcomeMessageDisplayed) {
                                 <div class="card-body">
 
                                     <h6 class="text-center">Your Logs</h6>
-                                    <div style="max-height: 450px; overflow-y: auto;">
+                                    <div style="max-height: 400px; overflow-y: auto;">
                                         <table class="table table-striped table-hover">
                                             <thead>
                                                 <tr style="position: sticky; top: 0; background-color: #f9f9f9;">

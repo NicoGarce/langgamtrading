@@ -23,7 +23,7 @@ $refundedOrdersCount = $refundedOrdersCountStmt->fetchColumn();
 ?>
 
 <div class="card rounded-4 p-2">
-    <canvas id="doughnut-chart" height="350"></canvas>
+    <canvas id="doughnut-chart" height="285"></canvas>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

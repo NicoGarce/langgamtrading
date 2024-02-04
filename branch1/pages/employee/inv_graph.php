@@ -31,7 +31,7 @@ foreach ($stmt as $data) {
 ?>
 
 <div class="card rounded-4 p-2">
-    <canvas id="inv-chart" height="350"></canvas>
+    <canvas id="inv-chart" height="290"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
