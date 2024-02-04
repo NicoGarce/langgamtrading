@@ -41,20 +41,46 @@ if (isset($_GET['sale_id'])) {
         
         $pdf->SetFont('Helvetica', 'B', 10);
 
-        $pdf->Cell(63, 10, 'Qty', 0, 0, 'C');
-        $pdf->Cell(63, 10, 'Product Name', 0, 0, 'C');
-        $pdf->Cell(63, 10, 'Price', 0, 1, 'C');
+        // Adjust cell widths based on your preferences
+        $qtyWidth = 30;
+        $productNameWidth = 110;
+        $priceWidth = 50;
 
+        // Set a specific width for the total label
+        $totalLabelWidth = 140; // You can adjust this value
+
+        // Calculate total value width based on the available page width and total label width
+        $totalValueWidth = $pdf->GetPageWidth() - ($totalLabelWidth + 20); // Adjust as needed
+
+        // Calculate the starting position for the table to center it
+        $tableX = ($pdf->GetPageWidth() - ($qtyWidth + $productNameWidth + $priceWidth)) / 2;
+
+        // Table headers
+        $pdf->SetX($tableX);
+        $pdf->Cell($qtyWidth, 10, 'Qty', 1, 0, 'C');
+        $pdf->Cell($productNameWidth, 10, 'Product Name', 1, 0, 'C');
+        $pdf->Cell($priceWidth, 10, 'Price', 1, 1, 'C');
+
+        // Table rows
         foreach ($list as $orderItem) {
+            $pdf->SetX($tableX);
             $pdf->SetFont('Helvetica', '', 10);
-            $pdf->Cell(63, 10, $orderItem->quantity, 0, 0, 'C');
-            $pdf->Cell(63, 10, $orderItem->product_name, 0, 0, 'C');
-            $pdf->Cell(63, 10, 'PHP '.$orderItem->price, 0, 1, 'C');
+            $pdf->Cell($qtyWidth, 10, $orderItem->quantity, 1, 0, 'C');
+            $pdf->Cell($productNameWidth, 10, $orderItem->product_name, 1, 0, 'C');
+            $pdf->Cell($priceWidth, 10, 'PHP ' . $orderItem->price, 1, 1, 'C');
         }
 
-        $pdf->SetFont('Helvetica', 'B', 12);
-        $pdf->Cell(126, 10, 'Total: ', 0, 0, 'R');
-        $pdf->Cell(63, 10, 'PHP '.$result->total_cost, 0, 1,'C');
+        $pdf->SetFont('Arial', 'B', 12);
+
+        // Calculate the starting position for the total to center it
+        $totalX = ($pdf->GetPageWidth() - ($totalLabelWidth + $totalValueWidth)) / 2;
+
+        $pdf->SetX($totalX);
+        $pdf->Cell($totalLabelWidth, 10, 'Total: ', 1, 0, 'R');
+        $pdf->MultiCell($totalValueWidth, 10, 'PHP ' . $result->total_cost, 1, 'C');
+
+        // Add spacing for a cleaner look
+        $pdf->Ln(10);
         
         $pdf->SetFont('Helvetica', '', 10);
 
